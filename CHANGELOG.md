@@ -26,6 +26,7 @@
   the exact ledger range. Retain the eight regression tests; do not recalculate
   or overwrite historical experiment fees.
 
-The workflow and fresh registry installation have not yet been executed. These
-changes do not establish method superiority, expand supported Target kinds,
-publish a release, or change any historical experimental conclusion.
+Fresh registry installation and the complete product workflow passed on GitHub
+Ubuntu 22.04 at `df8f3a2` (run 34764675244); preceding failures remain recorded.
+These changes do not establish method superiority, expand supported Target kinds,
+publish a formal release, or change any historical experimental conclusion.
