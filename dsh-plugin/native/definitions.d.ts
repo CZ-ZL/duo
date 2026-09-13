@@ -21,8 +21,10 @@ export interface MetricDefinition {meaning?: string; direction?: 'maximize' | 'm
   construct?: 'format' | 'task_result' | 'cost'; lowerBound?: number; upperBound?: number}
 export type EvaluatorDescriptor = WorkDescriptor & {tier: Tier; dataId: string; metrics: string[];
   evidenceFamily?: string; fidelityRationale?: string; qualification?: string; metricDefinitions?: Record<string, MetricDefinition>}
-export interface Delta {kind: 'cordis-overlay'; target: 'system-prompt'; persona: string}
-export interface Snapshot {id: string; version: string; persona: string; path?: string}
+export type Delta = {kind: 'cordis-overlay'; target: 'system-prompt'; persona: string}
+  | {kind: 'plugin-config-replace-v1'; target: '@deepseek-ai/dsh-web-fetch-http'; config: Record<string, string | number>}
+
+export interface Snapshot {id: string; version: string; persona: string; config?: Record<string, string | number>; path?: string}
 export interface Candidate {id: string; parentId: string; parentVersion: string; family: string;
   mode: Mode; hypothesis: string; delta: Delta; operatorId?: string; hypothesisBeforeDelta?: boolean;
   repeat?: {purpose: 'noise_measurement'; reason: string}}

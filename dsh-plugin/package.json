@@ -54,7 +54,9 @@
     "native/tools.js",
     "native/money.js",
     "native/json-output.js",
-    "native/deferred-runtime.js"
+    "native/deferred-runtime.js",
+    "native/config-target.js",
+    "native/config-generator.js"
   ],
   "dsh": {
     "bundle": {
@@ -118,6 +120,8 @@
     "./json-output": "./native/json-output.js",
     "./evaluation-controller": "./native/evaluation-controller.js",
     "./deferred-runtime": "./native/deferred-runtime.js",
-    "./offline-fixture": "./native/offline-fixture.js"
+    "./offline-fixture": "./native/offline-fixture.js",
+    "./config-target": "./native/config-target.js",
+    "./config-generator": "./native/config-generator.js"
   }
 }

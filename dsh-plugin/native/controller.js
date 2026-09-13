@@ -12,6 +12,8 @@ import {searchStages,searchTiersOf} from './stages.js'
 
 const errorInfo=error=>({code:error?.code??'DUO_PROVIDER_FAILED',message:error?.code?error.message:'A configured native provider failed',component:error?.component??'duoController',retryable:false,nextAction:error?.nextAction??(error?.code==='DUO_COST_UNKNOWN'?'Inspect dualloop_budget_status and reconcile an independently supported receipt; do not repeat paid work':'Inspect dualloop_status and the retained plan; correct the failed input or provider before a new authorized run')})
 const clone=value=>structuredClone(value)
+// Preserve persona identities; configuration overlays also bind their real content.
+const contentIdentity=c=>digest(c.config===undefined?c.persona:{persona:c.persona,config:c.config})
 // Pin the native implementation loaded by this process. Source and installed
 // package use the same production files; tests are not part of plan identity.
 const implementationDigest=digest(readdirSync(new URL('.',import.meta.url)).filter(n=>n.endsWith('.js')&&!n.endsWith('.test.js')).sort().map(n=>[n,readFileSync(new URL(n,import.meta.url),'utf8')]))
@@ -21,7 +23,7 @@ export default class NativeController extends ControllerService {
  bindings(spec){return inspectProviderContracts(this.ctx,spec)}
  plan(){
   const {spec,contractPath,contractDigest}=this.ctx.duoContract.resolve(),baseline=this.ctx.duoTarget.snapshot(spec.target.path),providers=this.bindings(spec)
-  const searchPolicy=spec.mode==='evaluation_only'?null:{version:'1',duplicateIdentity:'sha256_of_exact_applied_persona',defaultDuplicateAction:'skip_execution_and_evaluation',allowNoiseRepeats:spec.allowNoiseRepeats===true,repeatRequirement:'Explicit noise_measurement purpose and nonempty reason; existing budget and permissions unchanged.'}
+  const searchPolicy=spec.mode==='evaluation_only'?null:{version:'1',duplicateIdentity:baseline.config===undefined?'sha256_of_exact_applied_persona':'sha256_of_applied_persona_and_config',defaultDuplicateAction:'skip_execution_and_evaluation',allowNoiseRepeats:spec.allowNoiseRepeats===true,repeatRequirement:'Explicit noise_measurement purpose and nonempty reason; existing budget and permissions unchanged.'}
   const recovery=providers.policies.duoJournal.checkpoint==='settled_search_boundary_v1'?{version:'1',boundaries:['baseline','generation'],implementationDigest,deadlinePolicy:'original_wall_deadline_includes_pause',resumeRequires:['current_plan','exact_checkpoint','settled_unchanged_receipts','released_or_dead_owner']}:null
   const identity={apiVersion:2,runtime:'dsh-native',spec,contractPath,contractDigest,baseline,providers,searchPolicy,searchStages:searchStages(spec),environment:executionEnvironment(),journalRoot:this.ctx.duoJournal.root,recovery}
   if(spec.warmStart)identity.warmStart=selectWarmStart(this.ctx.duoJournal,identity,spec.warmStart,typeof this.ctx.duoFeedback.orderHistory==='function'?this.ctx.duoFeedback:undefined)
@@ -76,7 +78,7 @@ export default class NativeController extends ControllerService {
   const budget=this.ctx.duoBudget.open(runId,spec.budget,searchTiersOf(spec))
   const check=()=>{if(signal.aborted)fail('ABORTED','Native run cancelled');const b=budget.snapshot();if(b.blockedReason)fail(b.blockedReason,'Unresolved native operation stops the run')}
   let {sequence=0,operations=0,champion=clone(plan.baseline),championEvidence={},stopReason='generation_limit',generationsRun=0,consecutiveEvaluationFailures=0,consecutiveNoProgress=0,searchStopped=false}=restored??{}
-  const final=[],latest=new Map(restored?.latest??[]),issued=new Set(),contentIndex=new Map(restored?.contentIndex??[[digest(plan.baseline.persona),plan.baseline.id]]),baselineTiers=new Set(restored?.baselineTiers??[])
+  const final=[],latest=new Map(restored?.latest??[]),issued=new Set(),contentIndex=new Map(restored?.contentIndex??[[contentIdentity(plan.baseline),plan.baseline.id]]),baselineTiers=new Set(restored?.baselineTiers??[])
   const boundary=(name,nextGeneration,stopped=false)=>{
     searchStopped=stopped
     if(!plan.recovery)return null
@@ -150,7 +152,7 @@ export default class NativeController extends ControllerService {
       for(const c of output.candidates){if(!issued.has(c.id)||seen.has(c.id)||latest.has(c.id))fail('DUO_CANDIDATES_INVALID','Candidate IDs must be unique controller-issued identities');seen.add(c.id);const applied=this.ctx.duoTarget.apply(c,champion);count[c.mode]++;proposed.push(applied)}
       if(Object.keys(count).some(m=>count[m]!==feedback.quotas[m]))fail('DUO_QUOTA_INVALID','Generator did not honor assigned structural mode quotas')
       for(const c of proposed){
-       const contentDigest=digest(c.persona),duplicateOf=contentIndex.get(contentDigest)??null,repeat=c.repeat??null
+       const contentDigest=contentIdentity(c),duplicateOf=contentIndex.get(contentDigest)??null,repeat=c.repeat??null
        if(c.repeat!==undefined&&(!spec.allowNoiseRepeats||!duplicateOf||!repeat||Object.keys(repeat).sort().join(',')!=='purpose,reason'||repeat.purpose!=='noise_measurement'||typeof repeat.reason!=='string'||!repeat.reason.trim()||Buffer.byteLength(repeat.reason)>1024))fail('DUO_REPEAT_INVALID','A repeated candidate requires an existing exact-content source, frozen allowNoiseRepeats opt-in and a bounded noise_measurement reason')
        const skip=!!duplicateOf&&!repeat
        record(c,{status:skip?'duplicate_skipped':'proposed',hypothesis:c.hypothesis,delta:c.delta,generation,contentDigest,duplicateOf,repeat})

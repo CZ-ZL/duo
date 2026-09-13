@@ -87,7 +87,7 @@ export function compileProposal({champion,feedback,quotas,generation,dataset,exp
   champion:project(champion,['id','version','persona']),generation,slots,feedback:summary,...code?{proposalExamples:examples}:{},
   trainingExamples:training.tasks.map(({id,input,expected})=>({id,input,criteria:expected})),responseInstructions:dataset.responseInstructions??null}
 }
-function parseUniqueJson(source){
+export function parseUniqueJson(source){
  const value=JSON.parse(source),tokens=source.match(/"(?:\\.|[^"\\])*"|[{}\[\]:,]/g)??[],stack=[]
  for(let i=0;i<tokens.length;i++){
   const token=tokens[i]

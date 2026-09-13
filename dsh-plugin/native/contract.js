@@ -19,7 +19,7 @@ export default class JsonContract extends ContractService {
 }
 // Shared by read-only drafting and execution. No file access or provider binding.
 export function resolveNativeContract(c,contractPath){
-  if(!c||c.version!==1||typeof c.id!=='string'||!c.id||c.target?.kind!=='dsh-persona'||typeof c.target.path!=='string')fail('DUO_CONTRACT_INVALID','Native v1 contract requires an id and a DSH persona target')
+  if(!c||c.version!==1||typeof c.id!=='string'||!c.id||!['dsh-persona','dsh-plugin-config'].includes(c.target?.kind)||typeof c.target.path!=='string')fail('DUO_CONTRACT_INVALID','Native v1 contract requires an id and an explicit DSH persona or plugin-config target')
   const authored=c;c=normalizeSearchStages(c)
   const b=c.budget,m=moneyFields(b)
   if(!b||!finite(b[m.cap])||b[m.cap]<0||!['maxSessions','maxFastEvals','maxSlowEvals'].every(k=>integer(b[k]))||!integer(b.maxWallTimeMs,1))fail('DUO_CONTRACT_INVALID','Explicit finite cost, operation, evaluation and time caps are required')
