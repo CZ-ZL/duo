@@ -20,6 +20,20 @@ run_check() {
     return "$result"
   fi
 }
+run_check sandbox python3 - "$OUT" <<'PY'
+import json
+from pathlib import Path
+import sys
+from scripts.code_evaluation import run_case
+
+row = run_case('def task_func(x): return abs(x)',
+               'import unittest\nclass TestCases(unittest.TestCase):\n'
+               ' def test_control(self): self.assertEqual(task_func(-3), 3)\n',
+               Path(sys.argv[1]) / 'sandbox-control')
+print(json.dumps(row, indent=2))
+if not row['taskPassed']:
+    raise SystemExit('Isolated Python execution is unavailable; inspect sandbox.log and sandbox-control/stderr.txt. No unsafe fallback.')
+PY
 run_check native env DUO_DSH_PACKAGE="$DSH_PKG" node --loader ./scripts/dsh_native_loader.mjs --test dsh-plugin/native/*.test.js dsh-plugin/*.test.js
 run_check python-product env DUO_DSH_PACKAGE="$DSH_PKG" python3 -m pytest tests/ -q -m 'not research' -p no:cacheprovider --basetemp "$OUT/pytest-work"
 run_check host python3 scripts/verify_dsh_native.py --dsh-package "$DSH_PKG" --output "$OUT/verify"

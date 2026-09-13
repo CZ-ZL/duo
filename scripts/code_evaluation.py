@@ -68,6 +68,19 @@ def run_case(code, tests, output, timeout=6):
                 row['exitCode'] = process.returncode
             except OSError as error:
                 row['error'] = str(error)
+    if row['status'] == 'execution_error':
+        # Keep startup/isolation failures distinct from measured candidate
+        # failures, and surface enough context to diagnose a different host.
+        # The complete stderr stays in its existing artifact; never load an
+        # unbounded worker output into the receipt.
+        with (output / 'stderr.txt').open('rb') as stderr:
+            size = stderr.seek(0, os.SEEK_END)
+            stderr.seek(max(0, size - 4096))
+            row['executionError'] = {
+                'stage': 'namespace_worker',
+                'stderrTail': stderr.read(4096).decode('utf-8', errors='replace'),
+                'stderrTruncated': size > 4096,
+            }
     row.update({'wallTimeMs': round((time.monotonic() - started) * 1000, 3),
                 'codeSha256': hashlib.sha256(code.encode()).hexdigest(),
                 'testSha256': hashlib.sha256(tests.encode()).hexdigest(),

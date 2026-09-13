@@ -12,6 +12,7 @@ result. Candidates are not automatically deployed.
 
 See [experimental results](EXPERIMENTS.md) for the completed four-arm comparison,
 shadow-final diagnostic, selection audit, failures and evidence limits.
+中文交付状态见[本轮交付报告](DELIVERY_REPORT.zh.md)。
 
 ## Try the packaged example without a model
 

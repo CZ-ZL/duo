@@ -30,9 +30,18 @@ jobs:
       - name: Verify without model credentials
         run: bash scripts/release_gate.sh "$RUNNER_TEMP/duo-release-check"
       - name: Retain verification evidence
-        if: always()
+        if: ${{ !cancelled() }}
+        timeout-minutes: 3
         uses: actions/upload-artifact@v4
         with:
           name: linux-product-evidence
-          path: ${{ runner.temp }}/duo-release-check
+          # Keep the evidence and package, without traversing temporary profiles
+          # or their node_modules links back to the complete host installation.
+          path: |
+            ${{ runner.temp }}/duo-release-check/*.log
+            ${{ runner.temp }}/duo-release-check/*.json
+            ${{ runner.temp }}/duo-release-check/*.tgz
+            ${{ runner.temp }}/duo-release-check/verify/*.json
+            ${{ runner.temp }}/duo-release-check/verify/*.stdout.txt
+            ${{ runner.temp }}/duo-release-check/verify/*.stderr.txt
           if-no-files-found: warn

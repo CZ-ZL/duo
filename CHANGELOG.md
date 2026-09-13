@@ -5,6 +5,11 @@
 - Add aggregate experimental results, retained failure explanations and source
   hashes for the formal comparison, shadow final, selection audit and completed
   configuration headroom diagnostic; no raw private run archive is included.
+- Report bounded worker startup stderr on isolated execution errors and fail the
+  product gate early when its required sandbox is unavailable; scoring and
+  isolation rules are unchanged.
+- Limit CI evidence upload to logs, reports and the tarball, with a bounded,
+  cancellable upload step instead of traversing temporary dependency trees.
 - Verify actual offline tarball installation and automatic bundle registration
   in a fresh profile, plus a fresh packaged demo using existing host dependencies.
 - Preserve the native 0.3.0 runtime and persona target scope.

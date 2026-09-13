@@ -66,6 +66,25 @@ def test_empty_test_suite_is_not_a_pass(tmp_path):
     assert not row['taskPassed']
 
 
+def test_worker_start_failure_retains_bounded_diagnostic_without_scoring(tmp_path, monkeypatch):
+    class FailedNamespace:
+        returncode = 1
+
+        def __init__(self, command, **kwargs):
+            kwargs['stderr'].write(b'x' * 10000 + b'\nunshare: Operation not permitted\n')
+
+        def communicate(self, *args, **kwargs):
+            return None, None
+
+    monkeypatch.setattr(evaluation.subprocess, 'Popen', FailedNamespace)
+    row = evaluation.run_case('def task_func(x): return abs(x)', TESTS, tmp_path / 'denied')
+    assert row['status'] == 'execution_error' and not row['taskPassed']
+    assert row['executionError']['stderrTail'].endswith('unshare: Operation not permitted\n')
+    assert len(row['executionError']['stderrTail'].encode()) <= 4096
+    assert row['executionError']['stderrTruncated'] is True
+    assert (tmp_path / 'denied/stderr.txt').stat().st_size > 10000
+
+
 def test_large_wrong_dictionary_is_a_measured_failure_not_a_diff_timeout(tmp_path):
     tests = '''import unittest
 class TestCases(unittest.TestCase):
