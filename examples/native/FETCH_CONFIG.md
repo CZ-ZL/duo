@@ -11,3 +11,8 @@ Use `@dual-loop/dsh-plugin/config-generator` with the existing model configurati
 The first real diagnostic stopped after a candidate answered without fetching. Merely exposing the tool is insufficient to establish that its configuration was exercised. `fetch-required-tool.js` is an optional prospective profile plugin using the official non-thinking `tool_choice` field; it has offline wire/host verification only and is **not** enabled in the frozen failed run. Existing URL restrictions and a synchronous single-read guard remain in force.
 
 The exact evaluator also requires trimmed declarations. Preserve its original results when an output includes source indentation; any later normalization or revised response contract needs a distinct protocol and evaluator identity where applicable.
+
+## Status and decisions (2026-09-14)
+
+- `fetch-required-tool.js` stays an opt-in research example and is NOT promoted into the default npm bundle until the prepared 2-request / ¥0.90 real validation (`maxBodyChars=120000` + named `web_fetch` `tool_choice`) passes.
+- The frozen exact evaluator is unchanged (no whitespace trimming). If a whitespace-tolerant variant is ever needed it must be a new versioned evaluator, calibrated before use, never mixed with old scores.

@@ -1,6 +1,6 @@
 # @dual-loop/dsh-plugin
 
-Version 0.3.0 runs DualLoop inside DSH as Cordis services. The default entry
+Version 0.4.0 runs DualLoop inside DSH as Cordis services. The default entry
 contains the experiment controller, evidence policies, persona overlays and
 persistent accounting in JavaScript. It does not invoke the Python CLI.
 The earlier Python bridge remains available explicitly as `/legacy`.
@@ -29,7 +29,7 @@ Requires an existing DSH installation on Linux with Node 24+.
 
    ```sh
    cd dsh-plugin
-   npm pack --offline --ignore-scripts   # produces dual-loop-dsh-plugin-0.3.0.tgz
+   npm pack --offline --ignore-scripts   # produces dual-loop-dsh-plugin-0.4.0.tgz
    ```
 
 2. **Install** into an existing, authorized Agent profile. In this example,
@@ -40,7 +40,7 @@ Requires an existing DSH installation on Linux with Node 24+.
    auto-appended to `dsh.profile.bundles`:
 
    ```sh
-   dsh plugin --profile duo-demo add /absolute/path/dual-loop-dsh-plugin-0.3.0.tgz
+   dsh plugin --profile duo-demo add /absolute/path/dual-loop-dsh-plugin-0.4.0.tgz
    ```
 
    This installation step may resolve peer dependencies and access the registry.

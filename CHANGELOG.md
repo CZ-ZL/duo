@@ -1,5 +1,44 @@
 # Changelog
 
+## 0.4.0 — config target and fetch evaluation harness
+
+Released 2026-09-14, on top of the 0.3.0 experimental source preview (`df8f3a2`).
+
+- Add the `dsh-plugin-config` target kind: `native/config-target.js` (isolated
+  `@deepseek-ai/dsh-web-fetch-http` overlay where only integer `maxBodyChars`
+  in `[50000,200000]` may vary; other fetch defaults and the persona are
+  locked; parent and version are validated) and `native/config-generator.js`
+  (real model-generated `plugin-config-replace-v1` config deltas reusing the
+  existing history-feedback/single-call mechanism). `contract.js` accepts the
+  new kind; `controller.js` deduplicates candidates on persona+config identity
+  (persona-only identity is unchanged). Both modules ship in the npm `files`
+  list and are publicly exported; new tests `config-target.test.js` and
+  `fetch-evaluation.test.js`.
+- Add research examples under `examples/native/`: `fetch-config-evaluation.js`
+  (real DSH fetch executor + exact evaluator + package-level model/cost
+  guards), `fetch-required-tool.js` (optional fix: named `web_fetch`
+  `tool_choice` on the first step of non-thinking requests),
+  `fetch-required-tool.test.js` and `FETCH_CONFIG.md`.
+- Real 4-request run (package `config-search-20260914`, 2026-09-13/14, 52
+  requests / ¥2 authorized, settled at 4 requests / ¥0.03277904): real
+  generation works and produced 2 config candidates, but the first candidate
+  never called `web_fetch` (0 tool calls, all answers UNKNOWN) — an
+  execution-precondition failure. The package was stopped per the freeze
+  rules. The frozen baseline score remains 0/18 and must not be restated.
+  Overall root-cause classification remains INSUFFICIENT_EVIDENCE; the formal
+  conclusion stands: no proven quality/cost advantage over a reasonable
+  single loop.
+- A follow-up 2-request / ¥0.90 verification (`maxBodyChars=120000` plus the
+  named `tool_choice`) is prepared but not yet executed.
+
+Recorded decisions:
+
+- `fetch-required-tool` stays an opt-in research example and is NOT promoted
+  into the default npm bundle until the 2-request real validation passes.
+- The frozen exact evaluator is unchanged (no whitespace trimming). If a
+  whitespace-tolerant variant is ever needed it must be a new versioned
+  evaluator, calibrated before use, never mixed with old scores.
+
 ## Unreleased — GitHub publication preparation
 
 - Add aggregate experimental results, retained failure explanations and source

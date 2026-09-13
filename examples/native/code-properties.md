@@ -24,7 +24,7 @@ From `dualloop/`, with the existing cached DSH installation:
 ```bash
 python3 scripts/prepare_code_properties.py --source-pack runs/code-method-goal-20260912/benchmark-v24-qualified --output /tmp/duo-properties-new
 python3 scripts/prepare_code_properties.py --qualify-pack /tmp/duo-properties-new --output /tmp/duo-properties-check-new
-python3 scripts/verify_code_benchmark.py --calibration-pack /tmp/duo-properties-new --dsh-package /home/agent/.npm/_npx/1e7f6d9597241db0/node_modules/@deepseek-ai/dsh --output /tmp/duo-properties-native-new
+python3 scripts/verify_code_benchmark.py --calibration-pack /tmp/duo-properties-new --dsh-package "$DUO_DSH_PACKAGE" --output /tmp/duo-properties-native-new
 ```
 
 Each output directory must be new. Preparation validates the pinned source

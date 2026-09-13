@@ -33,7 +33,9 @@ must not be presented as unseen data in future experiments.
 include the formal negative result, subsequent selection diagnostics and completed
 configuration headroom test. The latter used 12 real requests and found repeatable
 task differences in two rounds; configuration-target DUO search and candidate
-final evaluation remain unimplemented/unrun. The broader Root Cause Goal is open.
+final evaluation remain unimplemented/unrun. (Superseded 2026-09-14: see the
+update below — the config target is now implemented and a first real search run
+was executed.) The broader Root Cause Goal is open.
 
 Raw model requests, private configuration, account ledgers and journals are
 excluded. Research replay tests are retained but require separately reviewed
@@ -42,3 +44,21 @@ archives; missing-input failures are recorded and not counted as product passes.
 [Historical acceptance metadata](HISTORICAL_EVIDENCE.json) includes a successful
 real Caller/custom-evaluator evaluation and its preceding failures. This is older
 local-archive evidence, not a fresh acceptance of the publication candidate.
+
+## Update — 2026-09-14 (0.4.0)
+
+The configuration target is implemented and offline-accepted: the new
+`dsh-plugin-config` target kind (`native/config-target.js`,
+`native/config-generator.js`) varies only integer `maxBodyChars` in
+`[50000,200000]` on an isolated fetch-plugin overlay and is shipped and publicly
+exported in the npm package. A real single-loop search run (package
+`config-search-20260914`, 52 requests / ¥2 authorized) settled at 4 requests /
+¥0.03277904: real model generation works and produced two config candidates, but
+the run stopped per the freeze rules on the first candidate's
+execution-precondition failure — it never called `web_fetch` (0 tool calls, all
+answers UNKNOWN). The frozen baseline score remains 0/18. A follow-up 2-request /
+¥0.90 verification (`maxBodyChars=120000` plus a named `web_fetch` `tool_choice`,
+kept as an opt-in research example pending that validation) is prepared but not
+yet executed. The root-cause goal remains open with classification
+INSUFFICIENT_EVIDENCE; the formal conclusion stands: no proven quality or cost
+advantage over a reasonable single loop.

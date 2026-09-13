@@ -40,7 +40,7 @@ From `dualloop/`, first create and verify the fixed development controls:
 ```bash
 python3 scripts/prepare_code_review_controls.py --benchmark-pack runs/code-method-goal-20260912/benchmark-v24-qualified --output /tmp/duo-review-controls-new
 python3 scripts/prepare_code_review_controls.py --benchmark-pack runs/code-method-goal-20260912/benchmark-v24-qualified --verify-controls /tmp/duo-review-controls-new --output /tmp/duo-review-execution-new
-python3 scripts/run_code_review.py --mode offline --controls /tmp/duo-review-controls-new --dsh-package /home/agent/.npm/_npx/1e7f6d9597241db0/node_modules/@deepseek-ai/dsh --output /tmp/duo-review-host-new
+python3 scripts/run_code_review.py --mode offline --controls /tmp/duo-review-controls-new --dsh-package "$DUO_DSH_PACKAGE" --output /tmp/duo-review-host-new
 ```
 
 Every output directory must be new. These four batches use three fixed existing

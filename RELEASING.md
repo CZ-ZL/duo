@@ -1,8 +1,9 @@
 # GitHub publication checklist
 
 This source is a publication candidate for the existing native persona plugin.
-The package stays at 0.3.0 until the owner chooses a release and its acceptance
-conditions are met. A source upload is not a claim of optimization superiority.
+The package version (0.4.0) is not a formal release until the owner chooses one
+and its acceptance conditions are met. A source upload is not a claim of
+optimization superiority.
 
 1. Confirm the GitHub owner/repository, public visibility, release scope and
    copyright attribution. Do not publish the parent workspace or its Git history.

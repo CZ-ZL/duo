@@ -40,7 +40,7 @@ First attempt — `dsh plugin add <source dir>` — installs as `link:` (symlink
 
 ```
 Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@deepseek-ai/schemastery'
-imported from /home/agent/.../dualloop/dsh-plugin/index.js
+imported from /path/to/dualloop/dsh-plugin/index.js
 ```
 
 Cause: Node realpaths the symlink, so the plugin's own bare imports resolve from the *source* directory, not the profile. dsh's runtime module fallback (`healProfilesModuleFallback` in `@deepseek-ai/dsh-app-boot`) maintains `$DSH_HOME/profiles/node_modules` as a symlink farm mirroring the dsh installation's dependency closure — that farm is only on the resolution path of modules that physically live under `$DSH_HOME/profiles/`. The upstream `hello-plugin` tutorial gets away with a directory install because it imports nothing. Any plugin with real imports needs the tarball (or npm publish). **This is the one finding the docs imply but never state plainly.**
@@ -55,12 +55,12 @@ Cause: Node realpaths the symlink, so the plugin's own bare imports resolve from
 `--dump-config` (config layering visible in the layer header — bundle patched by profile):
 
 ```
-# == @dual-loop/dsh-plugin, patched by /home/agent/.dsh/profiles/dualloop-plugin-test/cordis.patch.yml
+# == @dual-loop/dsh-plugin, patched by $DSH_HOME/profiles/dualloop-plugin-test/cordis.patch.yml
 - id: dualloop
   name: '@dual-loop/dsh-plugin'
   config:
-    experiment: /home/agent/.../dualloop/experiments/mock.yml
-    coreDir: /home/agent/.../dualloop
+    experiment: /path/to/dualloop/experiments/mock.yml
+    coreDir: /path/to/dualloop
     python: python3
     runTimeoutMs: 1800000
 ```

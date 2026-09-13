@@ -1,6 +1,6 @@
 {
   "name": "@dual-loop/dsh-plugin",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "DSH-native dual-loop optimization services, provider contracts and tools; explicit legacy Python bridge retained",
   "license": "MIT",
   "type": "module",
