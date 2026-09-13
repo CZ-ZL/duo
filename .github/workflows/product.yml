@@ -10,7 +10,10 @@ permissions:
 
 jobs:
   linux:
-    runs-on: ubuntu-24.04
+    # The bounded evaluator needs unprivileged namespace UID mapping. The
+    # attempted ubuntu-24.04 image rejected /proc/self/uid_map; do not disable
+    # its security policy or fall back to running candidate code on the host.
+    runs-on: ubuntu-22.04
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4

@@ -3,6 +3,13 @@
 Use Linux, Node 24+, Python 3.10+, PyYAML and pytest, and an existing DSH
 `0.1.2-rc.1` installation. The native plugin does not require Python at runtime.
 
+The code-evaluation checks additionally require Linux user/mount/PID/network
+namespaces with UID mapping, `/usr/bin/python3`, chroot and libseccomp. The gate
+first runs an isolated reference program and reports bounded startup stderr on
+failure. It does not weaken isolation when a host denies these capabilities.
+The attempted GitHub Ubuntu 24.04 image refused `/proc/self/uid_map`; the workflow
+uses Ubuntu 22.04 as its compatibility target. See Actions for actual run results.
+
 ## Product verification
 
 ```sh
