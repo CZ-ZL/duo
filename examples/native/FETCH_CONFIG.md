@@ -14,5 +14,5 @@ The exact evaluator also requires trimmed declarations. Preserve its original re
 
 ## Status and decisions (2026-09-14)
 
-- `fetch-required-tool.js` stays an opt-in research example and is NOT promoted into the default npm bundle until the prepared 2-request / ¥0.90 real validation (`maxBodyChars=120000` + named `web_fetch` `tool_choice`) passes.
+- `fetch-required-tool.js` stays an opt-in research example and is NOT promoted into the default npm bundle. Its promotion precondition was met later on 2026-09-14: the 2-request / ¥0.03234696 real validation (`required-tool-verify-20260914`, `maxBodyChars=120000` + named `web_fetch` `tool_choice`) PASSED — dl-0001 entered one real `readBody` and scored VALID 14/18 on the 18-task dev union under the frozen exact evaluator. Promotion into the default bundle remains a separate maintainer decision.
 - The frozen exact evaluator is unchanged (no whitespace trimming). If a whitespace-tolerant variant is ever needed it must be a new versioned evaluator, calibrated before use, never mixed with old scores.

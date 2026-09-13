@@ -25,16 +25,35 @@ Released 2026-09-14, on top of the 0.3.0 experimental source preview (`df8f3a2`)
   never called `web_fetch` (0 tool calls, all answers UNKNOWN) — an
   execution-precondition failure. The package was stopped per the freeze
   rules. The frozen baseline score remains 0/18 and must not be restated.
-  Overall root-cause classification remains INSUFFICIENT_EVIDENCE; the formal
-  conclusion stands: no proven quality/cost advantage over a reasonable
-  single loop.
-- A follow-up 2-request / ¥0.90 verification (`maxBodyChars=120000` plus the
-  named `tool_choice`) is prepared but not yet executed.
+- Execution-precondition verification PASSED (`required-tool-verify-20260914`,
+  protocol v2): the named `tool_choice` fix validated by real API — 2 requests
+  / ¥0.03234696; dl-0001 (`maxBodyChars=120000`) entered one real `readBody`
+  and scored VALID 14/18 on the 18-task dev union under the frozen exact
+  evaluator.
+- Corrected same-harness B0/B1/B2 config-search comparison COMPLETED
+  (`config-search-corrected-20260914`, protocol v1): 44 requests /
+  ¥0.18554908, no stops, all usage known. B1 generated five 18/18 dev-union
+  candidates (new-harness baseline dev row 10/18); on the once-consumed frozen
+  12-question diagnostic final, baseline(100000) 8/12, B1 best-dev
+  dl-0002(180000) 12/12, B2 dl-0001(150000) 12/12. Dual-loop and single-loop
+  TIED (both selected 12/12; B1 17 requests vs B2 21): the formal
+  no-advantage conclusion is unchanged and gains same-direction evidence. The
+  root-cause goal is CLOSED with per-component classification (execution
+  precondition root-caused and fixed; search generates genuinely better
+  candidates on this diagnostic; no selection error observed; Slow-rejection
+  accuracy and 150000-vs-180000 ranking remain open due to ceiling ties and
+  single-run noise). Caveats: single execution per object, large answer-side
+  nondeterminism, final questions from the same previously-public source
+  document as dev, ceiling ties, `maxBodyChars` knob only. The diagnostic
+  final (`config-diagnostic-final-twelve-v1`) is now consumed and must never
+  be presented as unevaluated.
 
 Recorded decisions:
 
 - `fetch-required-tool` stays an opt-in research example and is NOT promoted
-  into the default npm bundle until the 2-request real validation passes.
+  into the default npm bundle. Its promotion precondition was met on
+  2026-09-14 (the 2-request real validation passed), but promotion remains a
+  separate maintainer decision.
 - The frozen exact evaluator is unchanged (no whitespace trimming). If a
   whitespace-tolerant variant is ever needed it must be a new versioned
   evaluator, calibrated before use, never mixed with old scores.

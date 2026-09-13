@@ -29,16 +29,29 @@ returns candidate overlays, Fast/Slow/final evidence, decisions, history and cos
   package-level model/cost guards), `fetch-required-tool.js` (optional fix:
   named `web_fetch` `tool_choice` on the first step of non-thinking requests),
   `fetch-required-tool.test.js` and `FETCH_CONFIG.md`.
-- **First real config-search run.** Package `config-search-20260914`
-  (2026-09-13/14, 52 requests / ¥2 authorized, settled at 4 requests /
-  ¥0.03277904): real generation works and produced 2 config candidates, but the
-  first candidate never called `web_fetch` (0 tool calls, all answers UNKNOWN) —
-  an execution-precondition failure. The package was stopped per the freeze
-  rules. The frozen baseline score remains 0/18 and must not be restated.
-  Overall root-cause classification remains INSUFFICIENT_EVIDENCE; the formal
-  conclusion stands: no proven quality/cost advantage over a reasonable single
-  loop. A follow-up 2-request / ¥0.90 verification (`maxBodyChars=120000` plus
-  the named `tool_choice`) is prepared but not yet executed.
+- **First real config-search run, then the corrected comparison.** Package
+  `config-search-20260914` (2026-09-13/14, 52 requests / ¥2 authorized, settled
+  at 4 requests / ¥0.03277904) stopped per the freeze rules on an
+  execution-precondition failure: the first candidate never called `web_fetch`
+  (0 tool calls, all answers UNKNOWN). The old-harness frozen baseline score
+  remains 0/18 and must not be restated as a new-harness result. The named
+  `tool_choice` fix was then validated by real API
+  (`required-tool-verify-20260914`, 2 requests / ¥0.03234696; dl-0001
+  `maxBodyChars=120000` scored VALID 14/18 on the 18-task dev union), and the
+  corrected same-harness B0/B1/B2 comparison COMPLETED
+  (`config-search-corrected-20260914`, 44 requests / ¥0.18554908, no stops):
+  B1 generated five 18/18 dev-union candidates (new-harness baseline dev row
+  10/18); on the once-consumed frozen 12-question diagnostic final,
+  baseline(100000) 8/12, B1 best-dev dl-0002(180000) 12/12, B2 dl-0001(150000)
+  12/12. Dual-loop and single-loop TIED (both selected 12/12; B1 17 requests
+  vs B2 21). The formal conclusion — no proven quality/cost advantage over a
+  reasonable single loop — is UNCHANGED and gains same-direction evidence. The
+  root-cause goal is now CLOSED with per-component classification; the
+  diagnostic final (`config-diagnostic-final-twelve-v1`) is consumed and must
+  never be presented as unevaluated. Caveats: single execution per object,
+  large answer-side nondeterminism, final questions from the same
+  previously-public source document as dev, ceiling ties, `maxBodyChars` knob
+  only.
 
 ## Recorded decisions
 
@@ -86,9 +99,13 @@ and report retained under `runs/root-cause-diagnostic-20260913/release-gate-v040
 - **No method superiority shown.** The completed formal comparison did not
   establish a quality or API-cost advantage over a reasonable single-loop
   baseline. All optimization arms retained the original persona; retaining
-  the original is a valid result. The new config-search run adds no positive
-  evidence; root-cause classification remains INSUFFICIENT_EVIDENCE.
-  See `EXPERIMENTS.md`.
+  the original is a valid result. The corrected config-search comparison found
+  real configuration headroom on its diagnostic (baseline 8/12 → selected
+  candidates 12/12 on the once-frozen 12-question diagnostic final), but the
+  dual loop and the single loop TIED — the no-advantage conclusion stands with
+  same-direction evidence. Caveats: single execution per object, large
+  answer-side nondeterminism, same-source final questions, ceiling ties, and
+  the `maxBodyChars` knob only. See `EXPERIMENTS.md`.
 - **Experimental software.** This is an engineering-acceptance preview, not
   the project's formal 1.0.0 release; no npm registry publication is part of
   this delivery.
@@ -97,10 +114,13 @@ and report retained under `runs/root-cause-diagnostic-20260913/release-gate-v040
 - **Repository status.** The repository was PRIVATE at the time these notes
   were written; the GitHub CI run links recorded in the evidence files become
   accessible only after the maintainer flips visibility.
-- **Open research goal.** The first real config search failed on an execution
-  precondition (candidate never fetched); the 2-request verification is
-  prepared but unexecuted, and candidate final evaluation remains unrun. The
-  broader root-cause goal is open.
+- **Root-cause goal closed, sub-questions open.** The execution precondition
+  was root-caused and fixed (validated by a 2-request real run), search can
+  generate genuinely better candidates on this diagnostic, and no selection
+  error was observed in this sample. Slow-rejection accuracy and the
+  150000-vs-180000 candidate ranking remain open due to ceiling ties and
+  single-run noise. The 12-question diagnostic final is now consumed and must
+  never again be presented as an unevaluated final.
 - A model-driven Calling Agent can incur costs even with free work providers.
   Example budgets do not authorize spending. Read `dsh-plugin/SECURITY.md`
   before handling real resources.
