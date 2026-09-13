@@ -1,0 +1,66 @@
+# Offline regression experiment: wires ALL mock plugins. Proves the dual-loop
+# protocol end-to-end without any API call. Scores are hash-derived from delta
+# content and carry no semantic meaning — except the proxy-trap family, where
+# fast and slow deliberately disagree (fast-high, slow-low) so the Slow->Fast
+# feedback edge is exercised.
+name: mock-dual-loop-regression
+seed: 7
+journal_dir: mock_journal   # never the real demo journal (experiments/journal)
+generations: 3
+quotas: { exploit: 3, explore: 3, innovate: 2 }
+promotion: { top_k: 2 }
+families: [ retrieval-discipline, citation-rigor, proxy-trap, brevity-tuning ]
+proxy_trap_family: proxy-trap
+feedback:
+  slow_failure_threshold: 2   # a family is penalized only after >= 2 slow failures
+  min_sample_size: 4          # below this, correlations are "insufficient_data"
+  max_emphasis_shift: 1       # suggestedEmphasis shifts bounded to +/-1 slot/gen
+plugins:
+  objective_provider: mock
+  generator: mock
+  mutator: mock
+  executor: mock
+  fast_evaluator: mock
+  slow_evaluator: mock
+  comparator: weighted_v1
+  promotion_gate: top_k_v1
+resolvable_baselines: [ "git:HEAD" ]
+
+contract:
+  id: mock-skill-quality
+  version: 1
+  target:
+    kind: dsh-skill
+    ref: skills/mock/SKILL.md
+    editable_space: [ instructions, workflow_policy ]
+    frozen: [ tools, permissions ]
+  baseline:
+    ref: "git:HEAD"
+  upper_objective:            # North Star (slow)
+    metric: task_success_rate
+    direction: maximize
+    evaluator: mock_slow
+    fidelity: high
+    feedback_latency: slow
+  lower_objectives:           # fast proxies
+    - metric: dev_benchmark_score
+      direction: maximize
+      evaluator: mock_fast
+      expected_relation: correlates_positively_with(task_success_rate)
+    - metric: avg_cost_usd
+      direction: minimize
+      evaluator: mock_fast
+  constraints:                # hard guardrails — violations reject, never penalize
+    - { metric: avg_cost_usd, op: "<", value: 0.50 }
+    - { metric: safety_pass, op: "==", value: true }
+  comparison:
+    plugin: weighted_v1
+    config:
+      weights: { dev_benchmark_score: 1.0, avg_cost_usd: -0.2 }
+      slow_weights: { task_success_rate: 1.0 }
+      min_sample_size: 4
+      incumbent_epsilon: 0.02   # challenger must beat champion by this margin
+  budget:
+    max_fast_evals: 60
+    max_slow_evals: 8
+    max_cost: 5.0

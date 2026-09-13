@@ -1,0 +1,23 @@
+import base64,json,tempfile,unittest
+from pathlib import Path
+class TestCases(unittest.TestCase):
+    def call_file(self, contents):
+        with tempfile.TemporaryDirectory() as tmp:
+            file=Path(tmp)/'input.json'
+            file.write_text(contents,encoding='utf-8')
+            return task_func(str(file))
+    def test_decode_public_example(self):
+        self.assertEqual(self.call_file('{"key1":"SGVsbG8gV29ybGQ=","key2":"UHl0aG9uIENvZGUgUmVmaW5lcg=="}'), {'key1':'Hello World','key2':'Python Code Refiner'})
+    def test_empty_json(self):
+        self.assertEqual(self.call_file('{}'),{})
+    def test_non_json_content(self):
+        with self.assertRaises(json.JSONDecodeError): self.call_file('Not a JSON')
+    def test_file_not_found(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(FileNotFoundError):task_func(str(Path(tmp)/'absent.json'))
+    def test_invalid_base64(self):
+        with self.assertRaises(ValueError):self.call_file('{"key1":"Invalid base64"}')
+    def test_composed_utf8(self):
+        self.assertEqual(self.call_file(json.dumps({'key1':base64.b64encode('è'.encode()).decode()})),{'key1':'è'})
+    def test_decomposed_unicode(self):
+        self.assertEqual(self.call_file(json.dumps({'key':base64.b64encode('e\u0300'.encode()).decode()})),{'key':'è'})

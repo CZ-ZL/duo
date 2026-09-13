@@ -1,0 +1,13 @@
+# Existing DSH base + native DUO bundle. Explicitly zero-cost functional control.
+- id: duo-contract
+  config:
+    experiment: /absolute/path/to/noise-repeat-experiment.json
+- id: duo-journal
+  config:
+    root: /absolute/path/to/new-noise-repeat-runs
+- insert:
+  - id: duo-noise-repeat-fixtures
+    name: /absolute/path/to/fixture-provider.js
+    config:
+      currency: CNY
+      noiseRepeat: true

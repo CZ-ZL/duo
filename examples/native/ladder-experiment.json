@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "id": "native-ladder-functions",
+  "target": {
+    "kind": "dsh-persona",
+    "path": "persona.txt"
+  },
+  "final": {
+    "evaluatorId": "byo-final",
+    "version": "1",
+    "dataId": "final",
+    "weights": {
+      "quality": 1
+    },
+    "direction": "maximize",
+    "metric": "quality"
+  },
+  "constraints": [
+    {
+      "metric": "safe",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "epsilon": 0.01,
+  "minSamples": 2,
+  "generations": 2,
+  "quotas": {
+    "exploit": 1,
+    "explore": 1,
+    "innovate": 1
+  },
+  "topK": 1,
+  "permissions": {
+    "paid": false,
+    "network": false,
+    "externalSideEffects": false
+  },
+  "budget": {
+    "maxSessions": 100,
+    "maxFastEvals": 20,
+    "maxSlowEvals": 15,
+    "maxWallTimeMs": 10000,
+    "currency": "CNY",
+    "maxCostCny": 0
+  },
+  "searchStages": [
+    {
+      "evaluatorId": "byo-fast",
+      "version": "1",
+      "dataId": "fast",
+      "weights": {
+        "quality": 1
+      },
+      "direction": "maximize",
+      "metric": "quality",
+      "tier": "lint",
+      "purpose": "screen",
+      "informationGain": "Cheapest literal instruction control; not semantic quality. Consumes the Fast allowance as the first rung.",
+      "maxEvaluations": 20,
+      "topK": 1
+    },
+    {
+      "evaluatorId": "byo-review",
+      "version": "1",
+      "dataId": "review",
+      "weights": {
+        "quality": 1
+      },
+      "direction": "maximize",
+      "metric": "quality",
+      "tier": "benchmark",
+      "purpose": "rank",
+      "informationGain": "Deliberately repeated artifact-structure fixture, to exercise a second credibility rung and its limits.",
+      "maxEvaluations": 5,
+      "topK": 1
+    },
+    {
+      "evaluatorId": "byo-holdout",
+      "version": "1",
+      "dataId": "holdout",
+      "weights": {
+        "quality": 1
+      },
+      "direction": "maximize",
+      "metric": "quality",
+      "tier": "holdout",
+      "purpose": "rank",
+      "informationGain": "Broader-stage contract control; this fixture does not establish empirical fidelity.",
+      "maxEvaluations": 5,
+      "topK": 1
+    },
+    {
+      "evaluatorId": "byo-audit",
+      "version": "1",
+      "dataId": "audit",
+      "weights": {
+        "quality": 1
+      },
+      "direction": "maximize",
+      "metric": "quality",
+      "tier": "audit",
+      "purpose": "confirm",
+      "informationGain": "Terminal search rung; champion selection happens here under the strict comparator.",
+      "maxEvaluations": 5,
+      "topK": 0
+    }
+  ]
+}

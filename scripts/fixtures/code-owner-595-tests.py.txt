@@ -1,0 +1,20 @@
+import unittest
+from array import array
+
+class TestCases(unittest.TestCase):
+    def verify(self,n,total,use_default=False):
+        result=task_func() if use_default else task_func(n,total)
+        self.assertIsInstance(result,tuple);self.assertEqual(len(result),3)
+        nums,pos,new_num=result
+        self.assertIsInstance(nums,array);self.assertIsInstance(pos,int);self.assertIsInstance(new_num,int)
+        self.assertEqual(len(nums),n);self.assertEqual(sum(nums),total)
+        self.assertTrue(all(isinstance(x,int) and 0<=x<=total for x in nums))
+        self.assertEqual(list(nums),sorted(nums));self.assertTrue(0<=pos<=len(nums))
+        inserted=list(nums);inserted.insert(pos,new_num)
+        self.assertEqual(inserted,sorted(inserted))
+    def test_published_example(self): self.verify(5,50)
+    def test_default_parameters(self): self.verify(10,100,True)
+    def test_single_value(self): self.verify(1,7)
+    def test_zero_total(self): self.verify(4,0)
+    def test_repeated_small_inputs(self):
+        for _ in range(8): self.verify(4,20)

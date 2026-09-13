@@ -1,0 +1,15 @@
+# Requires the native DUO bundle and tools from dsh-base.
+# Paths are caller-owned; this example does not alter an existing profile.
+- id: duo-contract
+  config:
+    experiment: /absolute/path/to/examples/native/experiment.json
+- id: duo-journal
+  config:
+    root: /absolute/path/to/a-new/native-runs
+- insert:
+  - id: duo-example-providers
+    name: ./fixture-provider.js
+    config:
+      currency: CNY
+      empty: false
+      waitForAbort: false

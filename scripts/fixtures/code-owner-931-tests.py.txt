@@ -1,0 +1,5 @@
+class TestCases(TestCases):
+    def test_ascii_alphabet_boundary(self):
+        self.assertEqual(dict(task_func('aéb')), {'ab':1})
+        self.assertEqual(dict(task_func('Aé中-b_ÇC!')), {'Ab':1,'bC':1})
+        self.assertEqual(dict(task_func('é中')), {})

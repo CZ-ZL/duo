@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "warm-start-initial-control",
+  "target": {"kind": "dsh-persona", "path": "persona.txt"},
+  "fast": {"evaluatorId": "fixture-fast", "version": "1", "dataId": "fast", "metric": "quality", "direction": "maximize", "weights": {"quality": 1}},
+  "slow": {"evaluatorId": "fixture-slow", "version": "1", "dataId": "slow", "metric": "quality", "direction": "maximize", "weights": {"quality": 1}},
+  "final": {"evaluatorId": "fixture-final", "version": "1", "dataId": "final", "metric": "quality", "direction": "maximize", "weights": {"quality": 1}},
+  "constraints": [{"metric": "safe", "op": "==", "value": true}],
+  "epsilon": 0.01,
+  "minSamples": 2,
+  "generations": 2,
+  "quotas": {"exploit": 1, "explore": 1, "innovate": 1},
+  "topK": 1,
+  "permissions": {"paid": false, "network": false, "externalSideEffects": false},
+  "budget": {"currency": "CNY", "maxCostCny": 0, "maxSessions": 30, "maxFastEvals": 6, "maxSlowEvals": 5, "maxWallTimeMs": 10000}
+}

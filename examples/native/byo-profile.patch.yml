@@ -1,0 +1,15 @@
+# Load the native DUO bundle and DSH tools before this patch.
+# Offline functional example: no model, network or external process execution.
+- id: duo-contract
+  config:
+    experiment: /absolute/path/to/examples/native/byo-experiment.json
+- id: duo-journal
+  config:
+    root: /absolute/path/to/a-new/byo-native-runs
+- id: duo-feedback
+  disabled: true
+- insert:
+  - id: duo-history-feedback
+    name: '@dual-loop/dsh-plugin/history-feedback'
+  - id: duo-byo-providers
+    name: ./byo-evaluator.js

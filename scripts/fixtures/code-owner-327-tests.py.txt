@@ -1,0 +1,12 @@
+import tempfile
+from pathlib import Path
+
+class TestCases(TestCases):
+    def test_first_column_and_spaces(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/'data.csv'; p.write_text('a,ignored\nb,not-counted\n(abc),hidden\n')
+            self.assertEqual(task_func(str(p)), {'a':1,' ':1,'b':1,' (':1,'abc':1,')':1})
+    def test_custom_regex(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/'data.csv'; p.write_text('cat cat,ignored\ndog,hidden\n')
+            self.assertEqual(task_func(str(p),r'[a-z]+'), {'cat':2,'dog':1})

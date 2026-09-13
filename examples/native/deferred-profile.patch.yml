@@ -1,0 +1,15 @@
+# Opt-in composition when the caller will provide its Evaluator after boot.
+# Retains the bundle's contract/Target/policies/Journal/budget/onboarding rows.
+- id: duo-controller
+  disabled: true
+- id: duo-observer
+  disabled: true
+- id: duo-observer-tools
+  disabled: true
+- id: dualloop
+  disabled: true
+- insert:
+    - id: duo-deferred-runtime
+      name: '@dual-loop/dsh-plugin/deferred-runtime'
+      config:
+        evaluationOnly: false

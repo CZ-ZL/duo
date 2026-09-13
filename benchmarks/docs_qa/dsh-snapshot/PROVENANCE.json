@@ -1,0 +1,19 @@
+{
+  "source": "https://github.com/deepseek-ai/deepseek-harness",
+  "commit": "0a53fb55bea101816fa226bb964ae2bed71c343b",
+  "license": "MIT",
+  "copiedFrom": "Pinned local documentation mirror; only files used by the existing supplied-context demo",
+  "sha256": {
+    "subsystems/sandbox.md": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95",
+    "subsystems/approval.md": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e",
+    "tool-execution-pipeline.md": "c5609edcd9f56eb1ac510751b0e8a26c1da830bc54460de157d75335254b44fb",
+    "architecture.md": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c",
+    "subsystems/jobs.md": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f",
+    "user/guide/providers.md": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed",
+    "subsystems/credentials.md": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226",
+    "subsystems/skills.md": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba",
+    "subsystems/core.md": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3",
+    "subsystems/system-prompt.md": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+  },
+  "dataUse": "PUBLIC_HISTORICAL_DEMO_NOT_UNSEEN_FINAL"
+}

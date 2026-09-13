@@ -1,0 +1,14 @@
+# @dual-loop/dsh-plugin bundle layer.
+# One insert over the profile root. `tools` lives in the host (dsh-base);
+# this adds only the DualLoop plugin row.
+#
+# `experiment` (and usually `coreDir`) are deployment-specific: override the
+# whole `config` block of row id `dualloop` in the profile's own
+# cordis.patch.yml. Patches replace a row's entire config (no deep merge), so
+# restate every key the row needs.
+- insert:
+    - id: dualloop
+      name: '@dual-loop/dsh-plugin/legacy'
+      config:
+        experiment: '/absolute/path/to/experiment.yml'  # REQUIRED: override in profile cordis.patch.yml
+        coreDir: '/absolute/path/to/dualloop/repo'      # omit if dualloop is pip-installed

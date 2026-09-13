@@ -1,0 +1,16 @@
+# Offline BYO functional composition; no model calls or optimization benefit.
+- id: duo-contract
+  config:
+    experiment: /absolute/path/to/examples/native/three-stage-experiment.json
+- id: duo-journal
+  config:
+    root: /absolute/path/to/a-new/byo-native-runs
+- id: duo-feedback
+  disabled: true
+- insert:
+  - id: duo-history-feedback
+    name: '@dual-loop/dsh-plugin/history-feedback'
+  - id: duo-byo-providers
+    name: ./byo-evaluator.js
+    config:
+      review: true

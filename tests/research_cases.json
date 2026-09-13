@@ -1,0 +1,116 @@
+{
+  "reason": "Requires retained experiment archives or benchmark data under runs/. Explicitly deselected by the product gate; assertions and full-suite behavior are preserved.",
+  "tests": {
+    "test_code_contract_suite.py": [
+      "test_revision_preserves_all_original_tests_and_final",
+      "test_production_evaluator_rejects_known_defect_and_accepts_reference",
+      "test_unsupported_revision_options_refuse_before_writing",
+      "test_original_test_drift_refuses_before_writing"
+    ],
+    "test_code_copy_contract.py": [
+      "test_copy_checks_are_additive_versioned_and_leave_other_tasks_and_final_unchanged",
+      "test_production_accepts_legal_copy_and_rejects_content_return_and_mutation_errors",
+      "test_v7_bytes_unchanged_and_unreviewed_test_changes_refused"
+    ],
+    "test_code_defaultdict_contract.py": [
+      "test_return_behavior_addition_is_versioned_and_preserves_public_inputs_other_tasks_and_final",
+      "test_production_accepts_equivalent_factory_and_rejects_wrong_type_or_default",
+      "test_v9_bytes_unchanged_and_unreviewed_public_prompt_refused"
+    ],
+    "test_code_delimiter_contract.py": [
+      "test_delimiter_check_is_versioned_with_old_test_and_reference_preserved",
+      "test_production_accepts_statvfs_and_detects_ignored_argument",
+      "test_prior_v14_bytes_unchanged"
+    ],
+    "test_code_disk_usage_contract.py": [
+      "test_public_relative_contract_repair_is_versioned_and_archives_prior_tests_and_reference",
+      "test_production_accepts_corrected_reference_and_alternative_but_identifies_old_relative_bug_and_wrong_outputs",
+      "test_prior_pack_unchanged_and_unreviewed_reference_drift_refused"
+    ],
+    "test_code_file_hash_contract.py": [
+      "test_replacement_is_versioned_and_retains_originals_prompts_references_and_final",
+      "test_production_accepts_reference_and_alternative_and_rejects_hash_and_load_errors",
+      "test_wrong_platform_is_infrastructure_refusal_without_grading_candidates",
+      "test_v6_stays_byte_identical_and_reviewed_prompt_drift_is_refused"
+    ],
+    "test_code_json_io_contract.py": [
+      "test_io_replacement_is_versioned_and_preserves_reference_public_input_and_final",
+      "test_production_accepts_pathlib_and_retains_utf8_nfc_discrimination",
+      "test_old_v10_pack_is_identical_and_public_drift_is_refused_before_output"
+    ],
+    "test_code_move_contract.py": [
+      "test_move_checks_are_versioned_and_preserve_prior_tests_public_inputs_and_final",
+      "test_production_accepts_rename_and_rejects_corruption_loss_and_wrong_exception",
+      "test_old_v11_bytes_unchanged_and_unreviewed_public_prompt_rejected"
+    ],
+    "test_code_owner_contracts.py": [
+      "test_759_reference_obeys_approved_missing_source_rule",
+      "test_759_production_accepts_pathlib_and_rejects_wrong_programs",
+      "test_prior_v15_remains_byte_identical",
+      "test_327_custom_pattern_and_first_column",
+      "test_595_insertion_is_observable_and_real",
+      "test_779_backup_is_repeatable_and_preserves_sources_on_failure",
+      "test_published_boundaries_retain_scoring_and_expose_rules",
+      "test_ascii_and_distribution_controls"
+    ],
+    "test_code_remaining_contracts.py": [
+      "test_five_additions_preserve_all_other_data_and_bind_new_version",
+      "test_production_accepts_alternative_and_rejects_specific_wrong_behavior",
+      "test_full_development_batch_reports_five_specific_failures",
+      "test_old_v12_bytes_preserved_and_public_drift_rejected"
+    ],
+    "test_code_salt_basket_contracts.py": [
+      "test_new_version_preserves_public_data_refs_other_tasks_and_prior_salt_assertions",
+      "test_salt_api_alias_accepted_without_dropping_escaped_format_or_digest_checks",
+      "test_counter_and_empty_baskets_measured_but_randomness_not_claimed",
+      "test_slow_batch_measures_both_real_defects",
+      "test_prior_v13_bytes_identical"
+    ],
+    "test_code_salt_contract.py": [
+      "test_salt_contract_version_and_only_authorized_reference_prompt_change",
+      "test_production_scoring_accepts_public_order_and_rejects_old_reference_and_fake_hash",
+      "test_previous_v4_pack_regenerates_byte_identically",
+      "test_reference_drift_refused_before_output"
+    ],
+    "test_code_seed_contract.py": [
+      "test_seed_version_retains_prior_contracts_all_public_inputs_and_final",
+      "test_production_accepts_references_alternative_and_rejects_three_known_errors",
+      "test_added_example_assertions_equal_the_literal_public_doctests",
+      "test_previous_v5_pack_byte_identity_and_seed_prompt_drift_guard"
+    ],
+    "test_code_properties.py": [
+      "test_fixed_properties_add_measured_discrimination_without_final",
+      "test_refuses_changed_source_before_preparation",
+      "test_public_native_fast_and_slow_controls",
+      "test_refuses_changed_frozen_control_before_execution"
+    ],
+    "test_code_comparison.py": [
+      "test_inspection_cannot_upgrade_partial_or_fixture_evidence"
+    ],
+    "test_code_final.py": [
+      "test_final_alias_compatibility_preserves_cohort_assertions_and_development"
+    ],
+    "test_code_prompt_format.py": [
+      "test_original_pack_reproduces_and_complete_variant_retains_task_selection_and_tests"
+    ],
+    "test_code_property_study.py": [
+      "test_public_composition_binds_qualified_development_and_exact_selected_final",
+      "test_refuses_drift_and_unqualified_receipts_before_output",
+      "test_property_profile_prepares_three_generations_and_fair_b1_without_calls",
+      "test_property_profile_rechecks_receipts_before_creating_methods",
+      "test_recorded_three_generations_prove_consumption_and_full_metrics",
+      "test_missing_third_generation_is_not_complete_or_effective_ablation",
+      "test_property_budget_reduction_reaches_all_native_inputs_before_freeze"
+    ],
+    "test_code_model_entry.py": [
+      "test_code_model_named_profile",
+      "test_live_code_preparation_binds_private_pack_without_requests"
+    ],
+    "test_maturation_delivery.py": [
+      "test_retained_caller_delivery_is_read_only_and_preserves_evidence"
+    ],
+    "test_llm_generator.py": [
+      "test_build_controller_dispatches_to_real_wiring"
+    ]
+  }
+}

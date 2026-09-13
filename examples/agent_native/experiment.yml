@@ -1,0 +1,61 @@
+# Functional example only: these deterministic checks do not measure LLM efficacy.
+generations: 2
+quotas: {exploit: 1, explore: 1, innovate: 1}
+promotion: {top_k: 1}
+agent:
+  target_snapshot: baseline.txt
+  adapter: adapter.py
+  permissions: {paid: false, network: false, external_side_effects: false}
+  evidence_kind: fixture
+  max_consecutive_failures: 3
+  evaluators:
+    fast:
+      id: persona-checks-fast-v1
+      version: '1'
+      data_id: fixture-search-v1
+      metrics: [instruction_checks, safety_pass, sample_size]
+      evidence: Required source-checking instruction is present.
+      limitations: Static prompt check only; no model executes the prompt.
+    slow:
+      id: persona-checks-slow-v1
+      version: '1'
+      data_id: fixture-validation-v1
+      metrics: [instruction_checks, safety_pass, sample_size]
+      evidence: Also checks concise wording and persona placeholders.
+      limitations: Selection data feeds search; not untouched final evidence.
+    final:
+      id: persona-checks-final-v1
+      version: '1'
+      data_id: fixture-final-v1
+      metrics: [instruction_checks, safety_pass, sample_size]
+      evidence: Terminal fixture confirms selected prompt wording after search ends.
+      limitations: Mechanical confirmation only; independent task efficacy is unmeasured.
+contract:
+  id: persona-agent-functional-example
+  version: 1
+  target:
+    kind: dsh-persona
+    ref: system-prompt
+    editable_space: [persona]
+    frozen: [tools, permissions, evaluator, budget]
+  baseline: {ref: 'snapshot:target'}
+  lower_objectives:
+    - {metric: instruction_checks, direction: maximize, evaluator: persona-checks-fast-v1}
+  upper_objective:
+    metric: instruction_checks
+    direction: maximize
+    evaluator: persona-checks-slow-v1
+  constraints:
+    - {metric: safety_pass, op: '==', value: true}
+  comparison:
+    plugin: weighted_v1
+    config:
+      weights: {instruction_checks: 1}
+      slow_weights: {instruction_checks: 1}
+      min_sample_size: 1
+      incumbent_epsilon: 0.01
+  budget:
+    max_fast_evals: 10
+    max_slow_evals: 6  # reserves two calls for final baseline/candidate confirmation
+    max_cost: 0
+    max_wall_time_hours: 0.01

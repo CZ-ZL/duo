@@ -1,0 +1,717 @@
+{
+  "ok": true,
+  "metrics": {
+    "task_pass_rate": 0.9444444444444444,
+    "test_pass_rate": 0.9920634920634921,
+    "syntax_valid_rate": 1.0,
+    "timeout_rate": 0.0,
+    "format_valid": true,
+    "sample_size": 18
+  },
+  "currency": "CNY",
+  "costCny": 0,
+  "evidence": [
+    {
+      "kind": "executed_python_unittest",
+      "version": "4",
+      "tier": "fast",
+      "testSuiteVersion": "bigcodebench-unittest-dev-contract-v1",
+      "qualification": "CUSTOM_RUNNER_PARTIAL_DEVELOPMENT_CONTRACT_REPAIR",
+      "rows": [
+        {
+          "taskId": "BigCodeBench/911",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "06cdd7abb8b288a66a633efa8ff877f56026dc4a87e9256793cdc397a885b847",
+          "testSha256": "0debcfa883f35078759206db43228da939efeb86e685784ab068de59d4855cd0",
+          "exitCode": 0,
+          "wallTimeMs": 219.373,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-000/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/973",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 7,
+          "planned": 7,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_deep_nested_path",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_invalid_path",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_nonexist_path",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_path_with_multiple_delimiters",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_path_with_trailing_delimiter",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_single_directory",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_varied_path",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "e2ff2aedd59c5950546198442abcb0e6877b52a29c002556314065d572fa5447",
+          "testSha256": "4e432a87c4aee2d00a1c4f74022e2266503f6d2cc96294c2e22255f7615b11a9",
+          "exitCode": 0,
+          "wallTimeMs": 317.435,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-001/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/931",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 7,
+          "planned": 7,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_6",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_7",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "02da5051afe7f1aecd9ab4ec5e3e58859ade531b879b1ee745779ba73fa9e4d0",
+          "testSha256": "86d580c11612cc921575c4899f1b15886557e65cc793a042120b9ace56b0a47f",
+          "exitCode": 0,
+          "wallTimeMs": 167.031,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-002/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/769",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "e2717186f713356e77faec0f1944c1fa33ae81fac88c5dc441ad40c7f989c040",
+          "testSha256": "eca1b348d7eff18c09f7b2084052a89a26e762d26ff8a4c847aa46836cc5c440",
+          "exitCode": 0,
+          "wallTimeMs": 167.333,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-003/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/565",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_dll_name_returned",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_file_existence",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_invalid_file_path",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_md5_hash_printed",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_sha256_hash_printed",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "3eb98d4dbbea81feb0276b2b9146166a32fab2a0be5197f3f1648214c320832d",
+          "testSha256": "917e038c6bd60e7041b22bf34a1a8d9782907bae0c0db27cad5a205fa4beae94",
+          "exitCode": 0,
+          "wallTimeMs": 267.141,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-004/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/288",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "e674701bc12e3653668f538278fd78a88847e4180d1d14d9f03b20405906cab7",
+          "testSha256": "506895356e33f97cdac26fb3b1775b8a22439dd6546c50118fe69cec6719ffc5",
+          "exitCode": 0,
+          "wallTimeMs": 218.563,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-005/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/759",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_sensitivity",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_no_files_to_move",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_no_matching_files",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_non_existing_source_directory",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_special_characters_in_filenames",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "b6dfb8653e998ffb4baf6d664d61f7d1a7ed651f446e5203b92de5f9f0b13c99",
+          "testSha256": "6332eaab739c379b5e419e9eaeeaa10efbf1a6ccf68639f34fef3e124644c31f",
+          "exitCode": 0,
+          "wallTimeMs": 267.287,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-006/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/665",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "2d3dac883728ab6272ea3680e213eafd81e0da9b83db41c589690c6f509db8d0",
+          "testSha256": "5f78efc300bb171c22c687c0231d8db9d242b09eaaa03098ed7bf0a073a1e41a",
+          "exitCode": 0,
+          "wallTimeMs": 216.848,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-007/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/358",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "a00baa721aeb205b15041325b35068bfab4ad50581bd65fcce944bdd8aae870a",
+          "testSha256": "0cb7521183858bae4c02c93208d4d0f2e3afbe16125994daf5ae2693029c75e4",
+          "exitCode": 0,
+          "wallTimeMs": 167.461,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-008/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/412",
+          "status": "completed",
+          "taskPassed": false,
+          "passed": 6,
+          "planned": 7,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_decode_base64",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_empty_json",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_file_not_found",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_invalid_base64",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_non_json_content",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_unicode_normalization",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_zz_contract_decomposed_unicode",
+              "status": "failed",
+              "error": "Dictionary mismatch: actual keys=1, expected keys=1, differing keys=[\"'key'\"]"
+            }
+          ],
+          "codeSha256": "0619334d6eca66cc986c0e739f92244ba3af0f4eacf0d06291204749e516576e",
+          "testSha256": "d020debc63422fb260d8c4b3f23581242e85cc76548e097116b563c743d9a41c",
+          "exitCode": 0,
+          "wallTimeMs": 267.825,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-009/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/130",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_hash_changes_with_input",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_return_type",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_salt_and_hash_length",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_urandom_called_with_salt_size",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_various_hex_formats",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "49bcc04875f8d32ccb3bb43f3bec2849bb1336dcb39d6cc3190281c0a35b5487",
+          "testSha256": "fe9b123274215b2a6c3edbb413fe2153123077d02a1bffd0045cd2fdd5cca414",
+          "exitCode": 0,
+          "wallTimeMs": 288.25,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-010/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/595",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_correct_length",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_insertion_position",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_return_type",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_sorted_order",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_sum_of_numbers",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "ee812669586082721499b393368567a8cbd751708b729d5b5e60aa695c5a4b03",
+          "testSha256": "597e08a851f976ba1f6af7c3f3623d68a9ecd39eb19d4c11fb17137b5b8513d1",
+          "exitCode": 0,
+          "wallTimeMs": 166.949,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-011/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/756",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 7,
+          "planned": 7,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_dir",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_zz_contract_source_removed_after_move",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "c2e9b566c5b299223cb51cea74b7c4f287c6d79a7f939635fa516f21dbf10e63",
+          "testSha256": "a64ba07ec841d70d13d70c8852528f250901c39c04d28b76d9b52c10a88fc0a0",
+          "exitCode": 0,
+          "wallTimeMs": 216.89,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-012/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/762",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "265a4b21c96c4b25685c587da4cb6ab2495715308fbbf328a0130ec36a767077",
+          "testSha256": "c331d552c8ac3cb7d76c711b1167bbf84f317ce5edf441e6d7fbd8ff3ed0da1c",
+          "exitCode": 0,
+          "wallTimeMs": 217.179,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-013/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/327",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "8dd5875b58dbbfabcc41b50af9ac89f978d5e7651ca41cc5fa4cf550bb2a5116",
+          "testSha256": "d1a4a0974c7faa7c946c1a74201fd13c1d37932b082a54a002e42c4a6afaca2d",
+          "exitCode": 0,
+          "wallTimeMs": 216.964,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-014/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/862",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_dictionary_keys",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_edge_cases",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_letters_distribution",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_random_seed_effect",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_return_type",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "3fec9ef21011c377498a3d4c07e78bc9328bc94f1669692f694bd2c12369e68a",
+          "testSha256": "3d9eb4b5a8b658d37c3165fe1aaf42630abe623af4d10121648fa123a4ee369a",
+          "exitCode": 0,
+          "wallTimeMs": 166.82,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-015/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/861",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 6,
+          "planned": 6,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_case_1",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_2",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_3",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_4",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_case_5",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_zz_contract_only_permitted_items",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "af6486963707f5c7b47e4b2f00a9b147899584c908a29cc88592657a260e11d6",
+          "testSha256": "8750aa56d1270915be425fc67732d1219aa20d31f758485f21009ed46a517003",
+          "exitCode": 0,
+          "wallTimeMs": 167.091,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-016/receipt.json"
+        },
+        {
+          "taskId": "BigCodeBench/779",
+          "status": "completed",
+          "taskPassed": true,
+          "passed": 5,
+          "planned": 5,
+          "tests": [
+            {
+              "name": "__candidate__.TestCases.test_backup_and_clean",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_backup_failure",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_cleanup_failure",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_large_files_backup",
+              "status": "passed"
+            },
+            {
+              "name": "__candidate__.TestCases.test_no_files_to_move",
+              "status": "passed"
+            }
+          ],
+          "codeSha256": "449d20b147033db9ad9d6af312bdda074c6ddcd2b468960bfccca80b882c1b12",
+          "testSha256": "5bd9b6bc9c998a9c504a00cb323b90a3219d0ccf983f8fd5306141302df8397b",
+          "exitCode": 0,
+          "wallTimeMs": 217.198,
+          "isolation": "linux-user-mount-pid-net-chroot-seccomp-v1",
+          "modelRequests": 0,
+          "receiptPath": "/home/agent/.openclaw/workspace/Research OS/dualloop/runs/code-method-goal-20260912/b1-code-evaluation/task-017/receipt.json"
+        }
+      ]
+    }
+  ],
+  "costEvidence": {
+    "currency": "CNY",
+    "knownCostCny": 0,
+    "unknownCost": false,
+    "modelRequests": 0,
+    "localWallTimeMs": 3933.638,
+    "localComputePricing": "NOT_PRICED; zero is provider API expense only"
+  }
+}

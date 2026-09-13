@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "existing-schema-evaluator-controls",
+  "operation": "evaluate",
+  "target": {"kind": "dsh-persona", "path": "persona.txt"},
+  "fast": {"evaluatorId": "existing-schema-controls", "version": "1", "dataId": "schema-controls-v1", "metric": "control_match_rate", "direction": "maximize", "weights": {"control_match_rate": 1}},
+  "slow": null,
+  "final": null,
+  "constraints": [
+    {"metric": "control_match_rate", "op": "==", "value": 1},
+    {"metric": "controls_distinguish", "op": "==", "value": true}
+  ],
+  "epsilon": 0,
+  "minSamples": 4,
+  "generations": 0,
+  "quotas": {"exploit": 0, "explore": 0, "innovate": 0},
+  "topK": 0,
+  "permissions": {"paid": false, "network": false, "externalSideEffects": false},
+  "budget": {"currency": "CNY", "maxCostCny": 0, "maxSessions": 2, "maxFastEvals": 1, "maxSlowEvals": 0, "maxWallTimeMs": 10000}
+}

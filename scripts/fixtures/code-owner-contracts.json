@@ -1,0 +1,83 @@
+{
+  "BigCodeBench/759": {
+    "decision": "Recursive regular files, basename glob, flatten moves to destination, return basenames; missing source raises FileNotFoundError",
+    "baseHashes": {
+      "complete_prompt": "12594f3ef3a38e81329dfcb2ef7404d3e97defff5199c9e4892eac5b44971fd5",
+      "code_prompt": "1636c37882d77a244c46bf6c6203c88e3e0bf75adc40dc612503e93d4dcf6a77",
+      "canonical_solution": "9a421611b883caea25e2720f54dd2b092af76bd69ead833a0da06bcc4620216a",
+      "test": "6332eaab739c379b5e419e9eaeeaa10efbf1a6ccf68639f34fef3e124644c31f"
+    }
+  },
+  "BigCodeBench/327": {
+    "decision": "Preserve literal regex and public example; clarify first CSV column joined by spaces",
+    "baseHashes": {
+      "complete_prompt": "5df9354f6fcc0c639cf91baa0923a752285ab5be0193c8942b42f0ec23769732",
+      "code_prompt": "bfc23e615b52e02105c7c285aae24f7efbdae84ef23725a9bb79b84656304c4c",
+      "canonical_solution": "2b4aec9aed81d58f00a907ee4019b9602a4f7ea4db70ec4ec7e87c49a7b402ff",
+      "test": "d1a4a0974c7faa7c946c1a74201fd13c1d37932b082a54a002e42c4a6afaca2d"
+    }
+  },
+  "BigCodeBench/595": {
+    "decision": "New version returns (nums,pos,new_num), making correct sorted insertion directly observable",
+    "baseHashes": {
+      "complete_prompt": "691113557dce2a2aa15c8d6ec87bcbb2ec24279e5d16cef252cb245d8881b612",
+      "code_prompt": "eb5547a77c25a1e5e44883dbb453da31995167d4b4508327b8c266be91b09747",
+      "canonical_solution": "807d6df7e1f4fdcbf1a3a1c646c078e33a036b6a1c828984bfa61a3e42f8d9c5",
+      "test": "597e08a851f976ba1f6af7c3f3623d68a9ecd39eb19d4c11fb17137b5b8513d1"
+    }
+  },
+  "BigCodeBench/779": {
+    "decision": "Each call gets an independent backup directory and returns its actual path; a failed backup preserves source files",
+    "baseHashes": {
+      "complete_prompt": "df7adb05e8c00fa9cffc774bd382b08034cffbba657dc288cac579c56a51e9a6",
+      "code_prompt": "60fb91301a3d296af266fe1ee8935e2544971b5b46cec2a38b75599ee823671a",
+      "canonical_solution": "7efce4dc507dafee72a2f72a1ff326c1c813cbdb7cefc4690dbd164cf5b4d35b",
+      "test": "5bd9b6bc9c998a9c504a00cb323b90a3219d0ccf983f8fd5306141302df8397b"
+    }
+  },
+  "BigCodeBench/130": {
+    "decision": "Explicitly support both ordinary hexadecimal and literal backslash-x sequences in the public prompt; preserve existing format tests",
+    "baseHashes": {
+      "complete_prompt": "6db207c9901426897136925b37c8dc4c2f4b12f91da813781bccc75228792552",
+      "code_prompt": "e66bb4f495d2cbdde27ac735c7eb4e5b0ce23a17b63c33ad10fa56f91c56a55f",
+      "canonical_solution": "9026fef2e25b28fddc84187ac0b04d9a6d5ee77a80f2cca1223f66eaa360c103",
+      "test": "d5ff7d3f506f5867ba3c775b4a9ce7b2cd8fdb593184997e070891af66e6d05d"
+    }
+  },
+  "BigCodeBench/861": {
+    "decision": "Specify uniform sampling over POSSIBLE_ITEMS, permit reproducible seeds, preregister a finite statistical acceptance check",
+    "baseHashes": {
+      "complete_prompt": "890838609de39d93589cc3fe51f9b025c5955ef6a91a936ba212500238729fa9",
+      "code_prompt": "ad88db95e96c31a7d56983a67f4b1b321ef56a6899f3ac1b44fc44fba9361d58",
+      "canonical_solution": "e32b8180a908df50a3a43eb64e2c6c4cbfa40465b9dc6706f53679d63b84d658",
+      "test": "dba02d79d33c03d5b4540b75b9a6e53f2bd402c524fef836e83ef4b006cd7d1c"
+    }
+  },
+  "BigCodeBench/769": {
+    "decision": "Specify first occurrence wins frequency ties",
+    "baseHashes": {
+      "complete_prompt": "a7236783f160da440dd8411bb6fac827ccf8c72f87abe23535e7729cdd8330e8",
+      "code_prompt": "eb7057a0fdaab64d614e7d1dee060e4cc647a763a37eb3647e7c5a39e715d5ae",
+      "canonical_solution": "ea235da30a02cab9892eea8b44ea81e81826003c43e667a8499799825200e6b9",
+      "test": "261691e16637852f83086033e3c5e04998a40c8e5cc475d590b4ead3ba08a4f9"
+    }
+  },
+  "BigCodeBench/762": {
+    "decision": "Specify source-directory prefix inside ZIP, preserving current implementation",
+    "baseHashes": {
+      "complete_prompt": "52c70c4ca247e21388bbee143b93fb69dac43861a1b4eaeab15133b0613f68bd",
+      "code_prompt": "169c7cbad7aded2f262c2154a9b2322090d1cbda714cb805a17b4ea2aac567b3",
+      "canonical_solution": "0ed6dc298862c51082b9473c6960a860a3bae86985b9d5cf0aa7db0ccb731b52",
+      "test": "d83c747901c757e1ba02ed26ff462fe327469c2409cbfadde2ae255756c0aa9b"
+    }
+  },
+  "BigCodeBench/931": {
+    "decision": "Explicitly restrict sanitized letters to ASCII A-Z/a-z",
+    "baseHashes": {
+      "complete_prompt": "b3d4b96c70273c312361efe337528a4aa068ea75595fd361b6317b43280c5784",
+      "code_prompt": "a2cf4a98c85446f5452482893a5312a521dd33f3d57ed5f7a577acdb99290001",
+      "canonical_solution": "758b16b29b9b7aac7e44dab32c8d328df1c68bf674b0d8a2bec165b4ef08fd5b",
+      "test": "d92257863465b2d3b6f54eabb92559fc899c863bb3cd5f1bb4940bbfe42af47a"
+    }
+  }
+}

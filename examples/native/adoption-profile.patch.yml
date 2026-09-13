@@ -1,0 +1,11 @@
+# Optional rows for an already-authorized isolated profile with tools and Agent
+# services. These rows grant no authority and enforce no path allowlist by themselves.
+- insert:
+    - id: adoption-filesystem
+      name: '@deepseek-ai/dsh-fs-local'
+      config:
+        cwd: /absolute/path/to/authorized/isolated-directory
+    - id: adoption-observation-policy
+      name: '@deepseek-ai/dsh-fs-observation-policy'
+    - id: adoption-file-tools
+      name: '@deepseek-ai/dsh-tool-fs'

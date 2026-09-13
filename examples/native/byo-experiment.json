@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "id": "native-byo-functions",
+  "target": {
+    "kind": "dsh-persona",
+    "path": "persona.txt"
+  },
+  "fast": {
+    "evaluatorId": "byo-fast",
+    "version": "1",
+    "dataId": "fast",
+    "weights": {
+      "quality": 1
+    },
+    "direction": "maximize",
+    "metric": "quality"
+  },
+  "slow": {
+    "evaluatorId": "byo-slow",
+    "version": "1",
+    "dataId": "slow",
+    "weights": {
+      "quality": 1
+    },
+    "direction": "maximize",
+    "metric": "quality"
+  },
+  "final": {
+    "evaluatorId": "byo-final",
+    "version": "1",
+    "dataId": "final",
+    "weights": {
+      "quality": 1
+    },
+    "direction": "maximize",
+    "metric": "quality"
+  },
+  "constraints": [
+    {
+      "metric": "safe",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "epsilon": 0.01,
+  "minSamples": 2,
+  "generations": 2,
+  "quotas": {
+    "exploit": 1,
+    "explore": 1,
+    "innovate": 1
+  },
+  "topK": 1,
+  "permissions": {
+    "paid": false,
+    "network": false,
+    "externalSideEffects": false
+  },
+  "budget": {
+    "maxSessions": 100,
+    "maxFastEvals": 20,
+    "maxSlowEvals": 10,
+    "maxWallTimeMs": 10000,
+    "currency": "CNY",
+    "maxCostCny": 0
+  }
+}

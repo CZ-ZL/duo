@@ -1,0 +1,36 @@
+import unittest, tempfile
+from pathlib import Path
+
+class TestCases(unittest.TestCase):
+    def verify(self, files, pattern, wanted, directories=()):
+        with tempfile.TemporaryDirectory() as tmp:
+            src, dst = Path(tmp)/'source', Path(tmp)/'destination'
+            src.mkdir(); dst.mkdir()
+            for name, data in files.items():
+                p = src/name; p.parent.mkdir(parents=True, exist_ok=True); p.write_bytes(data)
+            for name in directories: (src/name).mkdir(parents=True, exist_ok=True)
+            result = task_func(str(src), str(dst), pattern)
+            self.assertIsInstance(result, list)
+            self.assertCountEqual(result, [Path(n).name for n in wanted])
+            self.assertEqual({p.name for p in dst.iterdir()}, {Path(n).name for n in wanted})
+            for name, data in files.items():
+                if name in wanted:
+                    self.assertFalse((src/name).exists())
+                    self.assertEqual((dst/Path(name).name).read_bytes(), data)
+                else: self.assertEqual((src/name).read_bytes(), data)
+            for name in directories: self.assertTrue((src/name).is_dir())
+
+    def test_matching_move_and_bytes(self):
+        self.verify({'a.txt': bytes(range(256)), 'b.jpg': b'keep'}, '*.txt', ['a.txt'])
+    def test_recursive_flatten_basename(self):
+        self.verify({'nested/deeper/a.txt': b'a', 'nested/b.txt': b'b', 'c.jpg': b'c'}, '*.txt', ['nested/deeper/a.txt','nested/b.txt'])
+    def test_case_and_special_filename(self):
+        self.verify({'a.TXT': b'upper','a.txt': b'lower','space file.TXT': b'space'}, '*.TXT', ['a.TXT','space file.TXT'])
+    def test_empty_and_directory(self):
+        self.verify({}, '*.txt', [], ['folder.txt'])
+    def test_no_match(self):
+        self.verify({'a.jpg': b'keep'}, '*.txt', [])
+    def test_missing_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            dst=Path(tmp)/'dst'; dst.mkdir()
+            with self.assertRaises(FileNotFoundError): task_func(str(Path(tmp)/'absent'), str(dst), '*')

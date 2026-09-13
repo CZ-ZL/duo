@@ -1,0 +1,111 @@
+# DualLoop demo experiment: DSH persona optimization on the docs_qa benchmark.
+#
+# The Objective Contract (DESIGN.md "Objective Contract"). Metric scope was
+# RE-SCOPED after three calibration runs (runs/CALIBRATION.md, pre-registered
+# 2026-09-06): single_fact and citation_strict saturate at 1.000 — no
+# optimization signal, kept as hard regression guardrails; abstention (0.364)
+# and synthesis (0.778) carry the discriminating signal, so the primary
+# metric is core_success = pass rate over abstention + synthesis only.
+#
+# CONTRACT v2 = AMENDMENT A1 (2026-09-06, pre-registered BEFORE the demo run;
+# full rationale in runs/CALIBRATION.md §A1): budget arithmetic showed a
+# full-dev fast eval (32 sessions ≈ $2.20) makes a multi-generation loop
+# infeasible, so the FAST tier evaluates a frozen stratified 16-question dev
+# subset (6 abstention / 4 synthesis / 3 single_fact / 3 citation_strict;
+# core = the 10 abstention+synthesis questions). The SLOW tier is untouched:
+# the full 24-question holdout remains the full-fidelity north star.
+# The subset ids are frozen in `fast_question_ids` below and in §A1.
+name: docs-qa-persona-dual-loop
+seed: 11
+generations: 3                  # resume: gen 3 runs next (champion dl-0007, gen 2)
+resume: true                    # continue from experiments/journal; never re-seed
+quotas: { exploit: 1, explore: 1, innovate: 1 }   # unchanged from gens 1-2
+promotion: { top_k: 1 }
+families:
+  - retrieval-discipline   # search/read harder before answering
+  - abstention-honesty     # conclude absence, admit it, stop searching
+  - citation-rigor         # cite exactly what was relied on, nothing else
+  - brevity-tuning         # shorter, direct answers
+feedback:
+  slow_failure_threshold: 2
+  min_sample_size: 4
+  max_emphasis_shift: 1
+plugins:
+  objective_provider: yaml
+  generator: llm_persona_proposer  # dualloop.plugins.llm_generator.LlmDocsQaGenerator
+  mutator: system_prompt_overlay   # dualloop.plugins.docs_qa_target.SystemPromptMutator
+  executor: dsh_docs_qa            # dualloop.plugins.dsh_executor.DshDocsQaExecutor
+  fast_evaluator: docs_qa_dev_v1
+  slow_evaluator: docs_qa_holdout_v1
+  comparator: weighted_v1
+  promotion_gate: top_k_v1
+resolvable_baselines: [ "profile:dualloop" ]
+
+# real-run wiring (the contract: section below is FROZEN; this section is run config)
+proposer_profile: headless          # the proposer NEVER runs on the evolved profile
+pool_size: 6                        # concurrent sessions within one candidate eval
+timeout_s: 180
+session_budget_file: runs/session_budget_demo.json
+session_cap: 267                    # 127 used (gens 1-2) + 140 hard cap this task
+frozen_baseline:                    # measured during calibration (runs/CALIBRATION.md §6)
+  fast_details: runs/v2/baseline_dev_details.json
+  slow_details: runs/v2/holdout_baseline_details.json
+# AMENDMENT A1 frozen fast subset (16 questions; core = the 6 ab + 4 sy).
+# Stratified across types, pages, pressure variants, and baseline outcomes:
+fast_question_ids:
+  - ab-01   # plain; baseline CONFABULATED
+  - ab-05   # plain; baseline passed
+  - ab-09   # plain; baseline passed
+  - ab-15   # plain; baseline CONFABULATED
+  - ab-12   # PRESSURE; baseline search-to-timeout
+  - ab-17   # PRESSURE; baseline passed
+  - sy-01   # 2-page; baseline passed
+  - sy-03   # 2-page; baseline passed
+  - sy-11   # hardened 3-page; baseline passed (125s)
+  - sy-15   # hardened 3-page + exclusion; baseline citation-miss
+  - sf-01   # guardrail; baseline passed
+  - sf-03   # guardrail; baseline passed
+  - sf-05   # guardrail; baseline passed
+  - cs-01   # guardrail; baseline passed
+  - cs-03   # guardrail; baseline passed
+  - cs-06   # guardrail; baseline passed
+
+contract:
+  id: docs-qa-persona-quality
+  version: 2                        # Amendment A1 (2026-09-06): stratified-16 fast tier
+  target:
+    kind: dsh-persona
+    ref: system-prompt               # the dualloop profile's persona (cordis overlay)
+    editable_space: [ persona ]
+    frozen: [ name, disabled, inject, tools, permissions ]
+  baseline:
+    ref: "profile:dualloop"          # the unmodified dualloop profile
+  upper_objective:                   # North Star (slow tier, holdout)
+    metric: core_success             # abstention (9) + synthesis (7) = 16 holdout questions
+    direction: maximize
+    evaluator: docs_qa_holdout_v1
+    fidelity: high
+    feedback_latency: slow
+  lower_objectives:                  # fast proxies (A1: stratified-16 dev subset)
+    - metric: core_success           # abstention (6) + synthesis (4) = 10 subset questions
+      direction: maximize
+      evaluator: docs_qa_dev_v1
+      expected_relation: correlates_positively_with(upper core_success)
+    - metric: estimated_cost_usd
+      direction: minimize
+      evaluator: docs_qa_dev_v1
+  constraints:                       # HARD guardrails — violations reject, never penalize
+    - { metric: single_fact_success, op: ">=", value: 0.95 }    # regression guardrail (3-question subset)
+    - { metric: citation_strict_success, op: ">=", value: 0.95 } # regression guardrail (3-question subset)
+    - { metric: sandbox_leak_free, op: "==", value: true }      # no exam material in sandbox
+  comparison:
+    plugin: weighted_v1
+    config:
+      weights: { core_success: 1.0, estimated_cost_usd: -0.2 }
+      slow_weights: { core_success: 1.0 }
+      incumbent_epsilon: 0.02        # challenger must beat champion by this margin
+      # min_sample_size: n/a — every evaluation runs the full A1 subset / full holdout
+  budget:
+    max_fast_evals: 400
+    max_slow_evals: 100
+    max_cost: 12.0                   # USD; Plan A top-up, $2 margin under project funds

@@ -1,0 +1,53 @@
+import base64, contextlib, ctypes, hashlib, io, os, tempfile, unittest
+from pathlib import Path
+PAYLOAD = base64.b64decode(__FIXTURE__)
+class TestCases(unittest.TestCase):
+    def check_output(self, path, contents, name):
+        stream = io.StringIO()
+        with contextlib.redirect_stdout(stream):
+            result = task_func(path)
+        self.assertEqual(stream.getvalue().splitlines(), [
+            'MD5 Hash: ' + hashlib.md5(contents).hexdigest(),
+            'SHA256 Hash: ' + hashlib.sha256(contents).hexdigest()])
+        self.assertIsInstance(result, str)
+        self.assertEqual(os.path.basename(result), name)
+    def test_valid_absolute_shared_library(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            file = Path(tmp) / 'fixture.so'
+            file.write_bytes(PAYLOAD)
+            self.check_output(str(file), PAYLOAD, file.name)
+    def test_space_name_and_different_binary_contents(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            file = Path(tmp) / 'library with spaces.so'
+            contents = PAYLOAD + b'\x00DUO trailing bytes\xff'
+            file.write_bytes(contents)
+            self.check_output(str(file), contents, file.name)
+    def test_explicit_relative_path(self):
+        previous = os.getcwd()
+        with tempfile.TemporaryDirectory() as tmp:
+            try:
+                os.chdir(tmp)
+                Path('fixture.so').write_bytes(PAYLOAD)
+                self.check_output('./fixture.so', PAYLOAD, 'fixture.so')
+            finally:
+                os.chdir(previous)
+    def test_complete_public_libc_example(self):
+        # Preserve the exact published example: ctypes resolves installed libc,
+        # while the given local file is the empty file whose bytes are hashed.
+        previous = os.getcwd()
+        with tempfile.TemporaryDirectory() as tmp:
+            try:
+                os.chdir(tmp)
+                Path('libc.so.6').write_bytes(b'')
+                self.check_output('libc.so.6', b'', 'libc.so.6')
+            finally:
+                os.chdir(previous)
+    def test_missing_file(self):
+        with tempfile.TemporaryDirectory() as tmp, self.assertRaises(OSError):
+            task_func(str(Path(tmp) / 'absent.so'))
+    def test_invalid_shared_library_is_not_just_hashed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            file = Path(tmp) / 'invalid.so'
+            file.write_bytes(b'not an ELF shared library')
+            with self.assertRaises(OSError):
+                task_func(str(file))

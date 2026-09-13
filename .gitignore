@@ -1,0 +1,27 @@
+# Credentials and host configuration
+.env
+.env.*
+!.env.example
+.credentials.yaml
+.dsh/
+
+# Local dependencies, test output and build artifacts
+node_modules/
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+*.tgz
+*.log
+dist/
+build/
+*.egg-info/
+
+# Experiment state is reviewed separately before any publication.
+runs/
+exports/
+release/
+experiments/journal/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

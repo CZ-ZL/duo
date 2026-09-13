@@ -1,0 +1,13 @@
+import os,tempfile,unittest
+from pathlib import Path
+class TestCases(TestCases):
+    def test_explicit_custom_delimiter(self):
+        cwd=os.getcwd()
+        with tempfile.TemporaryDirectory() as tmp:
+            try:
+                os.chdir(tmp)
+                Path('Docs').mkdir();Path('Docs_src').mkdir()
+                value=os.statvfs('Docs_src')
+                expected={'total':value.f_blocks*value.f_frsize,'used':(value.f_blocks-value.f_bfree)*value.f_frsize,'free':value.f_bavail*value.f_frsize}
+                self.assertEqual(task_func('Docs_src','_'),[('Docs',expected),('src',expected)])
+            finally:os.chdir(cwd)

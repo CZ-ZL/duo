@@ -1,0 +1,42 @@
+import unittest,tempfile
+from pathlib import Path
+
+class TestCases(unittest.TestCase):
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
+        self.old_root=globals().get('BACKUP_DIR')
+        globals()['BACKUP_DIR']=str(Path(self.tmp.name)/'backups')
+        self.addCleanup(lambda: globals().__setitem__('BACKUP_DIR',self.old_root))
+    def source(self,name='source'):
+        p=Path(self.tmp.name)/name;p.mkdir();return p
+    def backup(self,src):
+        result=task_func(str(src));self.assertIsInstance(result,tuple);self.assertEqual(len(result),2)
+        path,errors=result;self.assertIsInstance(path,str);self.assertEqual(errors,[])
+        backup=Path(path);self.assertTrue(backup.is_dir())
+        return backup
+    def content_root(self,backup,src):
+        return backup/src.name if (backup/src.name).is_dir() else backup
+    def test_bytes_tree_and_clean(self):
+        src=self.source();files={'a':bytes(range(256)),'sub/b':b'deep','.hidden':b'keep'}
+        for n,data in files.items():
+            p=src/n;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+        backup=self.backup(src);root=self.content_root(backup,src)
+        for n,data in files.items():self.assertEqual((root/n).read_bytes(),data)
+        self.assertTrue(src.is_dir());self.assertEqual(list(src.iterdir()),[])
+    def test_independent_repeated_backups(self):
+        src=self.source();(src/'a').write_bytes(b'first');a=self.backup(src)
+        (src/'a').write_bytes(b'second');b=self.backup(src)
+        self.assertNotEqual(a,b)
+        self.assertEqual((self.content_root(a,src)/'a').read_bytes(),b'first')
+        self.assertEqual((self.content_root(b,src)/'a').read_bytes(),b'second')
+    def test_empty_source(self):
+        src=self.source();self.backup(src);self.assertEqual(list(src.iterdir()),[])
+    def test_missing_source(self):
+        src=Path(self.tmp.name)/'absent';_,errors=task_func(str(src))
+        self.assertIsInstance(errors,list);self.assertTrue(errors);self.assertFalse(src.exists())
+    def test_backup_failure_preserves_source(self):
+        src=self.source();(src/'a').write_bytes(b'important')
+        Path(BACKUP_DIR).write_bytes(b'blocks-backup-directory')
+        _,errors=task_func(str(src))
+        self.assertIsInstance(errors,list);self.assertTrue(errors)
+        self.assertEqual((src/'a').read_bytes(),b'important')

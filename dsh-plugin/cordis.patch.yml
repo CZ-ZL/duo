@@ -1,0 +1,36 @@
+# Native DUO services. The bundled zero-cost offline fixture supplies
+# generator/executor/evaluator providers so a fresh install boots; replace the
+# duo-offline-fixture row with your own provider plugins for real work.
+- insert:
+  - id: duo-onboarding
+    name: '@dual-loop/dsh-plugin/onboarding'
+  - id: duo-contract
+    name: '@dual-loop/dsh-plugin/contract'
+    config:
+      experiment: /absolute/path/to/native-experiment.json
+  - id: duo-target
+    name: '@dual-loop/dsh-plugin/target'
+  - id: duo-comparator
+    name: '@dual-loop/dsh-plugin/comparator'
+  - id: duo-gate
+    name: '@dual-loop/dsh-plugin/gate'
+  - id: duo-feedback
+    name: '@dual-loop/dsh-plugin/feedback'
+  - id: duo-journal
+    name: '@dual-loop/dsh-plugin/journal'
+    config:
+      root: /absolute/path/to/native-runs
+  - id: duo-budget
+    name: '@dual-loop/dsh-plugin/budget'
+  - id: duo-controller
+    name: '@dual-loop/dsh-plugin/controller'
+  - id: duo-observer
+    name: '@dual-loop/dsh-plugin/observer'
+  - id: duo-observer-tools
+    name: '@dual-loop/dsh-plugin/observer-tools'
+  - id: duo-offline-fixture
+    name: '@dual-loop/dsh-plugin/offline-fixture'
+    config:
+      currency: CNY
+  - id: dualloop
+    name: '@dual-loop/dsh-plugin'

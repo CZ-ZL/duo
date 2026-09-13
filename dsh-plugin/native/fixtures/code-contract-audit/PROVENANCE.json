@@ -1,0 +1,18 @@
+{
+  "upstream": "BigCodeBench",
+  "source": "https://huggingface.co/datasets/bigcode/bigcodebench",
+  "sourceVersion": "v0.1.4",
+  "license": "Apache-2.0",
+  "licenseSource": "https://github.com/bigcode-project/bigcodebench/blob/main/LICENSE",
+  "use": "Public regression fixture; every partition including the field named final is exposed test data, never unseen final",
+  "modifications": [
+    "Task subset selected for local standard-library execution",
+    "Prompt and reference/test fields arranged into DUO dataset/answer-key schema",
+    "Development contract-test adaptations; see CODE_BENCHMARK_GUIDE.md dev-contract-v1 and scripts/prepare_code_benchmark.py"
+  ],
+  "files": {
+    "dataset.json": "b4a4d77e13950dc7b06b3e3ea4ed1b6a09a1c980b6e998325830c8f7396b8815",
+    "answer-key.json": "3302fc82f98f109a8306d49b82a38ad689b8fed0cd2d4859d397acca6025e969"
+  },
+  "notTheFormalOrAuditFinal": "This legacy36-task fixture is separate from the later formal/shadow/selection-audit final splits summarized in EXPERIMENTS.md"
+}

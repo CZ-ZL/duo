@@ -1,0 +1,6 @@
+# Add to an authorized DSH profile with the native DUO bundle/work providers.
+# The surrounding Agent must be allowed to call both the consumer and its two
+# child tools. Loading this example does not grant execution or model authority.
+- insert:
+  - id: duo-task-consumer
+    name: /absolute/path/to/examples/native/embedded-task.js

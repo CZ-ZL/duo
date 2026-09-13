@@ -1,0 +1,17 @@
+# Use the DUO bundle and an existing DSH base profile. Edit authorized local paths.
+- id: duo-contract
+  config:
+    experiment: /absolute/path/to/evaluation-experiment.json
+- id: duo-journal
+  config:
+    root: /absolute/path/to/evaluation-runs
+- id: duo-controller
+  disabled: true
+- insert:
+  - id: duo-evaluation-controller
+    name: '@dual-loop/dsh-plugin/evaluation-controller'
+  - id: duo-evaluation-fixtures
+    name: /absolute/path/to/fixture-provider.js
+    config:
+      currency: CNY
+      generator: false

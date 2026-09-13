@@ -1,0 +1,424 @@
+{
+  "schemaVersion": 1,
+  "kind": "HISTORICAL_AGGREGATE_NOT_INDEPENDENT_REPLICATION",
+  "formalConclusion": "No demonstrated quality or API-cost advantage over reasonable single-loop",
+  "formal": {
+    "experimentId": "formal-properties-g7-20260913",
+    "model": "deepseek-flash",
+    "thinking": false,
+    "generationsPerOptimizationArm": 3,
+    "candidatesPerOptimizationArm": 9,
+    "finalTaskCount": 18,
+    "rows": [
+      {
+        "method": "B0",
+        "status": "completed",
+        "generationsRun": 0,
+        "candidateCount": 0,
+        "finalScore": 0.5,
+        "selectedId": "baseline",
+        "costCny": 0.017325,
+        "searchCostCny": 0.0,
+        "finalCostCny": 0.017325,
+        "paidCalls": 1
+      },
+      {
+        "method": "B1",
+        "status": "completed",
+        "generationsRun": 3,
+        "candidateCount": 9,
+        "finalScore": 0.4444444444444444,
+        "selectedId": "baseline",
+        "costCny": 0.177135082,
+        "searchCostCny": 0.141149122,
+        "finalCostCny": 0.03598596,
+        "paidCalls": 14
+      },
+      {
+        "method": "B2",
+        "status": "completed",
+        "generationsRun": 3,
+        "candidateCount": 9,
+        "finalScore": 0.4444444444444444,
+        "selectedId": "baseline",
+        "costCny": 0.187869643,
+        "searchCostCny": 0.159239683,
+        "finalCostCny": 0.02862996,
+        "paidCalls": 18
+      },
+      {
+        "method": "B3",
+        "status": "completed",
+        "generationsRun": 3,
+        "candidateCount": 9,
+        "finalScore": 0.4444444444444444,
+        "selectedId": "baseline",
+        "costCny": 0.153658082,
+        "searchCostCny": 0.138216122,
+        "finalCostCny": 0.01544196,
+        "paidCalls": 18
+      }
+    ],
+    "modelRequests": 51,
+    "costCny": 0.535987807,
+    "failure": "One B2 invalid execution output, six task programs not executed; charge retained"
+  },
+  "shadow": {
+    "experimentId": "posthoc-shadow-final-20260913",
+    "rows": [
+      {
+        "label": "B0-baseline",
+        "arm": "B0",
+        "sourceCandidateId": "baseline",
+        "state": "completed",
+        "requests": 1,
+        "costCny": 0.01152196,
+        "passedTasks": 10,
+        "taskCount": 18
+      },
+      {
+        "label": "B1-dl-0009",
+        "arm": "B1",
+        "sourceCandidateId": "dl-0009",
+        "state": "completed",
+        "requests": 1,
+        "costCny": 0.018827,
+        "passedTasks": 9,
+        "taskCount": 18
+      },
+      {
+        "label": "B2-dl-0002",
+        "arm": "B2",
+        "sourceCandidateId": "dl-0002",
+        "state": "completed",
+        "requests": 1,
+        "costCny": 0.018061,
+        "passedTasks": 8,
+        "taskCount": 18
+      },
+      {
+        "label": "B3-dl-0004",
+        "arm": "B3",
+        "sourceCandidateId": "dl-0004",
+        "state": "completed",
+        "requests": 1,
+        "costCny": 0.015386,
+        "passedTasks": 11,
+        "taskCount": 18
+      }
+    ],
+    "modelRequests": 4,
+    "costCny": 0.06379596,
+    "dataState": "POST_HOC_SHADOW_FINAL / CONSUMED_FOR_DIAGNOSIS"
+  },
+  "selectionAudit": {
+    "experimentId": "selection-quality-audit-20260913",
+    "rows": [
+      {
+        "label": "B0-baseline",
+        "generation": "0",
+        "Fast": "0.6666666666666666",
+        "Slow": "1",
+        "oldSlowVsBaseline": "equal",
+        "originalDecision": "",
+        "FinalPassed": "13",
+        "FinalPlanned": "18",
+        "DeltaVsNewBaselineTasks": "",
+        "selectionOutcome": "",
+        "valid": "True",
+        "nativeStatus": "failed",
+        "localEvaluatorRecovery": "True",
+        "requests": "1",
+        "costCny": "0.014571"
+      },
+      {
+        "label": "B2-dl-0002",
+        "generation": "1",
+        "Fast": "0.8333333333333334",
+        "Slow": "1",
+        "oldSlowVsBaseline": "equal",
+        "originalDecision": "rejected",
+        "FinalPassed": "14",
+        "FinalPlanned": "18",
+        "DeltaVsNewBaselineTasks": "1",
+        "selectionOutcome": "POSSIBLE_FALSE_NEGATIVE",
+        "valid": "True",
+        "nativeStatus": "completed",
+        "localEvaluatorRecovery": "False",
+        "requests": "1",
+        "costCny": "0.030643"
+      },
+      {
+        "label": "B2-dl-0006",
+        "generation": "2",
+        "Fast": "0.8333333333333334",
+        "Slow": "1",
+        "oldSlowVsBaseline": "equal",
+        "originalDecision": "rejected",
+        "FinalPassed": "13",
+        "FinalPlanned": "18",
+        "DeltaVsNewBaselineTasks": "0",
+        "selectionOutcome": "NEUTRAL_FINAL_TIE",
+        "valid": "True",
+        "nativeStatus": "completed",
+        "localEvaluatorRecovery": "False",
+        "requests": "1",
+        "costCny": "0.029684561"
+      },
+      {
+        "label": "B2-dl-0007",
+        "generation": "3",
+        "Fast": "0.8333333333333334",
+        "Slow": "1",
+        "oldSlowVsBaseline": "equal",
+        "originalDecision": "rejected",
+        "FinalPassed": "12",
+        "FinalPlanned": "18",
+        "DeltaVsNewBaselineTasks": "-1",
+        "selectionOutcome": "OBSERVED_TRUE_REJECTION",
+        "valid": "True",
+        "nativeStatus": "completed",
+        "localEvaluatorRecovery": "False",
+        "requests": "1",
+        "costCny": "0.017251"
+      },
+      {
+        "label": "B3-dl-0003",
+        "generation": "1",
+        "Fast": "0.8333333333333334",
+        "Slow": "1",
+        "oldSlowVsBaseline": "equal",
+        "originalDecision": "rejected",
+        "FinalPassed": "13",
+        "FinalPlanned": "18",
+        "DeltaVsNewBaselineTasks": "0",
+        "selectionOutcome": "NEUTRAL_FINAL_TIE",
+        "valid": "True",
+        "nativeStatus": "completed",
+        "localEvaluatorRecovery": "False",
+        "requests": "1",
+        "costCny": "0.013881"
+      },
+      {
+        "label": "B3-dl-0004",
+        "generation": "2",
+        "Fast": "0.8333333333333334",
+        "Slow": "0.5",
+        "oldSlowVsBaseline": "worse",
+        "originalDecision": "rejected",
+        "FinalPassed": "13",
+        "FinalPlanned": "18",
+        "DeltaVsNewBaselineTasks": "0",
+        "selectionOutcome": "NEUTRAL_FINAL_TIE",
+        "valid": "True",
+        "nativeStatus": "completed",
+        "localEvaluatorRecovery": "False",
+        "requests": "1",
+        "costCny": "0.016912"
+      },
+      {
+        "label": "B3-dl-0008",
+        "generation": "3",
+        "Fast": "0.8333333333333334",
+        "Slow": "1",
+        "oldSlowVsBaseline": "equal",
+        "originalDecision": "rejected",
+        "FinalPassed": "12",
+        "FinalPlanned": "18",
+        "DeltaVsNewBaselineTasks": "-1",
+        "selectionOutcome": "OBSERVED_TRUE_REJECTION",
+        "valid": "True",
+        "nativeStatus": "completed",
+        "localEvaluatorRecovery": "False",
+        "requests": "1",
+        "costCny": "0.014386"
+      }
+    ],
+    "modelRequests": 7,
+    "costCny": 0.137328561,
+    "baselineRecovery": "Original model response retained after host-budget failure; local scoring only, no model retry",
+    "dataState": "SELECTION_QUALITY_AUDIT_ONLY / CONSUMED_FOR_DIAGNOSIS"
+  },
+  "evidenceSources": [
+    {
+      "archiveRelativeId": "code-method-goal-20260912/formal-properties-g7-20260913/comparison-result.json",
+      "sha256": "c0e5c8dabe0fcbf197a7ce8a6ad4f35838b7d34150dcba563456ebfee8dee528",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "code-method-goal-20260912/formal-properties-g7-20260913/REPORT.zh.md",
+      "sha256": "00d81a0353fb8241df9d64b5ee1e22d4075a5a98930cc0128496ea064e56b72a",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "code-method-goal-20260912/formal-properties-g7-20260913/settlement.json",
+      "sha256": "4ffbc2f0ed43f3cb76450bf856ceb035ce5a98472474f8a9211afb4c8ec5c045",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "posthoc-shadow-final-20260913/shadow-results.json",
+      "sha256": "32f8dd8c9550e01315f09da21d09232ab1183bd58c9c9d55b8d81464cc0457bf",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "posthoc-shadow-final-20260913/REPORT.zh.md",
+      "sha256": "ed5d90434e0605679db5498c3a1982de51f8884291aa8274461c2ca2fd3c801b",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "selection-quality-audit-20260913/candidate-results.csv",
+      "sha256": "a556d237ad4ee0b40e4f8da5996048c8b46473713efb36a5e64b05ae7c5f23c7",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "selection-quality-audit-20260913/REPORT.zh.md",
+      "sha256": "759f2fdd178deabcadbdf566c557556fdccde9a9fcfefc197d55f6cbb7011ea0",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "selection-quality-audit-20260913/settlement.json",
+      "sha256": "64caa628f478190dfc687b1c74b167ec75b78c4449d58fa583c7df704cf16b83",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "root-cause-diagnostic-20260913/fetch-headroom-stop-v3/AFTER_ROW_5.json",
+      "sha256": "b6f6d04d78fa5f03d21e63efeb843a6762134bbb1865cb4844d1613187739d52",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "root-cause-diagnostic-20260913/fetch-headroom-stop-v3/settlement.json",
+      "sha256": "1faa4af0258cfa1f8698d6738c9c7ca420ebb31a20b59f4c35211c7065b9d5a0",
+      "includedInPublicSource": false
+    },
+    {
+      "archiveRelativeId": "root-cause-diagnostic-20260913/fetch-headroom-stop-v3/EXECUTION_REPORT.zh.md",
+      "sha256": "7089ce9be145053140b72ce3c2fed14182c134a180d7029ba4e94fdff79411bf",
+      "includedInPublicSource": false
+    }
+  ],
+  "limitations": [
+    "One stochastic execution per persona in each final diagnostic",
+    "Public benchmark training contamination unknown",
+    "No complete raw-run archive in source release",
+    "CNY cost is provider usage times frozen tariffs, not an independently downloaded invoice",
+    "No automatic adoption or results fed back to old search"
+  ],
+  "headroom": {
+    "experimentId": "fetch-headroom-stop-v3",
+    "state": "HEADROOM_OBSERVED_IN_BOUNDED_REPEATS",
+    "methodComparison": false,
+    "transport": "PINNED_LOCAL_DOCUMENT_NATIVE_RETENTION_REAL_MODEL",
+    "publicHttpVerified": false,
+    "modelRequests": 12,
+    "costCny": 0.04867868,
+    "rows": [
+      {
+        "variant": "H0-default",
+        "round": 1,
+        "state": "COMPLETED_VERIFIED",
+        "taskOutcomes": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "requests": 2,
+        "costCny": 0.00164864,
+        "normalizedCostCny": 0.00329728,
+        "failures": []
+      },
+      {
+        "variant": "H1-compact",
+        "round": 1,
+        "state": "COMPLETED_VERIFIED",
+        "taskOutcomes": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "requests": 2,
+        "costCny": 0.00146664,
+        "normalizedCostCny": 0.00293328,
+        "failures": []
+      },
+      {
+        "variant": "H2-expanded",
+        "round": 1,
+        "state": "COMPLETED_VERIFIED",
+        "taskOutcomes": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "requests": 2,
+        "costCny": 0.04046088,
+        "normalizedCostCny": 0.08092176,
+        "failures": []
+      },
+      {
+        "variant": "H2-expanded",
+        "round": 2,
+        "state": "COMPLETED_VERIFIED",
+        "taskOutcomes": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "requests": 2,
+        "costCny": 0.00207624,
+        "normalizedCostCny": 0.00415248,
+        "failures": []
+      },
+      {
+        "variant": "H1-compact",
+        "round": 2,
+        "state": "COMPLETED_VERIFIED",
+        "taskOutcomes": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "requests": 2,
+        "costCny": 0.00137764,
+        "normalizedCostCny": 0.00275528,
+        "failures": []
+      },
+      {
+        "variant": "H0-default",
+        "round": 2,
+        "state": "COMPLETED_VERIFIED",
+        "taskOutcomes": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "requests": 2,
+        "costCny": 0.00164864,
+        "normalizedCostCny": 0.00329728,
+        "failures": []
+      }
+    ],
+    "unrun": [
+      "Configuration search adapter",
+      "B0/B1/B2 generated candidate search",
+      "New independent diagnostic final"
+    ]
+  }
+}

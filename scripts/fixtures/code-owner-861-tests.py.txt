@@ -1,0 +1,11 @@
+class TestCases(TestCases):
+    def test_uniform_marginals_finite_screen(self):
+        # Predeclared N=5000 and |count-1000|<=250 for each of five items.
+        # Hoeffding/union bound <=1.39e-10 under iid uniform draws.
+        # Fixed seeds are allowed; this is not a proof of independence.
+        baskets=task_func([[0]*5000])
+        self.assertEqual(len(baskets),1)
+        self.assertEqual(sum(baskets[0].values()),5000)
+        self.assertTrue(set(baskets[0]).issubset(POSSIBLE_ITEMS))
+        for item in POSSIBLE_ITEMS:
+            self.assertLessEqual(abs(baskets[0][item]-1000),250)

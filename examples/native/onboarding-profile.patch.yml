@@ -1,0 +1,6 @@
+# Use a setup profile with dsh-base, and this installed package as a dependency.
+# Do not activate the full DUO execution bundle before work providers exist:
+# DSH correctly rejects a startup tree with unresolved required services.
+- insert:
+  - id: duo-onboarding
+    name: '@dual-loop/dsh-plugin/onboarding'

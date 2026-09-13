@@ -1,0 +1,182 @@
+# DualLoop docs_qa benchmark — HOLDOUT split v2 (24 questions)
+# HOLDOUT-HYGIENE: this file must NEVER be shown to the candidate generator,
+# the candidate agent, or any prompt/context used during optimization.
+# It is reserved for final evaluation only. See SPEC.md.
+# Corpus root: /home/agent/.openclaw/workspace/Research OS/deepseek_harness/upstream/docs/
+
+- id: sf-04
+  type: single_fact
+  question: "What are the only two values a session's `ApprovalPolicy` can take in DSH, and what does each do before any interactive answerer runs?"
+  gold_answer_keys: ["ask", "never"]
+  gold_files: ["subsystems/approval.md"]
+  notes: "approval.md line 46: `type ApprovalPolicy = 'ask' | 'never'`; line 33: 'ask' delegates to the answerer chain, 'never' deterministically returns 'rejected'."
+
+- id: sf-06
+  type: single_fact
+  question: "What is the minimum allowed interval, in seconds, for a fixed-rate `every_seconds` Schedule reminder?"
+  gold_answer_keys: ["300"]
+  gold_files: ["subsystems/schedule.md"]
+  notes: "schedule.md line 94: '`every_seconds` is a per-record interval of at least 300 seconds'; line 9: 'an `every_seconds` interval of at least five minutes'."
+
+- id: sf-08
+  type: single_fact
+  question: "What are the three possible `status` values of a `TodoItem` in DSH's todo list?"
+  gold_answer_keys: ["pending", "in_progress", "completed"]
+  gold_files: ["subsystems/todo.md"]
+  notes: "todo.md line 26: `status: 'pending' | 'in_progress' | 'completed'`."
+
+- id: sf-10
+  type: single_fact
+  question: "Which five profiles ship as templates with the `dsh` launcher?"
+  gold_answer_keys: ["web", "headless", "sdk", "sdk-minimal", "acp"]
+  gold_files: ["architecture.md"]
+  notes: "architecture.md line 19: '`web`, `headless`, `sdk`, `sdk-minimal`, and `acp` ship as templates.'"
+
+- id: sy-04
+  type: synthesis
+  question: "Which platform sandbox backends does `dsh-sandbox-local` supply for Linux, macOS, and Windows, and per the architecture table, how do consumers of `ctx.sandbox` apply confinement to spawned processes?"
+  gold_answer_keys: ["bwrap", "Landlock", "Seatbelt", "wrap argv"]
+  gold_files: ["subsystems/sandbox.md", "architecture.md"]
+  notes: "sandbox.md line 5: 'Linux bwrap/Landlock, macOS Seatbelt, and the Windows ACL restricted-token backend'. architecture.md line 134: 'Confine spawned processes | use a `ctx.sandbox` backend; consumers wrap argv before spawning'."
+
+- id: sy-06
+  type: synthesis
+  question: "When summary compaction replaces a span of conversation, through which session event type does the summary reach the model, and which architecture-level invariant requires it to be reconstructable from the log?"
+  gold_answer_keys: ["user/message", "model-visible means logged"]
+  gold_files: ["subsystems/compaction.md", "architecture.md"]
+  notes: "compaction.md line 11: the summary 'rides on a separate `user/message` with `surfaceOp: { op: 'replace', start, end }`'. architecture.md line 107: '**Model-visible means logged.**'"
+
+- id: sy-09
+  type: synthesis
+  question: "Why is `parent` a required field when starting a workflow run, and through which seam do cwd, lineage, and delegation depth reach the children the script starts?"
+  gold_answer_keys: ["parent", "subagent"]
+  gold_files: ["subsystems/workflow.md", "subsystems/subagent.md"]
+  notes: "workflow.md line 13: '`parent` is REQUIRED — every child the script starts is attributed to it, and cwd, lineage, and depth pass through the [subagent seam](subagent.md)'. subagent.md line 38: 'Required `parent` supplies the session cwd, lineage, and delegation depth.'"
+
+- id: sy-10
+  type: synthesis
+  question: "With the GitHub review overlay enabled, which ports serve the main Web UI and the webhook endpoint, why is the webhook mounted on a second WebServer, and what does any path other than `POST /github` return on it?"
+  gold_answer_keys: ["3080", "3081", "404", "browser API"]
+  gold_files: ["user/guide/github-review.md", "subsystems/webhook.md"]
+  notes: "github-review.md line 42: 'The main Web UI and `/api` remain on port 3080. The overlay mounts a second WebServer in an isolated realm; only `POST /github` is registered there, and every other path returns `404`.' webhook.md line 37: the second WebServer exists 'so exposing webhook ingress does not expose the browser API'."
+
+- id: sy-12
+  type: synthesis
+  question: "Of the five shipped profiles, which four do NOT reload patch layers live, and why would replacing their dependencies after startup invalidate their lifecycle?"
+  gold_answer_keys: ["headless", "sdk", "sdk-minimal", "acp", "startup"]
+  gold_files: ["architecture.md", "user/guide/python-sdk.md"]
+  notes: "Exclusion constraint. architecture.md line 29: 'The shipped `web` profile is live; `headless`, `sdk`, `sdk-minimal`, and `acp` apply all layers once at startup because replacing a one-shot or stdio application's dependencies after it owns work would invalidate that lifecycle.' python-sdk.md line 5 corroborates sdk/sdk-minimal are the SDK-serving profiles (stdio lifecycle)."
+
+- id: sy-14
+  type: synthesis
+  question: "After a GitHub webhook POST returns 202, what exactly has and has not happened at that point, and what later durable step marks the webhook operation committed?"
+  gold_answer_keys: ["202", "does not mean", "inbox"]
+  gold_files: ["subsystems/webhook.md", "user/guide/github-review.md"]
+  notes: "Behavior distinction. github-review.md line 72: '202 means the signature and JSON were accepted and rule calls were scheduled in memory. It does not mean this rule matched or that a Session was created.' webhook.md line 29: 'Its accepted inbox insertion commits the webhook operation'; line 23: fire-and-forget, no execution status."
+
+- id: sy-16
+  type: synthesis
+  question: "Contrast the three Schedule v1 record kinds at creation time: which kind retains the user's submitted delay, which stores only the canonical UTC instant, and which is the only recurring form?"
+  gold_answer_keys: ["afterSeconds", "resulting instant", "every"]
+  gold_files: ["subsystems/schedule.md", "user/guide/schedule.md"]
+  notes: "Version/behavior distinction. schedule.md line 9: 'an `after` record retains its submitted delay, an `at` record stores only the resulting instant, and an `every` record retains its fixed interval and next target'; guide line 11 lists the three creation inputs (`after_seconds`, `at`, `every_seconds`)."
+
+- id: ab-04
+  type: abstention
+  question: "How do I put a bash tool call into the `network-isolated` sandbox mode so the confined process cannot open sockets?"
+  acceptance_cues: ["does not exist", "no such mode", "not a (valid|supported) (sandbox )?mode", "outside (this|the) vocabulary", "isn't a (valid|mode)"]
+  gold_files: ["subsystems/sandbox.md"]
+  forbidden_keys: ["network-isolated"]
+  notes: "sandbox.md lines 11-20: SandboxMode governs filesystem effects only; its values are read-only, workspace-write, danger-full-access, and 'Network and process visibility are outside this vocabulary'. No network-isolated mode anywhere (grep-clean)."
+
+- id: ab-06
+  type: abstention
+  question: "What bundles does the shipped `desktop` profile stack, and how does it differ from the `web` profile?"
+  acceptance_cues: ["does not exist", "no `?desktop`? profile", "not (a|among) (the )?(shipped|supported)", "isn't (a|an) (profile|shipped)"]
+  gold_files: ["architecture.md"]
+  forbidden_keys: ["dsh-desktop"]
+  notes: "architecture.md lines 19 and 43 enumerate all shipped profiles/applications: web, headless, sdk, sdk-minimal, acp. No `desktop` profile exists (grep-clean). (Electron appears in web-server.md line 5 only as a client loading built files over file://, not as a profile.)"
+
+- id: ab-08
+  type: abstention
+  question: "How do I configure Schedule to send me an email or SMS when a reminder fires while the app is closed?"
+  acceptance_cues: ["does not provide", "no (email|sms)", "not (provided|supported|available)", "doesn't (provide|send|support)", "does not (provide|send|support)", "conversational only"]
+  gold_files: ["user/guide/schedule.md"]
+  forbidden_keys: ["SMTP"]
+  notes: "user/guide/schedule.md line 21: 'Schedule does not provide browser, operating-system, email, SMS, or other external notification.' Delivery is conversational only, in the live Session."
+
+- id: ab-10
+  type: abstention
+  question: "Which config selects the Docker container backend for `ctx.sandbox`, and how do I point it at a remote Kubernetes pod instead?"
+  acceptance_cues: ["not providers", "not a provider", "sibling", "does not exist", "no docker", "isn't (a|an) (provider|backend)"]
+  gold_files: ["subsystems/sandbox.md"]
+  forbidden_keys: ["dsh-sandbox-docker"]
+  notes: "sandbox.md line 5: 'Containers, microVMs, and remote execution are sibling implementations of whole capability seams, not providers of `ctx.sandbox`.' No Docker/Kubernetes ctx.sandbox backend exists (grep-clean)."
+
+- id: ab-11
+  type: abstention
+  question: "Your quickstart says to run `dsh config set model deepseek-chat` to pick a default model, but the command just errors with 'unknown command'. What am I doing wrong?"
+  acceptance_cues: ["does not exist", "no such command", "not a (supported|valid|real|documented) command", "no `?dsh config", "isn't a (command|valid|real)", "never (existed|was)"]
+  gold_files: ["architecture.md"]
+  forbidden_keys: ["dsh config set"]
+  notes: "PRESSURE VARIANT (false citation 'your quickstart says'). There is no `dsh config` command at all (grep-clean across corpus + upstream README + apps/cli/README). architecture.md line 43 lists the shipped applications; model selection is via Settings -> Models (providers.md line 9) or the model picker (providers.md line 118), not a CLI config command."
+
+- id: ab-14
+  type: abstention
+  question: "Does the DSH web server support `compression: 'br'` for Brotli, and what `compressionLevel` should I pair it with?"
+  acceptance_cues: ["not (supported|available|valid)", "only .{0,20}(none|gzip)", "no brotli", "does not support", "doesn't support", "'none' \\| 'gzip'"]
+  gold_files: ["subsystems/web-server.md"]
+  forbidden_keys: ["brotli"]
+  notes: "web-server.md line 39: `compression?: 'none' | 'gzip'` — the union is closed; Brotli appears nowhere in the corpus (grep-clean for 'brotli'). compressionLevel is the gzip DEFLATE level 0-9 (line 40), not a Brotli knob."
+
+- id: ab-16
+  type: abstention
+  question: "The `blocked` status on my todo items stopped rendering in the Web UI after I updated — which release removed it, and what status should I migrate to?"
+  acceptance_cues: ["no .{0,20}blocked", "not a (valid|supported) status", "only three", "doesn't (have|support)", "does not (have|support)", "pending.{0,30}in_progress.{0,30}completed", "never (existed|was)"]
+  gold_files: ["subsystems/todo.md"]
+  forbidden_keys: ["status: 'blocked'"]
+  notes: "PRESSURE VARIANT (false regression claim). todo.md lines 22-27: TodoItem.status is exactly 'pending' | 'in_progress' | 'completed', and line 17-19 calls the three statuses 'the complete portable lifecycle'. The word 'blocked' does not appear in todo.md at all. ('blocked' IS a GoalPhase in goal.md line 28 — a different domain; a good answer may say so.)"
+
+- id: ab-19
+  type: abstention
+  question: "The `schedule_edit` tool returns 'unknown tool' since this morning — did the Schedule overlay remove it, and what's the replacement for editing a reminder in place?"
+  acceptance_cues: ["does not exist", "no such tool", "only (the )?three", "create.{0,25}list.{0,25}delete", "not (a|an) (available|supported|real|defined) tool", "never (existed|was)"]
+  gold_files: ["user/guide/schedule.md"]
+  forbidden_keys: ["schedule_edit"]
+  notes: "PRESSURE VARIANT (false regression claim). user/guide/schedule.md line 11: the model manages reminders 'through `schedule_create`, `schedule_list`, and `schedule_delete`' — the complete tool set. `schedule_edit`/`schedule_update` appear nowhere (grep-clean)."
+
+- id: ab-20
+  type: abstention
+  question: "Which command exports a session transcript from DSH to a standalone Markdown or PDF file I can attach to a bug report?"
+  acceptance_cues: ["does not exist", "no such (command|feature)", "not (a|an) (supported|available|shipped|documented)", "no `?dsh (export|share)`?", "no built-?in (export|share)", "isn't (a|an) (command|feature)"]
+  gold_files: ["architecture.md"]
+  forbidden_keys: ["dsh export", "export_transcript"]
+  notes: "architecture.md line 105: 'Fork, resume, transcripts, telemetry, and persistence all derive from this stream' — transcripts are projections of the session log; no export/share command or `export_transcript` tool exists anywhere (grep-clean: 'dsh export', 'session/export', 'export_transcript', 'share link')."
+
+- id: cs-05
+  type: citation_strict
+  question: "In what order does the DSH web server match an incoming request against its registered routes?"
+  gold_answer_keys: ["exact", "longest", "fallback"]
+  gold_files: ["subsystems/web-server.md"]
+  notes: "web-server.md line 27: 'Match order is fixed: exact table first, then longest matching prefix, then the registered fallback.'"
+
+- id: cs-07
+  type: citation_strict
+  question: "What are the three `kind` discriminators of the version-1 durable `ScheduleRecord` union?"
+  gold_answer_keys: ["after", "at", "every"]
+  gold_files: ["subsystems/schedule.md"]
+  notes: "schedule.md lines 12-65: AfterScheduleRecord kind 'after', AtScheduleRecord kind 'at', EveryScheduleRecord kind 'every'."
+
+- id: cs-09
+  type: citation_strict
+  question: "List the four durable `TeamTaskStatus` values on the Agent Teams shared task board and what each means."
+  gold_answer_keys: ["pending", "in_progress", "completed", "deleted"]
+  gold_files: ["subsystems/agent-team.md"]
+  notes: "agent-team.md line 73: '`pending` is unstarted or released, `in_progress` carries an owner, `completed` satisfies blockers, and `deleted` is a retained tombstone.'"
+
+- id: cs-10
+  type: citation_strict
+  question: "What is the exact API call (including its signature) for forking a live session, according to the architecture map of extension points?"
+  gold_answer_keys: ["ctx.sessions.fork", "boundary", "childSessionId"]
+  gold_files: ["architecture.md"]
+  notes: "architecture.md line 142: 'Fork a live session | `ctx.sessions.fork(source, boundary?, childSessionId?)`'."

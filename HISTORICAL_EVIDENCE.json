@@ -1,0 +1,97 @@
+{
+  "scope": "Previously recorded real Caller and custom-evaluator task acceptance, including preceding failures. Not a fresh run of this release candidate.",
+  "records": [
+    {
+      "archiveRef": "runs/native-integrated-v4-20260911/g3-caller-live/result.json",
+      "sha256": "a37b15204e2f0a311f8438a42265dbba8cb3fffa28d4332544919a6152292437",
+      "status": "failed",
+      "modelRequests": 8,
+      "costCny": 0.023585201,
+      "independentRealCallerVerified": false,
+      "evidenceKind": "real_caller_real_inner_custom_task_evaluation",
+      "improvementProven": false,
+      "checks": {
+        "callerFinished": false,
+        "oneCompletedEvaluation": true,
+        "callerAttachedCustomEvaluator": true,
+        "callerReadReport": false,
+        "interpretationValid": false,
+        "originalUnchanged": true,
+        "totalAccounting": true,
+        "innerAccounting": true,
+        "boundedRequests": true
+      }
+    },
+    {
+      "archiveRef": "runs/native-integrated-v4-20260911/g3-caller-repair-live/result.json",
+      "sha256": "0bab25dc15211b0a54d9758f129febb0c6247dc65e05388b02dde40385b0c6cb",
+      "status": "failed",
+      "modelRequests": 7,
+      "costCny": 0.017496323,
+      "independentRealCallerVerified": false,
+      "evidenceKind": "real_caller_real_inner_custom_task_evaluation",
+      "improvementProven": false,
+      "checks": {
+        "callerFinished": false,
+        "oneCompletedEvaluation": false,
+        "callerAttachedCustomEvaluator": true,
+        "callerReadReport": false,
+        "interpretationValid": false,
+        "originalUnchanged": true,
+        "totalAccounting": true,
+        "innerAccounting": false,
+        "boundedRequests": true
+      }
+    },
+    {
+      "archiveRef": "runs/native-integrated-v4-20260911/g4-caller-live/result.json",
+      "sha256": "2c7bdc86fe26c46410bf03e1578bb09799087f3fd00228da21356c89e4733213",
+      "status": "failed",
+      "modelRequests": 4,
+      "costCny": 0.00675364,
+      "independentRealCallerVerified": false,
+      "evidenceKind": "real_caller_real_inner_custom_task_evaluation",
+      "improvementProven": false,
+      "checks": {
+        "callerFinished": false,
+        "oneCompletedEvaluation": false,
+        "callerAttachedCustomEvaluator": false,
+        "callerReadReport": false,
+        "interpretationValid": false,
+        "originalUnchanged": true,
+        "totalAccounting": true,
+        "innerAccounting": false,
+        "boundedRequests": true
+      }
+    },
+    {
+      "archiveRef": "runs/native-integrated-v4-20260911/g4-catalog-caller-live/result.json",
+      "sha256": "7aad257d39517c477c76c393ecd55270197d00ddc93ccc14deb88bd2eae028ff",
+      "status": "completed",
+      "modelRequests": 11,
+      "costCny": 0.027468883,
+      "independentRealCallerVerified": true,
+      "evidenceKind": "real_caller_real_inner_custom_task_evaluation",
+      "improvementProven": false,
+      "checks": {
+        "callerFinished": true,
+        "oneCompletedEvaluation": true,
+        "callerAttachedCustomEvaluator": true,
+        "callerReadReport": true,
+        "interpretationValid": true,
+        "originalUnchanged": true,
+        "totalAccounting": true,
+        "innerAccounting": true,
+        "boundedRequests": true
+      }
+    }
+  ],
+  "publicArchiveIncluded": false,
+  "newModelRequests": 0,
+  "newCostCny": 0,
+  "limits": [
+    "The developer archive was read locally; public receipts/raw traces are not shipped.",
+    "The successful record is evaluation-only, not proof of optimization superiority.",
+    "Later runtime or packaging changes need corresponding verification."
+  ]
+}

@@ -1,0 +1,18 @@
+# Use an existing DSH base profile plus the DUO bundle. Keep this caller adapter
+# beside fixture-provider.js. Change only authorized isolated profile paths.
+- id: duo-contract
+  config:
+    experiment: /absolute/path/to/evaluator-controls-experiment.json
+- id: duo-journal
+  config:
+    root: /absolute/path/to/new-control-runs
+- id: duo-controller
+  disabled: true
+- insert:
+  - id: duo-evaluation-controller
+    name: '@dual-loop/dsh-plugin/evaluation-controller'
+  - id: duo-existing-measurement
+    name: /absolute/path/to/evaluator-controls.js
+    config:
+      constant: false
+      missingDependency: false

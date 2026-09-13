@@ -1,0 +1,46 @@
+import os, tempfile, unittest
+from pathlib import Path
+class TestCases(unittest.TestCase):
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.path=Path(self.tmp.name)/'Docs'/'src'
+        self.path.mkdir(parents=True)
+    def check_usage(self,path):
+        parts=path.strip('/').split('/')
+        expected=[]
+        for index,part in enumerate(parts):
+            full='/'+'/'.join(parts[:index+1])
+            v=os.statvfs(full)
+            expected.append((part,{'total':v.f_blocks*v.f_frsize,'used':(v.f_blocks-v.f_bfree)*v.f_frsize,'free':v.f_bavail*v.f_frsize}))
+        self.assertEqual(task_func(path),expected)
+    def test_actual_absolute_path(self):
+        self.check_usage(str(self.path))
+    def test_trailing_slash(self):
+        self.check_usage(str(self.path)+'/')
+    def test_missing_path(self):
+        with self.assertRaises(FileNotFoundError):
+            task_func(str(self.path/'absent'))
+    def test_invalid_input(self):
+        for value in ['',None,123]:
+            with self.assertRaises(ValueError): task_func(value)
+    def test_invalid_empty_component(self):
+        path=str(self.path.parent)+'//src'
+        self.assertTrue(os.path.exists(path))
+        with self.assertRaises(ValueError): task_func(path)
+
+import os,tempfile,unittest
+from pathlib import Path
+class TestCases(TestCases):
+    def test_public_relative_example_in_actual_cwd(self):
+        previous=os.getcwd()
+        with tempfile.TemporaryDirectory() as tmp:
+            try:
+                os.chdir(tmp)
+                Path('Docs/src').mkdir(parents=True)
+                self.assertFalse(Path('/Docs').exists())
+                result=task_func('Docs/src')
+                v=os.statvfs('Docs/src')
+                usage={'total':v.f_blocks*v.f_frsize,'used':(v.f_blocks-v.f_bfree)*v.f_frsize,'free':v.f_bavail*v.f_frsize}
+                self.assertEqual(result,[('Docs',usage),('src',usage)])
+            finally: os.chdir(previous)

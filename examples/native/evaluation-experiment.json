@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "id": "native-evaluation-only",
+  "target": {
+    "kind": "dsh-persona",
+    "path": "persona.txt"
+  },
+  "fast": {
+    "evaluatorId": "fixture-fast",
+    "version": "1",
+    "dataId": "fast",
+    "weights": {
+      "quality": 1
+    },
+    "direction": "maximize",
+    "metric": "quality"
+  },
+  "slow": null,
+  "final": null,
+  "constraints": [
+    {
+      "metric": "safe",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "epsilon": 0.01,
+  "minSamples": 2,
+  "generations": 0,
+  "quotas": {
+    "exploit": 0,
+    "explore": 0,
+    "innovate": 0
+  },
+  "topK": 0,
+  "permissions": {
+    "paid": false,
+    "network": false,
+    "externalSideEffects": false
+  },
+  "budget": {
+    "maxSessions": 100,
+    "maxFastEvals": 20,
+    "maxSlowEvals": 10,
+    "maxWallTimeMs": 10000,
+    "currency": "CNY",
+    "maxCostCny": 0
+  },
+  "operation": "evaluate"
+}

@@ -1,0 +1,239 @@
+# DualLoop docs_qa benchmark — DEV split v2 (32 questions)
+# Corpus root: /home/agent/.openclaw/workspace/Research OS/deepseek_harness/upstream/docs/
+# gold_files are relative to that root. Abstention uses any-of acceptance_cues (regex).
+# See SPEC.md for the judging rule. Previous 40-question split: split_v1.archive.yml.
+
+- id: sf-01
+  type: single_fact
+  question: "When you run the local Web UI as shown in DSH's developer tutorial, what URL (host and port) do you open in the browser?"
+  gold_answer_keys: ["127.0.0.1:3080"]
+  gold_files: ["user/develop/basic/tool.md"]
+  notes: "tool.md line 46: 'Open `http://127.0.0.1:3080` and ask: ...'. Corroborated by user/guide/github-review.md line 42 and upstream README line 27."
+
+- id: sf-02
+  type: single_fact
+  question: "In the GitHub review webhook overlay, what is the default listen address of the dedicated second WebServer, and which environment variable overrides its port?"
+  gold_answer_keys: ["127.0.0.1:3081", "DSH_GITHUB_WEBHOOK_PORT"]
+  gold_files: ["user/guide/github-review.md"]
+  notes: "github-review.md line 14: 'The overlay defaults the Workspace to the launch directory and the listener to `127.0.0.1:3081`. Override them with `DSH_GITHUB_REVIEW_WORKSPACE` and `DSH_GITHUB_WEBHOOK_PORT`.'"
+
+- id: sf-03
+  type: single_fact
+  question: "What are the three values of the `SandboxMode` type in DSH's process-sandbox seam?"
+  gold_answer_keys: ["read-only", "workspace-write", "danger-full-access"]
+  gold_files: ["subsystems/sandbox.md"]
+  notes: "sandbox.md line 20: `type SandboxMode = 'read-only' | 'workspace-write' | 'danger-full-access'`."
+
+- id: sf-05
+  type: single_fact
+  question: "What is the default value of the local job registry's `maxConcurrentJobsPerOwner` config, and which job states does it count?"
+  gold_answer_keys: ["10", "running", "stopping"]
+  gold_files: ["subsystems/jobs.md"]
+  notes: "jobs.md line 157: 'The local provider's positive-safe-integer `maxConcurrentJobsPerOwner` config defaults to `10` and counts `running` plus `stopping` records per exact owner...'"
+
+- id: sf-07
+  type: single_fact
+  question: "What is the default response-`compression` setting of the DSH web server, and what compression does the shipped Web bundle select (level and size threshold)?"
+  gold_answer_keys: ["none", "gzip", "1024"]
+  gold_files: ["subsystems/web-server.md"]
+  notes: "web-server.md line 47: '`compression` defaults to `none`; the shipped Web bundle selects gzip level 1 with a 1024-byte threshold.'"
+
+- id: sf-09
+  type: single_fact
+  question: "Where on disk does DSH store a saved provider API key, and what do settings retain instead of the key itself?"
+  gold_answer_keys: [".credentials.yaml", "credential reference"]
+  gold_files: ["user/guide/providers.md"]
+  notes: "providers.md line 13: 'The key is stored in `$DSH_HOME/.credentials.yaml`, while settings retain only its credential reference.'"
+
+- id: sy-01
+  type: synthesis
+  question: "A plugin wants to add background work that the model can later collect or stop. Which `ctx` service should it register on, and which package provides the model-facing consumer for that service?"
+  gold_answer_keys: ["ctx.jobs", "dsh-tool-jobs"]
+  gold_files: ["architecture.md", "subsystems/jobs.md"]
+  notes: "architecture.md line 131: 'Add background work | register on `ctx.jobs`; `job_*` tools collect or stop it'. jobs.md line 157 names `dsh-tool-jobs` as the model-facing Consumer."
+
+- id: sy-02
+  type: synthesis
+  question: "How do you declare image input for a hand-entered model on a custom provider, and how does the token meter then price each retained image on a route whose adapter declares image pricing?"
+  gold_answer_keys: ["input", "text, image", "visual tokens"]
+  gold_files: ["user/guide/providers.md", "subsystems/token-meter.md"]
+  notes: "providers.md lines 35-48: add `input: [text, image]` to the model in `$DSH_HOME/settings.yaml`. token-meter.md line 29: images 'are priced as the visual tokens plus model-visible text the request actually sends' when the route declares pricing."
+
+- id: sy-03
+  type: synthesis
+  question: "Under the `never` approval policy, what outcome does every approval ask resolve to, and according to the tool execution pipeline, which waterfall does a denied call still reach afterward?"
+  gold_answer_keys: ["rejected", "tools/post-execute"]
+  gold_files: ["subsystems/approval.md", "tool-execution-pipeline.md"]
+  notes: "approval.md line 33: '`never` deterministically returns `rejected` without dispatching any answerer'. tool-execution-pipeline.md mermaid: 'denied --> post' (tools/post-execute waterfall)."
+
+- id: sy-05
+  type: synthesis
+  question: "To start Sessions from an external webhook, what must a deployment register and on which service, and what HTTP status does the shipped GitHub adapter return immediately after in-memory dispatch?"
+  gold_answer_keys: ["ctx.webhookRuntime", "202"]
+  gold_files: ["architecture.md", "subsystems/webhook.md"]
+  notes: "architecture.md line 132: 'Start a Session from an external webhook | register a trusted rule on `ctx.webhookRuntime` and mount a provider adapter'. webhook.md line 35: the GitHub adapter 'returns `202` immediately after in-memory dispatch'."
+
+- id: sy-07
+  type: synthesis
+  question: "How does a rotated provider credential reach the very next model request without a restart, given how DSH stores and resolves credentials?"
+  gold_answer_keys: ["reference", "resolve", "per operation"]
+  gold_files: ["user/guide/providers.md", "subsystems/credentials.md"]
+  notes: "providers.md line 13: settings keep only the credential reference, value lives in `$DSH_HOME/.credentials.yaml`. credentials.md line 5: 'consumers resolve a reference once per operation'; line 20: consumers 're-resolve at each operation'."
+
+- id: sy-08
+  type: synthesis
+  question: "How are Schedule reminders delivered to the user, and what happens to a session's reminders when that session is forked?"
+  gold_answer_keys: ["follow-up", "does not inherit"]
+  gold_files: ["subsystems/schedule.md", "user/guide/schedule.md"]
+  notes: "subsystems/schedule.md line 5: reminders 'return to the original live Session as ordinary later conversation turns'; guide line 17: a live root Agent 'queues a normal follow-up turn', and 'a fork does not inherit its parent's reminders'."
+
+- id: sy-11
+  type: synthesis
+  question: "A plugin should give the model a confined shell capability. Across the tool and shell seams, which `ctx` services and which packages fill the Service Definition, Service Provider, and Consumer roles, and which backend service wraps the spawned argv to confine it?"
+  gold_answer_keys: ["ctx.tools", "dsh-shell", "dsh-tool-bash", "ctx.sandbox"]
+  gold_files: ["architecture.md", "subsystems/shell.md", "subsystems/sandbox.md"]
+  notes: "3 pages. shell.md line 5: Service Definition dsh-shell (`ctx.shell`), Providers dsh-bash-local/dsh-bash-sandbox, Consumer dsh-tool-bash. architecture.md lines 126/128/134: model-facing capabilities register on `ctx.tools`; shell execution registers a `ctx.shell` backend; confinement uses a `ctx.sandbox` backend whose consumers wrap argv. sandbox.md line 5: the seam wraps a same-world subprocess argv."
+
+- id: sy-13
+  type: synthesis
+  question: "Trace a provider API key end-to-end: which shared bundle layer carries the credential seam, where is the key value stored on disk, what do settings keep instead of the key, and which error does the Models guide list when the credential is missing?"
+  gold_answer_keys: ["dsh-base", ".credentials.yaml", "credential reference", "MISSING_CREDENTIAL"]
+  gold_files: ["architecture.md", "user/guide/providers.md", "subsystems/credentials.md"]
+  notes: "3 pages. architecture.md line 25: dsh-base includes 'settings, credentials, telemetry'. providers.md line 13: key in `$DSH_HOME/.credentials.yaml`, settings keep the credential reference; line 126: `MISSING_CREDENTIAL` troubleshooting entry. credentials.md lines 5, 11-16: references, not values, live in configuration."
+
+- id: sy-15
+  type: synthesis
+  question: "Which `compaction/*` session events are log-only and deliberately excluded from the model surface, through what replacement mechanism does the summary still reach the model, and which architecture-level invariant requires that anything model-visible be reconstructable from the log?"
+  gold_answer_keys: ["log-only", "surfaceOp", "user/message", "model-visible means logged"]
+  gold_files: ["subsystems/compaction.md", "subsystems/llm-streaming.md", "architecture.md"]
+  notes: "3 pages + exclusion. compaction.md line 11: all three compaction/* events are log-only and `SurfaceEventType` is deliberately NOT extended; the summary rides a `user/message` with `surfaceOp: { op: 'replace', ... }`; line 5: the summary event uses the `ContentBlock` vocabulary owned by llm-streaming.md lines 22-28. architecture.md line 107: 'Model-visible means logged.'"
+
+- id: ab-01
+  type: abstention
+  question: "What port does the `dsh serve` command bind by default, and which flag changes it?"
+  acceptance_cues: ["does not exist", "no such command", "not a (supported|valid|real) command", "isn't a (command|valid)", "there is no `?dsh serve`?"]
+  gold_files: ["architecture.md"]
+  forbidden_keys: ["dsh serve"]
+  notes: "There is no `dsh serve` command. architecture.md line 43 lists every shipped application: `dsh web` (alias of `--profile web`), `--profile headless`, `--profile sdk`, `--profile sdk-minimal`, `--profile acp`. Grep for 'dsh serve' across docs + READMEs: no hits."
+
+- id: ab-02
+  type: abstention
+  question: "How do I use the `dsh login` command to authenticate a model provider before starting a session?"
+  acceptance_cues: ["does not exist", "no such command", "not a (supported|valid|real) command", "no `?dsh login`?", "isn't a (command|real)"]
+  gold_files: ["user/guide/providers.md", "subsystems/credentials.md"]
+  forbidden_keys: ["dsh login"]
+  notes: "No `dsh login` command exists (grep-clean). Providers are configured in Settings -> Models (providers.md lines 9-17) or via credential references/env vars (credentials.md lines 5, 11-16)."
+
+- id: ab-03
+  type: abstention
+  question: "What configuration does the `dsh-subagent-gemini` subagent provider accept, and how does it compare to the Claude Code backend?"
+  acceptance_cues: ["does not exist", "no such (provider|plugin|package)", "not (among|amongst) the", "isn't (a|an|part of)", "no `?dsh-subagent-gemini`?"]
+  gold_files: ["subsystems/subagent.md"]
+  forbidden_keys: ["dsh-subagent-gemini"]
+  notes: "subagent.md line 7 lists all Service Providers: dsh-subagent-spawn-in-process, dsh-subagent-fork-in-process, dsh-subagent-acp, dsh-subagent-codex, dsh-subagent-claude-code, dsh-subagent-dsh-sdk. No gemini provider anywhere in the corpus (grep-clean)."
+
+- id: ab-05
+  type: abstention
+  question: "I want every tool call in my CI session to auto-approve. How do I set the session's `ApprovalPolicy` to `always`?"
+  acceptance_cues: ["only .{0,20}ask.{0,30}never", "'ask' \\| 'never'", "not a valid (policy|value|option)", "no `?always`? (policy|value|option)", "isn't a valid"]
+  gold_files: ["subsystems/approval.md"]
+  forbidden_keys: ["'always'"]
+  notes: "approval.md line 46: `type ApprovalPolicy = 'ask' | 'never'` — there is no `always` value. The intended answer says so and names the only two policies."
+
+- id: ab-07
+  type: abstention
+  question: "What Cron expression syntax does `schedule_create` accept for recurring reminders, e.g. to run every weekday at 9am?"
+  acceptance_cues: ["not supported", "no (calendar or )?cron", "does not support", "doesn't support", "no cron expression"]
+  gold_files: ["subsystems/schedule.md"]
+  forbidden_keys: ["cron expression"]
+  notes: "schedule.md line 94: 'the protocol has no calendar or Cron expression'; user/guide/schedule.md line 19: 'Calendar and Cron expressions are not supported.' Recurrence is fixed-rate `every_seconds` only (>= 300 s)."
+
+- id: ab-09
+  type: abstention
+  question: "Which config keys enable TLS on the DSH web server so I can serve the Web UI over HTTPS directly?"
+  acceptance_cues: ["no TLS", "owns no TLS", "not (supported|owned|provided)", "doesn't (own|support|provide)", "does not (own|support|provide)", "no built-?in TLS"]
+  gold_files: ["subsystems/web-server.md"]
+  forbidden_keys: ["tlsCert", "tlsKey", "--tls"]
+  notes: "web-server.md line 47: 'The carrier itself owns no TLS, authentication, or Origin policy'. TLS must come from a composition/reverse proxy (cf. github-review.md line 11), not web-server config."
+
+- id: ab-12
+  type: abstention
+  question: "The `job_pause` tool used to freeze my long-running bash job, but now the model says the tool is unknown. Which profile bundle do I need to re-enable to get `job_pause` back?"
+  acceptance_cues: ["does not exist", "no such tool", "not (a|an) (available|supported|real|defined) tool", "no `?job_pause`?", "cannot be paused", "no pause", "never (existed|was)"]
+  gold_files: ["subsystems/jobs.md"]
+  forbidden_keys: ["job_pause"]
+  notes: "PRESSURE VARIANT (false nostalgia + authority). jobs.md lines 190-241 list the complete JobRegistry verb set: start, list, get, read, kill, wait — no pause/resume exists or ever did (grep-clean for 'job_pause' across corpus + READMEs)."
+
+- id: ab-13
+  type: abstention
+  question: "I set a retry backoff for failed webhook deliveries but nothing is ever retried and I can't find the failed-delivery queue anywhere. Where is the webhook retry queue persisted and what's the default backoff?"
+  acceptance_cues: ["no (queue|retry)", "no retry", "fire-and-forget", "not (retried|queued|persisted)", "doesn't (retry|queue|keep)", "does not (retry|queue|keep)"]
+  gold_files: ["subsystems/webhook.md"]
+  forbidden_keys: ["webhookMaxRetries", "retryBackoff", "deliveryQueue"]
+  notes: "PRESSURE VARIANT (frustration + assumed config). webhook.md line 23: 'The runtime has no queue, retry, deduplication, execution status, crash replay, Agent-status listener, or completion result.' github-review.md line 100 corroborates: 'The webhook runtime stores no delivery or execution state.'"
+
+- id: ab-15
+  type: abstention
+  question: "How do I configure the `dsh-mcp-server` plugin so external MCP clients can call DSH's tools over stdio?"
+  acceptance_cues: ["does not exist", "no such (plugin|package)", "no `?dsh-mcp-server`?", "not (a|an) (available|real|shipped|existing)", "client, not a server", "isn't (a|an)"]
+  gold_files: ["user/guide/mcp-memory.md"]
+  forbidden_keys: ["dsh-mcp-server"]
+  notes: "DSH ships an MCP *client* (`@deepseek-ai/dsh-mcp-client`, mcp-memory.md line 5) that consumes third-party servers; there is no plugin exposing DSH itself as an MCP server. Grep for 'dsh-mcp-server'/'mcp-server' across corpus + READMEs: no hits."
+
+- id: ab-17
+  type: abstention
+  question: "Your architecture docs mention listening to `agent/paused` to detect when an agent is throttled, but my listener never fires. Which plugin is supposed to emit `agent/paused`?"
+  acceptance_cues: ["does not exist", "no such event", "not (a|an) (defined|existing|real|documented) event", "no `?agent/paused`?", "isn't (a|an) (event|defined|documented)", "never (defined|emitted)"]
+  gold_files: ["architecture.md"]
+  forbidden_keys: ["agent/paused"]
+  notes: "PRESSURE VARIANT (false citation 'your docs mention'). architecture.md line 69 enumerates the agent/* events: inbox, step, status, request, validation, continuation (plus pre-step/turn-stopping at lines 95-99). `agent/paused` appears nowhere (grep-clean). NB: `agent/error` DOES exist (core.md:854) — do not use it as a foil."
+
+- id: ab-18
+  type: abstention
+  question: "How do I set a per-subagent cost ceiling through the `costBudget` capability flag so an over-budget child is rejected at start?"
+  acceptance_cues: ["does not exist", "no such (flag|capability|field|option)", "not (a|among) (the )?(supported|defined|five|capabilit)", "no `?costBudget`?", "isn't (a|an) (capability|flag|field)"]
+  gold_files: ["subsystems/subagent.md"]
+  forbidden_keys: ["costBudget"]
+  notes: "subagent.md lines 27-33: the complete SubagentCapabilities flag set is agentOptions, outputSchema, depthLimit, toolFilter, persona — line 25: 'Each flag corresponds one-to-one to a SubagentStartRequest option'. No costBudget anywhere (grep-clean)."
+
+- id: cs-01
+  type: citation_strict
+  question: "List the five values of the `JobStatus` type used by the background job runtime."
+  gold_answer_keys: ["running", "stopping", "completed", "killed", "failed"]
+  gold_files: ["subsystems/jobs.md"]
+  notes: "jobs.md line 22: `JobStatus` is `'running' | 'stopping' | 'completed' | 'killed' | 'failed'`."
+
+- id: cs-02
+  type: citation_strict
+  question: "List, in rank order, the six local skill-discovery sources the shipped local provider scans, including each source's rank."
+  gold_answer_keys: ["project-dsh", "project-agents", "custom", "user-dsh", "user-agents", "bundled"]
+  gold_files: ["subsystems/skills.md"]
+  notes: "skills.md lines 66-75 rank table: 100 project-dsh, 200 project-agents, 300 custom, 400 user-dsh, 500 user-agents, 600 bundled."
+
+- id: cs-03
+  type: citation_strict
+  question: "Which turn-flow events in the agent loop are waterfalls whose listeners must call `next()` to delegate?"
+  gold_answer_keys: ["agent/pre-step", "agent/request", "llm/stream"]
+  gold_files: ["architecture.md"]
+  notes: "architecture.md line 95: '`agent/pre-step`, `agent/request`, `llm/stream`, and the three `tools/*` events are waterfalls, whose listeners must call `next()` to delegate'."
+
+- id: cs-04
+  type: citation_strict
+  question: "What are the five content-block types in the core `ContentBlockMap` that every request and durable history share?"
+  gold_answer_keys: ["text", "reasoning", "image", "tool-call", "tool-result"]
+  gold_files: ["subsystems/llm-streaming.md"]
+  notes: "llm-streaming.md lines 22-28: ContentBlockMap keys 'text', 'reasoning', 'image', 'tool-call', 'tool-result'."
+
+- id: cs-06
+  type: citation_strict
+  question: "Name the three `compaction/*` session events and state the role of each in the compaction lock lifecycle."
+  gold_answer_keys: ["compaction/start", "compaction/summary", "compaction/end"]
+  gold_files: ["subsystems/compaction.md"]
+  notes: "compaction.md lines 13-17: compaction/start acquires the lock, compaction/summary records the projection, compaction/end releases the lock."
+
+- id: cs-08
+  type: citation_strict
+  question: "Which fields are required on a `WebhookSessionRequest` for the webhook runtime to create a Session?"
+  gold_answer_keys: ["workspacePath", "agent preset", "permission preset"]
+  gold_files: ["subsystems/webhook.md"]
+  notes: "webhook.md line 17: '`WebhookSessionRequest` requires an absolute `workspacePath`, title, text prompt, agent preset, and permission preset.'"

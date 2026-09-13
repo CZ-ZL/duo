@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "id": "native-three-stage-functions",
+  "target": {
+    "kind": "dsh-persona",
+    "path": "persona.txt"
+  },
+  "final": {
+    "evaluatorId": "byo-final",
+    "version": "1",
+    "dataId": "final",
+    "weights": {
+      "quality": 1
+    },
+    "direction": "maximize",
+    "metric": "quality"
+  },
+  "constraints": [
+    {
+      "metric": "safe",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "epsilon": 0.01,
+  "minSamples": 2,
+  "generations": 2,
+  "quotas": {
+    "exploit": 1,
+    "explore": 1,
+    "innovate": 1
+  },
+  "topK": 1,
+  "permissions": {
+    "paid": false,
+    "network": false,
+    "externalSideEffects": false
+  },
+  "budget": {
+    "maxSessions": 100,
+    "maxFastEvals": 20,
+    "maxSlowEvals": 10,
+    "maxWallTimeMs": 10000,
+    "currency": "CNY",
+    "maxCostCny": 0
+  },
+  "searchStages": [
+    {
+      "evaluatorId": "byo-fast",
+      "version": "1",
+      "dataId": "fast",
+      "weights": {
+        "quality": 1
+      },
+      "direction": "maximize",
+      "metric": "quality",
+      "tier": "fast",
+      "purpose": "screen",
+      "informationGain": "Literal instruction control; not semantic quality.",
+      "maxEvaluations": 20,
+      "topK": 1
+    },
+    {
+      "evaluatorId": "byo-review",
+      "version": "1",
+      "dataId": "review",
+      "weights": {
+        "quality": 1
+      },
+      "direction": "maximize",
+      "metric": "quality",
+      "tier": "review",
+      "purpose": "rank",
+      "informationGain": "Deliberately repeated artifact-structure fixture, to exercise a separate stage and its limits.",
+      "maxEvaluations": 5,
+      "topK": 1
+    },
+    {
+      "evaluatorId": "byo-slow",
+      "version": "1",
+      "dataId": "slow",
+      "weights": {
+        "quality": 1
+      },
+      "direction": "maximize",
+      "metric": "quality",
+      "tier": "slow",
+      "purpose": "confirm",
+      "informationGain": "Broader-stage contract control; this fixture does not establish empirical fidelity.",
+      "maxEvaluations": 5,
+      "topK": 0
+    }
+  ]
+}
