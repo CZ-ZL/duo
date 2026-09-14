@@ -1,0 +1,81 @@
+{
+  "goal": "DUO Slow Loop Product Semantics & Evidence Strategy",
+  "status": "COMPLETE",
+  "scope": "Local product semantics and engineering acceptance; unpublished development version",
+  "baseline": "21bc82d2833711a176488c1f9334e650e01b354f",
+  "version": "0.6.0-dev.0",
+  "evidenceLevels": {
+    "designed": "COMPLETE",
+    "implemented": "COMPLETE",
+    "engineering": "PASS",
+    "realAutonomousCaller": "NOT_RUN_OUT_OF_SCOPE",
+    "optimizationBenefit": "NOT_EVALUATED_OUT_OF_SCOPE"
+  },
+  "checks": {
+    "native": {
+      "passed": 315,
+      "log": "native-accepted.log"
+    },
+    "pythonProduct": {
+      "passed": 451,
+      "researchDeselected": 86,
+      "log": "python-product-final.log"
+    },
+    "dshHost": {
+      "profiles": 21,
+      "status": "PASS",
+      "report": "host-accepted/report.json"
+    },
+    "publicModeAcceptance": {
+      "profiles": 4,
+      "steps": 22,
+      "checks": 31,
+      "report": "public-slow-accepted/report.json",
+      "fromActualTarball": true
+    },
+    "existingPublicExamples": {
+      "profiles": 10,
+      "steps": 80,
+      "checks": 55,
+      "report": "public-examples-verified/report.json",
+      "scope": "Before final describe-only presentation addition; current descriptor path separately verified above"
+    },
+    "docsSync": "PASS",
+    "diffCheck": "PASS",
+    "releaseGateShellSyntax": "PASS",
+    "package": {
+      "files": 64,
+      "sha256": "f657c8fd0d4f477313f7beeae0b349044e4e8705f36ba4dc5d0943558e7dd40e",
+      "archive": "package-accepted/dual-loop-dsh-plugin-0.6.0-dev.0.tgz",
+      "status": "PASS"
+    }
+  },
+  "externalModelRequests": 0,
+  "actualApiCostCny": 0,
+  "historicalBudgetChanged": false,
+  "automaticAdoption": false,
+  "retainedFailures": [
+    "s1-red.log",
+    "s2-red.log",
+    "s3-red.log",
+    "s4-red.log",
+    "preparation-debug.log",
+    "feedback-red.log",
+    "duplicate-coverage-red.log",
+    "basic-capability-red.log",
+    "legacy-metadata-red.log",
+    "describe-mode-red.log",
+    "native-regression-1.log",
+    "python-product.log",
+    "caller-regression-2.log",
+    "package/pack-attempt-1.failure.txt"
+  ],
+  "limits": [
+    "Source qualification and coverage are trusted provider declarations, not independent attestation.",
+    "Current strategy requests/declines the next provider in the frozen acquisition schedule; no autonomous provider installation or information-gain optimizer.",
+    "Old contracts without preset retain authored execution and explicitly do not certify unqualified stages as dual-loop validation.",
+    "No Graph/Bayesian implementation, benchmark, real model autonomy or new remote CI/registry-install claim.",
+    "Changes remain local and uncommitted; no new GitHub/npm publication."
+  ],
+  "nextTask": "No required in-scope task remains. Review/integrate the local 0.6.0-dev.0 changes when requested; no automatic research or publication."
+}

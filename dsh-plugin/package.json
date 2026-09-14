@@ -1,7 +1,7 @@
 {
   "name": "@dual-loop/dsh-plugin",
-  "version": "0.5.0",
-  "description": "DSH-native dual-loop optimization services, provider contracts and tools; explicit legacy Python bridge retained",
+  "version": "0.6.0",
+  "description": "Composable DSH-native evaluation and optimization with explicit evidence modes, bounded budgets and traceable results",
   "license": "MIT",
   "type": "module",
   "main": "index.js",
@@ -66,7 +66,11 @@
     "examples/product/tool-app.js",
     "CURRENT_STATUS.md",
     "examples/product/README.md",
-    "examples/product/custom-target.js"
+    "examples/product/custom-target.js",
+    "native/evidence-strategy.js",
+    "EVIDENCE_STRATEGY.md",
+    "native/evidence-source.js",
+    "README.zh-CN.md"
   ],
   "dsh": {
     "bundle": {
@@ -140,7 +144,8 @@
     "./examples/byo-evaluator": "./examples/product/byo-evaluator.js",
     "./examples/tool-app": "./examples/product/tool-app.js",
     "./warm-start": "./native/warm-start.js",
-    "./examples/custom-target": "./examples/product/custom-target.js"
+    "./examples/custom-target": "./examples/product/custom-target.js",
+    "./evidence-strategy": "./native/evidence-strategy.js"
   },
   "bin": {
     "duo": "./bin/duo.mjs"

@@ -1,7 +1,8 @@
 # Product release procedure
 
-0.5.0 is the Product Foundation release line. Current support and acceptance are
-recorded in CURRENT_STATUS.md and PRODUCT_ACCEPTANCE.json. The existing channel
+0.6.0 is the evidence-strategy product release line. Current support and acceptance
+are recorded in CURRENT_STATUS.md and docs/slow-evidence-strategy/ACCEPTANCE.json.
+PRODUCT_ACCEPTANCE.json retains the sealed 0.5.0 Product Foundation receipt. The existing channel
 is the private CZ-ZL/duo repository. No npm registry publication is authorized.
 The earlier 0.3/0.4 preparation and experiments remain historical evidence, not
 acceptance for new code. A release does not establish method superiority.
@@ -36,6 +37,10 @@ explicit fixture export remain available. The fixture is disabled by default.
 
 Custom Target adapters may declare targetKinds and warm-history hooks. Providers
 without warm-history hooks may still execute; their history is not imported.
-No cross-platform, TypeScript semantic compilation, arbitrary interrupted-call
+No cross-platform, arbitrary interrupted-call
 replay, automatic adoption or end-to-end caller-budget enforcement is claimed.
 A future 1.0 release needs its own defined compatibility and acceptance decision.
+
+Public TypeScript declarations and supported strategy hooks compile in the gate.
+Changing the provider graph, including the 0.6.0 budget/evidence semantics, requires
+a new inspected plan; old checkpoints do not authorize execution under new code.

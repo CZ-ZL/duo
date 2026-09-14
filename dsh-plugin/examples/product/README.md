@@ -43,7 +43,8 @@ a runtime failure.
 | Example (`init --example`) | What changes | Expected observation |
 |---|---|---|
 | `evaluate` | Evaluation-only runtime, no generator | Current target measured; generationsRun=0, no candidate |
-| `optimize` | Local normalizer + text executor/evaluator | Two bounded generations; normalized overlay; original file unchanged |
+| `optimize` | optimize-basic: local normalizer + one text evaluator | Two bounded generations; normalized overlay; original file unchanged |
+| `dual` | optimize-dual: adds executable template assertions | expanded_evidence; coverage receipts and bounded decisions; no high-fidelity claim |
 | `byo` | Evaluator registered from a separate function plugin | Plan identifies the BYO implementationDigest; same public lifecycle |
 | `replace` | HistoryFeedback replaces default feedback | Plan policy historyOrder is recent_failures_first |
 | `warm` | Start with the same normal local run | Follow the history steps below; next generation receives validated history |
@@ -86,3 +87,5 @@ caller-owned data and explicit current pricing/limits. The isolated example CLI
 does not inherit credentials: compose such providers in your authorized host and
 call the same DUO tools there. Installing a package or reading an example never
 authorizes a paid run. The config Target needs a config-compatible executor.
+
+Read EVIDENCE_STRATEGY.md for auto negotiation, forcing dual, source metadata and component replacement. Default optimize does not repeat the same evaluator as Slow. Basic results report single_fidelity/unavailable; no full dual validation is claimed.

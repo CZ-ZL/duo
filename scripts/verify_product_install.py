@@ -20,6 +20,7 @@ def main():
     p.add_argument('--dsh-package', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--cached-host-peers', action='store_true', help='Offline tarball install; rely on the existing DSH peer fallback, not a fresh registry install')
+    p.add_argument('--registry', default='https://registry.npmjs.org', help='Explicit dependency registry; recorded in the receipt, no automatic fallback')
     args = p.parse_args()
     out, archive, dsh = args.output.resolve(), args.archive.resolve(), args.dsh_package.resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -31,7 +32,7 @@ def main():
         (out / name).write_text('')
     env = {'PATH': os.environ.get('PATH', os.defpath), 'DSH_HOME': str(out / 'dsh-home'),
         'DSH_TELEMETRY_DISABLED': '1', 'CI': '1', 'NPM_CONFIG_USERCONFIG': str(out / 'user.npmrc'),
-        'NPM_CONFIG_GLOBALCONFIG': str(out / 'global.npmrc'), 'NPM_CONFIG_CACHE': str(out / 'npm-cache')}
+        'NPM_CONFIG_GLOBALCONFIG': str(out / 'global.npmrc'), 'NPM_CONFIG_CACHE': str(out / 'npm-cache'), 'NPM_CONFIG_REGISTRY': args.registry}
     node = shutil.which('node')
     commands = []
 
@@ -50,7 +51,7 @@ def main():
 
     try:
         run('install', [node, str(dsh / 'lib/bin.js'), 'plugin', '--profile', 'install-check', 'add',
-            str(archive), '--ignore-scripts', '--store-dir', str(out / 'pnpm-store'), '--fetch-retries=0', '--fetch-timeout=15000',
+            str(archive), '--registry', args.registry, '--ignore-scripts', '--store-dir', str(out / 'pnpm-store'), '--fetch-retries=0', '--fetch-timeout=15000',
             *(['--offline', '--config.auto-install-peers=false'] if args.cached_host_peers else [])])
         installed = profile / 'node_modules/@dual-loop/dsh-plugin'
         manifest = json.loads((installed / 'package.json').read_text())
@@ -85,12 +86,13 @@ def main():
         report = {'status': 'PASS', 'package': str(installed), 'version': manifest['version'],
             'archiveSha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
             'scope': 'Actual DSH plugin add, automatic bundle registration, tarball byte equality, config composition and installed bin',
+            'dependencyRegistry': args.registry,
             'dependencyMode': 'EXISTING_HOST_PEERS_OFFLINE' if args.cached_host_peers else 'FRESH_REGISTRY_DEPENDENCIES',
             'actualInstalledProfile': {'planRunReport': 'PASS', 'status': values['run']['status'],
                 'operations': values['run']['budget']['operations'], 'costCny': 0},
             'modelRequests': 0, 'costCny': 0, 'privateProfilesRead': False, 'globalInstall': False}
     except Exception as error:
-        report = {'status': 'FAIL', 'error': str(error), 'modelRequests': 0, 'costCny': 0}
+        report = {'status': 'FAIL', 'error': str(error), 'dependencyRegistry': args.registry, 'modelRequests': 0, 'costCny': 0}
         raise
     finally:
         (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')

@@ -29,3 +29,24 @@ Profile config patches replace whole row config. Missing dependencies keep execu
 ## Delivery and limits
 
 Reports distinguish execution, rendered artifacts and observed Caller delivery. Rendering takes zero model calls; it does not prove a Caller read the result. The native budget excludes external Caller requests. Trusted providers run in-process. No arbitrary provider sandbox, Windows/macOS ownership support, automatic adoption or automatic interrupted-call replay is promised. Linux/Node24 and the documented DSH snapshot define the supported foundation. Method superiority remains unproven.
+
+## Slow evidence strategy
+
+Read EVIDENCE_STRATEGY.md for public presets, metadata, coverage receipts, bounded acquisition, aggregation/decision hooks, result modes and legacy boundaries. No extra evidence is required for optimize-basic. Graph/Bayesian are extension locations only, not implementations.
+
+
+### Cumulative admission and terminal selection (0.6.0)
+
+An unfinished run retains its full frozen allowance, including while paused.
+A new run must fit beside those allowances and settled costs under the shared
+Journal's cumulative cap; a remaining account balance is not new authority.
+DUO_BUDGET_ADMISSION_BUSY means another admission is in progress or its lock
+requires owner inspection. Inspect status and retry only after the owner has
+finished; never remove a live or unverified lock. No work was admitted by that
+failed request. Recovery does not renew the original allowance or deadline.
+
+One terminal candidate is actually selected per generation. Policy eligibility
+is retained as policyProposal when another candidate occupies that slot. Read
+the effective decision and report selection, not just a provider's proposal.
+A higher-scoring candidate missing required coverage does not suppress a valid
+runner-up. This is product selection consistency, not evidence of method benefit.

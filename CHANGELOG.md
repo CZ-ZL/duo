@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 — Slow evidence strategy and product repairs
+
+Explicit evaluate/basic/dual/auto presets; source metadata, bounded acquisition
+and transparent result/history semantics. Retained cumulative allowances, atomic
+Journal initialization and one actual terminal selection with runner-up handling.
+Readable product formatting, typed strategy contracts and bilingual README.
+See RELEASE_NOTES_v0.6.0.md and docs/slow-evidence-strategy/ACCEPTANCE.json for
+scope and current verification. Historical results below remain unchanged.
+
 ## 0.5.0 — Product Foundation
 
 - Unify capability discovery, kind schemas and generated current support. Persona

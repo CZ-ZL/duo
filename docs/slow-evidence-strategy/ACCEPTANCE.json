@@ -1,0 +1,133 @@
+{
+  "goal": "DUO Slow Loop Product Semantics & Evidence Strategy",
+  "status": "LOCAL_ACCEPTED_GITHUB_DELIVERY_PENDING",
+  "scope": "Product semantics, review repairs, lean code, bilingual documentation and private GitHub delivery; no method research",
+  "baseline": "21bc82d2833711a176488c1f9334e650e01b354f",
+  "version": "0.6.0",
+  "evidenceLevels": {
+    "designed": "COMPLETE",
+    "implemented": "COMPLETE",
+    "engineering": "PASS",
+    "independentCallingAgent": "PASS_LOCAL_PACKAGE_ONLY_WITH_USABILITY_NOTES",
+    "realInnerModel": "NOT_RUN_OUT_OF_SCOPE",
+    "optimizationBenefit": "NOT_EVALUATED_OUT_OF_SCOPE"
+  },
+  "checks": {
+    "native": {
+      "passed": 321,
+      "failed": 0,
+      "log": "release-gate-3/native.log"
+    },
+    "publicTypes": "PASS",
+    "format": "PASS",
+    "package": {
+      "status": "PASS",
+      "files": 66,
+      "archive": "dual-loop-dsh-plugin-0.6.0.tgz",
+      "sha256": "71364e3a6b9085c19763f0551a8f1d594c77c7545da2e2398b68b935f27ae2d3",
+      "memberChangeSinceIndependentInitialRun": [
+        "AGENT_GUIDE.md"
+      ]
+    },
+    "freshInstall": {
+      "status": "PASS",
+      "registry": "https://registry.npmmirror.com",
+      "mode": "FRESH_REGISTRY_DEPENDENCIES",
+      "installedPlanRunReport": "PASS"
+    },
+    "publicExamples": {
+      "status": "PASS",
+      "profiles": 10,
+      "steps": 80,
+      "checks": 55
+    },
+    "publicSlowModes": {
+      "status": "PASS",
+      "profiles": 4,
+      "steps": 22,
+      "checks": 31
+    },
+    "pythonProduct": {
+      "status": "PASS",
+      "passed": 451,
+      "failed": 0,
+      "researchDeselected": 86,
+      "seconds": 273.66,
+      "log": "release-gate-3/python-product.log"
+    },
+    "hostCompatibility": {
+      "status": "PASS",
+      "profiles": 21,
+      "report": "release-gate-3/verify/report.json"
+    },
+    "independentRepairReview": {
+      "status": "PASS",
+      "scope": "Cumulative exposure, terminal selection and actual concurrent Controller initialization interleavings; no remaining concrete material issue in the reviewed cases"
+    },
+    "privateDataReview": {
+      "newProductOrChangedPathHits": 0,
+      "credentialsDetected": false,
+      "privateProfilesOrLedgersIncluded": false,
+      "historicalAuthorPathReferencesRetained": 9,
+      "scope": "Heuristic pattern scan plus exact tarball allowlist and diff inspection; no guarantee from pattern matching alone"
+    },
+    "configuredCallerGuide": {
+      "status": "PASS",
+      "tests": 4,
+      "log": "caller-guide-retest.log",
+      "guardChanged": false
+    },
+    "independentCaller": {
+      "status": "PASS_WITH_USABILITY_NOTES",
+      "report": "CALLER_ACCEPTANCE.json",
+      "publicCliInvocations": 47,
+      "completedRuns": 8,
+      "settledNativeOperations": 48,
+      "nativeCostCny": 0,
+      "innerModelRequests": 0,
+      "humanWiringInterventions": 0,
+      "callerInferenceCost": "NOT_MEASURED_BY_DUO",
+      "coverage": "Seven scenarios on original tarball; guide-only repack followed by fresh basic smoke. Actual tar member diff retained."
+    },
+    "releaseGate": {
+      "status": "PASS",
+      "directory": "release-gate-3",
+      "log": "release-gate-3.log",
+      "exitCode": 0
+    }
+  },
+  "historicalInitialAcceptance": "INITIAL_ACCEPTANCE.json",
+  "evidenceRoot": "dualloop/runs/slow-evidence-repair-20260915 (local, outside source distribution)",
+  "externalModelRequests": 0,
+  "actualApiCostCny": 0,
+  "historicalBudgetChanged": false,
+  "automaticAdoption": false,
+  "retainedFailures": [
+    "r1-r3-red.log",
+    "r1-green.log",
+    "r4-native.log",
+    "r4-initialization-red.log",
+    "r4-plan-lock-red.log",
+    "independent-review/",
+    "devtools/install.log",
+    "release-gate/install/install.stdout.txt",
+    "release-gate-2/python-product.log"
+  ],
+  "limits": [
+    "Qualification/coverage metadata are trusted provider declarations, not independent attestations.",
+    "Policy requests the next applicable source in the frozen schedule; no information-gain optimizer or automatic provider installation.",
+    "Legacy contracts without preset retain authored execution with explicit limits.",
+    "Linux only; in-process providers and host-owned permissions.",
+    "Recovery only at unchanged settled checkpoints and within the original deadline; stale admission locks require owner/state inspection.",
+    "Inner ledger does not include every Calling Agent request.",
+    "No Graph/Bayesian implementation, model benchmark or method superiority claim."
+  ],
+  "delivery": {
+    "repository": "CZ-ZL/duo",
+    "private": true,
+    "branch": "main",
+    "status": "READY_FOR_COMMIT_PUSH_AND_CI",
+    "npmPublished": false
+  },
+  "nextTask": "Commit reviewed changes, push private main, verify exact code commit CI, then record closure and release the private installable tarball."
+}

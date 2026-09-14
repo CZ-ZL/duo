@@ -13,27 +13,35 @@ uses Ubuntu 22.04 as its compatibility target. See Actions for actual run result
 ## Product verification
 
 ```sh
+npm ci --ignore-scripts --no-audit --no-fund
 export DUO_DSH_PACKAGE=/absolute/path/to/node_modules/@deepseek-ai/dsh
 bash scripts/release_gate.sh /tmp/new-duo-release-check
 ```
 
-This runs every native test, the self-contained Python checks, generated-doc
+This compiles the public TypeScript declarations and strategy consumer controls,
+checks formatting, and runs every native test, the self-contained Python checks, generated-doc
 consistency, 21 isolated compatibility DSH CLI scenarios, tarball and host peer-range inspection,
 actual `dsh plugin add` in a fresh profile/dependency store, plan/run/report in
 that installed profile and its peer graph, and 10 public example
 profiles (55 assertions over 80 public operations). The historical `packaged`
 scenario explicitly enables the retained fixture; default installation does not.
-Public examples measure actual local text hygiene, not model or method quality.
+Four further fresh-profile Slow evidence scenarios verify negotiation, acquisition
+receipts and explicit downgrade through the installed public path. Public examples
+measure actual local text hygiene, not model or method quality.
 
 Every stage retains complete logs. A failing stage fails the gate. The output
 directory must be new. Node, pnpm 11.24.0 and DSH must be available. Package installation
 may access the dependency registry with bounded timeouts and no retries/scripts;
-no model credentials or model calls are needed. CI installs pinned verification
+no model credentials or model calls are needed. An explicitly selected
+`DUO_PACKAGE_REGISTRY` changes only dependency download and is recorded by the
+install receipt; there is no automatic fallback. CI uses the default npm registry. CI installs pinned verification
 dependencies in its disposable runner. Nothing is published to npm.
 
 Useful scoped commands:
 
 ```sh
+npm run format:check
+npm run typecheck
 node scripts/sync_product_docs.mjs --check
 node --loader ./scripts/dsh_native_loader.mjs --test dsh-plugin/native/*.test.js dsh-plugin/*.test.js
 python3 -m pytest tests/ -q -m 'not research'
@@ -81,6 +89,7 @@ is preserved separately.
 
 Passing these checks establishes local package behavior with the named installed
 DSH snapshot. Its installation stage establishes tarball/dependency installation, not npm
-publication. It does not establish Windows/macOS support, TypeScript semantic
-compilation, independent Calling Agent judgment, or quality
+publication. TypeScript checks cover the exported declarations and supported
+strategy contracts, not a migration of all runtime JavaScript to TypeScript.
+It does not establish Windows/macOS support, independent Calling Agent judgment, or quality
 and cost advantages of the optimization method. Those require their own evidence.

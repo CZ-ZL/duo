@@ -20,6 +20,8 @@ run_check() {
     return "$result"
   fi
 }
+run_check format npm run format:check
+run_check public-types env DUO_DSH_PACKAGE="$DSH_PKG" npm run typecheck
 # Fail early on actual installation before expensive behavioral suites. The
 # same checks still all run; no failure is skipped or silently downgraded.
 touch "$OUT/user.npmrc" "$OUT/global.npmrc"
@@ -28,8 +30,9 @@ run_check npm-pack env NPM_CONFIG_USERCONFIG="$OUT/user.npmrc" NPM_CONFIG_GLOBAL
 cd ..
 run_check package env DUO_DSH_PACKAGE="$DSH_PKG" python3 scripts/check_release_package.py "$OUT/npm-pack.log" "$OUT"
 ARCHIVE="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))[0]["filename"])' "$OUT/npm-pack.log")"
-run_check install python3 scripts/verify_product_install.py --archive "$OUT/$ARCHIVE" --dsh-package "$DSH_PKG" --output "$OUT/install"
+run_check install python3 scripts/verify_product_install.py --archive "$OUT/$ARCHIVE" --dsh-package "$DSH_PKG" --output "$OUT/install" --registry "${DUO_PACKAGE_REGISTRY:-https://registry.npmjs.org}"
 run_check public-examples python3 scripts/verify_product_examples.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/public-examples"
+run_check slow-evidence python3 scripts/verify_slow_evidence.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/slow-evidence"
 run_check sandbox python3 - "$OUT" <<'PY'
 import json
 from pathlib import Path

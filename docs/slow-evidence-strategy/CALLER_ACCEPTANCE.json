@@ -1,0 +1,561 @@
+{
+  "overall": "PASS_WITH_USABILITY_NOTES",
+  "scope": "Seven original installed-package scenario runs plus a separate latest-package smoke after a parent-reported documentation-only repack; all bounded free local text paths.",
+  "independence": {
+    "implementationContextReceivedBeforeTrials": false,
+    "productSourceTextInspected": false,
+    "repositoryImplementationInspected": false,
+    "researchScriptsOrArchiveInspected": false,
+    "prewrittenAcceptanceVerifierUsed": false,
+    "productEdits": [],
+    "memoryConsulted": false,
+    "method": "Agent read guides and tool schemas, inspected returned plans, chose and invoked public tool calls, edited its own generated contracts/profile, and interpreted retained results. invoke.py is a command/response logger; write_report.py only derives delivery artifacts after execution."
+  },
+  "discovery": {
+    "outcome": "PASS",
+    "steps": [
+      "01-setup-init",
+      "02-setup-schemas",
+      "03-setup-describe",
+      "16-optimize-schemas"
+    ],
+    "setupTools": [
+      "dualloop_describe",
+      "dualloop_design"
+    ],
+    "runtimeAvailability": {
+      "version": "1",
+      "scope": "Current visible Cordis bindings only; presence is not interface validity, tool authorization or a validated experiment.",
+      "services": {
+        "duoGenerator": "ABSENT",
+        "duoExecutor": "ABSENT",
+        "duoEvaluators": "ABSENT",
+        "duoController": "ABSENT"
+      },
+      "compatibility": "NOT_CHECKED",
+      "nextAction": "inspect_missing_bindings",
+      "catalogMeaning": "Service.listService is a coding-contract catalog, not a live registry of all plugin bindings. An uncatalogued service can be present; use its published plugin contract and these observed bindings.",
+      "attachment": "When a compatible evaluator adapter is supplied and already authorized, attach it through the existing host interface, then recheck DUO tool availability. A deferred runtime waits for dependencies; execution tools may be absent before attachment.",
+      "authority": "This observation grants no authority and does not revoke an existing caller authorization. Missing authority and missing bindings are separate conditions."
+    },
+    "executionToolsAppearWithProviders": true
+  },
+  "cases": [
+    {
+      "case": "evaluate",
+      "outcome": "PASS",
+      "runId": "6c224a924f537e2e735851840d13cde72b2a66673543505585930c3a5fc7249b",
+      "planInspectedBeforeExecution": true,
+      "planDigest": "6c224a924f537e2e735851840d13cde72b2a66673543505585930c3a5fc7249b",
+      "steps": [
+        "05-evaluate-plan",
+        "06-evaluate-run",
+        "07-evaluate-report",
+        "35-evaluate-budget"
+      ],
+      "status": "completed",
+      "stopReason": "evaluation_complete",
+      "generationsRun": 0,
+      "optimization_mode": "evaluate_only",
+      "slow_mode": "unavailable",
+      "dual_loop_validation": "UNAVAILABLE",
+      "conclusion": "retain_baseline",
+      "improvementProven": false,
+      "additional_evidence_acquired": [],
+      "historyReuse": null,
+      "budget": {
+        "currency": "CNY",
+        "costCny": 0,
+        "knownCostCny": 0,
+        "reservedCostCny": 0,
+        "operations": 2,
+        "fastAttempts": 1,
+        "slowAttempts": 0,
+        "blockedReason": null
+      },
+      "savedReport": "reports/evaluate.json"
+    },
+    {
+      "case": "default_optimize",
+      "outcome": "PASS",
+      "runId": "d40743410ba0395d80ead24449fe01da51451f57b8c7ccbf2bb0ff708363f622",
+      "planInspectedBeforeExecution": true,
+      "planDigest": "d40743410ba0395d80ead24449fe01da51451f57b8c7ccbf2bb0ff708363f622",
+      "steps": [
+        "12-optimize-plan",
+        "17-optimize-run",
+        "21-optimize-report",
+        "36-optimize-budget"
+      ],
+      "status": "completed",
+      "stopReason": "no_new_candidates",
+      "generationsRun": 2,
+      "optimization_mode": "single_fidelity",
+      "slow_mode": "unavailable",
+      "dual_loop_validation": "UNAVAILABLE",
+      "conclusion": "insufficient_evidence",
+      "improvementProven": false,
+      "additional_evidence_acquired": [],
+      "historyReuse": null,
+      "budget": {
+        "currency": "CNY",
+        "costCny": 0,
+        "knownCostCny": 0,
+        "reservedCostCny": 0,
+        "operations": 6,
+        "fastAttempts": 2,
+        "slowAttempts": 0,
+        "blockedReason": null
+      },
+      "savedReport": "reports/default_optimize.json"
+    },
+    {
+      "case": "dual",
+      "outcome": "PASS",
+      "runId": "9f71c5ff388c9216a5ee342be02a91dcd07db6cb23a8581daecbbcb21ea82fa9",
+      "planInspectedBeforeExecution": true,
+      "planDigest": "9f71c5ff388c9216a5ee342be02a91dcd07db6cb23a8581daecbbcb21ea82fa9",
+      "steps": [
+        "13-dual-plan",
+        "18-dual-run",
+        "22-dual-report",
+        "37-dual-budget"
+      ],
+      "status": "completed",
+      "stopReason": "no_new_candidates",
+      "generationsRun": 2,
+      "optimization_mode": "dual_loop",
+      "slow_mode": "expanded_evidence",
+      "dual_loop_validation": "ADDITIONAL_CANDIDATE_EVIDENCE_ACQUIRED",
+      "conclusion": "insufficient_evidence",
+      "improvementProven": false,
+      "additional_evidence_acquired": [
+        {
+          "candidateId": "baseline",
+          "coverage": [
+            "line-end-whitespace",
+            "required-template"
+          ],
+          "limitation": "Provider-reported coverage; full source declaration is frozen in plan.evidenceStrategy.sources.",
+          "source": {
+            "dataId": "local-text-slow",
+            "id": "local-slow",
+            "version": "1"
+          },
+          "status": "OBSERVED",
+          "tier": "slow"
+        },
+        {
+          "candidateId": "dl-0001",
+          "coverage": [
+            "line-end-whitespace",
+            "required-template"
+          ],
+          "limitation": "Provider-reported coverage; full source declaration is frozen in plan.evidenceStrategy.sources.",
+          "source": {
+            "dataId": "local-text-slow",
+            "id": "local-slow",
+            "version": "1"
+          },
+          "status": "OBSERVED",
+          "tier": "slow"
+        }
+      ],
+      "historyReuse": null,
+      "budget": {
+        "currency": "CNY",
+        "costCny": 0,
+        "knownCostCny": 0,
+        "reservedCostCny": 0,
+        "operations": 10,
+        "fastAttempts": 2,
+        "slowAttempts": 2,
+        "blockedReason": null
+      },
+      "savedReport": "reports/dual.json"
+    },
+    {
+      "case": "replacement_example",
+      "outcome": "PASS",
+      "runId": "6b74b9dd713bcb7971610658f37ced5831dd1b64471da49fa3f75004cd83bb70",
+      "planInspectedBeforeExecution": true,
+      "planDigest": "6b74b9dd713bcb7971610658f37ced5831dd1b64471da49fa3f75004cd83bb70",
+      "steps": [
+        "14-replace-plan",
+        "19-replace-run",
+        "23-replace-report",
+        "38-replace-example-budget"
+      ],
+      "status": "completed",
+      "stopReason": "no_new_candidates",
+      "generationsRun": 2,
+      "optimization_mode": "single_fidelity",
+      "slow_mode": "unavailable",
+      "dual_loop_validation": "UNAVAILABLE",
+      "conclusion": "insufficient_evidence",
+      "improvementProven": false,
+      "additional_evidence_acquired": [],
+      "historyReuse": null,
+      "budget": {
+        "currency": "CNY",
+        "costCny": 0,
+        "knownCostCny": 0,
+        "reservedCostCny": 0,
+        "operations": 6,
+        "fastAttempts": 2,
+        "slowAttempts": 0,
+        "blockedReason": null
+      },
+      "savedReport": "reports/replacement_example.json"
+    },
+    {
+      "case": "recovery",
+      "outcome": "PASS",
+      "runId": "a09252ef6414d36b53e6d84dbf0e8f9b99da3d62a93276b940c789a63b7d66e0",
+      "planInspectedBeforeExecution": true,
+      "planDigest": "a09252ef6414d36b53e6d84dbf0e8f9b99da3d62a93276b940c789a63b7d66e0",
+      "steps": [
+        "15-recover-plan",
+        "26-recover-resume",
+        "30-recover-report",
+        "39-recover-budget"
+      ],
+      "status": "completed",
+      "stopReason": "no_new_candidates",
+      "generationsRun": 2,
+      "optimization_mode": "single_fidelity",
+      "slow_mode": "unavailable",
+      "dual_loop_validation": "UNAVAILABLE",
+      "conclusion": "insufficient_evidence",
+      "improvementProven": false,
+      "additional_evidence_acquired": [],
+      "historyReuse": null,
+      "budget": {
+        "currency": "CNY",
+        "costCny": 0,
+        "knownCostCny": 0,
+        "reservedCostCny": 0,
+        "operations": 6,
+        "fastAttempts": 2,
+        "slowAttempts": 0,
+        "blockedReason": null
+      },
+      "savedReport": "reports/recovery.json"
+    },
+    {
+      "case": "warm_start",
+      "outcome": "PASS",
+      "runId": "33cb12f23509ab020f8e23b4b2e849e50f301a487544453feed53ee37af2f44b",
+      "planInspectedBeforeExecution": true,
+      "planDigest": "33cb12f23509ab020f8e23b4b2e849e50f301a487544453feed53ee37af2f44b",
+      "steps": [
+        "27-warm-plan",
+        "28-warm-run",
+        "29-warm-report",
+        "40-warm-budget"
+      ],
+      "status": "completed",
+      "stopReason": "no_new_candidates",
+      "generationsRun": 2,
+      "optimization_mode": "single_fidelity",
+      "slow_mode": "unavailable",
+      "dual_loop_validation": "UNAVAILABLE",
+      "conclusion": "insufficient_evidence",
+      "improvementProven": false,
+      "additional_evidence_acquired": [],
+      "historyReuse": {
+        "mode": "warm_start",
+        "contextDigest": "3e56a18c32e7a7487af33aaea4bf5d80848c032aa0b32ffb6cbdaf7aee99ee7b",
+        "records": 2,
+        "sourceRunIds": [
+          "d40743410ba0395d80ead24449fe01da51451f57b8c7ccbf2bb0ff708363f622"
+        ],
+        "currentBaselineVersion": "5dd29d953e66c64762460e7840dd9db14702c4d9bed9b689e162281a55a80b44",
+        "baselineRemeasured": true,
+        "baselineTiers": [
+          "fast"
+        ],
+        "priorCostsImported": false,
+        "finalDataReview": {
+          "independence": "NO_FINAL_CONFIGURED",
+          "reusedDeclaredDataId": false,
+          "priorFinalData": [],
+          "reason": "Final samples, answers and scores are absent from search context. A new data ID alone does not prove unseen data; history-based selection has no independent provenance audit."
+        }
+      },
+      "budget": {
+        "currency": "CNY",
+        "costCny": 0,
+        "knownCostCny": 0,
+        "reservedCostCny": 0,
+        "operations": 6,
+        "fastAttempts": 2,
+        "slowAttempts": 0,
+        "blockedReason": null
+      },
+      "savedReport": "reports/warm_start.json"
+    },
+    {
+      "case": "manual_component_replacement",
+      "outcome": "PASS",
+      "runId": "43dc18cb04cc47bc7f58d182839e78e8f3bb3ea62ca075e0768d77529642bd66",
+      "planInspectedBeforeExecution": true,
+      "planDigest": "43dc18cb04cc47bc7f58d182839e78e8f3bb3ea62ca075e0768d77529642bd66",
+      "steps": [
+        "31-manual-replace-plan",
+        "32-manual-replace-run",
+        "33-manual-replace-report",
+        "41-manual-replace-budget"
+      ],
+      "status": "completed",
+      "stopReason": "no_new_candidates",
+      "generationsRun": 2,
+      "optimization_mode": "single_fidelity",
+      "slow_mode": "unavailable",
+      "dual_loop_validation": "UNAVAILABLE",
+      "conclusion": "insufficient_evidence",
+      "improvementProven": false,
+      "additional_evidence_acquired": [],
+      "historyReuse": null,
+      "budget": {
+        "currency": "CNY",
+        "costCny": 0,
+        "knownCostCny": 0,
+        "reservedCostCny": 0,
+        "operations": 6,
+        "fastAttempts": 2,
+        "slowAttempts": 0,
+        "blockedReason": null
+      },
+      "savedReport": "reports/manual_component_replacement.json"
+    }
+  ],
+  "supportedFailureRecovery": {
+    "outcome": "PASS",
+    "steps": [
+      "20-recover-run",
+      "24-recover-status",
+      "25-recover-without-checkpoint",
+      "26-recover-resume",
+      "30-recover-report",
+      "39-recover-budget"
+    ],
+    "expectedFailure": {
+      "code": "DUO_RESUME_REQUIRED",
+      "message": "Inspect the retained checkpoint; no blind replay",
+      "cause": "Inspect the retained checkpoint; no blind replay",
+      "component": "dsh.tools",
+      "retryable": false,
+      "recoverability": "INSPECT_RETAINED_STATE_NO_AUTOMATIC_RETRY",
+      "recoveryCondition": "Inspect retained state and determine whether any work started or was charged",
+      "nextAction": "Inspect dualloop_status and dualloop_budget_status; reconcile supported receipts and obtain any missing authorization before a new run",
+      "costState": "UNKNOWN_UNTIL_LEDGER_INSPECTION",
+      "sideEffectState": "UNKNOWN_UNTIL_EXECUTION_INSPECTION"
+    },
+    "correction": "Read the retained public status checkpoint and supply its digest as resumeFrom with the unchanged planDigest.",
+    "ledgerOrContractEditsForRecovery": false,
+    "checks": {
+      "baselineReceiptsRetained": true,
+      "unchangedDeadline": true,
+      "pausedOperations": 2,
+      "resumedOperations": 6,
+      "totalFastAttempts": 2
+    }
+  },
+  "additionalPreparationProbe": {
+    "steps": [
+      "34-forced-dual-design"
+    ],
+    "savedOrExecuted": false,
+    "status": "draft_valid",
+    "readyForPlan": false,
+    "evidenceStrategyStatus": "PREPARATION_REQUIRED",
+    "additionalEvidence": "unavailable"
+  },
+  "accounting": {
+    "completedRuns": 8,
+    "nativeOperationsAcrossDistinctRuns": 48,
+    "nativeCostCny": 0,
+    "unknownNativeCost": false,
+    "openNativeReservationCny": 0,
+    "innerModelRequests": 0,
+    "innerModelEvidenceBoundary": "Public deterministic local examples and frozen provider descriptors require no model; no paid/model provider was configured or invoked by this caller. This is not an independent OS network-traffic audit.",
+    "callingAgent": {
+      "reasoningUsed": true,
+      "paidInnerModelUse": false,
+      "costCny": null,
+      "accountingState": "NOT_MEASURED_BY_DUO",
+      "explanation": "This host Agent performed discovery, plan inspection, configuration and interpretation. Its inference usage is separate from the native ledger; no whole-chain CNY 0 claim is made."
+    }
+  },
+  "verification": {
+    "artifactChecks": "artifact_checks.json",
+    "targetsUnchanged": true,
+    "readOnlyReportAndBudgetCallsAddedOperations": false,
+    "allNativeReceiptsSettled": true
+  },
+  "interventions": [
+    {
+      "kind": "contract-edit",
+      "path": "CALLER_WORKSPACE/work/optimize/experiment.json",
+      "reason": "Apply public warm-start recipe to completed default optimization in same target and Journal",
+      "changed": {
+        "id": "local-warm-next",
+        "warmStart": {
+          "runIds": [
+            "d40743410ba0395d80ead24449fe01da51451f57b8c7ccbf2bb0ff708363f622"
+          ]
+        }
+      },
+      "backup": "work/optimize/experiment.cold.json"
+    },
+    {
+      "kind": "component-replacement",
+      "path": "CALLER_WORKSPACE/work/optimize/dsh-home/profiles/duo-product/cordis.patch.yml",
+      "reason": "Manually follow public disable-old-and-insert-new Cordis provider recipe after successful default and warm runs",
+      "patches": [
+        {
+          "id": "duo-feedback",
+          "disabled": true
+        },
+        {
+          "insert": [
+            {
+              "id": "caller-history",
+              "name": "@dual-loop/dsh-plugin/history-feedback",
+              "config": {
+                "historyOrder": "recent_failures_first"
+              }
+            }
+          ]
+        }
+      ],
+      "contractChange": {
+        "id": "caller-feedback-replacement",
+        "warmStart": "removed for fresh comparison"
+      },
+      "backups": [
+        "work/optimize/cordis.before-feedback-replacement.json",
+        "work/optimize/experiment.warm.json"
+      ]
+    }
+  ],
+  "callerCorrections": [
+    {
+      "kind": "display-only",
+      "description": "The local logging helper initially printed the complete wrapper, then omitted duplicate content to reduce output. On the expected error, the caller read the full retained raw response to recover the diagnostic JSON nested in content. No product or test-input correction was needed."
+    }
+  ],
+  "unexpectedRuntimeFailures": [],
+  "usabilityNotes": [
+    {
+      "id": "U1",
+      "severity": "minor",
+      "finding": "Fresh preset plans label searchStages.informationGain as a legacy contract even though preset is optimize-basic or optimize-dual.",
+      "evidence": [
+        "logs/12-optimize-plan.stdout",
+        "logs/13-dual-plan.stdout"
+      ],
+      "impact": "Can confuse whether the new preset path was actually used. evidenceStrategy separately reports the correct declared increment."
+    },
+    {
+      "id": "U2",
+      "severity": "minor",
+      "finding": "CLI transport error contains only message/name/code; richer cause/recovery/cost fields are JSON-encoded inside content[0].text. The paused-run nextAction is generic inspection/reconciliation guidance rather than the specific resumeFrom recipe.",
+      "evidence": [
+        "logs/25-recover-without-checkpoint.stdout"
+      ],
+      "impact": "Caller must preserve and inspect content in addition to error. The public recovery guide was sufficient to complete recovery."
+    },
+    {
+      "id": "U3",
+      "severity": "minor",
+      "finding": "Forced dual without an additional source returns status=draft_valid and issues=[] while readyForPlan=false and evidenceStrategy.status=PREPARATION_REQUIRED.",
+      "evidence": [
+        "logs/34-forced-dual-design.stdout"
+      ],
+      "impact": "Syntactic validity and usable preparation are split across fields; a consumer must follow the documented evidenceStrategy/readyForPlan fields."
+    }
+  ],
+  "unsupportedOrUnevaluated": [
+    "Real model execution and model-account accounting",
+    "Agent task quality or optimization superiority",
+    "Independent final generalization and high_fidelity qualification",
+    "An independently authored BYO evaluator; this trial chose the supported feedback replacement alternative",
+    "Arbitrary interrupted-call recovery or unknown-fee reconciliation",
+    "Automatic candidate adoption/deployment",
+    "Arbitrary Target/config mutations and third-party provider sandboxing",
+    "Windows/macOS operation",
+    "Whole-chain Calling Agent cost enforcement",
+    "Installation itself: an installed package was supplied; duo init only staged isolated profiles"
+  ],
+  "latestPackageSmoke": {
+    "outcome": "PASS",
+    "installedPackage": "INSTALLED_PACKAGE_2",
+    "archiveSha256": "71364e3a6b9085c19763f0551a8f1d594c77c7545da2e2398b68b935f27ae2d3",
+    "archiveHashProvenance": "Reported by parent from its retained tarball/installation receipt; not independently hashed by this caller.",
+    "changeScopeProvenance": "Parent reported AGENT_GUIDE.md as the sole changed package member. Caller read and hashed the new public guide; did not inspect or compare product source.",
+    "guideSnapshot": "documents/AGENT_GUIDE.repacked.md",
+    "guideSha256": "b158a17bd0c9d27021ddfb6673880f008c08f3ce88324d30ee34d8ee2d0e6340",
+    "guideRead": true,
+    "freshProfile": "work/repacked-smoke",
+    "steps": [
+      "43-repacked-init",
+      "44-repacked-plan",
+      "45-repacked-run",
+      "46-repacked-report",
+      "47-repacked-budget"
+    ],
+    "planInspectedBeforeExecution": true,
+    "runId": "de3c8835706f8381ff3ea736e0730486a54b4ce6da7c877d5b351fb36e22465a",
+    "planDigest": "de3c8835706f8381ff3ea736e0730486a54b4ce6da7c877d5b351fb36e22465a",
+    "status": "completed",
+    "stopReason": "no_new_candidates",
+    "generationsRun": 2,
+    "optimization_mode": "single_fidelity",
+    "slow_mode": "unavailable",
+    "dual_loop_validation": "UNAVAILABLE",
+    "conclusion": "insufficient_evidence",
+    "improvementProven": false,
+    "budget": {
+      "currency": "CNY",
+      "costCny": 0,
+      "knownCostCny": 0,
+      "reservedCostCny": 0,
+      "operations": 6,
+      "fastAttempts": 2,
+      "slowAttempts": 0,
+      "blockedReason": null
+    },
+    "checks": {
+      "targetBytesMatchInspectedBaseline": true,
+      "reportReadsAddedNoOperations": true,
+      "reportReadsKeptReceipts": true,
+      "allReceiptsSettled": true,
+      "completed": true,
+      "knownZeroCost": true
+    },
+    "savedReport": "reports/repacked_smoke.json",
+    "unexpectedFailures": [],
+    "coverageLimit": "One basic optimization smoke was repeated on the new guide/package. Original seven scenario runs remain tied to their original installed input. No claim that every scenario was freshly rerun on the repack."
+  },
+  "version": "0.6.0",
+  "publicCliInvocations": 47,
+  "humanWiringInterventions": 0,
+  "parentResourceUpdate": "One updated installed package path for documentation-only repack; no implementation or call sequence supplied.",
+  "fullLocalReceiptSha256": "cf1de3f9a49717ed37a4822abe85c41538f3f6425ae8f77d313b8c52a0413788",
+  "localEvidenceRoot": "dualloop/runs/slow-evidence-repair-20260915/independent-caller (outside this source distribution)",
+  "originalPackageSha256": "0cfe21b896b6b602379e188048efba7510e294f397657bd3fe9737f08b7817b9",
+  "finalPackageSha256": "71364e3a6b9085c19763f0551a8f1d594c77c7545da2e2398b68b935f27ae2d3",
+  "documentsRead": [
+    "README.md",
+    "AGENT_GUIDE.md",
+    "AGENT_REFERENCE.md",
+    "CURRENT_STATUS.md",
+    "EVIDENCE_STRATEGY.md",
+    "SECURITY.md",
+    "examples/product/README.md",
+    "selected PROVIDERS.md sections",
+    "CLI help and public tool schemas"
+  ]
+}

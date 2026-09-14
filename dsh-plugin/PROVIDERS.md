@@ -457,3 +457,7 @@ evidence aggregation or GateService for promotion; reuse FeedbackService's
 optional `orderHistory` for history selection. No new registry is needed.
 Changing a provider requires a newly inspected plan. Public text examples are
 local formatting measurements, not qualification for arbitrary Agent tasks.
+
+## Slow evidence strategy (0.6 development)
+
+[EVIDENCE_STRATEGY.md](EVIDENCE_STRATEGY.md) defines evidenceSource metadata, evidenceCoverage receipts, Comparator.aggregate and Gate.decide optional hooks, default policy semantics and preset negotiation. Existing compare/select-only providers remain supported through scoped default adapters. Metadata is a trusted declaration, not proof or new authority.

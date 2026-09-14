@@ -27,6 +27,7 @@ jobs:
           python-version: '3.12'
       - name: Install verification dependencies
         run: |
+          npm ci --ignore-scripts --no-audit --no-fund
           python -m pip install PyYAML==6.0.2 pytest==9.0.3
           npm install --global --ignore-scripts --no-audit --no-fund pnpm@11.24.0
           npm install --prefix "$RUNNER_TEMP/duo-dsh" --ignore-scripts --no-audit --no-fund @deepseek-ai/dsh@0.1.2-rc.1
@@ -52,4 +53,6 @@ jobs:
             ${{ runner.temp }}/duo-release-check/install/*.txt
             ${{ runner.temp }}/duo-release-check/public-examples/*.json
             ${{ runner.temp }}/duo-release-check/public-examples/*.txt
+            ${{ runner.temp }}/duo-release-check/slow-evidence/*.json
+            ${{ runner.temp }}/duo-release-check/slow-evidence/*.txt
           if-no-files-found: warn

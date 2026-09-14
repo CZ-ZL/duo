@@ -1,11 +1,13 @@
-# @dual-loop/dsh-plugin 0.5.0
+# @dual-loop/dsh-plugin 0.6.0
+
+English · [简体中文](README.zh-CN.md)
 
 DSH-native evaluation and optimization services. Read [CURRENT_STATUS.md](CURRENT_STATUS.md), [AGENT_GUIDE.md](AGENT_GUIDE.md), [PROVIDERS.md](PROVIDERS.md) and [SECURITY.md](SECURITY.md). The native runtime is JavaScript; Python is only for the explicit legacy/source compatibility path.
 
 Install a reviewed tarball into an existing authorized DSH profile (Linux, Node24+, tested DSH0.1.2-rc.1 / Cordis4.0.2):
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.5.0.tgz
+dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.0.tgz
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
@@ -40,6 +42,8 @@ Start immediately with [the public local examples](examples/product/README.md):
 duo init --root /tmp/my-duo --dsh-package /path/to/node_modules/@deepseek-ai/dsh --example evaluate
 duo call --root /tmp/my-duo --tool dualloop_describe
 duo call --root /tmp/my-duo --tool dualloop_plan
+duo call --root /tmp/my-duo --tool dualloop_run --args '{"planDigest":"PASTE_PLAN_DIGEST"}'
+duo call --root /tmp/my-duo --tool dualloop_report --args '{"runId":"PASTE_RUN_ID"}'
 ```
 
 If the bin is not on PATH, invoke node /path/to/installed/package/bin/duo.mjs. init stages this package into a new isolated profile using an existing DSH; it never installs dependencies or overwrites an existing directory. The examples measure local text hygiene at CNY0, not Agent behavior. call is a transport to actual DSH ToolRuntime, not a second runtime or scripted Caller. Requests/responses/logs are retained in the workspace.
@@ -47,3 +51,5 @@ If the bin is not on PATH, invoke node /path/to/installed/package/bin/duo.mjs. i
 Advanced exports include /target, /config-target, /model-generator, /structured-generator, /config-generator, /model-executor, /function-evaluators, /docs-evaluators, /semantic-evaluators, /comparator, /gate, /history-feedback, /capabilities and /definitions. Live models need authorized host routes, compatible caller-owned data and explicit pricing/budget. The local example CLI deliberately does not inherit credentials.
 
 The existing /offline-fixture export remains explicitly synthetic compatibility material, disabled by default. The /legacy API retains its Python/YAML contracts and separate ledgers. Current support does not imply method superiority, automatic adoption, arbitrary recovery, OS sandboxing or cross-platform compatibility.
+
+This release is delivered through the private GitHub repository, not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.
