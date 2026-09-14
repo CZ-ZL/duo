@@ -1,6 +1,6 @@
 # DUO Slow Loop Product Semantics & Evidence Strategy 验收报告
 
-状态：0.6.0 的修复、代码整理和本地产品验收已通过；私有 GitHub 交付进行中。独立于已经封存的 v0.5.0 Product Foundation 和所有历史研究 Goal。下文初始验收被复核发现的组合缺陷补充修正，不沿用旧版本的完成结论。
+状态：Goal 已完成。0.6.0 的修复、代码整理、产品验收、独立 Caller 使用和私有 GitHub 代码交付均已通过。独立于已经封存的 v0.5.0 Product Foundation 和所有历史研究 Goal。下文初始验收被复核发现的组合缺陷补充修正，不沿用旧版本的完成结论。
 
 ## 1. 正式定义与实际职责
 
@@ -140,7 +140,7 @@ Evidence/Gate/Comparator 类型、将格式与类型检查加入 CI。按 Pretti
 
 当前安装包 SHA256：`71364e3a6b9085c19763f0551a8f1d594c77c7545da2e2398b68b935f27ae2d3`。
 详细状态见 ACCEPTANCE.json / CALLER_ACCEPTANCE.json。未测量 Calling Agent
-自身推理费用，因此不声称整个调用链免费。远程 CI 与 release 交付待完成。
+自身推理费用，因此不声称整个调用链免费。
 
 本地 npm 官方 registry 连接重置；保留失败。随后显式选择镜像，下载了全新
 依赖并记录 dependencyRegistry；没有改 TLS 或静默回退。GitHub CI 保持官方源。
@@ -159,3 +159,21 @@ informationGain 提示仍写 legacy，当前模式要以 evidenceStrategy 为准
 完整结构位于 content 中，CLI 顶层 error 较简略；design 的 draft_valid 表示草稿
 合法，不等于 readyForPlan。Caller 依照公开指南成功理解并使用了相关路径。
 本轮不因此重构状态系统或展开新架构。
+
+
+## 11. GitHub 验收结论
+
+代码提交 `5a45eb912dfdf093ffa344524482a32ba4cdea22` 已推送至私有
+CZ-ZL/duo/main，并通过 [GitHub CI](https://github.com/CZ-ZL/duo/actions/runs/34880960554)。
+CI 用官方 npm registry 全新安装依赖，native 321 / Python product 451 全部通过，
+86 research deselected；CI 与本地 tarball 的 SHA256 完全一致。最后的关闭记录
+只更新验收文档，不能被描述为又一次全量测试；运行代码、安装包和验证输入不变。
+
+PRODUCT FOUNDATION COMPLETE：本轮 Slow 产品语义、既有插件边界及必要修复完成。
+PRODUCT ACCEPTANCE STATUS：本地 gate、官方源 CI、独立 package-only Caller 通过。
+KNOWN LIMITATIONS：受信任 provider、有限证据 schedule、Linux/有限恢复/Caller
+成本边界，以及三项非阻塞体验问题保留。CI 另提示旧 action majors 的 Node
+运行时迁移警告，本次成功运行，但后续应单独验证 action 升级。
+RESEARCH NOT PROVEN：未新增方法 benchmark；未证明 DUO 的通用质量或费用优势。
+
+本 Goal 没有必需未完成项，不自动开启新研究或架构阶段。

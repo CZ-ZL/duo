@@ -1,6 +1,6 @@
 {
   "goal": "DUO Slow Loop Product Semantics & Evidence Strategy",
-  "status": "LOCAL_ACCEPTED_GITHUB_DELIVERY_PENDING",
+  "status": "COMPLETE",
   "scope": "Product semantics, review repairs, lean code, bilingual documentation and private GitHub delivery; no method research",
   "baseline": "21bc82d2833711a176488c1f9334e650e01b354f",
   "version": "0.6.0",
@@ -94,6 +94,19 @@
       "directory": "release-gate-3",
       "log": "release-gate-3.log",
       "exitCode": 0
+    },
+    "githubCI": {
+      "status": "PASS",
+      "conclusion": "success",
+      "runId": 34880960554,
+      "url": "https://github.com/CZ-ZL/duo/actions/runs/34880960554",
+      "codeCommit": "5a45eb912dfdf093ffa344524482a32ba4cdea22",
+      "nativePassed": 321,
+      "pythonProductPassed": 451,
+      "researchDeselected": 86,
+      "freshDependencyRegistry": "https://registry.npmjs.org",
+      "packageByteIdenticalToLocal": true,
+      "durationSeconds": 353
     }
   },
   "historicalInitialAcceptance": "INITIAL_ACCEPTANCE.json",
@@ -126,8 +139,19 @@
     "repository": "CZ-ZL/duo",
     "private": true,
     "branch": "main",
-    "status": "READY_FOR_COMMIT_PUSH_AND_CI",
-    "npmPublished": false
+    "status": "CODE_DELIVERED_AND_CI_VERIFIED",
+    "npmPublished": false,
+    "codeCommit": "5a45eb912dfdf093ffa344524482a32ba4cdea22",
+    "styleCommit": "4465597cccf4aa86ac99baa5e11dfcd1cd318b5d",
+    "codeCiUrl": "https://github.com/CZ-ZL/duo/actions/runs/34880960554",
+    "metadataFollowUp": "Only Goal/acceptance documentation follows the tested code commit; runtime/package/verification inputs remain unchanged.",
+    "registryPublished": false
   },
-  "nextTask": "Commit reviewed changes, push private main, verify exact code commit CI, then record closure and release the private installable tarball."
+  "nextTask": null,
+  "knownUsabilityNotes": [
+    "Flat-stage informationGain wording still says legacy; evidenceStrategy is authoritative.",
+    "Full structured error detail is nested in DSH content; CLI top-level error is shorter.",
+    "draft_valid is syntactic validity; use readyForPlan and evidenceStrategy for actual readiness."
+  ],
+  "ciMaintenanceNote": "The successful runner warned that pinned action majors are being forced from Node 20 to Node 24; update action majors in a separately verified maintenance change."
 }

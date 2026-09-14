@@ -1,6 +1,6 @@
 # DUO Slow Loop Product Semantics & Evidence Strategy Goal
 
-Status: LOCAL_ACCEPTED / GITHUB_DELIVERY_PENDING (2026-09-15). Independent product Goal, baseline v0.5.0 / 21bc82d.
+Status: COMPLETE (2026-09-15). Independent product Goal, baseline v0.5.0 / 21bc82d.
 Authority: owner request 2026-09-15, sections 1–14. Local implementation and deterministic product acceptance only. No model spend, method benchmark, Graph/Bayesian implementation, new loops or automatic adoption. Owner extension 2026-09-15 authorizes code cleanup, bilingual README and reviewed delivery to the existing CZ-ZL/duo private repository; no npm publication.
 Tracking: existing file-based QUEUE mechanism. The session Goal tool still contains a paused, unrelated historical Root Cause Goal; it is not overwritten or falsely closed. This file is the authoritative independent Goal, not a claim of API registration.
 
@@ -33,15 +33,22 @@ The prior suite remains real evidence for its tested cases. Three new determinis
 | R3 consistent delivery | Multiple policy-eligible candidates yield one deterministic actual selection; decisions, Journal, feedback, report and warm history distinguish eligibility from selection. | R2; custom Gate integration regression | COMPLETE / ENGINEERING: r3-green.log 52 PASS; one accepted selection in Journal/report/search feedback |
 | R4 code cleanup | Readable product modules, explicit strategy types, removed evidence-discovery cycle; preserve public exports, legacy API and safety checks. Record before/after and relevant regression. | R1–R3; LEAN.md | COMPLETE / native 321, Python 451, typed declarations and format gate PASS |
 | R5 bilingual product docs | English README.md and Chinese README.zh-CN.md with matching capabilities, install/run steps, honest limitations, current evidence and separate research archive. Update package docs/release metadata. | R4; package/doc checks | COMPLETE / bilingual root/package docs, 66-member tarball PASS; Caller guide input bound regression repaired without increasing limits |
-| R6 verified GitHub delivery | Final local release gate, diff/private-data review, commit/push to existing private main under authorization; inspect remote CI; preserve all failure evidence. No npm registry publication. | R1–R5 | IN_PROGRESS / local gate and independent Caller PASS; commit/push/exact remote CI/release next |
+| R6 verified GitHub delivery | Final local release gate, diff/private-data review, commit/push to existing private main under authorization; inspect remote CI; preserve all failure evidence. No npm registry publication. | R1–R5 | COMPLETE / private main pushed; exact code commit 5a45eb9 passed GitHub Actions 34880960554; local and CI tarballs byte-identical |
 
 Close only after the reopened behavior and requested delivery are verified. No new paid model work.
 
-Next task: commit reviewed changes and push private main; verify exact code
-commit CI, persist completion and deliver the 0.6.0 private release tarball.
-Local release-gate-3 PASS: native 321, Python product 451 / 86 research deselected,
-21 DSH host profiles, fresh install, 10 public examples and 4 Slow mode profiles.
+Closure: required S0–S5 and review/cleanup/delivery R1–R6 criteria are met.
+Native 321, Python product 451 / 86 research deselected, 21 DSH host profiles,
+fresh install, 10 public examples and 4 Slow mode profiles pass locally and in
+GitHub CI for code commit 5a45eb912dfdf093ffa344524482a32ba4cdea22.
+CI: https://github.com/CZ-ZL/duo/actions/runs/34880960554
+Official-registry CI tarball matches the local artifact byte-for-byte.
+
 Independent package-only Caller PASS with minor usability notes: 47 CLI calls,
-48 settled native operations, zero inner model calls/cost, no human wiring.
-Earlier initialization and Guide-envelope failures are retained; no thresholds
-were enlarged. Caller inference cost is separate and unmeasured.
+48 settled native operations, zero inner model requests/cost, no human wiring.
+Caller inference cost is separate and unmeasured. Initial failures and repaired
+combinations remain recorded. No budget/input guard was relaxed.
+
+Next task within this Goal: none. Do not start method research or further product
+architecture automatically. Metadata-only completion receipts follow the tested
+code commit; no runtime or package inputs are changed by this closure.
