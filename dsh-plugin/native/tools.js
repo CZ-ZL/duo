@@ -1,4 +1,5 @@
 import {defineTool} from '@deepseek-ai/dsh-tools'
+import {describeFailure} from './diagnostics.js'
 export const name='dual-loop-native-tools'
 export const inject=['tools','duoController','duoBudget']
 const pick=(value,keys)=>Object.fromEntries(keys.filter(key=>value?.[key]!==undefined).map(key=>[key,value[key]]))
@@ -20,25 +21,8 @@ export function summarizePlan(plan){
 // arguments. Only content changes: DSH owns isError and error.info identity.
 export function finalizeDuoError(exec,result){
  if(!result.isError)return
- const code=result.error?.info?.code??'DUO_TOOL_FAILED'
- let component=code.startsWith('DUO_')&&code!=='DUO_TOOL_FAILED'?'duoController':'dsh.tools',retryable=false,recoveryCondition='Inspect retained state, resolve any missing host authorization, and establish whether any operation was started or charged',
-  nextAction='Inspect dualloop_status and dualloop_budget_status; reconcile supported receipts and obtain any missing authorization before a new run'
- if(code==='INVALID_ARGS'){
-  component='dsh.tools.arguments';retryable=true
-  recoveryCondition='Correct the arguments to the discovered schema'
-  nextAction='Read the tool schema; use planDigest from dualloop_plan and retry with corrected arguments'
- }else if(code==='DUO_PLAN_CHANGED'){
-  retryable=true;recoveryCondition='Inspect and accept the current plan within existing authorization'
-  nextAction='Read dualloop_plan; verify its target, providers and budget, then pass the exact current planDigest'
- }else if(/DENIED|APPROVAL|FORBIDDEN/.test(code)){
-  component='dsh.tools.policy';recoveryCondition='The required host permission or explicit authorization is granted'
-  nextAction='Report the denial and request the missing authorization through the host; do not bypass policy'
- }else if(/ABORT|CANCEL/.test(code))component='dsh.tools.cancellation'
- else if(/CONTRACT|CURRENCY|FINAL_DATA/.test(code))component='duoContract'
- else if(/EVALUATOR|EVIDENCE/.test(code))component='duoEvaluators'
- else if(/BUDGET|COST|RECEIPT/.test(code))component='duoBudget'
- else if(/TARGET|DELTA/.test(code))component='duoTarget'
- return [{type:'text',text:JSON.stringify({apiVersion:2,error:{code,message:result.error?.message??'DSH refused the DUO tool call',component,retryable,recoveryCondition,nextAction}})}]
+ const error=describeFailure({code:result.error?.info?.code??'DUO_TOOL_FAILED',message:result.error?.message??'DSH refused the DUO tool call'},'dsh.tools')
+ return [{type:'text',text:JSON.stringify({apiVersion:2,error})}]
 }
 export function apply(ctx){
  const register=(name,description,parameters,execute,concurrent=true,render=(_args,value)=>value)=>ctx.tools.register(defineTool({name,description,parameters,
@@ -50,7 +34,7 @@ export function apply(ctx){
     commands:ctx.tools.schemas().map(s=>s.name).filter(n=>n.startsWith('dualloop_')&&n!=='dualloop_discover').sort(),
     limitations:['Trusted configured providers; no OS sandbox implied','Provider evidence is not proof of optimization efficacy','Existing Python ledgers require separate audited migration']}
  })
- register('dualloop_plan','Inspect the frozen native contract, persona, provider identities and allowance; return planDigest and runId.',{
+ register('dualloop_plan','Inspect the frozen native contract, Target, provider identities and allowance; return planDigest and runId.',{
   view:{type:'string',enum:['full','summary'],description:'Summary reduces repeated provider descriptions and history context in Agent rendering; full structured plan is retained. Default full.'}},async()=>ctx.duoController.plan(),true,(args,value)=>args.view==='summary'?summarizePlan(value):value)
  register('dualloop_run','Execute the inspected native plan. Optional pauseAfter stops at a fully settled baseline/generation boundary; resumeFrom continues that exact checkpoint within original limits. Evaluation-only performs no generation.',{
   planDigest:{type:'string',required:true,description:'Exact digest from dualloop_plan'},

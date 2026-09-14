@@ -1,100 +1,23 @@
-> Package-only readers: paths marked "source checkout" refer to files in the GitHub source distribution, outside this npm tarball. Historical run files require the separate research archive. The public tool and provider contracts below remain available without those files.
+# Use DUO from an Agent
 
-<!-- Canonical copy. dsh-plugin/AGENT_GUIDE.md is the shipped duplicate; dsh-plugin/native/docs-sync.test.js enforces sync. -->
-# Calling DUO from DSH
+DUO evaluates or optimizes an existing Target inside DSH. Use it when the owner has an observable goal, an executable evaluator and permission to test changes. It returns evidence, candidate overlays and costs. Retaining the original is valid. It never automatically deploys a candidate. Format checks are not Agent task quality; product acceptance is not method superiority.
 
-DUO evaluates or optimizes an existing persona/system prompt inside DSH. Use it
-when you have a measurable task and permission to test prompt changes. It returns
-candidates, observations, costs and a recommendation. No improvement is a valid
-outcome; it does not deploy a candidate. Format validity alone is not task quality.
+Read CURRENT_STATUS.md for current support. The default bundle exposes preparation before work providers exist. For a complete free example, follow examples/product/README.md. It needs an installed DSH, no source checkout or research archive.
 
-## Start from your available inputs
+1. **Discover:** `dualloop_describe({})` reports supported/partial Target capabilities, replacement seams, schemas, the active Target descriptor and evaluator declarations. Visible bindings alone are not a validated plan. `dualloop_discover` is the retained execution-composition view and requires a valid plan.
+2. **Prepare:** `dualloop_design({preset:"evaluate"|"optimize",draft,experimentPath,context})` is read-only. Presets fill lifecycle defaults, never the target, objective or paid authority. Supply id, target:{kind,path} and an explicit objective (fast for a simple case). Optimize needs an explicit budget; evaluate defaults to zero-cost local work. The returned draft/resolved.spec is the complete inspectable contract.
+3. **Resolve missing inputs:** follow the combined issues/preparation list. Bring an evaluator, find a compatible visible provider, build a function adapter around existing tests, or compose measurement functions. Do not invent goals, answer keys, permissions or money. Check fixed correct/incorrect controls before using a measurement for search. A config Target needs a compatible Executor/Evaluator; persona execution does not establish config execution.
+4. **Configure:** save the inspected contract using authorized host filesystem tools. Set duo-contract.config.experiment and duo-journal.config.root in your DSH profile. Attach work providers through existing DSH/Cordis interfaces. The deferred runtime exposes execution/report tools once dependencies are present. For no-generator evaluation use duo-runtime.config.evaluationOnly:true. If the host supplies authorized cordis_define/cordis_run tools, discover and use them; do not assume they exist.
+5. **Plan:** `dualloop_plan({view:"summary"})` returns Target, providers, stages, limits, screened history and exact planDigest/runId. Inspect full details when necessary. Changes require a new plan; a digest grants no permission. Reuse actual owner authorization.
+6. **Run:** `dualloop_run({planDigest})` uses frozen limits. Evaluation-only generates nothing. Unknown cost stops paid work. Never retry to discover a fee. Optional pauseAfter:"baseline" or "generation" requests a settled checkpoint.
+7. **Read:** `dualloop_status({runId})`, `dualloop_report({runId,view:"summary"})` and `dualloop_budget_status({runId})` need no model calls. Report actual stage states, score meaning, decisions, limits and costs. Unpromoted candidates have no later-stage score. Save the report through your host for a delivery artifact; rendered output alone is not a saved-file receipt.
+8. **Reuse or recover:** warmStart:{runIds:[...]} creates a new experiment using screened history in the authorized Journal. It imports no old fees, final scores or authority. Recovery instead uses the same planDigest and resumeFrom equal to status.checkpoint.digest. Original deadline/budget remain. No supported checkpoint means no automatic replay.
+9. **Replace:** change one supported Cordis provider row, inspect its identity/permissions/contracts and re-plan. Removing a required provider retracts dependent tools. Target-specific history validation/projection is required for warm start. Legacy adapters without it remain limited.
 
-Use the host's authorized setup/profile and the supplied resources. If execution
-providers are not ready, preparation tools still work. Do not install dependencies
-or infer money/permissions from example files.
+An objective is {evaluatorId,version,dataId,metric,direction,weights}. Use the live schema for full authoring. Preset defaults are inspectable and may be overridden explicitly; missing owner decisions stay unresolved.
 
-1. `dualloop_describe({})` describes supported targets, current service availability,
-   the native contract schema and provider boundaries. `executionReady:false` in
-   this description means no executable contract has been validated yet.
-2. `dualloop_design({draft, experimentPath, context})` checks your proposed contract
-   without writing or running it. Supply an authorized target, task goal, evaluator,
-   data identity and finite budget. Missing inputs are reported together. Optional
-   `context.measurementGoal` is `task_result`, `format` or `cost`. For vague goals or
-   no evaluator, follow `preparation` and its unresolved owner questions. Do not
-   invent an objective, answer key, budget or authorization.
-3. With a supplied compatible evaluator, inspect its declared semantics and fixed
-   correct/incorrect controls. If the host exposes an authorized Cordis bridge,
-   discover it using `cordis_inspect_list` and its advertised describe query, then
-   use `cordis_define` and `cordis_run` to attach that exact adapter. New plugin
-   `idPrefix` must be 3–6 lowercase English letters (the host adds a numeric suffix). Execution
-   tools can appear after attachment. `authorityGranted:false` on a descriptor
-   grants no new permission; existing task authorization still applies.
-   `Service.listService` is a coding-contract catalog, not a live registry of all
-   plugin bindings. For an uncatalogued supplied service, use its published
-   plugin contract and observed runtime availability; absence from that catalog
-   does not establish that the service is missing.
-4. Save only the inspected, authorized contract at `experimentPath`. Call
-   `dualloop_plan({view:"summary"})`, inspect providers, data, permissions, cost limits
-   and stages (use `view:"full"` for complete provider semantics or history context),
-   then pass the exact returned digest to `dualloop_run({planDigest})`. A changed
-   contract/provider/target/build needs a new plan; a new ID is not new allowance.
-5. Read `dualloop_report({runId, view:"summary"})` and `dualloop_budget_status({runId})`. Report actual
-   stage completion, score meaning, uncertainty, candidate lineage and settled or
-   unknown costs. A candidate not promoted has no later-stage result. Report
-   generation and repeated reads require no model calls. Rich Caller explanation
-   is optional and needs its own remaining allowance. Use `view:"full"` on demand
-   for full candidate/provider/diagnostic facts; structured tool results retain them.
+Caller preparation and optional interpretation need their own host budget. The DUO ledger covers inner operations, not every Calling Agent request. Permission declarations are checked claims; the host enforces actual access. Existing authorization is reused; example files grant none.
 
-For only measuring the current target, use `operation:"evaluate"` with no search.
-An evaluator can be a deterministic function; "real" measurement need not incur
-another model request. Keep final data outside search and Caller setup resources.
-Do not pool observations across changed evaluator, data, strategy or code versions.
+Failures expose cause, recoverability, nextAction (required action), costState and sideEffectState. UNKNOWN requires retained-evidence inspection, not inferred zero. dualloop_budget_reconcile applies only an observed already-staged receipt hash; it never creates usage evidence or repeats work.
 
-## Read only the reference needed now
-
-| Need | Public reference / example |
-|---|---|
-| Native schema and provider replacement | Live `dualloop_describe`, provider contracts (source checkout: `dsh-plugin/PROVIDERS.md`) and BYO patch (source checkout: `examples/native/byo-profile.patch.yml`) |
-| Missing evaluator or unclear objective | [Preparation reference](AGENT_REFERENCE.md#before-configuration), control adapter (source checkout: `examples/native/evaluator-controls.js`), task-result example (source checkout: `examples/native/fact-task.md`) |
-| Evaluation-only | Contract (source checkout: `examples/native/evaluation-experiment.json`) and profile (source checkout: `examples/native/evaluation-profile.patch.yml`) |
-| Default two stages / explicit ladder of uncapped depth with caller-named tiers | Default contract (source checkout: `examples/native/experiment.json`), ordered stages (source checkout: `examples/native/ordered-stages.md`), four-level ladder (source checkout: `examples/native/ladder-experiment.json`) |
-| Attach evaluator after startup | Deferred profile (source checkout: `examples/native/deferred-profile.patch.yml`); set `evaluationOnly:true` for an evaluation-only runtime |
-| Warm start from authorized history | [Warm-start reference](AGENT_REFERENCE.md#start-a-new-experiment-with-native-history) and example (source checkout: `examples/native/warm-start.md`) |
-| Model execution and cost preparation | Native model entry (source checkout: `NATIVE_MODEL_GUIDE.md`) |
-| Clean Caller with complete inputs and supplied fact evaluator | Isolated Caller example (source checkout: `examples/native/calling-facts.md`) |
-| Failure, pause, resume or readonly recovery | [Recovery reference](AGENT_REFERENCE.md#failure-and-recovery) |
-| Explicit adoption and rollback on an authorized copy | Host recipe (source checkout: `examples/native/adoption.md`) |
-
-A clean setup can use onboarding-profile.patch.yml (source checkout: `examples/native/onboarding-profile.patch.yml`).
-The complete execution bundle requires all work providers; the shipped bundle
-wires labelled zero-cost fixture providers so a fresh install boots, and the
-deferred profile waits for runtime attachment. Replace the bundled fixture with
-real providers for actual work; real providers, target data and authority must
-be supplied separately.
-
-## Budget and evidence boundaries
-
-Reserve Caller preparation/interpretation separately from inner generation,
-execution and evaluation. The native experiment ledger covers inner operations;
-it does not enforce the Calling Agent's whole budget. A hosting entry may enforce
-both and must say so. Never add overlapping ledger views as extra charges.
-Unknown receipts stop paid work; reading retained reports does not reconcile cost.
-
-`report.delivery` separates execution, artifact readiness and Caller delivery.
-A rendered report is not evidence that an independent Caller received it.
-`pauseAfter:"baseline"` or `"generation"` requests a settled checkpoint. Continue
-with a current plan and exact `resumeFrom` digest only when checkpoint status
-permits it. Original wall deadline and allowance remain. In-flight calls and
-terminal failures cannot be blindly replayed. Warm start is a new experiment
-using screened historical ideas; it is not recovery or renewed authorization.
-
-Offline clean-host checks use an existing cached DSH package and a fresh output:
-
-```sh
-python3 scripts/verify_dsh_native.py --dsh-package /absolute/path/to/node_modules/@deepseek-ai/dsh --output /tmp/new-duo-check
-```
-
-These verify engineering with fixtures, not independent real Caller use or method
-benefit. See current evidence (source checkout: `STATUS.md`). Legacy Python/YAML contracts remain
-behind the explicit `/legacy` interface with separate schemas and ledgers.
+See AGENT_REFERENCE.md and PROVIDERS.md in this package. Original profiles remain unchanged; adoption/rollback needs explicit host authorization. Python/YAML remains behind /legacy with separate schemas and ledgers.

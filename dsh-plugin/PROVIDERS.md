@@ -5,8 +5,10 @@
 Import the runtime definition classes from `@dual-loop/dsh-plugin/definitions`.
 They extend the actual Cordis `Service`, own named services and are loaded by
 `ctx.plugin(Provider, config)`. Consumers declare `static inject`; dispose effects
-through `ctx.effect`. See the bundled [offline fixture](native/offline-fixture.js),
-which the default bundle wires.
+through `ctx.effect`. The default bundle waits for work providers. Start with the
+[public local examples](examples/product/README.md). The retained
+[offline fixture](native/offline-fixture.js) is disabled by default and explicitly
+synthetic; it remains available for compatibility.
 These are JavaScript runtime contracts with controller validation. TypeScript
 declarations now accompany `/definitions` and `/function-evaluators`; declaration
 syntax was checked, but semantic tsc validation was not run because no compiler
@@ -102,7 +104,9 @@ it does not establish correctness of every model judgment or higher Slow fidelit
 ## Candidate and evidence shapes
 
 A generator must return exactly the requested counts for each quota, or an empty
-list to stop. IDs must come from `nextId()`. The target currently supports only:
+list to stop. IDs must come from `nextId()`. The following Delta shape applies
+to the built-in persona adapter. Config/custom adapters own their Delta shape;
+see CURRENT_STATUS.md and the Target boundary section below:
 
 ```js
 {
@@ -114,7 +118,7 @@ list to stop. IDs must come from `nextId()`. The target currently supports only:
 ```
 
 Preserve any `{{model}}` / `{{cwd}}` placeholders present in the parent.
-The target adds `persona` and its content `version` to the applied candidate.
+The persona adapter adds `persona` and its content `version` to the applied candidate.
 No original persona file or permanent DSH profile is written.
 
 An evaluator produces measurements, not comparison decisions:
@@ -140,7 +144,7 @@ is excluded from slow sample counts, correlations and family penalties.
 
 | Definition | Synchronous API |
 |---|---|
-| `TargetService` | `snapshot(path)`, `apply(candidate, parent)` |
+| `TargetService` | `snapshot(path)`, `apply(candidate, parent)`, `identity(snapshot)`; warm history additionally needs `validateSnapshot(snapshot)` and `projectDelta(delta)` |
 | `ComparatorService` | `compare(results, {weights,epsilon,minSamples,constraints}, incumbentId)` → `{ranking,verdicts,scores}` |
 | `GateService` | `select(comparison, candidateIds, {topK,remaining,incumbentId,epsilon})` → selected candidate IDs; older providers may ignore the added context |
 | `FeedbackService` | `summarize(latestCandidateRecords, quotas, options)` → family statistics and next quotas |
@@ -172,7 +176,9 @@ the native CNY authoring schema and implemented provider contracts;
 `dualloop_design({draft,experimentPath})` lists missing inputs and reuses the same
 `resolveNativeContract` function as the file-backed contract service. It does not
 write a draft, resolve a baseline file, bind an execution plan or grant authorization.
-`draft_valid` therefore still has `readyForPlan:false` and `bindingChecks:NOT_RUN`.
+`draft_valid` may set `readyForPlan:true`: the draft can proceed to planning,
+not directly to execution. `bindingChecks:NOT_RUN` and `authorityGranted:false`
+remain explicit; incompatible visible evaluator declarations reset readiness.
 Use the independent setup profile before enabling the full execution bundle.
 
 Both preparation tools inspect `describe()` on the active `duoEvaluators` visible
@@ -312,7 +318,7 @@ constraint violation is retained even when it is excluded from family statistics
 the penalty thresholds and comparator rules are unchanged. Raw Slow answers and
 final evidence remain excluded. Observations are not causal explanations.
 
-The default model generator (version `5`, or `6` under the `python-code-v1`
+The supplied model generator (version `5`, or `6` under the `python-code-v1`
 dataset mode) includes this feedback in its request; the
 structured generator projects the same allowed fields. Journal feedback events
 name the intended consumer and include `feedbackDigest`, which is also bound to
@@ -338,7 +344,8 @@ record/byte caps; malformed selections refuse the plan. `/history-feedback` supp
 in the provider descriptor and `warmStart.selector`. A custom Feedback subclass can
 override only this method and describe its own versioned identity. The default
 Feedback without this method retains balanced ordering. No new service or registry
-is required. See the runnable warm-start guide (source checkout: `../examples/native/warm-start.md`).
+is required. See the [shipped warm-start example](examples/product/README.md); the additional
+model guide is source-only (`../examples/native/warm-start.md`).
 
 The native Journal supports `events({maxEvents,maxBytes})` as a bounded read-only
 accessor; ordinary `events()` remains unchanged. Source caps are 2048 events and
@@ -353,13 +360,15 @@ a provider's hidden state. Final evaluator values never participate in candidate
 selection; final-data identity is retained outside model context solely to qualify
 results. See the public guide for conservative final independence and fixture rules.
 
-The public plan's `searchPolicy` specifies same-run exact persona-content deduplication.
+The public plan's `searchPolicy` specifies same-run Target-owned content identity.
 The Controller first validates parent/scope/quotas, then skips content already
 present under another candidate or baseline. `duplicate_skipped` rows retain
 `duplicateOf`, content digest, Delta and hypothesis; skipped measurements remain
 `NOT_EVALUATED` with no copied source score. Generation was already performed and
 is still charged. An all-duplicate batch stops as `no_new_candidates`; no replacement
-generation or retry is hidden. This is byte-level identity, not semantic novelty.
+generation or retry is hidden. Persona uses exact text identity; config uses
+locked persona plus configuration. Custom adapters define stable identity. None
+of these declarations independently establishes semantic novelty.
 
 An owner-reviewed contract may set optional `allowNoiseRepeats:true` (default false).
 A caller-owned Generator can then return a duplicate with
@@ -369,7 +378,7 @@ run. The repeat retains `duplicateOf` and runs through ordinary execution/evalua
 accounting. Invalid or unapproved repeat declarations refuse before any candidate
 in that batch executes; already measured baseline/generation costs remain settled.
 No automatic aggregation, statistical qualification or additional allowance is implied.
-The default model generators seek distinct hypotheses and do not declare repeats.
+The supplied model generators seek distinct hypotheses and do not declare repeats.
 The noise-repeat fixture (source checkout: `../examples/native/noise-repeat-profile.patch.yml`) and
 contract (source checkout: `../examples/native/noise-repeat-experiment.json`) demonstrate the explicit
 public opt-in at CNY zero. Synthetic-fee unit tests are accounting tests, not savings.
@@ -420,3 +429,31 @@ is null in this plan, and discovery does not declare an active generator.
 The result exposes `evaluations` and `measurementChecks`. A completed measurement
 can violate quality constraints; retaining the original does not mean it passed.
 It is not a separate evaluation engine, and it cannot run an optimize contract.
+# Product foundation Target boundary (0.5.0)
+
+The runtime accepts a syntactically valid target kind, then checks the active
+adapter's `describe().targetKinds`. Built-in catalog and partial support are in
+CURRENT_STATUS.md and `/capabilities`; discovery also shows custom descriptors.
+Core does not inspect persona/config fields. A Target snapshot has `id`,
+`version`, optional `path`, and adapter-owned content. `identity(snapshot)` must
+be a stable content identity; the compatibility fallback is snapshot.version.
+Candidate ids/parent versions, Delta, execution and measurements retain their
+existing meanings.
+
+For warm start implement pure `validateSnapshot(snapshot)` and
+`projectDelta(delta)` plus `apply(candidate,parent)`. History validates the full
+lineage using those methods; projection must return only documented Delta data,
+never raw outputs, final evidence or arbitrary metadata. Target methods must not
+execute models or side effects. Older adapters still run using their versions
+but do not gain history support automatically. `/target-protocol` publishes the
+identity/history checks; `/warm-start` publishes bounded projection helpers.
+Generators using projected history must supply their Target-specific projector
+to `projectWarmContext(context, projectDelta)`.
+
+To replace measurement, attach `/function-evaluators` with an existing function,
+versioned descriptors and data/implementation digests. The complete shipped
+`examples/product/byo-evaluator.js` does this. Replace ComparatorService for
+evidence aggregation or GateService for promotion; reuse FeedbackService's
+optional `orderHistory` for history selection. No new registry is needed.
+Changing a provider requires a newly inspected plan. Public text examples are
+local formatting measurements, not qualification for arbitrary Agent tasks.

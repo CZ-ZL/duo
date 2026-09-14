@@ -1,11 +1,11 @@
 import {GeneratorService,fail} from './definitions.js'
 import {modelSettings,modelDescriptor,runModelAgent} from './model-call.js'
 import {compileProposal,parseUniqueJson} from './structured-generator.js'
-import {fetchBounds,fetchPlugin,validateFetchConfig} from './config-target.js'
+import {fetchBounds,fetchPlugin,validateFetchConfig,projectConfigDelta} from './config-target.js'
 import {digest} from './store.js'
 
 export function compileConfigProposal(input){
- const context=compileProposal(input),parent=input.champion
+ const context=compileProposal({...input,projectDelta:projectConfigDelta}),parent=input.champion
  validateFetchConfig(parent.config)
  return {instruction:'Return ONLY JSON {"candidates":[{"slot":"assigned slot","hypothesis":"falsifiable expectation","maxBodyChars":integer}]}. Exactly one row per assigned slot. Change only maxBodyChars within the declared range; all other fields and persona remain fixed. Do not repeat values already in history. Scores are observations, not causal effects. No task answers in candidates.',
   target:fetchPlugin,bounds:fetchBounds,champion:{id:parent.id,version:parent.version,config:parent.config},generation:input.generation,

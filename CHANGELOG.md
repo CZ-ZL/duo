@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.5.0 — Product Foundation
+
+- Unify capability discovery, kind schemas and generated current support. Persona
+  is supported; the bounded fetch configuration Target is explicitly partial.
+- Make content identity, historical snapshot validation and safe Delta projection
+  Target-owned. Configuration history now reaches candidate generation; a custom
+  content Target runs through the same core without persona/config fields.
+- Add evaluate/optimize presets to the existing design tool and shared structured
+  errors with cause, action, recoverability and cost/effect uncertainty.
+- Default bundle waits for work providers. Retain, but disable, the historical
+  fixture; existing legacy exports remain. Deferred runtime replaces duplicate
+  default controller wiring, not the execution engine.
+- Ship a small public `duo` CLI and local evaluate, optimize, BYO evaluator,
+  replacement, warm-start and custom Target examples. All calls use actual DSH
+  ToolRuntime; no private profile, research script or Python runtime is needed.
+- Extend release CI with real tarball installation and public package acceptance.
+  Research history remains separate; no new paid model requests or method tests.
+
+Migration: old frozen plans/checkpoints do not authorize a new provider graph.
+Inspect and re-plan after upgrading. Custom history requires Target-owned hooks;
+legacy Target providers without them execute but do not import warm history.
+Use an explicit fixture binding if you depended on the old default demo. Replace
+a Cordis module by disabling its old row and inserting the replacement; changing
+a row name in an id-only patch does not replace a module.
+
+
 ## 0.4.0 — config target and fetch evaluation harness
 
 Released 2026-09-14, on top of the 0.3.0 experimental source preview (`df8f3a2`).

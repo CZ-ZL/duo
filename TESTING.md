@@ -17,22 +17,38 @@ export DUO_DSH_PACKAGE=/absolute/path/to/node_modules/@deepseek-ai/dsh
 bash scripts/release_gate.sh /tmp/new-duo-release-check
 ```
 
-This runs every native test, the self-contained Python checks, 21 isolated DSH
-CLI scenarios, and inspection of the actual npm tarball. The `packaged` scenario
-uses the shipped contract/persona and default fixture provider without inserting
-the verifier's alternate work provider. No model credentials or model calls are
-needed. Provider output remains explicitly synthetic.
+This runs every native test, the self-contained Python checks, generated-doc
+consistency, 21 isolated compatibility DSH CLI scenarios, tarball inspection,
+actual `dsh plugin add` in a fresh profile/dependency store, and 10 public example
+profiles (55 assertions over 80 public operations). The historical `packaged`
+scenario explicitly enables the retained fixture; default installation does not.
+Public examples measure actual local text hygiene, not model or method quality.
 
-Every stage retains a complete log. A failing stage fails the gate. The output
-directory must be new. Existing dependencies are reused; no installation occurs.
+Every stage retains complete logs. A failing stage fails the gate. The output
+directory must be new. Node, pnpm and DSH must be available. Package installation
+may access the dependency registry with bounded timeouts and no retries/scripts;
+no model credentials or model calls are needed. CI installs pinned verification
+dependencies in its disposable runner. Nothing is published to npm.
 
-The standalone commands are:
+Useful scoped commands:
 
 ```sh
+node scripts/sync_product_docs.mjs --check
 node --loader ./scripts/dsh_native_loader.mjs --test dsh-plugin/native/*.test.js dsh-plugin/*.test.js
 python3 -m pytest tests/ -q -m 'not research'
-python3 scripts/verify_dsh_native.py --dsh-package "$DUO_DSH_PACKAGE" --scenario packaged --output /tmp/new-duo-demo
+python3 scripts/verify_product_examples.py --package /path/to/installed/package --dsh-package "$DUO_DSH_PACKAGE" --output /tmp/new-duo-examples
 ```
+
+The public example verifier uses only the package CLI and DSH tools; it does not
+import source. It retains schemas, plans, reports, commands and errors. Resume
+checks preserve the original deadline and do not rerun settled baseline work;
+report/replay reads preserve cost and operation counts. Local fees are CNY 0.
+
+Independent Agent usage is a separate acceptance record: give a new Agent only
+the installed package guides, an isolated directory and authorized local tools.
+Do not provide source/research context or a prewritten tool-call sequence. The
+Agent records documents read, interventions, failures and limitations. This is
+product usage evidence; it is not an inner-model benchmark.
 
 ## Historical research replay
 
@@ -63,6 +79,7 @@ is preserved separately.
 ## Evidence limits
 
 Passing these checks establishes local package behavior with the named installed
-DSH snapshot. It does not establish fresh registry installation, Windows/macOS
-support, TypeScript semantic compilation, real Calling Agent judgment, or quality
+DSH snapshot. Its installation stage establishes tarball/dependency installation, not npm
+publication. It does not establish Windows/macOS support, TypeScript semantic
+compilation, independent Calling Agent judgment, or quality
 and cost advantages of the optimization method. Those require their own evidence.

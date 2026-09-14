@@ -23,7 +23,9 @@ function details(result){
  assert.equal(result.isError,true)
  const body=JSON.parse(result.content[0].text)
  assert.equal(body.apiVersion,2);assert.equal(body.error.code,result.error.info?.code??'DUO_TOOL_FAILED')
- for(const key of ['component','recoveryCondition','nextAction'])assert.ok(body.error[key]?.length,key)
+ for(const key of ['component','recoveryCondition','nextAction','cause','recoverability'])assert.ok(body.error[key]?.length,key)
+ assert.ok(body.error.sideEffectState)
+ assert.ok(body.error.costState)
  assert.equal(typeof body.error.retryable,'boolean')
  return body.error
 }

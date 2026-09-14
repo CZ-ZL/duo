@@ -198,6 +198,12 @@ def main():
                         {'id': 'duo-host-check', 'name': './host-check.js',
                          'config': {'outputDir': str(case_out), 'runsRoot': str(run_dir), 'scenario': 'functional' if packaged_case else scenario, 'experimentPath': str(experiment), **({'guidePath': str(profile / 'PUBLIC_GUIDE.md')} if embedded_case else {})}}]},
         ]
+        if scenario != 'onboarding':
+            patches += [{'id': 'duo-runtime', 'disabled': True}] + [
+                {'id': key, 'disabled': False} for key in
+                ['duo-controller', 'duo-observer', 'duo-observer-tools', 'dualloop']]
+            if packaged_case:
+                patches += [{'id': 'duo-offline-fixture', 'disabled': False}]
         if byo_case:
             patches += [{'id': 'duo-feedback', 'disabled': True},
                         {'insert': [{'id': 'duo-history-feedback', 'name': '@dual-loop/dsh-plugin/history-feedback'}]}]

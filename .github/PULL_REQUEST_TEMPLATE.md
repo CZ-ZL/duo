@@ -5,7 +5,7 @@
 ## Verification
 
 <!-- Which checks did you run and what were the results? See TESTING.md for the
-offline product gate (`bash scripts/release_gate.sh <output-dir>`) and the
+zero-model product gate (with package dependency installation) (`bash scripts/release_gate.sh <output-dir>`) and the
 separate historical research tests. Report your DSH, Cordis, Node and Python
 versions if behavior is environment-sensitive. -->
 

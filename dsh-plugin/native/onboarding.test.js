@@ -24,16 +24,37 @@ function draft() {
  return c
 }
 function value(r){assert.equal(r.isError,false,JSON.stringify(r.error));return r.value}
+test('simple evaluate/optimize presets supply lifecycle defaults without inventing a target, objective or paid authority',async t=>{
+ const h=await host(t),full=draft(),minimal={id:'simple',target:full.target,fast:full.fast}
+ const evaluated=value(await h.call('dualloop_design',{draft:minimal,preset:'evaluate',experimentPath:'/tmp/simple.json'}))
+ assert.equal(evaluated.status,'draft_valid');assert.equal(evaluated.resolved.spec.operation,'evaluate')
+ assert.equal(evaluated.resolved.spec.generations,0);assert.equal(evaluated.resolved.spec.budget.maxCostCny,0)
+ assert.equal(evaluated.resolved.spec.permissions.paid,false)
+ const missing=value(await h.call('dualloop_design',{draft:minimal,preset:'optimize',experimentPath:'/tmp/simple.json'}))
+ assert.equal(missing.status,'needs_input');assert.ok(missing.issues.some(x=>x.path==='budget'))
+ const optimized=value(await h.call('dualloop_design',{draft:{...minimal,budget:full.budget},preset:'optimize',experimentPath:'/tmp/simple.json'}))
+ assert.equal(optimized.status,'draft_valid');assert.equal(optimized.resolved.spec.generations,2)
+ assert.deepEqual(minimal,{id:'simple',target:full.target,fast:full.fast})
+})
 test('onboarding describes implemented capabilities before controller and work providers exist',async t=>{
  const h=await host(t),r=value(await h.call('dualloop_describe'))
  assert.equal(r.apiVersion,2);assert.equal(r.executionReady,false)
  assert.equal(r.contractSchema.properties.version.const,1)
- assert.deepEqual(r.targetKinds,['dsh-persona'])
+ assert.deepEqual(r.targetKinds,['dsh-persona','dsh-plugin-config'])
+ assert.ok(r.capabilities.targets.find(x=>x.kind==='dsh-plugin-config').support)
+ assert.equal(r.contractSchema.properties.target.properties.kind.const,undefined)
  assert.equal(r.providerContracts.ExecutorService.method,'execute')
  assert.equal(r.providerContractCheck.method,'inspectProviderContracts')
  assert.equal(r.providerContractCheck.import,'@dual-loop/dsh-plugin/provider-contract')
  assert.match(r.nextAction,/design|draft/)
  assert.ok(!h.ctx.tools.schemas().some(s=>s.name==='dualloop_run'))
+})
+test('a custom target kind can be drafted without changing core; execution still requires its matching adapter',()=>{
+ const c=draft();c.target.kind='local-text-transform'
+ const r=Onboarding.designDraft(c,'/tmp/custom-contract.json')
+ assert.equal(r.status,'draft_valid')
+ assert.equal(r.resolved.spec.target.kind,'local-text-transform')
+ assert.equal(r.bindingChecks,'NOT_RUN')
 })
 test('public preparation reports actual late provider bindings without granting authority or invoking work',async t=>{
  const h=await host(t),before=value(await h.call('dualloop_describe'))
@@ -224,6 +245,8 @@ test('evaluation-only can inspect a mismatched metric without starting search or
  assert.equal(r.preparation.measurementReadiness.status,'GOAL_MISMATCH')
  assert.equal(r.preparation.suggestedSearchDefaults.generations,0)
  assert.equal(r.authorityGranted,false)
+ const preset=value(await h.call('dualloop_design',{draft:{id:c.id,target:c.target,fast:c.fast},preset:'evaluate',experimentPath:'/project/e.json',context:{measurementGoal:'task_result'}}))
+ assert.equal(preset.preparation.recommendedOperation,'evaluate','evaluate preset must not recommend search or a different operation')
  const invalid=await h.call('dualloop_design',{draft:c,experimentPath:'/project/e.json',context:{measurementGoal:'invented'}})
  assert.equal(invalid.isError,true)
 })

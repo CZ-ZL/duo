@@ -1,6 +1,7 @@
 # Contributing
 
-DUO currently supports persona/system-prompt targets in DSH. Please keep fixes
+Read CURRENT_STATUS.md for supported persona, partial bounded configuration and
+custom adapter boundaries. Please keep fixes
 small and describe the user-visible behavior, relevant checks and remaining
 limitations. Optional providers should use the existing service contracts.
 

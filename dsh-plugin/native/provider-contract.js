@@ -1,5 +1,6 @@
 import {fail,assertProviderMethods} from './definitions.js'
 import {freeze} from './contract.js'
+import {targetKindSchema} from './capabilities.js'
 import {moneyFields} from './money.js'
 import {matchEvaluator} from './evaluator-discovery.js'
 import {evaluationTiersOf} from './stages.js'
@@ -10,6 +11,11 @@ export const providerContractDependencies=spec=>Object.keys(methods).filter(key=
 // Call with resolveNativeContract(...).spec; trusted describe methods must not do work.
 export function inspectProviderContracts(ctx,spec){
   for(const key of providerContractDependencies(spec))assertProviderMethods(ctx[key],key,methods[key])
+  const target=ctx.duoTarget.describe()
+  if(target?.targetKinds!==undefined){
+    if(!Array.isArray(target.targetKinds)||!target.targetKinds.length||target.targetKinds.some(kind=>typeof kind!=='string'||!new RegExp(targetKindSchema.pattern).test(kind)))fail('DUO_PROVIDER_INVALID','Target targetKinds must be a nonempty list of valid kind identifiers')
+    if(!target.targetKinds.includes(spec.target.kind))fail('DUO_TARGET_INCOMPATIBLE','Configured Target adapter does not support the contract kind; select its advertised adapter before running')
+  }
   if('orderHistory' in ctx.duoFeedback)assertProviderMethods(ctx.duoFeedback,'duoFeedback',['orderHistory'])
   const generator=spec.mode==='evaluation_only'?null:ctx.duoGenerator.describe(),executor=ctx.duoExecutor.describe(),evaluators=ctx.duoEvaluators.describe()
   if(!Array.isArray(evaluators))fail('DUO_PROVIDER_INVALID','Evaluator provider must describe its measurements')

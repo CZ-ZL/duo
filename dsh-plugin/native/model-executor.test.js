@@ -210,7 +210,7 @@ test('both generators consume bounded warm history in actual offline DSH request
   assert.equal(requests.length,1);assert.equal(out.candidates.length,1)
   assert.match(JSON.stringify(requests[0].messages),/HISTORICAL_IDEA_RETEST/);assert.match(JSON.stringify(requests[0].messages),/prior-authorized-run/)
   assert.doesNotMatch(JSON.stringify(requests[0].messages),/PRIVATE_WARM_FINAL|SECRET_KEY_FINAL|FINAL_HELD_OUT/)
-  const expected=digest(projectWarmContext(warmStart));assert.equal(out.artifact.warmStartDigest,expected)
+  const expected=digest(projectWarmContext(warmStart,(await import('./target.js')).projectPersonaDelta));assert.equal(out.artifact.warmStartDigest,expected)
   const receipt=JSON.parse(readFileSync(out.artifact.receiptPath,'utf8'));assert.equal(receipt.warmStartDigest,expected);assert.equal(receipt.costEvidence.kind,'fixture')
  }
 })

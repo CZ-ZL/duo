@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Offline product gate. Retained-research replay is separate (TESTING.md).
+# Zero-model product gate. Package installation may download dependencies.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 DSH_PKG="${DUO_DSH_PACKAGE:-$HOME/.dsh/profiles/node_modules/@deepseek-ai/dsh}"
@@ -35,6 +35,7 @@ if not row['taskPassed']:
     raise SystemExit('Isolated Python execution is unavailable; inspect sandbox.log and sandbox-control/stderr.txt. No unsafe fallback.')
 PY
 run_check native env DUO_DSH_PACKAGE="$DSH_PKG" node --loader ./scripts/dsh_native_loader.mjs --test dsh-plugin/native/*.test.js dsh-plugin/*.test.js
+run_check docs node scripts/sync_product_docs.mjs --check
 run_check python-product env DUO_DSH_PACKAGE="$DSH_PKG" python3 -m pytest tests/ -q -m 'not research' -p no:cacheprovider --basetemp "$OUT/pytest-work"
 run_check host python3 scripts/verify_dsh_native.py --dsh-package "$DSH_PKG" --output "$OUT/verify"
 touch "$OUT/user.npmrc" "$OUT/global.npmrc"
@@ -42,5 +43,8 @@ cd dsh-plugin
 run_check npm-pack env NPM_CONFIG_USERCONFIG="$OUT/user.npmrc" NPM_CONFIG_GLOBALCONFIG="$OUT/global.npmrc" NPM_CONFIG_CACHE="$OUT/npm-cache" npm pack --offline --ignore-scripts --json --pack-destination "$OUT"
 cd ..
 run_check package python3 scripts/check_release_package.py "$OUT/npm-pack.log" "$OUT"
+ARCHIVE="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))[0]["filename"])' "$OUT/npm-pack.log")"
+run_check install python3 scripts/verify_product_install.py --archive "$OUT/$ARCHIVE" --dsh-package "$DSH_PKG" --output "$OUT/install"
+run_check public-examples python3 scripts/verify_product_examples.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/public-examples"
 echo "PRODUCT RELEASE GATE PASS — $OUT"
-echo "Historical research replay, registry installation and real model efficacy are separate claims."
+echo "Historical research replay, independent Calling Agent judgment and method efficacy are separate claims."

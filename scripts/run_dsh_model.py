@@ -210,9 +210,12 @@ def main():
         {'id': 'model-entry', 'name': './dsh_model_run_host.js', 'config': {'output': str(host.output), 'live': live, 'maxModelRequests': args.max_model_requests, 'requiredGenerations': contract['generations'], 'arm': args.arm, 'budgetGroups': groups}}]
     patches = [{'id': 'duo-contract', 'config': {'experiment': str(host.output / 'experiment.json')}},
                {'id': 'duo-journal', 'config': {'root': str(host.output / 'journal')}},
-               # The default bundle wires the bundled offline fixture; the model
-               # providers below replace it (duplicate service registration fails boot).
+               # Historical model launcher explicitly selects the retained runtime.
+               # Keep the compatibility fixture disabled when attaching model providers.
                {'id': 'duo-offline-fixture', 'disabled': True}, {'insert': entries}]
+    patches += [{'id': 'duo-runtime', 'disabled': True}] + [
+        {'id': key, 'disabled': False} for key in
+        ['duo-controller', 'duo-observer', 'duo-observer-tools', 'dualloop']]
     name = 'duo-model-minimum'
     scripts = ['dsh_model_run_host.js'] + ([] if live else ['dsh_model_fixture.js'])
     profile = host.stage(name, patches, scripts, bundles=['@dual-loop/dsh-plugin'])

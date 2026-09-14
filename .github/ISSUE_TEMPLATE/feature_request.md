@@ -13,7 +13,7 @@ assignees: ''
 ## Proposal
 
 <!-- Describe the behavior you would like. Note the current supported boundary
-(README.md): persona/system-prompt targets in DSH, Linux process ownership.
+(CURRENT_STATUS.md): supported/partial Target lifecycle and Linux process ownership.
 Requests outside that boundary are welcome but should say so explicitly. -->
 
 ## Alternatives considered

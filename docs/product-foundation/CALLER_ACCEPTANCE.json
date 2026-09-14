@@ -1,0 +1,102 @@
+{
+  "outcome": "PASS_WITH_DOCUMENTATION_FINDINGS",
+  "scope": "Installed-package-only public DSH ToolRuntime local product acceptance",
+  "isolation": {
+    "implementationSourceRead": false,
+    "researchArchivesRead": false,
+    "originalProfileChanges": false,
+    "coreEdits": false,
+    "dependencyInstalls": false,
+    "explicitNetworkOrModelApiCalls": 0,
+    "onlyOwnedOutputModified": true,
+    "originalTargetContentsPreserved": true
+  },
+  "interventions": {
+    "human": 0,
+    "implementer": 0,
+    "parentSequenceHints": 0,
+    "callerSelfCorrections": 2,
+    "details": [
+      "Changed public-output inspection key schema to contractSchema",
+      "Corrected overstrict terminal-result equality to allow documented reusedArtifacts flag"
+    ]
+  },
+  "publicCliCalls": 43,
+  "runs": 6,
+  "settledNativeOperations": 52,
+  "nativeCostCny": 0,
+  "externalCallerCost": "NOT_SUPPLIED_BY_HOST",
+  "originalReceiptSha256": "76b2ed31b68f951ed5fb6336de9c857b28b861e96676832df72cd130c783145b",
+  "caseSummaries": [
+    {
+      "name": "evaluate",
+      "status": "PASS",
+      "generationsRun": 0,
+      "conclusion": "retain_baseline",
+      "nativeCostCny": 0,
+      "nativeOperations": 2
+    },
+    {
+      "name": "optimize",
+      "status": "PASS",
+      "generationsRun": 2,
+      "conclusion": "insufficient_evidence",
+      "nativeCostCny": 0,
+      "nativeOperations": 10
+    },
+    {
+      "name": "custom",
+      "status": "PASS",
+      "generationsRun": 2,
+      "conclusion": "insufficient_evidence",
+      "nativeCostCny": 0,
+      "nativeOperations": 10
+    },
+    {
+      "name": "custom-warm",
+      "status": "PASS",
+      "generationsRun": 2,
+      "conclusion": "insufficient_evidence",
+      "nativeCostCny": 0,
+      "nativeOperations": 10
+    },
+    {
+      "name": "replacement",
+      "status": "PASS",
+      "generationsRun": 2,
+      "conclusion": "insufficient_evidence",
+      "nativeCostCny": 0,
+      "nativeOperations": 10
+    },
+    {
+      "name": "persona-warm",
+      "status": "PASS",
+      "generationsRun": 2,
+      "conclusion": "insufficient_evidence",
+      "nativeCostCny": 0,
+      "nativeOperations": 10
+    }
+  ],
+  "documentationFindings": [
+    "stale default fixture wording",
+    "stale persona-only wording",
+    "readyForPlan meaning",
+    "five vs seven example wording"
+  ],
+  "findingsResolution": "All four findings corrected; independent installed-package follow-up PASS",
+  "packageRuntimeEvidence": "Original independent lifecycle covers unchanged execution, Target, history, replacement and recovery; final preset recommendation gets separate regression and Caller follow-up.",
+  "limits": [
+    "No method evidence",
+    "No fresh inner-model call",
+    "No live config executor acceptance",
+    "Custom warm validation/forwarding alone does not prove consumption; persona generator consumption recorded",
+    "Public scripted BYO acceptance is separate from this independent custom-adapter path"
+  ],
+  "followup": {
+    "status": "PASS",
+    "receiptSha256": "2e8640b85900094aa0184100bb166fa19a3cec0d0438acacbda2cf280db358b2",
+    "archiveSha256": "52504e3b6e7754753c08b15eedcceb677e050910154033639c0320bc435de83c",
+    "scope": "Updated public docs and evaluate preset via fresh profile/schema/describe/design; no lifecycle rerun"
+  },
+  "nonblockingWording": "Generic nextSteps lists generator among provider roles; specific evaluate-only guidance excludes it."
+}

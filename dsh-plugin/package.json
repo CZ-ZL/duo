@@ -1,6 +1,6 @@
 {
   "name": "@dual-loop/dsh-plugin",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "DSH-native dual-loop optimization services, provider contracts and tools; explicit legacy Python bridge retained",
   "license": "MIT",
   "type": "module",
@@ -56,7 +56,17 @@
     "native/json-output.js",
     "native/deferred-runtime.js",
     "native/config-target.js",
-    "native/config-generator.js"
+    "native/config-generator.js",
+    "native/capabilities.js",
+    "native/target-protocol.js",
+    "native/diagnostics.js",
+    "bin/duo.mjs",
+    "examples/product/local-providers.js",
+    "examples/product/byo-evaluator.js",
+    "examples/product/tool-app.js",
+    "CURRENT_STATUS.md",
+    "examples/product/README.md",
+    "examples/product/custom-target.js"
   ],
   "dsh": {
     "bundle": {
@@ -122,6 +132,17 @@
     "./deferred-runtime": "./native/deferred-runtime.js",
     "./offline-fixture": "./native/offline-fixture.js",
     "./config-target": "./native/config-target.js",
-    "./config-generator": "./native/config-generator.js"
+    "./config-generator": "./native/config-generator.js",
+    "./capabilities": "./native/capabilities.js",
+    "./target-protocol": "./native/target-protocol.js",
+    "./diagnostics": "./native/diagnostics.js",
+    "./examples/local-providers": "./examples/product/local-providers.js",
+    "./examples/byo-evaluator": "./examples/product/byo-evaluator.js",
+    "./examples/tool-app": "./examples/product/tool-app.js",
+    "./warm-start": "./native/warm-start.js",
+    "./examples/custom-target": "./examples/product/custom-target.js"
+  },
+  "bin": {
+    "duo": "./bin/duo.mjs"
   }
 }

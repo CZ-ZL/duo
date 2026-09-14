@@ -9,11 +9,11 @@ import {moneyFields,assertMoneyEvidence} from './money.js'
 import {inspectProviderContracts,providerContractDependencies} from './provider-contract.js'
 import {selectWarmStart,executionEnvironment} from './warm-start.js'
 import {searchStages,searchTiersOf} from './stages.js'
+import {targetIdentity} from './target-protocol.js'
+import {describeFailure} from './diagnostics.js'
 
-const errorInfo=error=>({code:error?.code??'DUO_PROVIDER_FAILED',message:error?.code?error.message:'A configured native provider failed',component:error?.component??'duoController',retryable:false,nextAction:error?.nextAction??(error?.code==='DUO_COST_UNKNOWN'?'Inspect dualloop_budget_status and reconcile an independently supported receipt; do not repeat paid work':'Inspect dualloop_status and the retained plan; correct the failed input or provider before a new authorized run')})
+const errorInfo=error=>describeFailure({code:error?.code,component:error?.component,nextAction:error?.nextAction,message:error?.code?error.message:'A configured native provider failed'})
 const clone=value=>structuredClone(value)
-// Preserve persona identities; configuration overlays also bind their real content.
-const contentIdentity=c=>digest(c.config===undefined?c.persona:{persona:c.persona,config:c.config})
 // Pin the native implementation loaded by this process. Source and installed
 // package use the same production files; tests are not part of plan identity.
 const implementationDigest=digest(readdirSync(new URL('.',import.meta.url)).filter(n=>n.endsWith('.js')&&!n.endsWith('.test.js')).sort().map(n=>[n,readFileSync(new URL(n,import.meta.url),'utf8')]))
@@ -23,10 +23,11 @@ export default class NativeController extends ControllerService {
  bindings(spec){return inspectProviderContracts(this.ctx,spec)}
  plan(){
   const {spec,contractPath,contractDigest}=this.ctx.duoContract.resolve(),baseline=this.ctx.duoTarget.snapshot(spec.target.path),providers=this.bindings(spec)
-  const searchPolicy=spec.mode==='evaluation_only'?null:{version:'1',duplicateIdentity:baseline.config===undefined?'sha256_of_exact_applied_persona':'sha256_of_applied_persona_and_config',defaultDuplicateAction:'skip_execution_and_evaluation',allowNoiseRepeats:spec.allowNoiseRepeats===true,repeatRequirement:'Explicit noise_measurement purpose and nonempty reason; existing budget and permissions unchanged.'}
+  targetIdentity(this.ctx.duoTarget,baseline)
+  const searchPolicy=spec.mode==='evaluation_only'?null:{version:'2',duplicateIdentity:'target_owned_content_identity',defaultDuplicateAction:'skip_execution_and_evaluation',allowNoiseRepeats:spec.allowNoiseRepeats===true,repeatRequirement:'Explicit noise_measurement purpose and nonempty reason; existing budget and permissions unchanged.'}
   const recovery=providers.policies.duoJournal.checkpoint==='settled_search_boundary_v1'?{version:'1',boundaries:['baseline','generation'],implementationDigest,deadlinePolicy:'original_wall_deadline_includes_pause',resumeRequires:['current_plan','exact_checkpoint','settled_unchanged_receipts','released_or_dead_owner']}:null
   const identity={apiVersion:2,runtime:'dsh-native',spec,contractPath,contractDigest,baseline,providers,searchPolicy,searchStages:searchStages(spec),environment:executionEnvironment(),journalRoot:this.ctx.duoJournal.root,recovery}
-  if(spec.warmStart)identity.warmStart=selectWarmStart(this.ctx.duoJournal,identity,spec.warmStart,typeof this.ctx.duoFeedback.orderHistory==='function'?this.ctx.duoFeedback:undefined)
+  if(spec.warmStart)identity.warmStart=selectWarmStart(this.ctx.duoJournal,identity,spec.warmStart,typeof this.ctx.duoFeedback.orderHistory==='function'?this.ctx.duoFeedback:undefined,this.ctx.duoTarget)
   const planDigest=digest(identity),runId=planDigest
   for(const file of [contractPath,spec.target.path]){const rel=relative(resolve(this.ctx.duoJournal.root,runId),file);if(rel===''||!rel.startsWith('..')&&!isAbsolute(rel))fail('DUO_INPUT_OVERLAP','Run artifacts cannot contain protected inputs')}
   // The per-run cap is renewed by any one-byte contract change; the optional
@@ -78,6 +79,7 @@ export default class NativeController extends ControllerService {
   const budget=this.ctx.duoBudget.open(runId,spec.budget,searchTiersOf(spec))
   const check=()=>{if(signal.aborted)fail('ABORTED','Native run cancelled');const b=budget.snapshot();if(b.blockedReason)fail(b.blockedReason,'Unresolved native operation stops the run')}
   let {sequence=0,operations=0,champion=clone(plan.baseline),championEvidence={},stopReason='generation_limit',generationsRun=0,consecutiveEvaluationFailures=0,consecutiveNoProgress=0,searchStopped=false}=restored??{}
+  const contentIdentity=c=>targetIdentity(this.ctx.duoTarget,c)
   const final=[],latest=new Map(restored?.latest??[]),issued=new Set(),contentIndex=new Map(restored?.contentIndex??[[contentIdentity(plan.baseline),plan.baseline.id]]),baselineTiers=new Set(restored?.baselineTiers??[])
   const boundary=(name,nextGeneration,stopped=false)=>{
     searchStopped=stopped
@@ -206,7 +208,7 @@ export default class NativeController extends ControllerService {
       if(!evaluationOnly)independentFinal={conclusion:qualifiedConclusion,comparison:cmp,...reusedHistory?{observedConclusion:finalConclusion,independence:'NOT_ESTABLISHED',dataReview:clone(plan.warmStart.finalDataReview)}:{}}
       if(spec.mode==='optimize')conclusion=qualifiedConclusion
     }
-    result={apiVersion:2,runtime:'dsh-native',runId,planDigest:plan.planDigest,status:'completed',mode:spec.mode,stopReason,generationsRun,championId:spec.mode==='optimize'?champion.id:null,proxyLeaderId:spec.mode==='fast_only'?champion.id:null,conclusion,selectedOverlay:champion.id==='baseline'?null:champion.delta,final,independentFinal,improvementProven:false,evidenceKind:providers.evaluators.some(d=>d.evidenceKind==='fixture')?'fixture':'caller_evidence',budget:budget.snapshot(),reusedArtifacts:false}
+    result={apiVersion:2,runtime:'dsh-native',runId,planDigest:plan.planDigest,status:'completed',mode:spec.mode,stopReason,generationsRun,championId:spec.mode==='optimize'?champion.id:null,proxyLeaderId:spec.mode==='fast_only'?champion.id:null,conclusion,selectedOverlay:champion.id==='baseline'?null:champion.delta,final,independentFinal,improvementProven:false,evidenceKind:providers.evaluators.every(d=>d.evidenceKind===providers.evaluators[0]?.evidenceKind)?providers.evaluators[0]?.evidenceKind??'unknown':'mixed_declared',budget:budget.snapshot(),reusedArtifacts:false}
     if(evaluationOnly){
       const evaluations=[...stages.map(s=>championEvidence[s.tier]),...final].filter(Boolean)
       Object.assign(result,{operation:'evaluate',stopReason:'evaluation_complete',championId:null,

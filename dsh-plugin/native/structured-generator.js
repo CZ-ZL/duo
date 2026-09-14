@@ -5,6 +5,7 @@ import {digest} from './store.js'
 import {freeze} from './contract.js'
 import {finite,slowSearchFeedback} from './policies.js'
 import {projectWarmContext} from './warm-start.js'
+import {projectPersonaDelta} from './target.js'
 
 export const operators=freeze({
  exploit:{id:'append-local-v1',family:'local-refinement',instruction:'Add one focused instruction to the existing persona without rewriting it. Return change:{suffix:string}.'},
@@ -59,7 +60,7 @@ function withoutSlow(summary,firstTier){
  return result
 }
 
-export function compileProposal({champion,feedback,quotas,generation,dataset,explicitSlowFeedback=true}){
+export function compileProposal({champion,feedback,quotas,generation,dataset,explicitSlowFeedback=true,projectDelta=projectPersonaDelta}){
  if(typeof explicitSlowFeedback!=='boolean')fail('DUO_MODEL_CONFIG_INVALID','Explicit Slow feedback switch must be boolean')
  if(!keysEqual(quotas,['exploit','explore','innovate'])||!Object.values(quotas).every(n=>Number.isSafeInteger(n)&&n>=0)||Object.values(quotas).reduce((a,b)=>a+b,0)>256)
   fail('DUO_QUOTA_INVALID','Explicit bounded operator quotas are required')
@@ -69,7 +70,7 @@ export function compileProposal({champion,feedback,quotas,generation,dataset,exp
  let summary=project(feedback,['evidence','penalizedFamilies','championLineage','historyCompleteness'])
  summary.history=history
  for(const key of Object.keys(feedback))if(/^[a-z][a-z0-9_]*Feedback$/.test(key))summary[key]=slowSearchFeedback(feedback[key].observations,feedback[key].constraints,key.slice(0,-8))
- if(feedback.warmStart)summary.warmStart=projectWarmContext(feedback.warmStart)
+ if(feedback.warmStart)summary.warmStart=projectWarmContext(feedback.warmStart,projectDelta)
  summary.fastSlowCorrelation=Object.fromEntries(Object.entries(feedback.fastSlowCorrelation??{}).filter(([,v])=>finite(v)||v==='insufficient_data'))
  summary.families=Object.fromEntries(Object.entries(feedback.families??{}).map(([name,f])=>[name,project(f,['failures','n','fastAvg','slowAvg'])]))
  const firstTier=datasetTiers(dataset).find(t=>t!=='final'),training=dataset[firstTier]

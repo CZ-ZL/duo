@@ -12,6 +12,11 @@ export class TargetService extends Service {
   describe() { return required() }
   snapshot() { return required() }
   apply() { return required() }
+  // Compatibility: older adapters own their content version. New adapters may
+  // override identity; history is unsupported until explicit validators exist.
+  identity(snapshot) { return snapshot.version }
+  validateSnapshot() { return false }
+  projectDelta() { return fail('DUO_HISTORY_UNSUPPORTED','The configured Target does not provide a safe historical Delta projection') }
 }
 export class ComparatorService extends Service {
   constructor(ctx) { super(ctx, 'duoComparator') }

@@ -1,0 +1,53 @@
+{
+  "version": "0.5.0",
+  "productFoundation": "IMPLEMENTED",
+  "productAcceptance": "LOCAL_AND_INDEPENDENT_CALLER_PASS_CI_PENDING",
+  "research": "NOT_PROVEN_METHOD_RESEARCH_PAUSED",
+  "modelRequests": 0,
+  "costCny": 0,
+  "evidence": "docs/product-foundation/REPORT.md",
+  "native": {
+    "passed": 295,
+    "failed": 0
+  },
+  "pythonProduct": {
+    "passed": 451,
+    "researchDeselected": 86
+  },
+  "dshCompatibilityProfiles": 21,
+  "publicPackage": {
+    "checks": 55,
+    "steps": 80,
+    "profiles": 10,
+    "passed": true,
+    "implementationInterventionsDuringScriptedRun": 0
+  },
+  "installation": {
+    "tarballOffline": "PASS",
+    "freshRegistryLocal": "BLOCKED_TLS_EOF",
+    "freshRegistryCI": "PENDING"
+  },
+  "archiveSha256": "52504e3b6e7754753c08b15eedcceb677e050910154033639c0320bc435de83c",
+  "limitations": [
+    "Product behavior, not method superiority",
+    "Trusted providers",
+    "Linux / Node 24 / tested DSH snapshot",
+    "Partial fetch config execution",
+    "Settled unchanged checkpoint recovery only",
+    "Native ledger excludes outer Calling Agent usage"
+  ],
+  "legacyProtocolVersion": "0.1.0",
+  "independentCaller": {
+    "status": "PASS_WITH_DOCUMENTATION_FINDINGS",
+    "publicCalls": 43,
+    "runs": 6,
+    "nativeOperations": 52,
+    "humanInterventions": 0,
+    "implementerInterventions": 0,
+    "innerModelRequests": 0,
+    "nativeCostCny": 0,
+    "outerCallerCost": "NOT_SUPPLIED_BY_HOST",
+    "followup": "PASS",
+    "receipt": "docs/product-foundation/CALLER_ACCEPTANCE.json"
+  }
+}

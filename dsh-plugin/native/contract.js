@@ -7,6 +7,8 @@ import {finite} from './policies.js'
 import {moneyFields} from './money.js'
 import {normalizeWarmStart} from './warm-start.js'
 import {normalizeSearchStages,searchTiersOf,evaluationTiersOf,objectiveIdentityKeys,objectiveDirections} from './stages.js'
+import {targetKindSchema} from './capabilities.js'
+const targetKindPattern=new RegExp(targetKindSchema.pattern)
 export const freeze=value=>{if(value&&typeof value==='object'){for(const v of Object.values(value))freeze(v);Object.freeze(value)}return value}
 const integer=(v,min=0)=>Number.isSafeInteger(v)&&v>=min
 export default class JsonContract extends ContractService {
@@ -19,7 +21,7 @@ export default class JsonContract extends ContractService {
 }
 // Shared by read-only drafting and execution. No file access or provider binding.
 export function resolveNativeContract(c,contractPath){
-  if(!c||c.version!==1||typeof c.id!=='string'||!c.id||!['dsh-persona','dsh-plugin-config'].includes(c.target?.kind)||typeof c.target.path!=='string')fail('DUO_CONTRACT_INVALID','Native v1 contract requires an id and an explicit DSH persona or plugin-config target')
+  if(!c||c.version!==1||typeof c.id!=='string'||!c.id||typeof c.target?.kind!=='string'||!targetKindPattern.test(c.target.kind)||typeof c.target.path!=='string')fail('DUO_CONTRACT_INVALID','Native v1 contract requires an id and an explicit Target kind/path; execution requires its matching adapter')
   const authored=c;c=normalizeSearchStages(c)
   const b=c.budget,m=moneyFields(b)
   if(!b||!finite(b[m.cap])||b[m.cap]<0||!['maxSessions','maxFastEvals','maxSlowEvals'].every(k=>integer(b[k]))||!integer(b.maxWallTimeMs,1))fail('DUO_CONTRACT_INVALID','Explicit finite cost, operation, evaluation and time caps are required')

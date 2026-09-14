@@ -171,6 +171,16 @@ test('public provider contract checks share plan bindings without work or Journa
  assert.throws(()=>inspectProviderContracts(ctx,otherCurrency),{code:'DUO_CURRENCY_MISMATCH'})
  assert.equal(existsSync(runs),false)
 })
+test('Target kind declarations reject malformed lists and mismatched adapters before work',async t=>{
+ const {ctx,runs}=await setup(t),describe=ctx.duoTarget.describe.bind(ctx.duoTarget)
+ for(const targetKinds of ['prefix-dsh-persona-suffix',[],[null]]){
+  ctx.duoTarget.describe=()=>({...describe(),targetKinds})
+  assert.throws(()=>ctx.duoController.plan(),{code:'DUO_PROVIDER_INVALID'})
+ }
+ ctx.duoTarget.describe=()=>({...describe(),targetKinds:['other-kind']})
+ assert.throws(()=>ctx.duoController.plan(),{code:'DUO_TARGET_INCOMPATIBLE'})
+ assert.equal(existsSync(runs),false)
+})
 test('public plan reads authorized native warm history without writing runs or transferring its allowance',async t=>{
  const {ctx,contract,experiment,runs}=await setup(t),old=ctx.duoController.plan();await ctx.duoController.run({planDigest:old.planDigest})
  const file=join(runs,old.runId,'duo.sqlite'),before=readFileSync(file),budget=ctx.duoBudget.inspect(old.runId)

@@ -28,6 +28,7 @@ jobs:
       - name: Install verification dependencies
         run: |
           python -m pip install PyYAML==6.0.2 pytest==9.0.3
+          npm install --global --ignore-scripts --no-audit --no-fund pnpm@10.17.1
           npm install --prefix "$RUNNER_TEMP/duo-dsh" --ignore-scripts --no-audit --no-fund @deepseek-ai/dsh@0.1.2-rc.1
           echo "DUO_DSH_PACKAGE=$RUNNER_TEMP/duo-dsh/node_modules/@deepseek-ai/dsh" >> "$GITHUB_ENV"
       - name: Verify without model credentials
@@ -47,4 +48,8 @@ jobs:
             ${{ runner.temp }}/duo-release-check/verify/*.json
             ${{ runner.temp }}/duo-release-check/verify/*.stdout.txt
             ${{ runner.temp }}/duo-release-check/verify/*.stderr.txt
+            ${{ runner.temp }}/duo-release-check/install/*.json
+            ${{ runner.temp }}/duo-release-check/install/*.txt
+            ${{ runner.temp }}/duo-release-check/public-examples/*.json
+            ${{ runner.temp }}/duo-release-check/public-examples/*.txt
           if-no-files-found: warn

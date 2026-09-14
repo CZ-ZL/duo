@@ -1,44 +1,41 @@
-# GitHub publication checklist
+# Product release procedure
 
-This source is a publication candidate for the existing native persona plugin.
-The package version (0.4.0) is not a formal release until the owner chooses one
-and its acceptance conditions are met. A source upload is not a claim of
-optimization superiority.
+0.5.0 is the Product Foundation release line. Current support and acceptance are
+recorded in CURRENT_STATUS.md and PRODUCT_ACCEPTANCE.json. The existing channel
+is the private CZ-ZL/duo repository. No npm registry publication is authorized.
+The earlier 0.3/0.4 preparation and experiments remain historical evidence, not
+acceptance for new code. A release does not establish method superiority.
 
-1. Confirm the GitHub owner/repository, public visibility, release scope and
-   copyright attribution. Do not publish the parent workspace or its Git history.
-2. Review the source manifest and proposed changes. Exclude credentials, host
-   configuration, raw runs, journals, final datasets and account ledgers.
-3. Run `bash scripts/release_gate.sh /tmp/new-duo-release` with an installed DSH
-   package selected through `DUO_DSH_PACKAGE`. Read TESTING.md: this is the product
-   gate, not the complete historical experiment replay.
-4. Run the supplied GitHub workflow on the exact candidate. Its fresh dependency
-   installation has not been validated by local cached-profile tests. Resolve
-   any failure before calling the release reproducible on a new machine.
-5. Perform an actual tarball install with `dsh plugin --profile <new-profile> add
-   <absolute-tarball>` in a fresh environment, then verify the composed profile
-   and run the shipped demonstration. Record commands, versions and exit codes.
-6. Confirm real-model capability evidence for the shipped provider version. Old
-   receipts stay historical; fixture checks do not replace this evidence. No
-   additional paid experiment is authorized by this checklist.
-7. Verify TypeScript declarations with an actual compiler before claiming
-   semantic type validation; the local audit has no installed `tsc`.
-8. Only then choose a tag and publish the reviewed source and tarball. This
-   checklist does not grant repository-write or registry-publish authority.
+1. Review the actual checkout and remote; preserve concurrent edits. Confirm the
+   destination is still private and do not push the parent workspace history.
+2. Review source and tarball contents. Exclude credentials, private profiles,
+   raw runs, journals, final data and account ledgers. Keep sanitized research
+   summaries separate from current product instructions.
+3. Run `bash scripts/release_gate.sh /tmp/new-duo-release` with DUO_DSH_PACKAGE
+   selecting an installed DSH. This includes actual tarball installation in a
+   fresh profile and dependency store; registry access is required. No model
+   credentials are inherited. Read TESTING.md for the exact scope.
+4. Complete independent Agent acceptance using only the installed public package
+   and guides. Preserve steps, corrections, failed attempts and evidence limits.
+   Scripted tests do not replace this acceptance.
+5. Check git diff and version consistency; update current acceptance and lean
+   change records. Commit and push through the owner's authorized repository
+   flow, then wait for the exact commit's GitHub Actions result. Keep failed CI
+   runs and fix within scope. No force push or npm publish.
+6. Record the commit, workflow URL and tarball hash. Distinguish tested code from
+   subsequent documentation-only evidence updates.
 
-## Version and compatibility policy
+## Compatibility
 
-The previous project policy targets 1.0.0 for its first formal release, after
-all product and publication requirements have evidence. This preparation does
-not silently relax that definition or mark 1.0.0 complete. An experimental 0.3.0
-public preview is a separate owner decision.
+Tested host target: DSH 0.1.2-rc.1, Cordis 4.0.2, Node 24.14.1 on Linux.
+DSH remains a developer preview; recheck compatibility before host upgrades.
+Target identity/projection is adapter-owned in 0.5.0. Old plans bind the previous
+policy/provider versions and must be inspected and re-planned; do not resume a
+0.4 checkpoint under a changed 0.5 provider graph. The legacy Python API and
+explicit fixture export remain available. The fixture is disabled by default.
 
-The tested host snapshot is DSH 0.1.2-rc.1, Cordis 4.0.2 and Node 24.14.1 on Linux.
-DSH remains a developer preview. Recheck compatibility before host upgrades.
-Use semver for public contracts and tools: additive optional fields are minor;
-incompatible field/behavior changes are major. Plan digests deliberately bind
-inputs; document changes that invalidate a previous digest in CHANGELOG.md.
-
-GitHub source plus a local tarball is the intended channel for this preparation.
-No npm scope ownership, registry publication or clean registry install is claimed.
-The deprecated 0.1.0 tarball remains unpublished and unsupported.
+Custom Target adapters may declare targetKinds and warm-history hooks. Providers
+without warm-history hooks may still execute; their history is not imported.
+No cross-platform, TypeScript semantic compilation, arbitrary interrupted-call
+replay, automatic adoption or end-to-end caller-budget enforcement is claimed.
+A future 1.0 release needs its own defined compatibility and acceptance decision.

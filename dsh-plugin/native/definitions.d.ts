@@ -21,17 +21,17 @@ export interface MetricDefinition {meaning?: string; direction?: 'maximize' | 'm
   construct?: 'format' | 'task_result' | 'cost'; lowerBound?: number; upperBound?: number}
 export type EvaluatorDescriptor = WorkDescriptor & {tier: Tier; dataId: string; metrics: string[];
   evidenceFamily?: string; fidelityRationale?: string; qualification?: string; metricDefinitions?: Record<string, MetricDefinition>}
-export type Delta = {kind: 'cordis-overlay'; target: 'system-prompt'; persona: string}
-  | {kind: 'plugin-config-replace-v1'; target: '@deepseek-ai/dsh-web-fetch-http'; config: Record<string, string | number>}
+export interface Delta {kind: string; [key: string]: unknown}
 
-export interface Snapshot {id: string; version: string; persona: string; config?: Record<string, string | number>; path?: string}
+export interface Snapshot {id: string; version: string; persona?: string; config?: Record<string, string | number>; path?: string; [key: string]: unknown}
 export interface Candidate {id: string; parentId: string; parentVersion: string; family: string;
   mode: Mode; hypothesis: string; delta: Delta; operatorId?: string; hypothesisBeforeDelta?: boolean;
   repeat?: {purpose: 'noise_measurement'; reason: string}}
 export type AppliedCandidate = Candidate & Snapshot
 export type Quotas = Record<Mode, number>
 export interface StructuredError {code: string; message?: string; component: string;
-  retryable: boolean; nextAction: string; recoveryCondition?: string}
+  retryable: boolean; nextAction: string; recoveryCondition?: string; cause?: string;
+  recoverability?: string; costState?: string; sideEffectState?: string}
 export type Evaluation = Cost & {candidateId: string; evaluatorId: string; version: string;
   dataId: string; tier: Tier; ok: boolean; metrics: Metrics; evidence?: unknown[]; error?: StructuredError | null}
 export interface ComparisonSpec {weights: Record<string, number>; epsilon: number; minSamples: number;
@@ -65,7 +65,7 @@ export function fail(code: string, message: string): never
 export function required(): never
 export function assertProviderMethods(service: unknown, component: string, methods: string[]): void
 export abstract class ContractService extends Service {constructor(ctx: Context); abstract resolve(): {spec: Record<string, unknown>; contractPath: string; contractDigest: string}}
-export abstract class TargetService extends Service {constructor(ctx: Context); abstract describe(): PolicyDescriptor; abstract snapshot(path: string): Snapshot; abstract apply(candidate: Candidate, parent: Snapshot): AppliedCandidate}
+export abstract class TargetService extends Service {constructor(ctx: Context); abstract describe(): PolicyDescriptor; abstract snapshot(path: string): Snapshot; abstract apply(candidate: Candidate, parent: Snapshot): AppliedCandidate; identity(snapshot: Snapshot): string; validateSnapshot(snapshot: Snapshot): boolean; projectDelta(delta: Delta): Delta}
 export abstract class ComparatorService extends Service {constructor(ctx: Context); abstract describe(): PolicyDescriptor; abstract compare(results: Evaluation[], spec: ComparisonSpec, incumbentId?: string | null): Comparison}
 export abstract class GateService extends Service {constructor(ctx: Context); abstract describe(): PolicyDescriptor; abstract select(comparison: Comparison, candidateIds: string[], limits: {topK: number; remaining: number; incumbentId?: string; epsilon?: number}): string[]}
 export abstract class FeedbackService extends Service {constructor(ctx: Context); abstract describe(): PolicyDescriptor; abstract summarize(entries: Record<string, unknown>[], quotas: Quotas, options?: Record<string, unknown>): Feedback; orderHistory?(screenedRecords: Record<string, unknown>[]): number[]}

@@ -5,6 +5,7 @@ import {finalizeDuoError} from './tools.js'
 import {fail} from './definitions.js'
 import {inspectEvaluators,inspectMeasurement} from './evaluator-discovery.js'
 import {objectiveSchema,searchStagesSchema,searchTiersOf} from './stages.js'
+import {productCapabilities,builtinTargets,targetKindSchema,describeConfiguredTarget} from './capabilities.js'
 
 export const name='dual-loop-onboarding'
 export const inject=['tools']
@@ -69,7 +70,7 @@ const objective=objectiveSchema()
 export const contractSchema=freeze({type:'object',description:'Native JSON v1, explicit CNY authoring. Runtime validator also checks ranges, metric direction, distinct final data and permissions. Legacy USD contracts remain readable by the runtime, not authored here.',
  properties:{version:{type:'integer',const:1},id:string,operation:{type:'string',enum:['optimize','evaluate'],description:'Evaluate measures baseline only and requires generations=0 plus zero quotas.'},allowNoiseRepeats:{type:'boolean',description:'Default false. Allow explicitly explained noise-measurement duplicate candidates within unchanged limits; no retries or extra authority.'},
  warmStart:{type:'object',additionalProperties:false,required:['runIds'],properties:{runIds:{type:'array',maxItems:64,items:{type:'string',pattern:'^[a-zA-Z0-9_-]{1,96}$'},description:'At most eight unique native run IDs, explicitly authorized in the configured Journal root. Duplicates are normalized.'},maxRecords:{type:'integer',minimum:1,maximum:16,default:6},maxContextBytes:{type:'integer',minimum:1024,maximum:32768,default:8192},fixturePolicy:{type:'string',enum:['exclude','ideas_only'],default:'exclude'}},description:'A new search using bounded historical data, not resume or budget renewal. Inspect plan.warmStart; old final data is never supplied to generation.'},
- target:{type:'object',properties:{kind:{type:'string',const:'dsh-persona'},path:string},required:['kind','path']},
+ target:{type:'object',properties:{kind:targetKindSchema,path:string},required:['kind','path']},
  stopping:{type:'object',additionalProperties:false,properties:{maxConsecutiveEvaluationFailures:{type:'integer',minimum:1,description:'Consecutive returned ok=false evaluations; success resets. Provider exceptions and unknown cost stop immediately.'},maxNoProgressGenerations:{type:'integer',minimum:1,description:'Completed measured search generations without a champion version change; improvement resets. Stops generation then attempts the already planned final within existing budget.'}},description:'Optional limits; omission preserves existing behavior. Does not authorize retries, change comparison rules or expand budget.'},
  fast:{oneOf:[objective,{type:'null'}]},slow:{oneOf:[objective,{type:'null'}]},final:{oneOf:[objective,{type:'null'}]},
  searchStages:searchStagesSchema(),
@@ -82,7 +83,7 @@ export const contractSchema=freeze({type:'object',description:'Native JSON v1, e
 
 export function describeProduct(){return structuredClone({apiVersion:2,runtime:'dsh-native',executionReady:false,authorityGranted:false,
  executionReadyMeaning:'This guide has not validated an executable experiment; executionReady only reflects currently visible provider bindings and false does not mean work providers are absent. Read runtimeAvailability for current bindings.',
- status:'CONFIGURATION_GUIDE_ONLY',targetKinds:['dsh-persona'],deltaKinds:['cordis-overlay/system-prompt'],modes:['optimize','fast_only','explore','evaluation_only'],contractSchema,preparation:preparationContract,
+ status:'CONFIGURATION_GUIDE_ONLY',capabilities:productCapabilities(),targetKinds:builtinTargets().map(t=>t.kind),deltaKinds:builtinTargets().map(t=>t.delta),modes:['optimize','fast_only','explore','evaluation_only'],contractSchema,preparation:preparationContract,
  providerContracts:{
   GeneratorService:{service:'duoGenerator',method:'propose',input:['champion','feedback','quotas','generation','nextId','signal'],output:['candidates','currency','costCny'],import:'@dual-loop/dsh-plugin/definitions'},
   ExecutorService:{service:'duoExecutor',method:'execute',input:['candidate','applied','tier','signal'],output:['artifact','currency','costCny'],import:'@dual-loop/dsh-plugin/definitions'},
@@ -96,11 +97,14 @@ export function describeProduct(){return structuredClone({apiVersion:2,runtime:'
   'A schema-valid draft still needs an existing target and compatible authorized providers.',
   'No bundled evaluator is automatically certified for your task; freeze your own criteria before search.',
   'Final data must remain separate and never feed candidate generation.'],
- intendedUse:'Bounded persona optimization with an existing executable evaluator and explicit owner-supplied objective/resources.',
+ intendedUse:'Bounded evaluation or optimization of a supported Target with an executable evaluator and explicit owner-supplied objective/resources.',
  unsuitable:['Automatic production deployment','Arbitrary workflow/code mutation','Unbudgeted autonomous execution']})}
 
-export function designDraft(draft,experimentPath,context={}){
- const c=structuredClone(draft),issues=[]
+export function designDraft(draft,experimentPath,context={},preset){
+ const defaults=preset?{version:1,operation:preset==='evaluate'?'evaluate':'optimize',constraints:[],epsilon:0.01,minSamples:1,generations:preset==='evaluate'?0:2,topK:1,
+  quotas:preset==='evaluate'?{exploit:0,explore:0,innovate:0}:{exploit:1,explore:0,innovate:0},permissions:{paid:false,network:false,externalSideEffects:false},
+  ...(preset==='evaluate'?{budget:{currency:'CNY',maxCostCny:0,maxSessions:100,maxFastEvals:20,maxSlowEvals:20,maxWallTimeMs:60000}}:{})}:{}
+ const c={...defaults,...structuredClone(draft)},issues=[]
  const need=(object,keys,prefix='')=>{for(const key of keys)if(object?.[key]===undefined||object[key]===null||object[key]==='')issues.push({path:prefix+key,code:'DUO_INPUT_MISSING',nextAction:'Supply '+prefix+key+' explicitly; do not infer objective or budget.'})}
  need(c,contractSchema.required)
  if(c.target)need(c.target,['kind','path'],'target.')
@@ -126,12 +130,12 @@ export function apply(ctx){
   finalizeContent:finalizeDuoError,isConcurrencySafe:()=>true,execute}))
  add('dualloop_describe','Read the native product schema, current visible provider bindings, preparation guide and evaluator declarations. No authority is implied.',{},()=>{
   const runtimeAvailability=inspectRuntimeAvailability(ctx)
-  return {...describeProduct(),executionReady:['duoGenerator','duoExecutor','duoEvaluators'].every(k=>runtimeAvailability.services[k]==='PRESENT'),runtimeAvailability,evaluators:inspectEvaluators(ctx)}})
+  return {...describeProduct(),executionReady:['duoGenerator','duoExecutor','duoEvaluators'].every(k=>runtimeAvailability.services[k]==='PRESENT'),runtimeAvailability,configuredTarget:describeConfiguredTarget(ctx),evaluators:inspectEvaluators(ctx)}})
  add('dualloop_design','Inspect a partial native CNY contract draft, list missing inputs and validate without saving, binding providers or running anything.',
-  {draft:{type:'object',additionalProperties:true,required:true},experimentPath:{type:'string',required:true,description:'Intended absolute path of the future contract; no file is accessed.'},
+  {draft:{type:'object',additionalProperties:true,required:true},preset:{type:'string',enum:['evaluate','optimize'],description:'Optional lifecycle defaults. Evaluate defaults to zero-cost local work; optimize still requires explicit budget. Target and objective are never invented.'},experimentPath:{type:'string',required:true,description:'Intended absolute path of the future contract; no file is accessed.'},
    context:{type:'object',description:'Optional intent, measurementGoal (format/task_result/cost) and up to 32 resources with kind, ref, summary, readAuthorized. See dualloop_describe.preparation; not permission grants.',additionalProperties:true}},
-  ({draft,experimentPath,context})=>{
-   const result=designDraft(draft,experimentPath,context),inspected=result.resolved?.spec??draft,evaluators=inspectEvaluators(ctx,inspected)
+  ({draft,experimentPath,context,preset})=>{
+   const result=designDraft(draft,experimentPath,context,preset),inspected=result.resolved?.spec??result.draft,evaluators=inspectEvaluators(ctx,inspected)
    const matches=Object.values(evaluators.matches),compatible=matches.length>0&&matches.every(m=>m.status==='COMPATIBLE_BY_DECLARATION')
    if(compatible&&result.status==='draft_valid'){
     result.preparation.startingPoint='configured_inputs';result.preparation.status='ready_for_binding'
@@ -149,7 +153,7 @@ export function apply(ctx){
    }
    const measurement=inspectMeasurement(inspected,evaluators,context?.measurementGoal)
    result.preparation.measurementReadiness=measurement
-   result.preparation.recommendedOperation=result.status!=='draft_valid'||!compatible?'prepare_inputs':draft.operation==='evaluate'?'evaluate':measurement.status==='DECLARED_MATCH'?'optimize':'prepare_measurement'
+   result.preparation.recommendedOperation=result.status!=='draft_valid'||!compatible?'prepare_inputs':inspected.operation==='evaluate'?'evaluate':measurement.status==='DECLARED_MATCH'?'optimize':'prepare_measurement'
    if(result.preparation.recommendedOperation==='prepare_measurement')result.preparation.actions.unshift({kind:'check_measurement_purpose',executesWork:false,
     description:measurement.nextAction,requiredInputs:['declared measurement goal','metric definitions','fixed discrimination controls','baseline development evidence'],
     doneWhen:'The metric measures the intended outcome and its controls/limits are reviewed; a declaration match alone is not qualification.'})

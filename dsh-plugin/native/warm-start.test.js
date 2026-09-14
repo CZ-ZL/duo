@@ -1,7 +1,10 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import {digest} from './store.js'
-import {selectWarmStart,normalizeWarmStart,executionEnvironment,projectWarmContext} from './warm-start.js'
+import {selectWarmStart as select,normalizeWarmStart,executionEnvironment,projectWarmContext as project} from './warm-start.js'
+import {personaHistory,projectPersonaDelta} from './target.js'
+const selectWarmStart=(journal,current,config,selector)=>select(journal,current,config,selector,personaHistory)
+const projectWarmContext=value=>project(value,projectPersonaDelta)
 
 // Declared-model classifications below are synthetic unit data, not live proof.
 const obj=tier=>({evaluatorId:tier,version:'1',dataId:tier,metric:'quality',direction:'maximize',weights:{quality:1}})

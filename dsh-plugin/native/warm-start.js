@@ -1,6 +1,7 @@
 import {digest} from './store.js'
 import {fail} from './definitions.js'
 import {searchTiersOf,tierNamePattern} from './stages.js'
+import {validHistorySnapshot} from './target-protocol.js'
 
 const clone=x=>structuredClone(x),same=(a,b)=>digest(a??null)===digest(b??null)
 const finite=x=>typeof x==='number'&&Number.isFinite(x)
@@ -10,13 +11,13 @@ const pick=(x,keys)=>Object.fromEntries(keys.filter(k=>x?.[k]!==undefined).map(k
 const text=x=>typeof x==='string'&&!!x.trim(),texts=x=>Array.isArray(x)&&x.every(v=>typeof v==='string')
 // Both model-facing generators re-project this data at their public boundary.
 // This is not a semantic trust claim about caller-written text or metadata.
-export function projectWarmContext(value){
+export function projectWarmContext(value,projectDelta){
  if(!value||value.kind!=='native_journal_search_history'||value.version!=='1'||!text(value.currentBaseline?.id)||!text(value.currentBaseline.version)||!Array.isArray(value.records)||value.records.length>16)fail('DUO_HISTORY_INVALID','Expected bounded native search history, not final results or resume state')
  const records=value.records.map(r=>{
-  if(!text(r.source?.runId)||!text(r.source.candidateId)||!text(r.source.candidateVersion)||!['parentId','parentVersion'].every(k=>r.source[k]===null||text(r.source[k]))||!Number.isSafeInteger(r.source.generation)||r.source.generation<0||!['comparable_declared','ideas_only'].includes(r.use)||!['baseline','good','failure','direction'].includes(r.role)||!text(r.hypothesis)||!texts(r.reasons)||!texts(r.evidenceKinds)||!Array.isArray(r.source.evaluators)||r.source.evaluators.some(e=>!e||!tierNamePattern.test(e.tier)||!['evaluatorId','version','dataId'].every(k=>text(e[k])))||r.delta!==null&&(!r.delta||r.delta.kind!=='cordis-overlay'||r.delta.target!=='system-prompt'||!text(r.delta.persona)))fail('DUO_HISTORY_INVALID','Historical records require explicit identities, uses and evidence limits')
+  if(!text(r.source?.runId)||!text(r.source.candidateId)||!text(r.source.candidateVersion)||!['parentId','parentVersion'].every(k=>r.source[k]===null||text(r.source[k]))||!Number.isSafeInteger(r.source.generation)||r.source.generation<0||!['comparable_declared','ideas_only'].includes(r.use)||!['baseline','good','failure','direction'].includes(r.role)||!text(r.hypothesis)||!texts(r.reasons)||!texts(r.evidenceKinds)||!Array.isArray(r.source.evaluators)||r.source.evaluators.some(e=>!e||!tierNamePattern.test(e.tier)||!['evaluatorId','version','dataId'].every(k=>text(e[k])))||r.delta!==null&&(!r.delta||typeof projectDelta!=='function'))fail('DUO_HISTORY_INVALID','Historical records require explicit identities, uses and a Target-specific Delta projector')
   const source=pick(r.source,['runId','candidateId','candidateVersion','parentId','parentVersion','generation'])
   source.evaluators=r.source.evaluators.filter(e=>tierNamePattern.test(e.tier)).map(e=>pick(e,['tier','evaluatorId','version','dataId']))
-  const row={source,...pick(r,['use','reasons','role','evidenceKinds','hypothesis']),delta:r.delta?pick(r.delta,['kind','target','persona']):null}
+  const row={source,...pick(r,['use','reasons','role','evidenceKinds','hypothesis']),delta:r.delta?projectDelta(r.delta):null}
   if(r.use==='comparable_declared'){
    const tiers=source.evaluators.map(e=>e.tier)
    const observations=Object.fromEntries(tiers.map(t=>[t,measurement(r.observations?.[t],source.candidateId,t,source.evaluators.find(e=>e.tier===t))]))
@@ -58,16 +59,16 @@ function measurement(value,candidateId,tier,objective){
  if(!objective||value.candidateId!==candidateId||value.tier!==tier||value.evaluatorId!==objective.evaluatorId||value.version!==objective.version||value.dataId!==objective.dataId||typeof value.ok!=='boolean'||!value.metrics||typeof value.metrics!=='object')return undefined
  return {candidateId,tier,evaluatorId:value.evaluatorId,version:value.version,dataId:value.dataId,ok:value.ok,metrics:Object.fromEntries(Object.entries(value.metrics).filter(([,v])=>finite(v)||typeof v==='boolean'))}
 }
-function projectRows(events,p,runId,reasons){
+function projectRows(events,p,runId,reasons,target){
  const latest=new Map()
  for(const e of events)if(e.kind==='candidate'&&typeof e.candidateId==='string')latest.set(e.candidateId,e)
- const baseline=p.baseline,valid=new Map([[baseline.id,baseline.version===digest(baseline.persona)]]),tiers=searchTiersOf(p.spec),first=tiers[0]??'fast'
+ const baseline=p.baseline,valid=new Map([[baseline.id,validHistorySnapshot(target,baseline)]]),tiers=searchTiersOf(p.spec),first=tiers[0]??'fast'
  const lineage=(id,visiting=new Set())=>{
   if(valid.has(id))return valid.get(id)
   if(visiting.has(id))return false
   visiting.add(id)
   const c=latest.get(id)?.candidate,parent=c?.parentId===baseline.id?baseline:latest.get(c?.parentId)?.candidate
-  const ok=!!(c&&c.id===id&&parent&&c.parentVersion===parent.version&&c.version===digest(c.persona??'')&&c.delta?.kind==='cordis-overlay'&&c.delta.target==='system-prompt'&&c.delta.persona===c.persona&&typeof c.hypothesis==='string'&&c.hypothesis.trim()&&lineage(c.parentId,visiting))
+  const ok=!!(c&&c.id===id&&parent&&typeof c.hypothesis==='string'&&c.hypothesis.trim()&&lineage(c.parentId,visiting)&&validHistorySnapshot(target,c,parent))
   valid.set(id,ok);return ok
  }
  const records=[],omitted=[]
@@ -81,7 +82,7 @@ function projectRows(events,p,runId,reasons){
   records.push({source:{runId,candidateId:id,candidateVersion:c.version,parentId:c.parentId??null,parentVersion:c.parentVersion??null,generation:row.generation??0,
    evaluators:tiers.filter(t=>p.spec[t]).map(t=>({tier:t,evaluatorId:p.spec[t].evaluatorId,version:p.spec[t].version,dataId:p.spec[t].dataId}))},
    use,reasons:why,role,evidenceKinds:kinds(p),hypothesis:id===baseline.id?'Historical baseline, not the current measurement.':c.hypothesis,
-   delta:id===baseline.id?null:{kind:c.delta.kind,target:c.delta.target,persona:c.delta.persona},
+   delta:id===baseline.id?null:target.projectDelta(c.delta),
    ...(use==='comparable_declared'?{observations:measured,verdicts:{...Object.fromEntries(tiers.map(t=>[t,row[t+'Verdict']??null])),slowDecision:row.slowDecision??null}}:{})})
  }
  return {records,omitted}
@@ -93,7 +94,7 @@ export function balancedHistoryOrder(records){
  for(let i=0;i<records.length;i++){let added=false;for(const group of groups)if(group[i]!==undefined){order.push(group[i]);added=true}if(!added)break}
  return order
 }
-export function selectWarmStart(journal,current,config,selector){
+export function selectWarmStart(journal,current,config,selector,target){
  const sources=[],pool=[],finalIds=[]
  for(const runId of config.runIds){
   const source={runId,status:'excluded',reasons:[],selected:0,omitted:[]};sources.push(source)
@@ -102,14 +103,14 @@ export function selectWarmStart(journal,current,config,selector){
    if(!j){source.reasons.push('source_missing');continue}
    if(!['completed','failed','cancelled'].includes(j.get('run')?.status)){source.reasons.push('source_not_terminal');continue}
    const all=j.events({maxEvents:2048,maxBytes:4*1024*1024}),finalAt=all.findIndex(e=>e.kind==='final'),events=finalAt<0?all:all.slice(0,finalAt),p=events.find(e=>e.kind==='plan')?.plan
-   if(!p||p.runtime!=='dsh-native'||p.apiVersion!==2||!p.spec||!p.baseline||typeof p.baseline.persona!=='string'){source.reasons.push('source_metadata_invalid');continue}
+   if(!p||p.runtime!=='dsh-native'||p.apiVersion!==2||!p.spec||!p.baseline||typeof p.baseline.id!=='string'||typeof p.baseline.version!=='string'){source.reasons.push('source_metadata_invalid');continue}
    if(p.spec.target?.kind!==current.spec.target.kind||p.spec.target.path!==current.spec.target.path||p.baseline.path!==current.baseline.path){source.reasons.push('different_target');continue}
    source.reasons=differences(p,current)
    if(kinds(p).some(synthetic)){
     source.reasons.push('fixture_or_control')
     if(config.fixturePolicy==='exclude')continue
    }
-   const projection=projectRows(events,p,runId,source.reasons)
+   const projection=projectRows(events,p,runId,source.reasons,target)
    // Identity binds only allowed search inputs; final values and raw answers are
    // excluded even from the source digest. Costs remain in their original ledger.
    source.sourceDigest=digest({target:p.spec.target,baselineVersion:p.baseline.version,implementationDigest:p.recovery?.implementationDigest??null,conditions:searchConditions(p),providers:searchProviders(p),environment:p.environment??null,...projection})

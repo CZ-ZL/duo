@@ -1,6 +1,5 @@
-# Native DUO services. The bundled zero-cost offline fixture supplies
-# generator/executor/evaluator providers so a fresh install boots; replace the
-# duo-offline-fixture row with your own provider plugins for real work.
+# Default product bundle: preparation is available before work providers.
+# Explicit local examples or your authorized providers activate the existing runtime.
 - insert:
   - id: duo-onboarding
     name: '@dual-loop/dsh-plugin/onboarding'
@@ -24,13 +23,22 @@
     name: '@dual-loop/dsh-plugin/budget'
   - id: duo-controller
     name: '@dual-loop/dsh-plugin/controller'
+    disabled: true
   - id: duo-observer
     name: '@dual-loop/dsh-plugin/observer'
+    disabled: true
   - id: duo-observer-tools
     name: '@dual-loop/dsh-plugin/observer-tools'
+    disabled: true
   - id: duo-offline-fixture
     name: '@dual-loop/dsh-plugin/offline-fixture'
     config:
       currency: CNY
+    disabled: true
   - id: dualloop
     name: '@dual-loop/dsh-plugin'
+    disabled: true
+  - id: duo-runtime
+    name: '@dual-loop/dsh-plugin/deferred-runtime'
+    config:
+      evaluationOnly: false
