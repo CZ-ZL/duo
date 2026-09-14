@@ -49,7 +49,7 @@ node dsh-plugin/bin/duo.mjs call --root /tmp/duo-demo --tool dualloop_report --a
 
 ## 安装到自己的 DSH profile
 
-从已审查的源码打包：
+从[私有 v0.6.0 Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) 下载已审查的 `dual-loop-dsh-plugin-0.6.0.tgz` 即可安装，也可从当前源码构建同一安装包：
 
 ```sh
 cd dsh-plugin

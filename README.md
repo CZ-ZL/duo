@@ -49,7 +49,7 @@ Use `--example evaluate`, `dual`, `byo`, `replace`, `warm` or `custom` for other
 
 ## Install in your own DSH profile
 
-Build the reviewed package from this checkout:
+Download the reviewed `dual-loop-dsh-plugin-0.6.0.tgz` from the [private v0.6.0 release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0), or build the same package from this checkout:
 
 ```sh
 cd dsh-plugin
