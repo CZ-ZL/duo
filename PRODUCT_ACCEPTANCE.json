@@ -25,7 +25,7 @@
   "installation": {
     "tarballOffline": "PASS",
     "freshRegistryLocal": "BLOCKED_TLS_EOF",
-    "freshRegistryCI": "PENDING"
+    "freshRegistryCI": "FAILED_FIRST_ATTEMPT_TOOLCHAIN_VERSION_RETEST_PENDING"
   },
   "archiveSha256": "52504e3b6e7754753c08b15eedcceb677e050910154033639c0320bc435de83c",
   "limitations": [
@@ -49,5 +49,19 @@
     "outerCallerCost": "NOT_SUPPLIED_BY_HOST",
     "followup": "PASS",
     "receipt": "docs/product-foundation/CALLER_ACCEPTANCE.json"
-  }
+  },
+  "ciAttempts": [
+    {
+      "id": 34858521791,
+      "commit": "52995d0df851ca9cc3406917ccabae2c5822b723",
+      "status": "FAIL",
+      "cause": "pnpm 10.17.1 auto-peer resolution: ERR_PNPM_NO_MATCHING_VERSION dsh-invariants >=0.1.2 <0.2.0-0",
+      "passedBeforeFailure": [
+        "native 295",
+        "Python 451",
+        "21 DSH profiles",
+        "exact tarball"
+      ]
+    }
+  ]
 }

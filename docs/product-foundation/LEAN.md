@@ -32,3 +32,9 @@ also found evaluate presets used the unmerged draft when recommending an
 operation. A regression reproduced prepare_measurement instead of evaluate;
 the recommendation now reads the already resolved contract. No scoring or
 execution policy changed. See evaluate-preset-red/green evidence.
+
+CI run 34858521791 passed native 295, Python 451 and all 21 host profiles,
+then failed pnpm 10.17.1 auto-peer installation: no matching dsh-invariants
+>=0.1.2 <0.2.0-0. Local pnpm is 11.24.0. Align the CI version and retest before
+claiming installation fixed. Installation now runs before expensive suites;
+all original gates remain mandatory. The package/runtime bytes are unchanged.
