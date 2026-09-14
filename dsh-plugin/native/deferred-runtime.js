@@ -6,14 +6,14 @@ import EvaluationController from './evaluation-controller.js'
 import Observer from './observer.js'
 import * as Tools from './tools.js'
 import * as Reports from './observer-tools.js'
-export const name='dual-loop-deferred-runtime'
-export const Config=Schema.object({evaluationOnly:Schema.boolean().default(false)})
-export function apply(ctx,config={}){
- const Runtime=config.evaluationOnly?EvaluationController:Controller
- ctx.inject(Runtime.inject,async child=>{
-  await child.plugin(Runtime)
-  await child.plugin(Observer)
-  await child.plugin(Tools)
-  await child.plugin(Reports)
- })
+export const name = 'dual-loop-deferred-runtime'
+export const Config = Schema.object({ evaluationOnly: Schema.boolean().default(false) })
+export function apply(ctx, config = {}) {
+  const Runtime = config.evaluationOnly ? EvaluationController : Controller
+  ctx.inject(Runtime.inject, async (child) => {
+    await child.plugin(Runtime)
+    await child.plugin(Observer)
+    await child.plugin(Tools)
+    await child.plugin(Reports)
+  })
 }

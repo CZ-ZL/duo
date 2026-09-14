@@ -1,1 +1,1 @@
-export {EvaluationController as default} from './controller.js'
+export { EvaluationController as default } from './controller.js'

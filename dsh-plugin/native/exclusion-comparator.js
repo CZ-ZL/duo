@@ -1,1 +1,1 @@
-export {ExclusionComparator as default} from './history-feedback.js'
+export { ExclusionComparator as default } from './history-feedback.js'
