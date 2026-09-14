@@ -1,8 +1,8 @@
 # DUO 0.5.0 产品底座验收报告
 
-本轮范围为 Product Foundation & Productization。产品本地验收与独立 Agent
-使用已通过，GitHub CI／全新依赖安装正在完成；最终状态以根目录
-PRODUCT_ACCEPTANCE.json 为准。方法有效性研究暂停，历史结论保持不变。
+本轮范围为 Product Foundation & Productization。产品本地验收、独立 Agent 使用、GitHub CI／全新依赖安装均已通过。
+PRODUCT FOUNDATION COMPLETE；PRODUCT ACCEPTANCE PASS（在下述支持边界内）。
+最终收据位于根目录 PRODUCT_ACCEPTANCE.json。方法有效性研究暂停，历史结论保持不变。
 
 ## 实际交付
 
@@ -31,7 +31,7 @@ PRODUCT_ACCEPTANCE.json 为准。方法有效性研究暂停，历史结论保�
 | 实际 tarball 安装 | DSH plugin add、自动 bundle 注册、文件字节、配置与 bin 通过；本地使用已有 host peers |
 | 独立 Agent | 只读六份安装后公开文档；43 次 CLI 调用、六个完成运行；人工介入 0、实现者介入 0 |
 | 独立 Agent 复核 | 四处文档修正及 evaluate preset 推荐已在新 profile 复核通过 |
-| 全新依赖与远端 CI | 等待当前提交的实际 GitHub Actions 收据 |
+| 全新依赖与远端 CI | 最终 34860825068 全绿；实际安装 profile 完成 plan/run/report，十项内层操作结算 CNY0 |
 
 独立 Agent 自己准备契约、检查计划、执行、读取报告与预算，并完成自定义
 Target、真正替换 Feedback、warm start、暂停和恢复。它曾故意不传恢复
@@ -82,3 +82,14 @@ TLS、未假装全新依赖安装成功；该项由远端 CI 实际验证。
 这次交付证明可安装、可发现、可组合、可按公开接口使用的产品底座。
 原研究结论仍是：没有证明 DUO 相比合理单环具有普遍质量或费用优势。
 不会自动开启下一个方法实验。
+
+最终验证提交：2ac54514ecc56e78364224e669337be800f2e6d2。
+安装包 SHA-256：a1e02c25d7ded2ab184bc4cb6713b4c58ff3dd6afd5b762c5bba33a165d653c2。
+
+CI 首两次安装失败保留。已查明旧 dsh-tools peer 范围不包含实际宿主版本；
+单独更换 pnpm 未解决，修正 peer 声明并增加六项语义版本检查后通过。最终 CI
+也验证了真实安装目录中的依赖图，并非只验证重新复制的示例目录。封存报告的
+后续提交只改验收文档，不改变最后一次 CI 已验证的运行代码、包内容或测试输入。
+
+最终状态：PRODUCT FOUNDATION COMPLETE；PRODUCT ACCEPTANCE PASS；
+KNOWN LIMITATIONS 如上；RESEARCH NOT PROVEN。不会自动开始下一阶段研究。

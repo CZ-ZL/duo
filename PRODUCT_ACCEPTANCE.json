@@ -1,7 +1,7 @@
 {
   "version": "0.5.0",
-  "productFoundation": "IMPLEMENTED",
-  "productAcceptance": "LOCAL_AND_INDEPENDENT_CALLER_PASS_CI_PENDING",
+  "productFoundation": "COMPLETE",
+  "productAcceptance": "PASS_WITH_DOCUMENTED_BOUNDARIES",
   "research": "NOT_PROVEN_METHOD_RESEARCH_PAUSED",
   "modelRequests": 0,
   "costCny": 0,
@@ -25,7 +25,13 @@
   "installation": {
     "tarballOffline": "PASS",
     "freshRegistryLocal": "BLOCKED_TLS_EOF",
-    "freshRegistryCI": "FAILED_FIRST_ATTEMPT_TOOLCHAIN_VERSION_RETEST_PENDING"
+    "freshRegistryCI": "PASS",
+    "actualInstalledProfile": {
+      "planRunReport": "PASS",
+      "status": "completed",
+      "operations": 10,
+      "costCny": 0
+    }
   },
   "archiveSha256": "a1e02c25d7ded2ab184bc4cb6713b4c58ff3dd6afd5b762c5bba33a165d653c2",
   "limitations": [
@@ -48,7 +54,8 @@
     "nativeCostCny": 0,
     "outerCallerCost": "NOT_SUPPLIED_BY_HOST",
     "followup": "PASS",
-    "receipt": "docs/product-foundation/CALLER_ACCEPTANCE.json"
+    "receipt": "docs/product-foundation/CALLER_ACCEPTANCE.json",
+    "runtimeEquivalenceToRelease": "All runtime bytes identical; only README and package metadata changed after bounded follow-up."
   },
   "ciAttempts": [
     {
@@ -68,6 +75,73 @@
       "commit": "bc22cdfda6a8193db91f42121a1e9857f2582ef4",
       "status": "FAIL",
       "cause": "Changing pnpm alone did not repair transitive prerelease peer ranges; ERR_PNPM_NO_MATCHING_VERSION dsh-scope >=0.1.2 <0.2.0-0"
+    },
+    {
+      "id": 34860303546,
+      "commit": "59f81af2bb9f9654506a27147f5d1a85c135e408",
+      "status": "PASS",
+      "scope": "Corrected peer declaration; original product gate"
+    },
+    {
+      "id": 34860825068,
+      "commit": "2ac54514ecc56e78364224e669337be800f2e6d2",
+      "status": "PASS",
+      "scope": "Full final gate including actual installed peer graph"
     }
-  ]
+  ],
+  "verifiedCodeCommit": "2ac54514ecc56e78364224e669337be800f2e6d2",
+  "ci": {
+    "status": "PASS",
+    "runId": 34860825068,
+    "url": "https://github.com/CZ-ZL/duo/actions/runs/34860825068",
+    "scope": "Native + Python product + 21 host profiles + fresh registry installation + actual installed profile plan/run/report + 10 public profiles + package/peer/docs checks"
+  },
+  "archiveFiles": 62,
+  "hostPeerCompatibility": [
+    {
+      "name": "@deepseek-ai/cordis",
+      "range": "^4.0.1",
+      "version": "4.0.2",
+      "compatible": true
+    },
+    {
+      "name": "@deepseek-ai/dsh-tools",
+      "range": "^0.1.2-rc.1",
+      "version": "0.1.2-rc.1",
+      "compatible": true
+    },
+    {
+      "name": "@deepseek-ai/dsh-llm",
+      "range": "^0.1.2-rc.1",
+      "version": "0.1.2-rc.1",
+      "compatible": true
+    },
+    {
+      "name": "@deepseek-ai/dsh-system-prompt",
+      "range": "^0.1.2-rc.1",
+      "version": "0.1.2-rc.1",
+      "compatible": true
+    },
+    {
+      "name": "@deepseek-ai/schemastery",
+      "range": "^3.18.0",
+      "version": "3.18.2",
+      "compatible": true
+    },
+    {
+      "name": "@deepseek-ai/dsh-deepseek-llm-api-extensions",
+      "range": "^0.1.2-rc.1",
+      "version": "0.1.2-rc.1",
+      "compatible": true
+    }
+  ],
+  "delivery": {
+    "repository": "CZ-ZL/duo",
+    "visibility": "private",
+    "version": "0.5.0",
+    "channel": "GitHub source and reviewed tarball; no npm publication",
+    "ciEvidenceCommit": "2ac54514ecc56e78364224e669337be800f2e6d2",
+    "closureChanges": "Acceptance documentation only; runtime/package/test inputs unchanged after final CI."
+  },
+  "accountingScope": "Native product provider/model requests only. Outer coding Agent and CI platform costs were not supplied."
 }

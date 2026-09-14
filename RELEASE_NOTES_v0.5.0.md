@@ -29,3 +29,11 @@ registry publication.
 
 RESEARCH NOT PROVEN: product acceptance does not establish a DUO quality or cost
 advantage. Method research is paused and all earlier results remain unchanged.
+
+Final product CI: https://github.com/CZ-ZL/duo/actions/runs/34860825068
+Verified code: 2ac54514ecc56e78364224e669337be800f2e6d2. Subsequent closure
+changes are acceptance documentation only. Native 295 PASS; Python product
+451 PASS /86 research deselected; 21 DSH scenarios; 55 public checks/80 steps;
+fresh dependency install and actual installed-profile plan/run/report PASS.
+Independent Caller: 43 public calls, six runs, no implementer intervention,
+plus bounded final documentation/preset follow-up.

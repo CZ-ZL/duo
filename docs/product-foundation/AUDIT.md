@@ -26,3 +26,9 @@ Reviewed source/remote baseline `6729d4c`, 2026-09-14. This table records actual
 | Verification | release_gate.sh, native tests, 21 DSH profiles, CI | Historical research tests explicitly separate | Reuse cached DSH, clean profile and package | Add actual packaged product journeys; retain old negative evidence |
 
 Known boundaries: trusted in-process providers, Linux/Node24 supported host, no hostile-provider sandbox, no automatic deployment, no arbitrary interrupted-call replay. Missing evaluator/objective still requires owner input; software must not invent it. Historical real Caller acceptance exists but does not establish fresh 0.5.0 acceptance or method superiority.
+
+Accepted 0.5.0 outcome: the minimum changes above are connected to public tools
+and package examples, with evidence in QUEUE.md, REPORT.md and the final CI.
+Policy/budget/ledger implementations and historical experiment results were
+preserved. This table remains the factual pre-change audit, not a second
+current-support source; CURRENT_STATUS.md is generated from the live catalog.

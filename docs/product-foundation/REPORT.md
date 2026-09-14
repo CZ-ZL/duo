@@ -1,7 +1,7 @@
 # DUO 0.5.0 Product Foundation acceptance
 
-Status: local product acceptance and independent Caller PASS; private GitHub
-CI/fresh dependency receipt pending. Method research is paused. Product measurements below do not prove
+**PRODUCT FOUNDATION COMPLETE. PRODUCT ACCEPTANCE PASS within documented boundaries.**
+Final GitHub CI 34860825068 passed at 2ac54514ecc56e78364224e669337be800f2e6d2. Method research is paused. Product measurements below do not prove
 DUO quality or total-cost superiority. All local work-provider requests cost
 CNY 0 and use no model API; the Agent review runs in the existing coding session.
 
@@ -22,7 +22,7 @@ public tool calls through DSH. It contains no search or selection engine.
 
 | Owner requirement | Observation / evidence | Status |
 |---|---|---|
-| 1 install/load | Actual tarball DSH plugin add, auto bundle registration, exact bytes, composed config, installed bin and plan/run/report in the actual installed profile. Local peers reused; registry CI pending. | Local PASS / fresh dependencies pending |
+| 1 install/load | Actual tarball DSH plugin add, auto bundle registration, exact bytes, composed config, installed bin and plan/run/report in the actual installed profile. Fresh registry dependencies and actual installed-profile execution passed in CI. | PASS |
 | 2 discovery | Setup has current supported/partial catalog and schemas, explicit missing providers, no execution tool. | PASS |
 | 3 evaluate-only | Baseline measured, zero generations/candidates, known CNY 0. | PASS |
 | 4 default optimize | Two bounded local generations, unadopted normalized overlay, original file unchanged. | PASS |
@@ -35,7 +35,7 @@ public tool calls through DSH. It contains no search or selection engine.
 | 11 report | Public report/status/budget retrieval, repeated completed calls add no operations or charges. | PASS |
 | 12 recovery | Settled checkpoint resumes under exact digest and original deadline; baseline is not re-executed. | PASS |
 | 13 independent Agent | Six installed docs, 43 public calls, six runs/52 settled operations, zero human/implementer interventions; independent follow-up confirmed all four documentation corrections and evaluate preset. | PASS |
-| 14 package/CI | Manifest/export/link inspection, native 295 PASS, Python 451 PASS /86 research deselected, 21 host profiles PASS; remote CI pending. | PENDING |
+| 14 package/CI | Manifest/export/link inspection, native 295 PASS, Python 451 PASS /86 research deselected, 21 host profiles PASS; remote CI 34860825068 PASS. | PASS |
 
 Scripted public acceptance: 10 isolated profiles, 80 steps, 55 assertions. Raw
 commands, outputs, schemas, plans, reports and receipts remain in the local
@@ -100,3 +100,19 @@ all six host peer declarations passed after correction. Merely changing pnpm
 did not solve the original auto-peer error; both failed CI attempts remain.
 The release archive changes only package.json and README from the independently
 checked package; all runtime source bytes are identical (recorded comparison).
+
+Final release archive SHA-256:
+`a1e02c25d7ded2ab184bc4cb6713b4c58ff3dd6afd5b762c5bba33a165d653c2`.
+The six peer ranges match the actual host; 62 tarball files and all declared
+exports/links pass inspection. The actual fresh package-manager profile completed
+plan/run/report with ten settled CNY0 operations. Full final CI: native 295,
+Python 451 (86 research deselected), 21 host scenarios, public examples 55 checks
+across 80 steps/10 profiles.
+
+The first two CI failures are retained as runs 34858521791 and 34859657539;
+34860303546 passed after the peer fix, and 34860825068 passed the strengthened
+installed-graph gate. No TLS bypass, model request, safety weakening, npm publish
+or experimental-result rewrite was used. GitHub Actions emits a nonblocking
+Node20 action-metadata deprecation annotation while the actual runner uses Node24.
+Closure commits change acceptance documentation only; the validated package
+bytes and runtime/test inputs are unchanged. No new user session is needed.

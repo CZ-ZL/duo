@@ -98,5 +98,14 @@
     "archiveSha256": "52504e3b6e7754753c08b15eedcceb677e050910154033639c0320bc435de83c",
     "scope": "Updated public docs and evaluate preset via fresh profile/schema/describe/design; no lifecycle rerun"
   },
-  "nonblockingWording": "Generic nextSteps lists generator among provider roles; specific evaluate-only guidance excludes it."
+  "nonblockingWording": "Generic nextSteps lists generator among provider roles; specific evaluate-only guidance excludes it.",
+  "releaseArchiveSha256": "a1e02c25d7ded2ab184bc4cb6713b4c58ff3dd6afd5b762c5bba33a165d653c2",
+  "runtimeEquivalence": {
+    "status": "PASS",
+    "changedMembersSinceFollowup": [
+      "package.json",
+      "README.md"
+    ],
+    "allRuntimeCodeIdentical": true
+  }
 }
