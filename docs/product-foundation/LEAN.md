@@ -49,3 +49,9 @@ CI 34859657539: pnpm alignment alone did not repair peer resolution (dsh-scope
 >=0.1.2 <0.2.0-0). Preserve this failed hypothesis. The subsequent package peer
 correction passes the local six-peer semantic check; fresh installation remains
 to be verified. Repository/support metadata now points to the actual private repo.
+
+Installed-graph acceptance now invokes plan/run/report in the actual pnpm-installed
+profile, using configuration prepared by the public example CLI. This closes a
+verification gap: staged public example profiles alone did not test the freshly
+installed peer graph. Local installed-graph-check passed with ten settled free
+operations; fresh peer graph is a required CI check. Package bytes are unchanged.

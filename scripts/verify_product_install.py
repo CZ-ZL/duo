@@ -63,10 +63,31 @@ def main():
         run('composed-profile', [node, str(dsh / 'lib/bin.js'), '--profile', 'install-check', '--dump-config'])
         assert 'duo-onboarding' in (out / 'composed-profile.stdout.txt').read_text()
         run('installed-bin', [str(profile / 'node_modules/.bin/duo'), '--help'])
+        # Exercise the package-manager-installed dependency graph itself. The
+        # public example verifier also tests isolated file staging; it must not
+        # stand in for loading this actual installed profile and its peers.
+        probe = out / 'public-probe'
+        run('prepare-public-probe', [node, str(installed / 'bin/duo.mjs'), 'init', '--root', str(probe),
+            '--dsh-package', str(dsh), '--example', 'optimize'])
+        shutil.copyfile(probe / 'dsh-home/profiles/duo-product/cordis.patch.yml', profile / 'cordis.patch.yml')
+        values = {}
+        for tool in ['plan', 'run', 'report']:
+            request, response, patch = [out / (tool + suffix) for suffix in ['-request.json', '-response.json', '-patch.json']]
+            payload = {} if tool == 'plan' else {'planDigest': values['plan']['planDigest']} if tool == 'run' else {'runId': values['plan']['runId']}
+            request.write_text(json.dumps({'id': 'installed-' + tool, 'tool': 'dualloop_' + tool, 'args': payload}))
+            patch.write_text(json.dumps([{'id': 'local-tool-app', 'config': {'requestPath': str(request), 'responsePath': str(response)}}]))
+            run('installed-' + tool, [node, str(dsh / 'lib/bin.js'), '--profile', 'install-check', '--patch', str(patch)])
+            returned = json.loads(response.read_text())
+            assert not returned['isError'], returned
+            values[tool] = returned['value']
+        assert values['run']['status'] == 'completed' and values['run']['budget']['costCny'] == 0
+        assert values['report']['improvementProven'] is False
         report = {'status': 'PASS', 'package': str(installed), 'version': manifest['version'],
             'archiveSha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
             'scope': 'Actual DSH plugin add, automatic bundle registration, tarball byte equality, config composition and installed bin',
             'dependencyMode': 'EXISTING_HOST_PEERS_OFFLINE' if args.cached_host_peers else 'FRESH_REGISTRY_DEPENDENCIES',
+            'actualInstalledProfile': {'planRunReport': 'PASS', 'status': values['run']['status'],
+                'operations': values['run']['budget']['operations'], 'costCny': 0},
             'modelRequests': 0, 'costCny': 0, 'privateProfilesRead': False, 'globalInstall': False}
     except Exception as error:
         report = {'status': 'FAIL', 'error': str(error), 'modelRequests': 0, 'costCny': 0}

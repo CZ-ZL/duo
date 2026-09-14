@@ -19,7 +19,8 @@ bash scripts/release_gate.sh /tmp/new-duo-release-check
 
 This runs every native test, the self-contained Python checks, generated-doc
 consistency, 21 isolated compatibility DSH CLI scenarios, tarball and host peer-range inspection,
-actual `dsh plugin add` in a fresh profile/dependency store, and 10 public example
+actual `dsh plugin add` in a fresh profile/dependency store, plan/run/report in
+that installed profile and its peer graph, and 10 public example
 profiles (55 assertions over 80 public operations). The historical `packaged`
 scenario explicitly enables the retained fixture; default installation does not.
 Public examples measure actual local text hygiene, not model or method quality.

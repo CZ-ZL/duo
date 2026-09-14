@@ -22,7 +22,7 @@ public tool calls through DSH. It contains no search or selection engine.
 
 | Owner requirement | Observation / evidence | Status |
 |---|---|---|
-| 1 install/load | Actual tarball DSH plugin add, auto bundle registration, exact bytes, composed config, installed bin. Local peers reused; registry CI pending. | Local PASS / fresh dependencies pending |
+| 1 install/load | Actual tarball DSH plugin add, auto bundle registration, exact bytes, composed config, installed bin and plan/run/report in the actual installed profile. Local peers reused; registry CI pending. | Local PASS / fresh dependencies pending |
 | 2 discovery | Setup has current supported/partial catalog and schemas, explicit missing providers, no execution tool. | PASS |
 | 3 evaluate-only | Baseline measured, zero generations/candidates, known CNY 0. | PASS |
 | 4 default optimize | Two bounded local generations, unadopted normalized overlay, original file unchanged. | PASS |
@@ -93,3 +93,10 @@ it did not rerun the six lifecycle cases or rewrite original receipts. A minor
 generic nextSteps wording still lists Generator among provider roles; detailed
 evaluation-only instructions correctly omit it. This did not block either
 Agent's evaluation flow and is not an additional runtime requirement.
+
+Installation found a real metadata defect: the old dsh-tools ^0.1.1-rc.1 range
+excluded the tested 0.1.2-rc.1 host. A semantic-version reproduction failed, then
+all six host peer declarations passed after correction. Merely changing pnpm
+did not solve the original auto-peer error; both failed CI attempts remain.
+The release archive changes only package.json and README from the independently
+checked package; all runtime source bytes are identical (recorded comparison).
