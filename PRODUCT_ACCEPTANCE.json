@@ -27,7 +27,7 @@
     "freshRegistryLocal": "BLOCKED_TLS_EOF",
     "freshRegistryCI": "FAILED_FIRST_ATTEMPT_TOOLCHAIN_VERSION_RETEST_PENDING"
   },
-  "archiveSha256": "52504e3b6e7754753c08b15eedcceb677e050910154033639c0320bc435de83c",
+  "archiveSha256": "a1e02c25d7ded2ab184bc4cb6713b4c58ff3dd6afd5b762c5bba33a165d653c2",
   "limitations": [
     "Product behavior, not method superiority",
     "Trusted providers",
@@ -62,6 +62,12 @@
         "21 DSH profiles",
         "exact tarball"
       ]
+    },
+    {
+      "id": 34859657539,
+      "commit": "bc22cdfda6a8193db91f42121a1e9857f2582ef4",
+      "status": "FAIL",
+      "cause": "Changing pnpm alone did not repair transitive prerelease peer ranges; ERR_PNPM_NO_MATCHING_VERSION dsh-scope >=0.1.2 <0.2.0-0"
     }
   ]
 }

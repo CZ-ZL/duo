@@ -8,7 +8,8 @@ DUO packages a bounded optimization lifecycle as Cordis services inside DeepSeek
 
 Requires Linux, Node 24+ and an existing DSH installation. Verified host target: DSH 0.1.2-rc.1 / Cordis 4.0.2. Native runtime and public examples need no Python.
 
-From the source distribution, `cd dsh-plugin && npm pack --offline --ignore-scripts` creates the package. Install the reviewed tarball into an authorized profile:
+From the source distribution, `cd dsh-plugin && npm pack --offline --ignore-scripts` creates the package. Install the reviewed tarball into an authorized profile using the tested
+pnpm 11.24.0 installation toolchain:
 
 ```sh
 dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.5.0.tgz

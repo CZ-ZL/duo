@@ -38,3 +38,14 @@ then failed pnpm 10.17.1 auto-peer installation: no matching dsh-invariants
 >=0.1.2 <0.2.0-0. Local pnpm is 11.24.0. Align the CI version and retest before
 claiming installation fixed. Installation now runs before expensive suites;
 all original gates remain mandatory. The package/runtime bytes are unchanged.
+
+Peer metadata inspection independently reproduced another packaging defect:
+^0.1.1-rc.1 did not admit the actual tested dsh-tools 0.1.2-rc.1. Corrected
+the declaration to ^0.1.2-rc.1 and added semantic checks for every package peer
+against the installed host. peer-metadata-red retains the false result; the
+new package check must pass all six peers. No native JS/runtime changed.
+
+CI 34859657539: pnpm alignment alone did not repair peer resolution (dsh-scope
+>=0.1.2 <0.2.0-0). Preserve this failed hypothesis. The subsequent package peer
+correction passes the local six-peer semantic check; fresh installation remains
+to be verified. Repository/support metadata now points to the actual private repo.

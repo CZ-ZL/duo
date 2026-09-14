@@ -9,7 +9,9 @@ dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.5.0.
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
-This forwards installation to the profile package manager and may access the registry. Verify its exit status and bundle registration. It does not configure a Calling Agent model, grant permissions or execute an experiment. The host profile must supply an application and tools.
+This forwards installation to the profile package manager and may access the registry. Verify its exit status and bundle registration. It does not configure a Calling Agent model, grant permissions or execute an experiment. The host profile must supply an application and tools. The tested installation
+toolchain uses pnpm 11.24.0. Peer declarations are checked against the actual
+host in CI; earlier installation failures remain in the source acceptance report.
 
 The default bundle exposes onboarding and defers execution until work providers are supplied. No synthetic research fixture is enabled. Existing row IDs remain for compatibility; duo-controller/observer/tool rows are disabled because duo-runtime composes those existing services when dependencies are available.
 

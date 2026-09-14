@@ -84,7 +84,7 @@
   ],
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
-    "@deepseek-ai/dsh-tools": "^0.1.1-rc.1",
+    "@deepseek-ai/dsh-tools": "^0.1.2-rc.1",
     "@deepseek-ai/dsh-llm": "^0.1.2-rc.1",
     "@deepseek-ai/dsh-system-prompt": "^0.1.2-rc.1",
     "@deepseek-ai/schemastery": "^3.18.0",
@@ -144,5 +144,14 @@
   },
   "bin": {
     "duo": "./bin/duo.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CZ-ZL/duo.git",
+    "directory": "dsh-plugin"
+  },
+  "homepage": "https://github.com/CZ-ZL/duo#readme",
+  "bugs": {
+    "url": "https://github.com/CZ-ZL/duo/issues"
   }
 }

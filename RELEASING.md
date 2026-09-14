@@ -27,7 +27,7 @@ acceptance for new code. A release does not establish method superiority.
 
 ## Compatibility
 
-Tested host target: DSH 0.1.2-rc.1, Cordis 4.0.2, Node 24.14.1 on Linux.
+Tested host target: DSH 0.1.2-rc.1, Cordis 4.0.2, Node 24.14.1 and pnpm 11.24.0 on Linux.
 DSH remains a developer preview; recheck compatibility before host upgrades.
 Target identity/projection is adapter-owned in 0.5.0. Old plans bind the previous
 policy/provider versions and must be inspected and re-planned; do not resume a

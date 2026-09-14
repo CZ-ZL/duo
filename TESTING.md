@@ -18,14 +18,14 @@ bash scripts/release_gate.sh /tmp/new-duo-release-check
 ```
 
 This runs every native test, the self-contained Python checks, generated-doc
-consistency, 21 isolated compatibility DSH CLI scenarios, tarball inspection,
+consistency, 21 isolated compatibility DSH CLI scenarios, tarball and host peer-range inspection,
 actual `dsh plugin add` in a fresh profile/dependency store, and 10 public example
 profiles (55 assertions over 80 public operations). The historical `packaged`
 scenario explicitly enables the retained fixture; default installation does not.
 Public examples measure actual local text hygiene, not model or method quality.
 
 Every stage retains complete logs. A failing stage fails the gate. The output
-directory must be new. Node, pnpm and DSH must be available. Package installation
+directory must be new. Node, pnpm 11.24.0 and DSH must be available. Package installation
 may access the dependency registry with bounded timeouts and no retries/scripts;
 no model credentials or model calls are needed. CI installs pinned verification
 dependencies in its disposable runner. Nothing is published to npm.
