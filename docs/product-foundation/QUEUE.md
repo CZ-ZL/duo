@@ -14,9 +14,12 @@ Audit follow-up (2026-09-16): [F01 repair](F01_REPAIR.md) is locally verified:
 14 profiles. All 8 old workflow artifacts were downloaded and signature-scanned.
 The rebuilt artifact has its own hash and evidence. Current architecture,
 bilingual diagrams, sources and documentation/script maps are organized without
-moving legacy exports or altering closed experiments. Next: exact-code private CI
-for fresh-store installation and dependency advisories, then matching receipts.
-Public visibility remains unauthorized. No new benchmark or task search required.
+moving legacy exports or altering closed experiments. Private code commit
+`80f06ee` passed [CI 35001366148](https://github.com/CZ-ZL/duo/actions/runs/35001366148):
+fresh-store installation, complete product gate and both dependency advisory
+queries passed. Package hash matches local verification. Technical release
+checks and private source delivery are complete; public visibility remains
+unauthorized. No new benchmark or task search is required.
 
 Status: COMPLETE (supported product scope). Baseline: 0.4.0 / `6729d4c`; repository `CZ-ZL/duo`, private, branch main (remote verified 2026-09-14). Target: a frozen, supported 0.5.0 product foundation. Existing research Goals/results remain closed and unchanged. No method/model research or paid requests in this queue.
 

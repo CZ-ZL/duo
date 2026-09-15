@@ -53,7 +53,7 @@ node dsh-plugin/bin/duo.mjs call --root /tmp/duo-demo --tool dualloop_report --a
 
 ## 安装到自己的 DSH profile
 
-[私有 v0.6.0 Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) 保留为历史版本。当前源码构建 **0.6.1 本地待发布版本**，包含原版修复入场与打包准备示例；进度见[有限发布清单](docs/product-foundation/RELEASE_CLOSEOUT.md)。本地包不等于已经上传 GitHub：
+[私有 v0.6.0 Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) 仍是最近的带标签版本。**0.6.1 候选源码及已验证的包已上传私有仓库**，对应的 [CI 已通过并保存安装包](https://github.com/CZ-ZL/duo/actions/runs/35001366148)。这不代表公开发布或 npm 发布；见[当前验收收据](PRE_PUBLICATION_EVIDENCE.json)。也可以在本地构建同一安装包：
 
 ```sh
 cd dsh-plugin

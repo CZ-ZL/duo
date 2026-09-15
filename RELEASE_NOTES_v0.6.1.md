@@ -1,6 +1,7 @@
 # DUO 0.6.1 — bounded product repairs
 
-Status: local release candidate, not published. The private v0.6.0 release and
+Status: private source and CI artifact delivered; not publicly released or tagged.
+The private v0.6.0 release and
 its evidence remain unchanged. See the [pre-publication contract](docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)
 and [F01 follow-up](docs/product-foundation/F01_REPAIR.md) for the
 current release decision; the [initial audit](docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md) remains historical. A successful old CI badge does not verify this candidate.
@@ -63,9 +64,16 @@ They support unchanged journeys; changed paths have scripted installed-DSH
 acceptance, not a fresh independent Agent trial. These local controls establish
 product behavior, not optimization quality.
 
-Fresh dependency-store installation remains blocked locally by registry fetch
-failure. Cached-host installation is separate passing evidence. Exact-code
-private CI will also retain development and host dependency advisory reports;
-access failures and unresolved high/critical findings fail that check. The
-private upload is authorized, while public visibility and npm publication are
-not. No paid model requests were introduced.
+Local fresh-store attempts remain failed with registry fetch errors. The
+[exact-code CI](https://github.com/CZ-ZL/duo/actions/runs/35001366148) at
+`80f06eea5161791585f05cdc6639cd328bb57bf7` passed the complete gate, including
+fresh-store installation and the same native/Python/installed/host counts above.
+Both development and installed-host npm advisory reports returned zero
+advisories. The downloaded CI tarball matches the local SHA256; its artifact
+scan covered 462 files/members with no sensitive-pattern hits.
+
+Later documentation-only receipts and navigation edits preserve all tested
+runtime/package bytes. The source and artifact are in the private repository;
+no v0.6.1 tag, public visibility change or npm publication was performed. Prior
+failures and the runner's action-runtime warning remain recorded. No paid model
+requests were introduced.

@@ -1,9 +1,9 @@
 # Product release procedure
 
-0.6.1 is the current local release candidate; 0.6.0 remains the prior published
-private release. Current support is recorded in CURRENT_STATUS.md. The
+0.6.1 candidate source and a verified CI artifact are delivered privately;
+0.6.0 remains the last tagged private release. Current support is recorded in CURRENT_STATUS.md. The
 [pre-publication acceptance contract](docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)
-and [audit](docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md) govern this candidate's
+and [current follow-up](docs/product-foundation/F01_REPAIR.md) govern this candidate's
 release decision; docs/slow-evidence-strategy/ACCEPTANCE.json is the sealed 0.6.0 receipt.
 PRODUCT_ACCEPTANCE.json retains the sealed 0.5.0 Product Foundation receipt. The existing channel
 is the private CZ-ZL/duo repository. No npm registry publication is authorized.

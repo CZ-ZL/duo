@@ -16,8 +16,9 @@
   attribution and baseline-repair CI evidence collection.
 
 See [0.6.1 release notes](RELEASE_NOTES_v0.6.1.md) for exact artifact and evidence
-limits. Fresh-registry installation and matching release CI remain required;
-local preparation does not constitute publication. Historical results are unchanged.
+limits. Exact-code private CI passed fresh-store installation, the complete
+product gate and dependency advisory queries. Public exposure is not authorized;
+no v0.6.1 tag or npm publication was made. Historical results are unchanged.
 
 ## 0.6.0 — Slow evidence strategy and product repairs
 

@@ -1,10 +1,10 @@
 {
   "version": "0.6.1",
-  "status": "LOCAL_PRODUCT_CHECKS_PASS_CI_PENDING",
+  "status": "TECHNICAL_RELEASE_CHECKS_PASS_PUBLIC_EXPOSURE_NOT_AUTHORIZED",
   "auditDate": "2026-09-16",
   "baseCommit": "6bca9cb6c2a9b4fc88c02e699c1a631d6d7f2f66",
-  "releaseCodeCommit": null,
-  "exactVersionCiUrl": null,
+  "releaseCodeCommit": "80f06eea5161791585f05cdc6639cd328bb57bf7",
+  "exactVersionCiUrl": "https://github.com/CZ-ZL/duo/actions/runs/35001366148",
   "publicVisibilityAuthorized": false,
   "published": false,
   "package": {
@@ -54,12 +54,46 @@
       "filesAndArchiveMembers": 1573,
       "sensitivePatternHits": 0,
       "errors": 0
+    },
+    "ci": {
+      "status": "PASS",
+      "releaseGate": "PASS",
+      "freshRegistryInstall": "PASS",
+      "nativePassed": 340,
+      "pythonProductPassed": 451,
+      "researchDeselected": 86,
+      "installedPublicChecks": 73,
+      "installedPublicSteps": 97,
+      "installedProfiles": 14,
+      "slowChecks": 31,
+      "baselineRepairCases": 5,
+      "hostProfiles": 21,
+      "tarballMatchesLocal": true,
+      "developmentAdvisories": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "hostAdvisories": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencyCounts": {
+        "development": 4,
+        "host": 585
+      },
+      "artifactScanMembers": 462,
+      "artifactSensitivePatternHits": 0
     }
   },
   "openItems": [
-    "FRESH_REGISTRY_INSTALL",
-    "DEPENDENCY_ADVISORY_QUERY",
-    "EXACT_CODE_CI_AND_DELIVERY_RECEIPTS",
     "EXPLICIT_PUBLIC_VISIBILITY_AUTHORIZATION"
   ],
   "newExternalModelRequests": 0,
@@ -72,5 +106,11 @@
     "Signature scans are not security certification",
     "Changed identity/control paths have scripted installed-DSH acceptance, not a fresh independent Agent trial",
     "No method superiority claim"
+  ],
+  "privateSourceDelivered": true,
+  "releaseTagCreated": false,
+  "documentationFollowUp": "Later documentation-only receipt/navigation commit; all 69 package members retain the exact CI-tested bytes.",
+  "knownMaintenance": [
+    "Actions emitted a non-blocking Node 20 implementation deprecation warning while running successfully under enforced Node 24."
   ]
 }

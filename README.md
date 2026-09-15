@@ -53,7 +53,7 @@ Use `--example evaluate`, `dual`, `byo`, `replace`, `warm` or `custom` for other
 
 ## Install in your own DSH profile
 
-The [private v0.6.0 release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) remains historical. This checkout builds the local **0.6.1 release candidate**, including baseline repair and packaged preparation controls; see [the bounded release status](docs/product-foundation/RELEASE_CLOSEOUT.md). A local build is not a GitHub upload receipt:
+The [private v0.6.0 release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) remains the last tagged release. **0.6.1 candidate source and its verified package are available in the private repository**, with [passing exact-code CI and its artifact](https://github.com/CZ-ZL/duo/actions/runs/35001366148). This is not a public release or npm publication; see [the current receipt](PRE_PUBLICATION_EVIDENCE.json). To build the same package locally:
 
 ```sh
 cd dsh-plugin

@@ -1,5 +1,10 @@
 # Calling a configured native DUO plugin
 
+This retained guide covers the earlier explicitly configured persona example.
+Current default usage, other Targets and evidence-mode negotiation are documented
+in [AGENT_GUIDE.md](AGENT_GUIDE.md) and [CURRENT_STATUS.md](CURRENT_STATUS.md).
+The example's persona requirement is not a requirement of the DUO Core.
+
 The profile supplies a persona, immutable objective contract, generator,
 executor and evaluator. Use the native tools to discover the actual composition.
 The native API is 2; experiment JSON version is 1. Do not modify protected

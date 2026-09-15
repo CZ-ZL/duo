@@ -1,5 +1,11 @@
 # Native comparison and Calling Agent acceptance
 
+Historical research/acceptance entry points. For current product verification
+use [TESTING.md](TESTING.md); for first use read the
+[Agent Guide](AGENT_GUIDE.md) and [local examples](RELEASE_QUICKSTART.md).
+These comparison commands are not required to install or validate the product.
+Method research is paused; real-model work needs a separate authorization.
+
 Both entries reuse the existing packed DSH plugin and an already cached DSH CLI.
 They stage new named profiles below the supplied output directory. No install,
 global profile change, production persona modification or legacy loop is used.
