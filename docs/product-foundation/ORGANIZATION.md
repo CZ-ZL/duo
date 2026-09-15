@@ -10,7 +10,7 @@ source layout, with no method research or runtime algorithm change.
 |---|---|---|
 | H1 Entry points | Research inputs grouped; duplicate root guides consolidated; current links and source consumers resolve | COMPLETE: root 22 → 17 entries (9 files, 8 directories); 22 mapped paths |
 | H2 Bilingual homepage | Product purpose, primary navigation and local start precede detailed verification/history; two-loop diagram and attribution retained | COMPLETE: each README 139 → 83 lines; four primary navigation links |
-| H3 Verification and private delivery | Frozen input bytes and package identity preserved; relevant checks and private CI pass; evidence recorded | LOCAL PASS; private CI pending |
+| H3 Verification and private delivery | Frozen input bytes and package identity preserved; relevant checks and private CI pass; evidence recorded | COMPLETE: [CI 35008412237](https://github.com/CZ-ZL/duo/actions/runs/35008412237) passed at 5ec2710; [receipt](../releases/0.6.1/HOMEPAGE_EVIDENCE.json) |
 
 Local evidence: affected Python tests 119 PASS /1 research deselected; canonical
 guide check 1 PASS; actual host compatibility 21 profiles PASS; format and generated

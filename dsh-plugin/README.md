@@ -52,4 +52,4 @@ Advanced exports include /target, /config-target, /model-generator, /structured-
 
 The existing /offline-fixture export remains explicitly synthetic compatibility material, disabled by default. The /legacy API retains its Python/YAML contracts and separate ledgers. Current support does not imply method superiority, automatic adoption, arbitrary recovery, OS sandboxing or cross-platform compatibility.
 
-This 0.6.1 build is a local release candidate until a matching private GitHub release receipt exists; it is not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.
+This 0.6.1 build is a source release candidate; use the repository release index for matching verification and archive hashes. It is not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.

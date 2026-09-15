@@ -2,10 +2,11 @@
 
 ## Reporting a vulnerability
 
-Do not open a public issue for a suspected vulnerability. A dedicated reporting
-channel has not been established yet; until one is published, report privately
-to the repository owner through the same channel you received this software
-from. There is no bug bounty and no response-time commitment.
+Do not open a public issue for a suspected vulnerability. Use
+[GitHub private vulnerability reporting](https://github.com/CZ-ZL/duo/security/advisories/new)
+for this repository. If the private form is unavailable, withhold exploit details
+and sensitive data; a public issue may only request a private reporting channel.
+There is no bug bounty and no response-time commitment.
 
 ## Security boundaries
 

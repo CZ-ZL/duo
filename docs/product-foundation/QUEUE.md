@@ -1,10 +1,9 @@
 # DUO Product Foundation & Productization
 
-Current follow-up: [homepage organization](ORGANIZATION.md#homepage-follow-up--2026-09-16).
-Research inputs are grouped, duplicate root guides consolidated, and bilingual
-homepages focus on first use. Verification is tracked in the bounded follow-up;
-public exports and historical results stay intact. Earlier closures below remain
-historical.
+Current follow-up: [final public-source audit](FINAL_PUBLIC_AUDIT.md), authorized
+by the owner together with public visibility after checks. The
+[homepage organization](ORGANIZATION.md#homepage-follow-up--2026-09-16) passed
+CI35008412237 and is complete. Earlier closures below remain historical.
 
 Current maintenance: [bounded 0.6.1 closeout](./RELEASE_CLOSEOUT.md) tracks preparation
 package repairs, CNY0/warm guidance and a finite release gate. The foundation

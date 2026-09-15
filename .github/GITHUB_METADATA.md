@@ -1,11 +1,14 @@
 # Repository presentation — 0.6.1 candidate
 
-Name: duo. Destination: CZ-ZL/duo, private, main.
+Name: duo. Destination: CZ-ZL/duo, main. Public exposure is owner-authorized,
+pending the final audit; current visibility remains private until its receipt.
 Description: Composable DSH-native evaluation and optimization with explicit evidence modes, bounded budgets and traceable results.
 Homepage: README. Languages: README.md (English), README.zh-CN.md (Chinese).
 Documentation: docs/README.md. Current architecture: docs/ARCHITECTURE.md.
 Capabilities: dsh-plugin/CURRENT_STATUS.md. Verification index: docs/releases/README.md.
-Current follow-up: docs/product-foundation/ORGANIZATION.md.
+Current follow-up: docs/product-foundation/FINAL_PUBLIC_AUDIT.md.
+Homepage verified code: 5ec271077c8007f75164e96364545dddb07de3b1.
+Homepage CI: https://github.com/CZ-ZL/duo/actions/runs/35008412237.
 Organization verified code: e674101ea2f344cb43283d028320854103de644e.
 Organization CI: https://github.com/CZ-ZL/duo/actions/runs/35005165474.
 Current receipt: docs/releases/0.6.1/ORGANIZATION_EVIDENCE.json.
@@ -14,7 +17,7 @@ Earlier F01 CI: https://github.com/CZ-ZL/duo/actions/runs/35001366148.
 Sources and licenses: docs/THIRD_PARTY_NOTICES.md.
 Last tagged release: v0.6.0; a source upload alone is not a new release.
 Research evidence remains separate; no general quality/cost advantage is claimed.
-No npm registry publication or repository visibility change.
+No npm registry publication. The final audit records the separate public grant.
 
 ## Historical presentation record
 

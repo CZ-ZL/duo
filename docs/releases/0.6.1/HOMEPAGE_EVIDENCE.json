@@ -1,0 +1,81 @@
+{
+  "scope": "HOMEPAGE_ORGANIZATION",
+  "status": "COMPLETE",
+  "verifiedCodeCommit": "5ec271077c8007f75164e96364545dddb07de3b1",
+  "ciUrl": "https://github.com/CZ-ZL/duo/actions/runs/35008412237",
+  "ciConclusion": "success",
+  "packageSha256": "d9fcf1880eed7b5d5a0ba9c8c28ab90dcb4c9cac0578ac809efcaef608d84d82",
+  "packageFiles": 69,
+  "rootEntries": {
+    "before": 22,
+    "after": 17,
+    "files": 9,
+    "directories": 8
+  },
+  "readmeLines": {
+    "before": 139,
+    "after": 83
+  },
+  "ci": {
+    "nativePassed": 340,
+    "pythonProductPassed": 451,
+    "researchDeselected": 86,
+    "installedChecks": 73,
+    "installedSteps": 97,
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "hostProfiles": 21,
+    "freshDependencyStore": "PASS"
+  },
+  "local": {
+    "packageMembersByteIdentical": 69,
+    "packageSha256": "d9fcf1880eed7b5d5a0ba9c8c28ab90dcb4c9cac0578ac809efcaef608d84d82",
+    "relocatedOrConsolidatedByteIdentical": 21,
+    "sealedFilesUnchanged": 38,
+    "currentMarkdownChecked": 19,
+    "missingLinks": [],
+    "changedPythonSyntaxPassed": 14,
+    "legacyDiscoveryGuideResolves": true,
+    "rootEntriesBefore": 22,
+    "rootEntriesAfter": 17,
+    "rootFilesAfter": 9,
+    "rootDirectoriesAfter": 8,
+    "rootEntries": [
+      ".github",
+      ".gitignore",
+      ".prettierrc.json",
+      "CONTRIBUTING.md",
+      "LICENSE",
+      "README.md",
+      "README.zh-CN.md",
+      "docs",
+      "dsh-plugin",
+      "dualloop",
+      "examples",
+      "package-lock.json",
+      "package.json",
+      "pyproject.toml",
+      "research",
+      "scripts",
+      "tests"
+    ],
+    "newModelRequests": 0,
+    "costCny": 0
+  },
+  "failures": [
+    "One stale release-index link found by first local audit; corrected and current links rechecked"
+  ],
+  "sourceScan": {
+    "currentFiles": 439,
+    "commits": 20,
+    "blobs": 814,
+    "unresolvedCredentialHits": 0
+  },
+  "limits": [
+    "Before the separate final-publication security/documentation updates",
+    "No fresh independent Agent run or method result",
+    "Frozen paths retain original-commit meaning"
+  ],
+  "modelRequests": 0,
+  "costCny": 0
+}

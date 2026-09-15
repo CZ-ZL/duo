@@ -57,4 +57,4 @@ Target、Generator、Executor、Evaluator、Comparator、Gate、Feedback 使用�
 - warm start 不继承 final 数据、费用或授权；不同证据模式的历史只能保留允许的想法。
 - 不自动采用候选，不提供跨平台保证，不全局发布 npm。历史 legacy API 与显式 fixture export 保留，fixture 默认关闭。
 
-0.6.1 当前为本地待发布构建，是否已上传以对应 GitHub 回执为准。历史源码、验收记录和研究归档位于 [私有 GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](./LICENSE)。
+0.6.1 当前为源码候选版本，验证状态与安装包哈希以仓库发布索引为准。历史源码、验收记录和研究归档位于 [GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](./LICENSE)。

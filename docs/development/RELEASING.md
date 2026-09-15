@@ -1,17 +1,19 @@
 # Product release procedure
 
-0.6.1 candidate source and a verified CI artifact are delivered privately;
-0.6.0 remains the last tagged private release. Current support is recorded in [current capabilities](../../dsh-plugin/CURRENT_STATUS.md). The
+0.6.1 is the current source candidate; 0.6.0 remains the last tagged release.
+The [release index](../releases/README.md) records current verification and
+visibility. Current support is recorded in [current capabilities](../../dsh-plugin/CURRENT_STATUS.md). The
 [pre-publication acceptance contract](../product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)
-and [current follow-up](../product-foundation/F01_REPAIR.md) govern this candidate's
+and [final public-source audit](../product-foundation/FINAL_PUBLIC_AUDIT.md) govern this candidate's
 release decision; docs/slow-evidence-strategy/ACCEPTANCE.json is the sealed 0.6.0 receipt.
-PRODUCT_ACCEPTANCE.json retains the sealed 0.5.0 Product Foundation receipt. The existing channel
-is the private CZ-ZL/duo repository. No npm registry publication is authorized.
+docs/releases/0.5.0/ACCEPTANCE.json retains the sealed 0.5.0 Product Foundation receipt.
+The destination is CZ-ZL/duo. No npm registry publication is authorized.
 The earlier 0.3/0.4 preparation and experiments remain historical evidence, not
 acceptance for new code. A release does not establish method superiority.
 
 1. Review the actual checkout and remote; preserve concurrent edits. Confirm the
-   destination is still private and do not push the parent workspace history.
+   destination and its visibility match the current authorization; do not push
+   the parent workspace history.
 2. Review source and tarball contents. Exclude credentials, private profiles,
    raw runs, journals, final data and account ledgers. Keep sanitized research
    summaries separate from current product instructions.
