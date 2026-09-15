@@ -3,14 +3,17 @@
 Current package line: **0.6.1 candidate**. Last tagged private release: **v0.6.0**.
 The repository remains private; there is no npm publication.
 
-The current directory-organization follow-up is undergoing exact-code CI.
-Its [queue and report](../product-foundation/ORGANIZATION.md) distinguish fresh
-verification from the earlier receipts below. All runtime JavaScript, model
+The directory-organization follow-up is **complete**:
+[exact-code CI passed](https://github.com/CZ-ZL/duo/actions/runs/35005165474) at
+`e674101ea2f344cb43283d028320854103de644e`.
+Read the [current receipt](0.6.1/ORGANIZATION_EVIDENCE.json) and
+[queue/report](../product-foundation/ORGANIZATION.md). All runtime JavaScript, model
 configuration, public exports and historical experimental outcomes are unchanged.
 Package documentation changes receive a new artifact hash.
 
 | Version / stage | Notes and evidence |
 |---|---|
+| 0.6.1 directory organization — current | [Receipt](0.6.1/ORGANIZATION_EVIDENCE.json), [migration/compatibility](../development/REPOSITORY_LAYOUT.md), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35005165474) |
 | 0.6.1 identity repair before directory migration | [Notes](0.6.1/RELEASE_NOTES.md), [sealed F01 receipt](0.6.1/F01_EVIDENCE.json), [passing CI](https://github.com/CZ-ZL/duo/actions/runs/35001366148) |
 | 0.6.0 Slow evidence semantics | [Notes](0.6.0/RELEASE_NOTES.md), [acceptance](../slow-evidence-strategy/ACCEPTANCE.json) |
 | 0.5.0 Product Foundation | [Notes](0.5.0/RELEASE_NOTES.md), [acceptance](0.5.0/ACCEPTANCE.json) |

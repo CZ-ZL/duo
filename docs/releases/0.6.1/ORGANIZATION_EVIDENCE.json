@@ -1,0 +1,103 @@
+{
+  "version": "0.6.1",
+  "scope": "REPOSITORY_ORGANIZATION_NOT_METHOD_RESEARCH",
+  "status": "COMPLETE_PRIVATE_DELIVERY",
+  "date": "2026-09-16",
+  "baseCommit": "1abb2e154bbeca6dc12c15d56925c3ecd8372c49",
+  "verifiedCodeCommit": "e674101ea2f344cb43283d028320854103de644e",
+  "ciUrl": "https://github.com/CZ-ZL/duo/actions/runs/35005165474",
+  "ciConclusion": "success",
+  "layout": {
+    "rootFiles": {
+      "before": 36,
+      "after": 13
+    },
+    "scriptsTopFiles": {
+      "before": 78,
+      "after": 2
+    },
+    "nativeTopFiles": {
+      "before": 79,
+      "after": 43
+    }
+  },
+  "mappedPaths": 160,
+  "identicalDuplicateConsolidated": 1,
+  "historicalFilesByteIdentical": 81,
+  "movedFileModesPreserved": true,
+  "runtimeJsAndPublicExportsUnchanged": true,
+  "package": {
+    "files": 69,
+    "changedMembers": "5 Markdown documents only",
+    "sha256": "d9fcf1880eed7b5d5a0ba9c8c28ab90dcb4c9cac0578ac809efcaef608d84d82"
+  },
+  "ci": {
+    "freshRegistryInstall": "PASS",
+    "native": {
+      "passed": 340,
+      "failed": 0
+    },
+    "pythonProduct": {
+      "passed": 451,
+      "failed": 0,
+      "researchDeselected": 86
+    },
+    "publicInstalled": {
+      "checks": 73,
+      "steps": 97,
+      "profiles": 14,
+      "status": "PASS"
+    },
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "hostProfiles": 21,
+    "developmentAdvisories": 0,
+    "hostAdvisories": 0,
+    "artifactScanMembers": 462,
+    "artifactSensitivePatternHits": 0
+  },
+  "earlierLocalFailures": {
+    "collection": {
+      "errors": 23,
+      "cause": "Duplicated research path prefix; corrected before normal collection"
+    },
+    "productRun": {
+      "passed": 450,
+      "failed": 1,
+      "researchDeselected": 86,
+      "cause": "Caller copied guide from previous root path"
+    },
+    "affectedRetest": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "currentDocumentLinks": {
+    "checked": 52,
+    "missing": 0
+  },
+  "scriptSyntaxChecks": 76,
+  "sourceScan": {
+    "files": 438,
+    "priorCommits": 18,
+    "blobs": 668,
+    "unresolvedCredentialPatternHits": 0
+  },
+  "newModelRequests": 0,
+  "newModelCostCny": 0,
+  "visibility": "PRIVATE",
+  "publicVisibilityAuthorized": false,
+  "npmPublished": false,
+  "releaseTagCreated": false,
+  "migrationMap": "docs/development/REPOSITORY_MIGRATION.json",
+  "report": "docs/product-foundation/ORGANIZATION.md",
+  "documentationFollowUp": "Receipt/index only; no tested package member changes",
+  "limits": [
+    "Historical paths refer to original recorded commits; no automatic historical execution or budget reuse",
+    "Source-only script paths changed; public package exports remain compatible",
+    "Research tests needing private archives remain excluded",
+    "No fresh independent Agent judgment or method superiority claim",
+    "Signature/advisory scans are bounded point-in-time checks",
+    "Known non-blocking Actions runtime warning retained"
+  ]
+}
