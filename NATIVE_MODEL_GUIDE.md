@@ -1,5 +1,11 @@
 # Native minimum model optimization
 
+This is the historical source-level model/research entry, not the default
+installation path. Referenced `runs/` artifacts are retained in the private local
+archive and are not distributed here. Current product instructions are in
+[the Agent Guide](AGENT_GUIDE.md) and [CURRENT_STATUS.md](CURRENT_STATUS.md).
+No old budget or example grants new paid authority.
+
 The same entry also accepts an existing native contract via `--contract`, its
 explicit `--dataset`, an ordinary `--profile-patch`, repeatable local
 `--profile-file` modules and `--model-config`. A configured evaluation-only run

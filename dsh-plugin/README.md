@@ -1,4 +1,4 @@
-# @dual-loop/dsh-plugin 0.6.0
+# @dual-loop/dsh-plugin 0.6.1
 
 English · [简体中文](README.zh-CN.md)
 
@@ -7,7 +7,7 @@ DSH-native evaluation and optimization services. Read [CURRENT_STATUS.md](CURREN
 Install a reviewed tarball into an existing authorized DSH profile (Linux, Node24+, tested DSH0.1.2-rc.1 / Cordis4.0.2):
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.0.tgz
+dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.1.tgz
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
@@ -52,4 +52,4 @@ Advanced exports include /target, /config-target, /model-generator, /structured-
 
 The existing /offline-fixture export remains explicitly synthetic compatibility material, disabled by default. The /legacy API retains its Python/YAML contracts and separate ledgers. Current support does not imply method superiority, automatic adoption, arbitrary recovery, OS sandboxing or cross-platform compatibility.
 
-This release is delivered through the private GitHub repository, not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.
+This 0.6.1 build is a local release candidate until a matching private GitHub release receipt exists; it is not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.

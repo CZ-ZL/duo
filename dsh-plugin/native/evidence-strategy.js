@@ -206,7 +206,8 @@ export function evidenceOutcome(strategy, events) {
           )),
     )
     .flatMap((d) => d.evidence_gaps ?? [])
-  const candidateEvidence = additional_evidence_acquired.some((r) => r.candidateId !== 'baseline')
+  const baselineId = events.find((e) => e.kind === 'plan')?.plan?.baseline?.id ?? 'baseline'
+  const candidateEvidence = additional_evidence_acquired.some((r) => r.candidateId !== baselineId)
   const limitations = [
     ...strategy.limitations,
     ...(strategy.optimization_mode === 'dual_loop' && !candidateEvidence

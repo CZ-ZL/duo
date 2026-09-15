@@ -1,0 +1,80 @@
+{
+  "version": "0.6.1",
+  "status": "NOT_READY_FOR_PUBLICATION",
+  "auditDate": "2026-09-16",
+  "baseCommit": "6bca9cb6c2a9b4fc88c02e699c1a631d6d7f2f66",
+  "releaseCodeCommit": null,
+  "exactVersionCiUrl": null,
+  "publicVisibilityAuthorized": false,
+  "published": false,
+  "package": {
+    "name": "dual-loop-dsh-plugin-0.6.1.tgz",
+    "sha256": "5fe28bdf5d041e6c2c955afde2737b04dc25610d2909663f8d68e4eff6e8ebf4",
+    "files": 69,
+    "runtimeChangedByThisAudit": false
+  },
+  "freshVerification": {
+    "native": {
+      "passed": 333,
+      "failed": 0
+    },
+    "pythonProduct": {
+      "passed": 451,
+      "failed": 0,
+      "researchDeselected": 86
+    },
+    "quickstart": {
+      "status": "PASS",
+      "calls": 5,
+      "operations": 2,
+      "modelRequests": 0,
+      "costCny": 0,
+      "mode": "evaluate_only",
+      "scope": "New quickstart through source public CLI into isolated real DSH profile; not independent Agent acceptance or fresh-registry installation"
+    },
+    "baselineIdentityProbe": {
+      "status": "DEFECT_REPRODUCED",
+      "unchangedControl": {
+        "baselineId": "baseline",
+        "status": "completed",
+        "operations": 6
+      },
+      "changedId": {
+        "baselineId": "original",
+        "planAccepted": true,
+        "status": "failed",
+        "error": "DUO_EVIDENCE_INVALID",
+        "operations": 8
+      },
+      "costCny": 0
+    }
+  },
+  "earlierEvidenceReused": {
+    "publicInstalledChecks": 63,
+    "publicInstalledSteps": 85,
+    "publicInstalledProfiles": 11,
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "hostProfiles": 21,
+    "scope": "Same frozen tarball and unchanged relevant source inputs; not freshly rerun scenario suites"
+  },
+  "openItems": [
+    "F01_CUSTOM_BASELINE_ID_FINAL_AND_REPORT",
+    "FRESH_REGISTRY_INSTALL",
+    "DEPENDENCY_ADVISORY_QUERY",
+    "EIGHT_OLD_WORKFLOW_ARTIFACT_CONTENT_SCANS",
+    "EXACT_CODE_CI_AND_RELEASE_RECEIPTS",
+    "EXPLICIT_PUBLIC_VISIBILITY_AUTHORIZATION"
+  ],
+  "newExternalModelRequests": 0,
+  "newModelCostCny": 0,
+  "report": "docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md",
+  "acceptanceContract": "docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md",
+  "localRawEvidence": "Retained privately under dualloop/runs/pre-publication-audit-20260916; not distributed",
+  "limitations": [
+    "Signature scan is not security certification",
+    "Earlier Agent receipts are not a fresh independent Agent test of 0.6.1",
+    "Root npm advisory attempt does not cover the complete host runtime dependency graph",
+    "No method superiority claim"
+  ]
+}

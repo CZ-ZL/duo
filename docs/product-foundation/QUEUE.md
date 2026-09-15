@@ -1,5 +1,23 @@
 # DUO Product Foundation & Productization
 
+Current maintenance: [bounded 0.6.1 closeout](RELEASE_CLOSEOUT.md) tracks preparation
+package repairs, CNY0/warm guidance and a finite release gate. The foundation
+closure below remains historical and unchanged.
+
+Publication preparation: [frozen acceptance contract](PRE_PUBLICATION_ACCEPTANCE.md)
+and [repository audit](PRE_PUBLICATION_AUDIT.zh.md). This separate review preserves
+the runtime tarball and closed Goals. Public visibility and npm publication are
+not authorized by preparing release materials.
+
+Audit follow-up (2026-09-16): [F01 repair](F01_REPAIR.md) is locally verified:
+340 native /451 Python product passes; installed examples 73 checks, 97 steps,
+14 profiles. All 8 old workflow artifacts were downloaded and signature-scanned.
+The rebuilt artifact has its own hash and evidence. Current architecture,
+bilingual diagrams, sources and documentation/script maps are organized without
+moving legacy exports or altering closed experiments. Next: exact-code private CI
+for fresh-store installation and dependency advisories, then matching receipts.
+Public visibility remains unauthorized. No new benchmark or task search required.
+
 Status: COMPLETE (supported product scope). Baseline: 0.4.0 / `6729d4c`; repository `CZ-ZL/duo`, private, branch main (remote verified 2026-09-14). Target: a frozen, supported 0.5.0 product foundation. Existing research Goals/results remain closed and unchanged. No method/model research or paid requests in this queue.
 
 This queue implements the owner's 2026-09-14 productization instructions (§1–13), using existing Cordis services and file-based task tracking. Completion requires the supported product journeys, package acceptance and private GitHub CI/delivery, not benchmark benefit. No new scheduler or Goal API is created.
@@ -24,3 +42,7 @@ Closure: all required P0–P6 product acceptance conditions passed. No method
 research or optimization-benefit condition was substituted. Native runtime and
 package inputs remain identical after the final CI; closure edits are evidence
 documentation only. Research is NOT_PROVEN and PAUSED, with no automatic next Goal.
+
+Separate owner-approved follow-up (2026-09-15): [baseline quality repair](BASELINE_REPAIR.md).
+The P0–P6 closure above is historical and remains sealed; follow-up source edits
+have their own regression evidence and are not attributed to the earlier CI.

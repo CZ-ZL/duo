@@ -66,6 +66,15 @@ const components = [
   replacement: 'existing Cordis provider binding',
 }))
 export const builtinTargets = () => structuredClone(targets)
+export const baselinePolicy = () => ({
+  version: '1',
+  qualityConstraintViolation: 'continue_repair',
+  unusableEvidence: 'stop_search',
+  candidateSelection: 'unchanged_constraints_required_at_each_stage',
+  defaultComparison: 'feasible_candidates_before_infeasible_incumbent',
+  limit:
+    'No promotion of still-infeasible candidates; execution permissions, budget and final validation remain separate. Custom comparators own their comparison policy.',
+})
 export function targetCapability(kind) {
   return builtinTargets().find((t) => t.kind === kind) ?? null
 }
@@ -74,6 +83,7 @@ export function productCapabilities() {
     version: 1,
     targets: builtinTargets(),
     components: structuredClone(components),
+    baselinePolicy: baselinePolicy(),
     evidenceModes: ['high_fidelity', 'expanded_evidence', 'unavailable'],
     defaults:
       'Single-fidelity local deterministic example or caller-supplied providers. No bundled model authorization.',
@@ -82,6 +92,7 @@ export function productCapabilities() {
       'Trusted in-process providers; host owns permission enforcement.',
       'Recovery only at unchanged settled checkpoints within the original deadline.',
       'No automatic candidate adoption.',
+      'Valid baseline quality violations may enter repair; candidates must meet unchanged constraints. Invalid evidence still stops search. Inspect plan.baselinePolicy and result.baselineAssessment.',
       'Method superiority is not established by product acceptance.',
     ],
   }

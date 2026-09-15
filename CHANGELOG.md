@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.6.1 — Unreleased product repair candidate
+
+- Use Target-owned original identity in final execution, comparison and reports;
+  custom IDs no longer duplicate the baseline or inflate Slow candidate counts.
+- Clarify both feedback loops in bilingual diagrams, add a current architecture
+  and documentation/script map, and make paper/host attribution explicit.
+
+- Permit repair of valid but quality-infeasible baselines while retaining every
+  candidate constraint, authorization and final-evidence boundary.
+- Ship the evaluator controls returned by preparation; admit control-purpose
+  evidence only to evaluate-only non-final stages.
+- Clarify zero-CNY configuration and actual public warm-start fields.
+- Add a bounded pre-publication audit, release/rollback guide, missing fixture
+  attribution and baseline-repair CI evidence collection.
+
+See [0.6.1 release notes](RELEASE_NOTES_v0.6.1.md) for exact artifact and evidence
+limits. Fresh-registry installation and matching release CI remain required;
+local preparation does not constitute publication. Historical results are unchanged.
+
 ## 0.6.0 — Slow evidence strategy and product repairs
 
 Explicit evaluate/basic/dual/auto presets; source metadata, bounded acquisition

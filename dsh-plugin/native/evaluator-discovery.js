@@ -47,7 +47,12 @@ export function matchEvaluator(descriptors, objective, tier, spec) {
     issues.push('target_scope')
   if (
     selected.evidenceSource?.dataScope?.purpose &&
-    selected.evidenceSource.dataScope.purpose !== (tier === 'final' ? 'final' : 'search')
+    selected.evidenceSource.dataScope.purpose !== (tier === 'final' ? 'final' : 'search') &&
+    !(
+      spec.operation === 'evaluate' &&
+      tier !== 'final' &&
+      selected.evidenceSource.dataScope.purpose === 'control'
+    )
   )
     issues.push('data_purpose')
   const permissions = spec.permissions ?? {

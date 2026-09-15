@@ -4,7 +4,7 @@ import { Context } from '@deepseek-ai/cordis'
 import Tools from '@deepseek-ai/dsh-tools'
 import Agents from '@deepseek-ai/dsh-agent'
 import SystemPrompt from '@deepseek-ai/dsh-system-prompt'
-import { mkdtempSync, writeFileSync, readFileSync, readdirSync } from 'node:fs'
+import { mkdtempSync, writeFileSync, readFileSync, readdirSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import JsonContract from './contract.js'
@@ -40,6 +40,19 @@ function value(r) {
   assert.equal(r.isError, false, JSON.stringify(r.error))
   return r.value
 }
+test('missing-evaluator preparation points to resources present in the installable package', async (t) => {
+  const { call } = await host(t)
+  const result = value(
+    await call('dualloop_design', { draft: draft(), experimentPath: '/tmp/preparation.json' }),
+  )
+  const action = result.preparation.actions.find((item) => item.kind === 'build_evaluator')
+  const packageRoot = new URL('../', import.meta.url)
+  const manifest = JSON.parse(readFileSync(new URL('package.json', packageRoot), 'utf8'))
+  for (const key of ['example', 'controlExample', 'controlContract', 'controlProfile']) {
+    assert.ok(manifest.files.includes(action[key]), `${key}: ${action[key]} is not shipped`)
+    assert.ok(existsSync(new URL(action[key], packageRoot)), `${key}: missing resource`)
+  }
+})
 test('simple evaluate/optimize presets supply lifecycle defaults without inventing a target, objective or paid authority', async (t) => {
   const h = await host(t),
     full = draft(),

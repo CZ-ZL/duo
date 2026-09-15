@@ -58,6 +58,13 @@ def main():
             schemas = call(root, 'schemas')
             if example == 'setup':
                 check('default setup has no work providers or run tool', not any(s['name'] == 'dualloop_run' for s in schemas))
+                design = call(root, 'dualloop_design', {
+                    'preset': 'evaluate', 'experimentPath': str(root / 'experiment.json'),
+                    'draft': {'id': 'missing-measurement', 'target': {'kind': 'dsh-persona', 'path': str(root / 'target.txt')}},
+                })
+                build = next(a for a in design['preparation']['actions'] if a['kind'] == 'build_evaluator')
+                for field in ['example', 'controlExample', 'controlContract', 'controlProfile']:
+                    check('installed preparation resource exists: ' + field, (args.package / build[field]).is_file())
                 continue
             original = (root / 'target.txt').read_bytes()
             plan = call(root, 'dualloop_plan', {'view': 'summary'})
@@ -68,6 +75,7 @@ def main():
                 check('history component replaced', plan['providers']['policies']['duoFeedback']['historyOrder'] == 'recent_failures_first')
             if example == 'custom':
                 check('custom target does not require persona/config', 'content' in plan['baseline'] and 'persona' not in plan['baseline'])
+                check('custom target owns its baseline identity', plan['baseline']['id'] == 'original')
             result = call(root, 'dualloop_run', {'planDigest': plan['planDigest']})
             report = call(root, 'dualloop_report', {'runId': plan['runId']})
             before = call(root, 'dualloop_budget_status', {'runId': plan['runId']})
@@ -89,6 +97,48 @@ def main():
                 report = call(root, 'dualloop_report', {'runId': warm['runId']})
                 check('warm generation receives and records historical ids', any('Historical ideas received:' in (c['hypothesis'] or '') for c in report['candidates']))
                 check('warm does not import costs', second['historyReuse']['priorCostsImported'] is False and second['budget']['costCny'] == 0)
+
+        # Reuse the shipped custom adapter and public CLI, with its nonstandard
+        # baseline ID. Final here is a local plumbing control, not unseen data.
+        for label, generations, operation in [('retained', 0, 'optimize'),
+                                                ('selected', 1, 'optimize'),
+                                                ('evaluate-final', 0, 'evaluate')]:
+            root = init('custom', 'custom-id-' + label)
+            contract = json.loads((root / 'experiment.json').read_text())
+            contract.update(generations=generations, operation=operation,
+                            preset='evaluate' if operation == 'evaluate' else 'optimize-basic')
+            if operation == 'evaluate':
+                contract['quotas'] = {'exploit': 0, 'explore': 0, 'innovate': 0}
+            contract['final'] = {**contract['fast'], 'evaluatorId': 'local-final', 'dataId': 'local-text-final'}
+            (root / 'experiment.json').write_text(json.dumps(contract))
+            plan = call(root, 'dualloop_plan')
+            result = call(root, 'dualloop_run', {'planDigest': plan['planDigest']})
+            report = call(root, 'dualloop_report', {'runId': plan['runId']})
+            ids = ['original', 'dl-0001'] if generations else ['original']
+            check(label + ': custom baseline final identity is measured once',
+                  result['status'] == 'completed' and [r['candidateId'] for r in result['final']] == ids)
+            check(label + ': exact zero-cost operation count',
+                  result['budget']['operations'] == (9 if generations else 4) and result['budget']['costCny'] == 0)
+            check(label + ': final report preserves the reference',
+                  report['candidates'][0]['id'] == 'original' and report['candidates'][0]['final']['state'] == 'EVALUATED')
+
+        root = init('evaluate', 'evaluator-controls')
+        examples = args.package / 'examples/product'
+        contract = json.loads((examples / 'evaluator-controls-experiment.json').read_text())
+        contract['target']['path'] = str(root / 'target.txt')
+        (root / 'experiment.json').write_text(json.dumps(contract))
+        patch = root / 'dsh-home/profiles/duo-product/cordis.patch.yml'
+        rows = json.loads(patch.read_text())
+        rows += json.loads((examples / 'evaluator-controls-profile.patch.yml').read_text())
+        patch.write_text(json.dumps(rows))
+        plan = call(root, 'dualloop_plan')
+        check('packaged controls have no generator or paid permission', plan['providers']['generator'] is None and not plan['spec']['permissions']['paid'])
+        result = call(root, 'dualloop_run', {'planDigest': plan['planDigest']})
+        report = call(root, 'dualloop_report', {'runId': plan['runId']})
+        metrics = result['evaluations'][0]['metrics']
+        check('actual packaged measurement distinguishes all four frozen controls', metrics == {'control_match_rate': 1, 'controls_distinguish': True, 'sample_size': 4})
+        check('control constraints pass without a quality-benefit claim', result['measurementChecks']['fast']['verdicts']['baseline'] != 'constraint_violation' and not report['improvementProven'])
+        check('controls settle two native operations at CNY0', result['status'] == 'completed' and result['budget']['operations'] == 2 and result['budget']['costCny'] == 0)
 
         root = init('optimize', 'recovery')
         plan = call(root, 'dualloop_plan')
@@ -115,7 +165,8 @@ def main():
         call(root, 'dualloop_run', {'planDigest': plan['planDigest']}, error=True, cancel=0)
         state = call(root, 'dualloop_status', {'runId': plan['runId']})
         check('pre-dispatch cancellation creates no run/cost', state['run'] is None and state['budget'] is None)
-        save('report.json', {'status': 'PASS', 'checks': checks, 'steps': len(commands), 'profiles': 10,
+        save('report.json', {'status': 'PASS', 'checks': checks, 'steps': len(commands),
+            'profiles': sum(c['args'][0] == 'init' for c in commands),
             'modelRequests': 0, 'costCny': 0, 'implementerInterventionsDuringRun': 0,
             'evidenceKind': 'SCRIPTED_ACTUAL_DSH_PUBLIC_PACKAGE_ACCEPTANCE',
             'notClaimed': ['Independent Agent judgment', 'Model quality improvement', 'Registry install', 'Method superiority']})

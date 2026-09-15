@@ -1,5 +1,9 @@
 # Contributing
 
+Use the [documentation map](docs/README.md) and [current code boundaries](docs/ARCHITECTURE.md)
+to locate a change. The [script map](scripts/README.md) distinguishes product
+verification from retained research utilities.
+
 Read CURRENT_STATUS.md for supported persona, partial bounded configuration and
 custom adapter boundaries. Please keep fixes
 small and describe the user-visible behavior, relevant checks and remaining

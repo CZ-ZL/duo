@@ -34,6 +34,21 @@ jobs:
           echo "DUO_DSH_PACKAGE=$RUNNER_TEMP/duo-dsh/node_modules/@deepseek-ai/dsh" >> "$GITHUB_ENV"
       - name: Verify without model credentials
         run: bash scripts/release_gate.sh "$RUNNER_TEMP/duo-release-check"
+      - name: Check dependency advisories
+        if: ${{ !cancelled() }}
+        env:
+          npm_config_fetch_retries: '0'
+          npm_config_fetch_timeout: '20000'
+        run: |
+          mkdir -p "$RUNNER_TEMP/duo-release-check"
+          # Preserve both reports. Inaccessible advisory data is a failed check.
+          set +e
+          npm audit --audit-level=high --json > "$RUNNER_TEMP/duo-release-check/dependency-audit-development.json"
+          development_status=$?
+          npm --prefix "$RUNNER_TEMP/duo-dsh" audit --audit-level=high --json > "$RUNNER_TEMP/duo-release-check/dependency-audit-host.json"
+          host_status=$?
+          printf '{"developmentExitCode":%s,"hostExitCode":%s}\n' "$development_status" "$host_status" > "$RUNNER_TEMP/duo-release-check/dependency-audit-status.json"
+          test "$development_status" -eq 0 && test "$host_status" -eq 0
       - name: Retain verification evidence
         if: ${{ !cancelled() }}
         timeout-minutes: 3
@@ -55,4 +70,7 @@ jobs:
             ${{ runner.temp }}/duo-release-check/public-examples/*.txt
             ${{ runner.temp }}/duo-release-check/slow-evidence/*.json
             ${{ runner.temp }}/duo-release-check/slow-evidence/*.txt
+            ${{ runner.temp }}/duo-release-check/baseline-repair/*.json
+            ${{ runner.temp }}/duo-release-check/baseline-repair/*.stdout
+            ${{ runner.temp }}/duo-release-check/baseline-repair/*.stderr
           if-no-files-found: warn

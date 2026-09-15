@@ -1,0 +1,16 @@
+{
+  "source": "BigCodeBench v0.1.4; see ../code-contract-audit/PROVENANCE.json",
+  "license": "Apache-2.0",
+  "licenseFile": "../code-contract-audit/LICENSE",
+  "verification": "All 36 task IDs and input texts match the adjacent attributed dataset; checked locally 2026-09-16",
+  "use": "Exposed feedback regression fixture; fast and final are both public test inputs, never unseen final",
+  "modifications": [
+    "Task inputs arranged into a full-development Fast partition and historical final field",
+    "Retained DUO local test observations are used to verify feedback projection; receipt paths are historical and do not resolve in this distribution"
+  ],
+  "files": {
+    "b1-development-pack/dataset.json": "cd7560d9f98ff2dcd97eefb83e91b270216081b58f5e73ab05b98d3c55bc52b6",
+    "b1-code-evaluation/evaluation.json": "87caae36c8161dc4ef03171850d9e1db623d60427a49c4665a11af8695b3427b"
+  },
+  "publicationAuditChangedFixtureBytes": false
+}

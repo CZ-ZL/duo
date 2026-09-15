@@ -1,0 +1,76 @@
+{
+  "version": "0.6.1",
+  "status": "LOCAL_PRODUCT_CHECKS_PASS_CI_PENDING",
+  "auditDate": "2026-09-16",
+  "baseCommit": "6bca9cb6c2a9b4fc88c02e699c1a631d6d7f2f66",
+  "releaseCodeCommit": null,
+  "exactVersionCiUrl": null,
+  "publicVisibilityAuthorized": false,
+  "published": false,
+  "package": {
+    "name": "dual-loop-dsh-plugin-0.6.1.tgz",
+    "sha256": "c53c183ba5fd16bb262c540ed77bbcc458575d30451e397c1672c4661b356221",
+    "files": 69
+  },
+  "freshVerification": {
+    "identityRegression": {
+      "redPassed": 1,
+      "redFailed": 6,
+      "greenPassed": 7
+    },
+    "native": {
+      "passed": 340,
+      "failed": 0
+    },
+    "pythonProduct": {
+      "passed": 451,
+      "failed": 0,
+      "researchDeselected": 86
+    },
+    "installedPublic": {
+      "status": "PASS",
+      "checks": 73,
+      "steps": 97,
+      "profiles": 14
+    },
+    "slowEvidence": {
+      "status": "PASS",
+      "checks": 31,
+      "steps": 22
+    },
+    "baselineRepair": {
+      "status": "PASS",
+      "cases": 5,
+      "commands": 26
+    },
+    "host": {
+      "status": "PASS",
+      "profiles": 21
+    },
+    "cachedHostInstall": "PASS",
+    "freshRegistryInstall": "BLOCKED_LOCALLY_ERR_PNPM_META_FETCH_FAIL",
+    "oldWorkflowScan": {
+      "artifacts": 8,
+      "filesAndArchiveMembers": 1573,
+      "sensitivePatternHits": 0,
+      "errors": 0
+    }
+  },
+  "openItems": [
+    "FRESH_REGISTRY_INSTALL",
+    "DEPENDENCY_ADVISORY_QUERY",
+    "EXACT_CODE_CI_AND_DELIVERY_RECEIPTS",
+    "EXPLICIT_PUBLIC_VISIBILITY_AUTHORIZATION"
+  ],
+  "newExternalModelRequests": 0,
+  "newModelCostCny": 0,
+  "report": "docs/product-foundation/F01_REPAIR.md",
+  "previousAudit": "docs/product-foundation/INITIAL_PRE_PUBLICATION_EVIDENCE.json",
+  "acceptanceContract": "docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md",
+  "localRawEvidence": "Retained privately under dualloop/runs/pre-publication-f01-20260916; not distributed",
+  "limitations": [
+    "Signature scans are not security certification",
+    "Changed identity/control paths have scripted installed-DSH acceptance, not a fresh independent Agent trial",
+    "No method superiority claim"
+  ]
+}

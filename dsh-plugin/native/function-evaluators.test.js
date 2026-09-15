@@ -3,6 +3,8 @@ import assert from 'node:assert/strict'
 import { Context } from '@deepseek-ai/cordis'
 import FunctionEvaluators from './function-evaluators.js'
 import * as FunctionProviders from './function-evaluators.js'
+import * as PackagedControls from '../examples/product/evaluator-controls.js'
+import { matchEvaluator } from './evaluator-discovery.js'
 const descriptors = ['fast', 'slow', 'final'].map((tier) => ({
   id: 'custom-' + tier,
   version: '1',
@@ -34,6 +36,50 @@ const request = {
   tier: 'fast',
   signal: new AbortController().signal,
 }
+test('packaged control adapter loads with its public descriptor and measures four fixed outputs', async (t) => {
+  const ctx = new Context()
+  const fiber = await ctx.plugin(PackagedControls)
+  t.after(() => fiber.dispose())
+  const result = await ctx.duoEvaluators.evaluate(request)
+  assert.equal(result.ok, true)
+  assert.deepEqual(result.metrics, {
+    control_match_rate: 1,
+    controls_distinguish: true,
+    sample_size: 4,
+  })
+  assert.equal(result.costCny, 0)
+  assert.equal(ctx.get('duoGenerator'), undefined)
+  const spec = {
+    operation: 'evaluate',
+    target: { kind: 'dsh-persona' },
+    constraints: [],
+    permissions: { paid: false, network: false, externalSideEffects: false },
+    budget: { currency: 'CNY', maxCostCny: 0 },
+  }
+  const objective = {
+    evaluatorId: 'local-text-controls',
+    version: '1',
+    dataId: 'text-controls-v1',
+    metric: 'control_match_rate',
+    weights: { control_match_rate: 1 },
+  }
+  const descriptors = ctx.duoEvaluators.describe()
+  assert.deepEqual(matchEvaluator(descriptors, objective, 'fast', spec).issues, [])
+  assert.ok(
+    matchEvaluator(descriptors, objective, 'fast', {
+      ...spec,
+      operation: 'optimize',
+    }).issues.includes('data_purpose'),
+  )
+  assert.ok(
+    matchEvaluator(
+      descriptors.map((d) => ({ ...d, tier: 'final' })),
+      objective,
+      'final',
+      spec,
+    ).issues.includes('data_purpose'),
+  )
+})
 test('existing function returns facts while adapter binds native identities and evidence declarations', async (t) => {
   let calls = 0
   const evaluator = await service(t, async (args) => {

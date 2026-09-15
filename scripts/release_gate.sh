@@ -33,6 +33,7 @@ ARCHIVE="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))[0]["fi
 run_check install python3 scripts/verify_product_install.py --archive "$OUT/$ARCHIVE" --dsh-package "$DSH_PKG" --output "$OUT/install" --registry "${DUO_PACKAGE_REGISTRY:-https://registry.npmjs.org}"
 run_check public-examples python3 scripts/verify_product_examples.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/public-examples"
 run_check slow-evidence python3 scripts/verify_slow_evidence.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/slow-evidence"
+run_check baseline-repair python3 scripts/verify_baseline_repair.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/baseline-repair"
 run_check sandbox python3 - "$OUT" <<'PY'
 import json
 from pathlib import Path

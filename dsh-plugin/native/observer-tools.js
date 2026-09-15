@@ -39,6 +39,8 @@ export function apply(ctx) {
                     conclusion: value.conclusion,
                     stopReason: value.stopReason,
                     improvementProven: value.improvementProven,
+                    baselineAssessment: value.baselineAssessment,
+                    selectionOutcome: value.selectionOutcome,
                     optimization_mode: value.optimization_mode,
                     slow_mode: value.slow_mode,
                     evidence_gaps: value.evidence_gaps,

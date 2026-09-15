@@ -1,6 +1,7 @@
 import { evidenceOutcome } from './evidence-strategy.js'
 import { ObserverService } from './definitions.js'
 import { searchTiersOf } from './stages.js'
+import { baselineAssessments } from './diagnostics.js'
 const clone = (value) => structuredClone(value)
 const finite = (x) => typeof x === 'number' && Number.isFinite(x)
 const label = (t) => (t ? t[0].toUpperCase() + t.slice(1) : t)
@@ -229,7 +230,8 @@ export function buildReport(status) {
   const events = status.events ?? [],
     plan = events.find((e) => e.kind === 'plan')?.plan ?? {},
     spec = plan.spec ?? {},
-    result = status.result ?? null
+    result = status.result ?? null,
+    baselineId = plan.baseline?.id ?? 'baseline'
   const tiers = searchTiersOf(spec),
     first = tiers[0] ?? null,
     terminal = tiers.length > 1 ? tiers[tiers.length - 1] : null
@@ -275,12 +277,14 @@ export function buildReport(status) {
       for (const id of ids) selectedFor[event.toTier].add(id)
       for (const id of event.considered ?? []) if (!ids.has(id)) notPromoted[event.toTier].add(id)
     }
-    if (event.kind === 'comparison' && comparisons[event.tier])
+    if (['comparison', 'baseline_assessment'].includes(event.kind) && comparisons[event.tier])
       for (const [id, verdict] of Object.entries(event.comparison.verdicts))
         comparisons[event.tier].set(id, {
           verdict,
           score: event.comparison.scores?.[id] ?? null,
           rank: event.comparison.ranking.indexOf(id),
+          decisionBasis: event.comparison.decisionBasis?.[id] ?? null,
+          constraintViolations: clone(event.comparison.constraintViolations?.[id] ?? []),
         })
   }
   const final = new Map(
@@ -325,7 +329,7 @@ export function buildReport(status) {
       tier === 'final' &&
       result &&
       row.candidateId !== selectedId &&
-      row.candidateId !== 'baseline'
+      row.candidateId !== baselineId
     ) {
       state = 'NOT_SELECTED_FOR_FINAL'
       reason = 'Final was reserved for the baseline and selected candidate.'
@@ -360,7 +364,7 @@ export function buildReport(status) {
     currency = budget?.currency ?? (budget && Object.hasOwn(budget, 'costUsd') ? 'USD' : null)
   const cost = budget?.[currency === 'CNY' ? 'costCny' : 'costUsd'] ?? null
   const evaluatedSlow = terminal
-      ? candidates.filter((c) => c.id !== 'baseline' && c[terminal].state === 'EVALUATED')
+      ? candidates.filter((c) => c.id !== baselineId && c[terminal].state === 'EVALUATED')
       : [],
     accepted = evaluatedSlow.filter((c) => c[names.decision] === 'accepted')
   const feedback = clone(events.findLast((e) => e.kind === 'feedback')?.feedback ?? null)
@@ -390,7 +394,7 @@ export function buildReport(status) {
   const report = {
     apiVersion: 2,
     runtime: 'dsh-native',
-    reportVersion: '7',
+    reportVersion: '9',
     runId: status.runId,
     status: result?.status ?? status.run?.status ?? 'NOT_STARTED',
     mode: result?.mode ?? spec.mode ?? null,
@@ -398,6 +402,9 @@ export function buildReport(status) {
     stopReason: result?.stopReason ?? null,
     improvementProven: result?.improvementProven === true,
     selectedId,
+    baselinePolicy: clone(plan.baselinePolicy ?? null),
+    baselineAssessment: clone(result?.baselineAssessment ?? baselineAssessments(events)),
+    selectionOutcome: result?.selectionOutcome ?? null,
     candidates,
     budget,
     checkpoint: clone(status.checkpoint ?? null),
@@ -483,6 +490,13 @@ export function buildReport(status) {
   report.text = [
     `DUO ${status.runId}`,
     `status: ${report.status}; conclusion: ${report.conclusion}`,
+    ...Object.entries(report.baselineAssessment).map(
+      ([tier, a]) =>
+        `baseline ${tier}: ${a.verdict}; search allowed: ${a.searchAllowed}; ${a.reason}`,
+    ),
+    ...(report.selectionOutcome
+      ? [`search selection: ${report.selectionOutcome}; final qualification is separate`]
+      : []),
     ...(report.optimization_mode
       ? [
           `optimization_mode: ${report.optimization_mode}; slow_mode: ${report.slow_mode}; validation: ${report.dual_loop_validation}`,
@@ -516,7 +530,7 @@ export function buildReport(status) {
 export default class NativeObserver extends ObserverService {
   static inject = ['duoController']
   describe() {
-    return { id: 'native-observer', version: '5', deterministic: true }
+    return { id: 'native-observer', version: '7', deterministic: true }
   }
   report(runId) {
     return buildReport(this.ctx.duoController.status(runId))

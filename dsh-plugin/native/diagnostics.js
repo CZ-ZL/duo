@@ -1,5 +1,20 @@
 // Shared public failure vocabulary. Does not override DSH error identity,
 // reconcile a bill, infer side effects, authorize retry, or start any work.
+export function baselineAssessments(events) {
+  return Object.fromEntries(
+    events
+      .filter((e) => e.kind === 'baseline_assessment')
+      .map((e) => [
+        e.tier,
+        {
+          verdict: e.verdict,
+          searchAllowed: e.searchAllowed,
+          reason: e.reason,
+          comparison: structuredClone(e.comparison),
+        },
+      ]),
+  )
+}
 export function describeFailure(error = {}, defaultComponent = 'duoController') {
   const code = error.code ?? 'DUO_PROVIDER_FAILED'
   let component = defaultComponent,
@@ -30,6 +45,12 @@ export function describeFailure(error = {}, defaultComponent = 'duoController') 
       'Read the tool schema and dualloop_plan; verify target, providers and budget, then pass the exact planDigest'
     costState = 'NO_WORK_DISPATCHED_BY_THIS_CALL'
     sideEffectState = 'NO_WORK_DISPATCHED_BY_THIS_CALL'
+  } else if (code === 'DUO_BASELINE_INVALID') {
+    component = 'duoEvaluators'
+    recoveryCondition =
+      'Valid scoped baseline measurements are available; a quality constraint violation alone is not an execution denial'
+    nextAction =
+      'Inspect baselineAssessment and retained measurements for failed, missing, nonfinite, insufficient or incomparable evidence; correct the evaluator/input and inspect a new plan without relaxing quality constraints'
   } else if (/DENIED|APPROVAL|FORBIDDEN/.test(code)) {
     component = 'dsh.tools.policy'
     recoveryCondition = 'The required host permission or explicit authorization is granted'

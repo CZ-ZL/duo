@@ -1,5 +1,12 @@
 # Python code benchmark evaluation
 
+Historical research guide, retained for traceability. Version/active-Goal wording
+below belongs to the original research phase, not the current product release.
+Referenced `runs/` paths require the private local archive and are not part of
+this repository distribution. Use [EXPERIMENTS.md](EXPERIMENTS.md) for the retained
+conclusions and [CURRENT_STATUS.md](CURRENT_STATUS.md) for supported product use.
+Research is paused; this guide does not authorize paid execution.
+
 The current reviewer/control version is **2**. It clarifies short continuous
 quotations and exports task/field errors in `qualification.json` and
 `qualification.txt`; see [local repair evidence](runs/code-review-protocol-20260912/REPORT.zh.md).

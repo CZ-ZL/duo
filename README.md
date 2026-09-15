@@ -2,13 +2,17 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+[Quickstart](RELEASE_QUICKSTART.md) · [Agent Guide](AGENT_GUIDE.md) · [Documentation](docs/README.md) · [Architecture](docs/ARCHITECTURE.md) · [Origins](THIRD_PARTY_NOTICES.md)
+
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
 DUO is a DeepSeek Harness plugin for improving an existing Agent component under an explicit objective and budget. A Calling Agent can discover capabilities, supply a Target and Evaluator, inspect a plan, run it, and retrieve candidates, evidence, decisions and costs through public tools.
 
 **Retaining the original is a valid result.** DUO does not automatically deploy candidates. Its product checks establish runtime behavior; a general quality or total-cost advantage over a reasonable single loop has not been established.
 
-The **0.6.0 product line** adds explicit Slow evidence modes, repairs selection and cumulative budget boundaries, and ships typed extension contracts. See [current capabilities](CURRENT_STATUS.md), [acceptance and remaining work](docs/slow-evidence-strategy/QUEUE.md), and [release notes](RELEASE_NOTES_v0.6.0.md). The earlier [0.5.0 acceptance](PRODUCT_ACCEPTANCE.json) remains unchanged.
+The **0.6 product line** adds explicit Slow evidence modes, repairs selection and cumulative budget boundaries, and ships typed extension contracts. See [current capabilities](CURRENT_STATUS.md), [0.6.1 candidate notes](RELEASE_NOTES_v0.6.1.md), and [pre-publication acceptance](docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md). The earlier [0.5.0 acceptance](PRODUCT_ACCEPTANCE.json) and [0.6.0 release](RELEASE_NOTES_v0.6.0.md) remain unchanged.
+
+First use: [minimal evaluation, expected outputs, upgrades and fault handling](RELEASE_QUICKSTART.md).
 
 ## When to use it
 
@@ -49,7 +53,7 @@ Use `--example evaluate`, `dual`, `byo`, `replace`, `warm` or `custom` for other
 
 ## Install in your own DSH profile
 
-Download the reviewed `dual-loop-dsh-plugin-0.6.0.tgz` from the [private v0.6.0 release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0), or build the same package from this checkout:
+The [private v0.6.0 release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) remains historical. This checkout builds the local **0.6.1 release candidate**, including baseline repair and packaged preparation controls; see [the bounded release status](docs/product-foundation/RELEASE_CLOSEOUT.md). A local build is not a GitHub upload receipt:
 
 ```sh
 cd dsh-plugin
@@ -59,7 +63,7 @@ npm pack --offline --ignore-scripts
 Then install the resulting tarball into an authorized profile:
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.0.tgz
+dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.1.tgz
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
@@ -68,17 +72,28 @@ Installation may download peer dependencies. The profile must provide an applica
 ## Architecture and extension boundaries
 
 ```mermaid
-flowchart LR
-    T[Target + objective + budget] --> P[Inspected plan]
-    P --> G[Generator / Delta]
-    G --> X[Executor]
-    X --> E[Evidence providers]
-    E --> C[Comparator / aggregation]
-    C --> S[Acquisition / promotion policy]
-    S --> J[Journal + result]
-    J --> F[Allowed search feedback]
-    F --> G
+flowchart TD
+    P[Inspected plan and budget] --> G
+    subgraph FAST[Fast loop - candidate search]
+        G[Generate Delta] --> X[Execute candidate]
+        X --> F[Fast evidence and comparison]
+        F --> H[Permitted development history]
+        H --> G
+    end
+    F -->|Admitted candidates| Q
+    subgraph SLOW[Slow loop - additional evidence and decisions]
+        Q[Evidence gaps and policy] -->|Next source within budget| E[Additional evidence]
+        E --> A[Aggregate observations]
+        A --> Q
+        Q -->|Hold, reject or promote| D[Record decision and incumbent]
+    end
+    D --> B[Structured Slow feedback]
+    B --> G
+    D -->|Search ends| R[Optional final and report]
+    Q -->|Stop| R
 ```
+
+The two return paths are development history → generation and Slow decisions → later generation. One Controller schedules them; these are not two permanently running Agents. Final evidence never returns to search. Without additional Slow evidence, `optimize-basic` runs the Fast path and explicitly reports single-fidelity optimization. The [implementation map](docs/ARCHITECTURE.md) explains stage order, mode negotiation and the difference between a planned and an actually exercised Slow path.
 
 The controller owns the shared lifecycle, cancellation and supported recovery. DSH/Cordis owns provider binding, model execution, tools, permissions and disposal. Changes use existing service seams:
 
@@ -116,3 +131,9 @@ bash scripts/release_gate.sh /tmp/new-duo-release-check
 Method research is paused. [EXPERIMENTS.md](EXPERIMENTS.md) preserves formal negative results and subsequent diagnostics. Used final datasets stay consumed; failures and fees are retained. No Graph/Bayesian, new benchmark or additional loops are part of this release.
 
 The Python protocol remains separately versioned at `0.1.0` behind the explicit legacy path. Project code is [MIT licensed](LICENSE); host and dataset attribution is in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Origins and attribution
+
+The dual-loop idea is inspired by Wang et al., [*Self-Evolving Recommendation System: End-To-End Autonomous Model Optimization With LLM Agents*](https://arxiv.org/abs/2602.10226). DUO adapts its offline-inner / online-outer structure to Agent components and explicit evidence strategies. It is not the authors' implementation and does not claim their results or endorsement.
+
+DUO runs on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) and its [Cordis](https://github.com/cordiverse/cordis) plugin model. [Third-party notices](THIRD_PARTY_NOTICES.md) distinguish paper inspiration, host dependencies and adapted research fixtures. The [documentation map](docs/README.md) separates product usage, development, release evidence and historical research.

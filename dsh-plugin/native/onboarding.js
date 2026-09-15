@@ -200,10 +200,10 @@ function prepare(result, context = {}) {
       'Find an installed compatible evaluator, or wrap existing tests/examples using the function-evaluators provider.',
       {
         adapter: '@dual-loop/dsh-plugin/function-evaluators',
-        example: 'examples/native/byo-evaluator.js',
-        controlExample: 'examples/native/evaluator-controls.js',
-        controlContract: 'examples/native/evaluator-controls-experiment.json',
-        controlProfile: 'examples/native/evaluator-controls-profile.patch.yml',
+        example: 'examples/product/byo-evaluator.js',
+        controlExample: 'examples/product/evaluator-controls.js',
+        controlContract: 'examples/product/evaluator-controls-experiment.json',
+        controlProfile: 'examples/product/evaluator-controls-profile.patch.yml',
         requiredInputs: [
           'existing measurement function or assertions',
           'versioned descriptor',
@@ -398,7 +398,11 @@ export const contractSchema = freeze({
       properties: {
         currency: { type: 'string', const: 'CNY' },
         maxCostCny: number,
-        maxCumulativeCostCny: number,
+        maxCumulativeCostCny: {
+          ...number,
+          description:
+            'Optional positive cross-run CNY cap in this Journal. For zero-cost local work omit this field, keep maxCostCny:0 on every run and permissions.paid:false. Omission grants no new authority.',
+        },
         maxSessions: integer,
         maxFastEvals: integer,
         maxSlowEvals: integer,

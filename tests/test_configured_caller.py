@@ -24,6 +24,10 @@ def test_public_caller_attaches_fact_measurement_and_retains_delivery(tmp_path,l
     file=tmp_path/'experiment.json';file.write_text(json.dumps(contract))
     out=tmp_path/'host'
     cmd=[sys.executable,str(ROOT/'scripts/run_duo_caller.py'),'--mode','offline','--output',str(out),'--dsh-package',dsh,'--contract',str(file),'--dataset',str(prepared/'dataset.json'),'--answer-key',str(prepared/'answerKey.json'),'--caller-max-requests',str(limit)]
+    # Freeze an explicit fixture envelope for the complete public guide/tool
+    # transcript (observed 56,108 bytes). Production's 52 KiB default and the
+    # input/cost admission guard remain unchanged; this is zero-API transport.
+    cmd += ['--caller-max-input-bytes','65536','--caller-reservation-cny','0.16']
     if unknown:cmd.append('--fixture-missing-usage')
     run=subprocess.run(cmd,cwd=ROOT,capture_output=True,text=True,timeout=100)
     assert (out/'result.json').exists(),run.stdout+run.stderr

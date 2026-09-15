@@ -22,8 +22,10 @@ This compiles the public TypeScript declarations and strategy consumer controls,
 checks formatting, and runs every native test, the self-contained Python checks, generated-doc
 consistency, 21 isolated compatibility DSH CLI scenarios, tarball and host peer-range inspection,
 actual `dsh plugin add` in a fresh profile/dependency store, plan/run/report in
-that installed profile and its peer graph, and 10 public example
-profiles (55 assertions over 80 public operations). The historical `packaged`
+that installed profile and its peer graph, and 14 public example
+profiles (73 assertions over 97 public operations), including the four packaged
+evaluator controls and custom-baseline final identity cases. Five baseline-repair
+cases retain 26 public commands. The historical `packaged`
 scenario explicitly enables the retained fixture; default installation does not.
 Four further fresh-profile Slow evidence scenarios verify negotiation, acquisition
 receipts and explicit downgrade through the installed public path. Public examples

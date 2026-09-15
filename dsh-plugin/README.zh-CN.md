@@ -1,4 +1,4 @@
-# @dual-loop/dsh-plugin 0.6.0
+# @dual-loop/dsh-plugin 0.6.1
 
 [English](README.md) · 简体中文
 
@@ -11,7 +11,7 @@ DUO 是 DSH 原生的评估与优化组件。它在明确的目标、评估规�
 已验证环境：Linux、Node 24.14.1、DSH 0.1.2-rc.1、Cordis 4.0.2、pnpm 11.24.0。把审查过的安装包加入一个已获授权的 DSH profile：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.0.tgz
+dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.1.tgz
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
@@ -57,4 +57,4 @@ Target、Generator、Executor、Evaluator、Comparator、Gate、Feedback 使用�
 - warm start 不继承 final 数据、费用或授权；不同证据模式的历史只能保留允许的想法。
 - 不自动采用候选，不提供跨平台保证，不全局发布 npm。历史 legacy API 与显式 fixture export 保留，fixture 默认关闭。
 
-当前版本的源码、验收记录和研究归档位于 [私有 GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](LICENSE)。
+0.6.1 当前为本地待发布构建，是否已上传以对应 GitHub 回执为准。历史源码、验收记录和研究归档位于 [私有 GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](LICENSE)。

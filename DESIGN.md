@@ -1,5 +1,10 @@
 # DualLoop — A DSH-Native Dual-Loop Autonomous Optimization Plugin
 
+Repository reading note (0.6.1): the dated design and status statements below are
+historical. Use [current supported capabilities](CURRENT_STATUS.md) and the
+[current architecture boundaries](README.md#architecture-and-extension-boundaries)
+for the shipped product. The original design decisions are retained.
+
 **Status:** Architecture proposal and historical design record; native delivery correction approved by the user on 2026-09-08 (below).
 **Supersedes:** `evolution/DESIGN.md` as project direction (that document remains the historical record of the v1 prototype)
 **Inspired by:** *Self-Evolving Recommendation System: End-To-End Autonomous Model Optimization With LLM Agents* — we abstract its dual-loop experimentation method; we do **not** reproduce YouTube, its recommendation system, or its production infrastructure.
@@ -30,9 +35,9 @@ comparison/gate/feedback and durable journal/budget providers; generator/executo
 evaluator service definitions accept caller-supplied Cordis providers. The shipped
 example is a zero-cost static fixture. A real model-backed native provider, other
 target kinds, independent optimization efficacy and existing-profile deployment
-remain separate work. See [current package](dualloop/dsh-plugin/README.md),
-[provider contract](dualloop/dsh-plugin/PROVIDERS.md), and
-[actual status/evidence](dualloop/STATUS.md). Native JSON v1/API v2 is distinct from
+remain separate work. See [current package](dsh-plugin/README.md),
+[provider contract](dsh-plugin/PROVIDERS.md), and
+[actual status/evidence](CURRENT_STATUS.md). Native JSON v1/API v2 is distinct from
 the historical illustrative YAML contract below; an architecture example is not
 an implementation receipt.
 

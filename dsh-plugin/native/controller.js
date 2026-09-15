@@ -20,7 +20,8 @@ import { inspectProviderContracts, providerContractDependencies } from './provid
 import { selectWarmStart, executionEnvironment } from './warm-start.js'
 import { searchStages, searchTiersOf } from './stages.js'
 import { targetIdentity } from './target-protocol.js'
-import { describeFailure } from './diagnostics.js'
+import { describeFailure, baselineAssessments } from './diagnostics.js'
+import { baselinePolicy } from './capabilities.js'
 
 const errorInfo = (error) =>
   describeFailure({
@@ -103,6 +104,7 @@ export default class NativeController extends ControllerService {
       ...(digest(requestedSpec) !== digest(spec) ? { requestedSpec } : {}),
       evidenceStrategy,
       searchPolicy,
+      baselinePolicy: baselinePolicy(),
       searchStages: searchStages(spec),
       environment: executionEnvironment(),
       journalRoot: this.ctx.duoJournal.root,
@@ -269,6 +271,8 @@ export default class NativeController extends ControllerService {
         restored?.contentIndex ?? [[contentIdentity(plan.baseline), plan.baseline.id]],
       ),
       baselineTiers = new Set(restored?.baselineTiers ?? [])
+    // Reconstruct from retained Journal facts, including after a settled resume.
+    const baselineAssessment = () => baselineAssessments(j.events())
     const boundary = (name, nextGeneration, stopped = false) => {
       searchStopped = stopped
       if (!plan.recovery) return null
@@ -310,6 +314,7 @@ export default class NativeController extends ControllerService {
             conclusion: 'insufficient_evidence',
             improvementProven: false,
             final: [],
+            baselineAssessment: baselineAssessment(),
             ...evidenceOutcome(plan.evidenceStrategy, j.events()),
             budget: budget.snapshot(),
             stageAttempts: clone(stageAttempts),
@@ -502,6 +507,33 @@ export default class NativeController extends ControllerService {
         },
         incumbentId,
       )
+    const assessIncumbent = (candidate, evidence, tier) => {
+      const comparison = compare([evidence], tier, null),
+        verdict = comparison.verdicts[candidate.id],
+        searchAllowed = ['better', 'constraint_violation'].includes(verdict),
+        reason =
+          verdict === 'constraint_violation'
+            ? 'VALID_MEASUREMENT_REQUIRES_QUALITY_REPAIR'
+            : searchAllowed
+              ? 'QUALITY_CONSTRAINTS_MET'
+              : 'UNUSABLE_BASELINE_EVIDENCE'
+      j.append({
+        kind: candidate.id === plan.baseline.id ? 'baseline_assessment' : 'incumbent_assessment',
+        candidateId: candidate.id,
+        tier,
+        verdict,
+        searchAllowed,
+        reason,
+        comparison,
+      })
+      if (!evaluationOnly && !searchAllowed)
+        fail(
+          'DUO_BASELINE_INVALID',
+          'Baseline has unusable ' +
+            tier +
+            ' evidence; inspect baselineAssessment before repairing the evaluator or inputs',
+        )
+    }
     const finishGeneration = (generation, previousVersion) => {
       if (!spec.stopping) return false
       const progressed = champion.version !== previousVersion
@@ -531,13 +563,16 @@ export default class NativeController extends ControllerService {
       if (!restored) {
         for (const { tier } of strategic ? stages.slice(0, 1) : stages) {
           championEvidence[tier] = await evaluate(champion, tier)
-          if (
-            !evaluationOnly &&
-            compare([championEvidence[tier]], tier, null).verdicts[champion.id] !== 'better'
-          )
-            fail('DUO_BASELINE_INVALID', 'Baseline has no admissible ' + tier + ' evidence')
+          assessIncumbent(champion, championEvidence[tier], tier)
         }
-        record(champion, { status: evaluationOnly ? 'evaluated' : 'champion', ...championEvidence })
+        record(champion, {
+          status: evaluationOnly
+            ? 'evaluated'
+            : Object.values(baselineAssessment()).some((a) => a.verdict === 'constraint_violation')
+              ? 'repair_baseline'
+              : 'champion',
+          ...championEvidence,
+        })
         const paused = boundary('baseline', 1)
         if (paused) return paused
       }
@@ -762,8 +797,7 @@ export default class NativeController extends ControllerService {
             results = []
           if (!championEvidence[tier]) {
             championEvidence[tier] = await evaluate(champion, tier)
-            if (compare([championEvidence[tier]], tier, null).verdicts[champion.id] !== 'better')
-              fail('DUO_BASELINE_INVALID', 'Baseline has no admissible ' + tier + ' evidence')
+            assessIncumbent(champion, championEvidence[tier], tier)
           }
           for (const c of eligible) {
             const r = await evaluate(c, tier)
@@ -940,22 +974,31 @@ export default class NativeController extends ControllerService {
         if (paused) return paused
         if (stopped) break
       }
+      const noFeasibleCandidate =
+        champion.id === plan.baseline.id &&
+        Object.values(baselineAssessment()).some((a) => a.verdict === 'constraint_violation')
       let conclusion =
-        spec.mode === 'optimize' && champion.id === 'baseline'
+        spec.mode === 'optimize' && champion.id === plan.baseline.id && !noFeasibleCandidate
           ? 'retain_baseline'
           : 'insufficient_evidence'
       let independentFinal = null
       if (spec.final && spec.mode !== 'explore' && stopReason !== 'evidence_policy_stop') {
-        for (const c of champion.id === 'baseline' ? [plan.baseline] : [plan.baseline, champion])
+        for (const c of champion.id === plan.baseline.id
+          ? [plan.baseline]
+          : [plan.baseline, champion])
           final.push(await evaluate(c, 'final'))
         j.append({ kind: 'final', results: final })
-        const cmp = compare(final, 'final', 'baseline')
-        const admitted = final.every((r) =>
-          ['better', 'not_better'].includes(cmp.verdicts[r.candidateId]),
+        const cmp = compare(final, 'final', plan.baseline.id)
+        const admitted = final.every(
+          (r) =>
+            ['better', 'not_better'].includes(cmp.verdicts[r.candidateId]) ||
+            (r.candidateId === plan.baseline.id &&
+              champion.id !== plan.baseline.id &&
+              cmp.verdicts[r.candidateId] === 'constraint_violation'),
         )
         const finalConclusion = !admitted
           ? 'insufficient_evidence'
-          : champion.id !== 'baseline' && cmp.verdicts[champion.id] === 'better'
+          : champion.id !== plan.baseline.id && cmp.verdicts[champion.id] === 'better'
             ? 'recommend_candidate'
             : 'retain_baseline'
         const reusedHistory = plan.warmStart?.mode === 'warm_start',
@@ -975,7 +1018,7 @@ export default class NativeController extends ControllerService {
                 }
               : {}),
           }
-        if (spec.mode === 'optimize') conclusion = qualifiedConclusion
+        if (spec.mode === 'optimize' && !noFeasibleCandidate) conclusion = qualifiedConclusion
       }
       result = {
         apiVersion: 2,
@@ -986,10 +1029,19 @@ export default class NativeController extends ControllerService {
         mode: spec.mode,
         stopReason,
         generationsRun,
-        championId: spec.mode === 'optimize' ? champion.id : null,
-        proxyLeaderId: spec.mode === 'fast_only' ? champion.id : null,
+        championId: spec.mode === 'optimize' && !noFeasibleCandidate ? champion.id : null,
+        proxyLeaderId: spec.mode === 'fast_only' && !noFeasibleCandidate ? champion.id : null,
+        ...(!evaluationOnly
+          ? {
+              selectionOutcome: noFeasibleCandidate
+                ? 'no_feasible_candidate'
+                : champion.id === plan.baseline.id
+                  ? 'baseline_retained'
+                  : 'feasible_candidate',
+            }
+          : {}),
         conclusion,
-        selectedOverlay: champion.id === 'baseline' ? null : champion.delta,
+        selectedOverlay: champion.id === plan.baseline.id ? null : champion.delta,
         final,
         independentFinal,
         improvementProven: false,
@@ -1042,6 +1094,7 @@ export default class NativeController extends ControllerService {
     const semantics = evidenceOutcome(plan.evidenceStrategy, j.events())
     Object.assign(result, {
       ...semantics,
+      baselineAssessment: baselineAssessment(),
       limitations: [...semantics.limitations, ...(result.limitations ?? [])],
     })
     result.stageAttempts = clone(stageAttempts)

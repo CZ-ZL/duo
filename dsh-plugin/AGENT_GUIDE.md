@@ -16,7 +16,31 @@ Read CURRENT_STATUS.md for support and examples/product/README.md for a free ins
 
 An objective is {evaluatorId,version,dataId,metric,direction,weights}. Use the live schema for full authoring. Preset defaults are inspectable and may be overridden explicitly; missing owner decisions stay unresolved.
 
+A baseline may have valid measurements but fail quality constraints. Inspect
+plan.baselinePolicy: DUO can start repair from this original without requiring a
+hand-repaired replacement. The default comparator favors a constraint-satisfying
+candidate over a violating incumbent, even if its weighted score is lower;
+otherwise weighted score and epsilon apply as before. Missing/failed/insufficient
+evidence still stops search. Execution safety belongs to the host/Executor
+permission boundary, not to a quality metric named "safe".
+
+Read baselineAssessment for original violations, searchAllowed and the recorded
+comparison. selectionOutcome describes search only: feasible_candidate,
+baseline_retained or no_feasible_candidate. If no candidate meets the unchanged
+constraints, DUO selects no solution and leaves the original untouched. There is
+no multi-step promotion through still-infeasible parents. Inspect final evidence
+and conclusion separately: feasible on development evidence is not independent
+validation or authorization to deploy. Changed comparator versions require a new
+plan; historical results remain sealed and may enter warm start only under the
+existing compatibility rules.
+
 Caller preparation and optional interpretation need their own host budget. The DUO ledger covers inner operations, not every Calling Agent request. Permission declarations are checked claims; the host enforces actual access. Existing authorization is reused; example files grant none.
+
+For local CNY0 work keep permissions.paid:false and maxCostCny:0 on every run;
+omit the optional maxCumulativeCostCny, which currently accepts positive amounts
+only. Do not grant a positive allowance to bypass that validation. See the
+packaged examples/product/README.md for control checks and actual warm history
+fields: role/use/source/delta, not the candidate's private family field.
 
 Failures expose cause, recoverability, nextAction (required action), costState and sideEffectState. UNKNOWN requires retained-evidence inspection, not inferred zero. dualloop_budget_reconcile applies only an observed already-staged receipt hash; it never creates usage evidence or repeats work.
 

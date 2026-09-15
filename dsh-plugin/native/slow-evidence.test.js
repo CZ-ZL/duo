@@ -117,6 +117,34 @@ const options = {
   generations: 1,
   quotas: { exploit: 1, explore: 0, innovate: 0 },
 }
+test('expanded evidence lazily measures a violating Slow baseline and admits only a feasible repair', async (t) => {
+  const configured = providers()
+  class RepairMeasure extends configured.evaluators {
+    async evaluate(args) {
+      const r = await super.evaluate(args)
+      // safe is a quality assertion over an isolated test artifact, not host permission.
+      r.metrics.safe = !(args.tier === 'slow' && args.candidate.id === 'baseline')
+      return r
+    }
+  }
+  const { ctx } = await setup(t, options, { ...configured, evaluators: RepairMeasure })
+  const p = ctx.duoController.plan(),
+    r = await ctx.duoController.run({ planDigest: p.planDigest })
+  assert.equal(r.status, 'completed')
+  assert.equal(r.slow_mode, 'expanded_evidence')
+  assert.equal(r.championId, 'dl-0001')
+  assert.equal(r.selectionOutcome, 'feasible_candidate')
+  assert.equal(r.baselineAssessment.slow.verdict, 'constraint_violation')
+  const events = ctx.duoController.status(p.runId).events
+  const request = events.findIndex(
+    (e) => e.kind === 'evidence_decision' && e.decision.action === 'request_more_evidence',
+  )
+  assert.ok(
+    request >= 0 &&
+      request < events.findIndex((e) => e.kind === 'baseline_assessment' && e.tier === 'slow'),
+  )
+  assert.equal(r.budget.costCny, 0)
+})
 for (const mode of ['expanded_evidence', 'high_fidelity'])
   test(
     'plan negotiates ' + mode + ' and actual report records additional local evidence',

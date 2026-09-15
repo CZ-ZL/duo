@@ -34,8 +34,9 @@ export class ExclusionComparator extends WeightedComparator {
   describe() {
     return {
       id: 'weighted_exclusions_v1',
-      version: '1',
+      version: '2',
       deterministic: true,
+      constraintPolicy: super.describe().constraintPolicy,
       exclusionsDigest: digest(this.exclusions),
     }
   }

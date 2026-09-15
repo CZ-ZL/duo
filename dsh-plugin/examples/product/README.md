@@ -6,6 +6,10 @@ private account, research archive or historical ledger. They do not measure an
 LLM Agent's task quality or establish method benefit. Local functions are real
 measurements; the example is intentionally narrow.
 
+The `custom` adapter uses `original` as its baseline ID. Final measurements and
+reports use the identity supplied by that Target, rather than a required literal
+name. Its provider version is 2; inspect a new plan after replacing an older copy.
+
 Install the reviewed tarball into your authorized DSH profile using the package
 README. The commands below use the `duo` executable shipped in that package;
 equivalently use `node /path/to/installed/package/bin/duo.mjs`.
@@ -58,6 +62,74 @@ unchanged. Re-plan, inspect warmStart.mode/context/sources and the original cost
 then run with the new digest. The second result records historyReuse; the
 candidate hypotheses record the historical candidate ids received. Old costs are not
 imported; the current baseline is re-evaluated. This is a new run, not recovery.
+
+Generator authors receive `feedback.warmStart.records`, the projected records
+shown in `plan.warmStart.context.records`. Each has `source`, `use`, `role`,
+`reasons`, `hypothesis`, and a Target-projected `delta` (null for baseline).
+`family` is not a public history field. `role` is `baseline`, `good`, `failure`,
+or `direction`; it describes past evidence, not a current recommendation.
+
+```js
+// Inside your Generator.propose request handler, after inspecting the plan:
+const records = feedback.warmStart?.records ?? []
+const idea = records.find(r => r.role === 'good' && r.delta)
+// A bounded generator may use idea.delta as one proposal. Bind the proposal to
+// the CURRENT champion id/version and quotas; the Target validates it again.
+// Record idea.source in generation evidence and re-execute/re-evaluate it.
+// Do not assume source.parentVersion still equals the current champion.
+const past = idea?.use === 'comparable_declared' ? idea.observations : undefined
+// past is historical evidence, never a substitute for this run's measurement.
+```
+
+Empty history is valid cold start. `ideas_only` records have no numeric
+observations/verdicts. Provider or evaluator version changes can cause that
+projection; inspect `sources[].reasons` and re-plan after changing an adapter.
+Never add private final observations or restore removed fields yourself. A record
+in the plan proves availability; save the actual generator input/source receipt
+to establish consumption. This text-hygiene example records received ids and has
+one fixed transformation; it does not demonstrate broad history-driven search.
+
+**Zero-cost local configuration:** use `permissions.paid:false` and
+`budget:{currency:"CNY",maxCostCny:0,maxSessions:2,maxFastEvals:1,maxSlowEvals:0,maxWallTimeMs:60000}`
+for a bounded evaluate-only run. Omit `maxCumulativeCostCny`: the optional
+cross-run cap currently accepts positive amounts only, so explicit zero is
+invalid. Keep every new local run at zero; do not enter a positive amount to
+work around validation. Paid providers must not be used under this configuration.
+Cross-run/Calling Agent request limits still belong to the current authorization;
+the native ledger does not include Caller inference. Omission does not renew money.
+
+**Evaluator controls from the installed package:** the preparation interface
+points to [the existing function adapter](byo-evaluator.js),
+[control adapter](evaluator-controls.js), [control contract](evaluator-controls-experiment.json)
+and [profile patch](evaluator-controls-profile.patch.yml). Use a NEW evaluate
+workspace, then copy these templates into that workspace only:
+
+```sh
+duo init --root /tmp/my-duo-controls --dsh-package /path/to/node_modules/@deepseek-ai/dsh --example evaluate
+python3 - /path/to/installed/package /tmp/my-duo-controls <<'PY'
+import json, sys
+from pathlib import Path
+package, root = map(lambda p: Path(p).resolve(), sys.argv[1:])
+examples = package / 'examples/product'
+contract = json.loads((examples / 'evaluator-controls-experiment.json').read_text())
+contract['target']['path'] = str(root / 'target.txt')
+(root / 'experiment.json').write_text(json.dumps(contract, indent=2))
+patch = root / 'dsh-home/profiles/duo-product/cordis.patch.yml'
+rows = json.loads(patch.read_text())
+rows += json.loads((examples / 'evaluator-controls-profile.patch.yml').read_text())
+patch.write_text(json.dumps(rows, indent=2))
+PY
+duo call --root /tmp/my-duo-controls --tool dualloop_plan
+```
+
+Inspect this evaluation-only plan, then run/report using its exact digest/id as
+above. Expect `control_match_rate=1`, `controls_distinguish=true`, sample_size=4,
+and all `measurementChecks` satisfied. The wrapper invokes the actual local text
+measurement four times on frozen good/bad outputs, all CNY0; no Generator runs.
+It deliberately replaces the Executor artifact with control outputs. This tests
+measurement plumbing only, not Target quality, Slow fidelity or optimization gain.
+For a real task replace both measurement and fixed expectations with justified
+task controls before any search; passing these text controls does not qualify it.
 
 **Recover:** on a fresh optimize example, run with `pauseAfter:"baseline"`.
 Read status.checkpoint, then call run with the same planDigest and

@@ -16,7 +16,7 @@ export async function apply(ctx) {
     describe() {
       return {
         id: 'supplied-text-target',
-        version: '1',
+        version: '2',
         deterministic: true,
         targetKinds: ['local-text'],
         historySupport: true,
@@ -27,7 +27,7 @@ export async function apply(ctx) {
     }
     snapshot(path) {
       const content = readFileSync(path, 'utf8')
-      return { id: 'baseline', content, path, version: digest(content) }
+      return { id: 'original', content, path, version: digest(content) }
     }
     validateSnapshot(s) {
       return !!(s && typeof s.content === 'string' && s.version === this.identity(s))

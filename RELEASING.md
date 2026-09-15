@@ -1,7 +1,10 @@
 # Product release procedure
 
-0.6.0 is the evidence-strategy product release line. Current support and acceptance
-are recorded in CURRENT_STATUS.md and docs/slow-evidence-strategy/ACCEPTANCE.json.
+0.6.1 is the current local release candidate; 0.6.0 remains the prior published
+private release. Current support is recorded in CURRENT_STATUS.md. The
+[pre-publication acceptance contract](docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)
+and [audit](docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md) govern this candidate's
+release decision; docs/slow-evidence-strategy/ACCEPTANCE.json is the sealed 0.6.0 receipt.
 PRODUCT_ACCEPTANCE.json retains the sealed 0.5.0 Product Foundation receipt. The existing channel
 is the private CZ-ZL/duo repository. No npm registry publication is authorized.
 The earlier 0.3/0.4 preparation and experiments remain historical evidence, not
@@ -18,13 +21,24 @@ acceptance for new code. A release does not establish method superiority.
    credentials are inherited. Read TESTING.md for the exact scope.
 4. Complete independent Agent acceptance using only the installed public package
    and guides. Preserve steps, corrections, failed attempts and evidence limits.
-   Scripted tests do not replace this acceptance.
+   Earlier acceptance may be reused for unchanged journeys after checking the
+   relevant inputs; record that it is an earlier run. Changed preparation/control
+   paths currently have scripted installed-DSH evidence only. Do not present them
+   as a fresh independent Agent acceptance. Scripted tests do not replace this acceptance.
 5. Check git diff and version consistency; update current acceptance and lean
    change records. Commit and push through the owner's authorized repository
    flow, then wait for the exact commit's GitHub Actions result. Keep failed CI
    runs and fix within scope. No force push or npm publish.
 6. Record the commit, workflow URL and tarball hash. Distinguish tested code from
    subsequent documentation-only evidence updates.
+7. Before changing repository visibility, review reachable history, release
+   assets and workflow artifacts against the frozen acceptance contract and
+   obtain explicit authorization for public exposure. Private delivery authority
+   is not public-visibility or npm-publication authority. Preserve failed runs.
+
+The [quickstart and fault guide](RELEASE_QUICKSTART.md) covers the supported
+upgrade/rollback boundaries. The audit is a release review, not a security
+certification. Keep its unresolved dependency, CI and exposure checks visible.
 
 ## Compatibility
 

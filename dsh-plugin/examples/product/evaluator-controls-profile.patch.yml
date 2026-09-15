@@ -1,0 +1,5 @@
+[
+  { "id": "local-work", "disabled": true },
+  { "id": "duo-runtime", "config": { "evaluationOnly": true } },
+  { "insert": [{ "id": "local-evaluator-controls", "name": "@dual-loop/dsh-plugin/examples/evaluator-controls" }] }
+]

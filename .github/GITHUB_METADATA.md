@@ -1,13 +1,15 @@
-# Current repository presentation — 0.6.0
+# Repository presentation — 0.6.1 candidate
 
-Name: duo. Visibility: private. Default branch: main.
+Name: duo. Destination: CZ-ZL/duo, private, main.
 Description: Composable DSH-native evaluation and optimization with explicit evidence modes, bounded budgets and traceable results.
-Homepage: repository README. Languages: README.md (English), README.zh-CN.md (Chinese).
-Current product support: CURRENT_STATUS.md.
-Current release: RELEASE_NOTES_v0.6.0.md.
-Current receipt: docs/slow-evidence-strategy/ACCEPTANCE.json.
+Homepage: README. Languages: README.md (English), README.zh-CN.md (Chinese).
+Documentation: docs/README.md. Current architecture: docs/ARCHITECTURE.md.
+Capabilities: CURRENT_STATUS.md. Candidate: RELEASE_NOTES_v0.6.1.md.
+Current follow-up: docs/product-foundation/F01_REPAIR.md.
+Sources and licenses: THIRD_PARTY_NOTICES.md.
+Last tagged release: v0.6.0; a source upload alone is not a new release.
 Research evidence remains separate; no general quality/cost advantage is claimed.
-No registry publication or visibility change.
+No npm registry publication or repository visibility change.
 
 ## Historical presentation record
 

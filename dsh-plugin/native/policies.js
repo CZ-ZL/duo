@@ -15,7 +15,12 @@ const operators = {
 
 export class WeightedComparator extends ComparatorService {
   describe() {
-    return { id: 'weighted_v1', version: '1', deterministic: true }
+    return {
+      id: 'weighted_v1',
+      version: '2',
+      deterministic: true,
+      constraintPolicy: 'feasible_candidates_before_infeasible_incumbent',
+    }
   }
   aggregate(request) {
     return aggregateJudgments(request)
@@ -33,7 +38,12 @@ export class WeightedComparator extends ComparatorService {
     const scope = incumbent ?? results[0]
     const verdicts = Object.create(null),
       scores = Object.create(null),
+      constraintViolations = Object.create(null),
+      decisionBasis = Object.create(null),
       seen = new Set()
+    const constraints = spec.constraints ?? []
+    if (constraints.some((c) => !Object.hasOwn(operators, c.op)))
+      fail('DUO_COMPARISON_INVALID', 'Unsupported constraint operator')
     for (const r of results) {
       if (seen.has(r.candidateId)) fail('DUO_EVIDENCE_INVALID', 'Duplicate candidate evidence')
       seen.add(r.candidateId)
@@ -42,22 +52,15 @@ export class WeightedComparator extends ComparatorService {
         !sameScope(r, scope) ||
         !r.metrics ||
         weights.some(([m]) => !finite(r.metrics[m])) ||
+        constraints.some((c) =>
+          typeof c.value === 'boolean'
+            ? typeof r.metrics[c.metric] !== 'boolean'
+            : !finite(r.metrics[c.metric]),
+        ) ||
         (spec.minSamples > 0 &&
           (!finite(r.metrics.sample_size) || r.metrics.sample_size < spec.minSamples))
       ) {
         verdicts[r.candidateId] = 'incomparable'
-        continue
-      }
-      const violation = (spec.constraints ?? []).some((c) => {
-        const actual = r.metrics[c.metric]
-        if (!operators[c.op]) fail('DUO_COMPARISON_INVALID', 'Unsupported constraint operator')
-        return (
-          (typeof c.value === 'boolean' ? typeof actual !== 'boolean' : !finite(actual)) ||
-          !operators[c.op](actual, c.value)
-        )
-      })
-      if (violation) {
-        verdicts[r.candidateId] = 'constraint_violation'
         continue
       }
       const score = weights.reduce((sum, [m, w]) => sum + w * r.metrics[m], 0)
@@ -65,17 +68,39 @@ export class WeightedComparator extends ComparatorService {
         verdicts[r.candidateId] = 'incomparable'
         continue
       }
+      const violations = constraints
+        .filter((c) => !operators[c.op](r.metrics[c.metric], c.value))
+        .map((c) => ({ ...c, actual: r.metrics[c.metric] }))
+      if (violations.length) {
+        verdicts[r.candidateId] = 'constraint_violation'
+        constraintViolations[r.candidateId] = violations
+        continue
+      }
       scores[r.candidateId] = score
     }
     const ranking = Object.keys(scores).sort((a, b) => scores[b] - scores[a] || a.localeCompare(b))
-    for (const id of ranking)
+    for (const id of ranking) {
+      const repairsIncumbent =
+        incumbentId !== null && verdicts[incumbentId] === 'constraint_violation'
       verdicts[id] =
-        incumbentId !== null && scores[incumbentId] === undefined
+        incumbentId !== null && scores[incumbentId] === undefined && !repairsIncumbent
           ? 'incomparable'
-          : incumbentId === null || scores[id] > scores[incumbentId] + spec.epsilon
+          : repairsIncumbent ||
+              incumbentId === null ||
+              scores[id] > scores[incumbentId] + spec.epsilon
             ? 'better'
             : 'not_better'
-    return { ranking, verdicts, scores, comparatorId: 'weighted_v1' }
+      if (verdicts[id] !== 'incomparable')
+        decisionBasis[id] = repairsIncumbent ? 'constraint_feasibility' : 'weighted_score'
+    }
+    return {
+      ranking,
+      verdicts,
+      scores,
+      constraintViolations,
+      decisionBasis,
+      comparatorId: 'weighted_v1',
+    }
   }
 }
 export class TopKGate extends GateService {

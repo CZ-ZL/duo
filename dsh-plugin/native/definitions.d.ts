@@ -249,6 +249,11 @@ export interface Comparison {
   scores: Record<string, number>
   verdicts: Record<string, 'better' | 'not_better' | 'incomparable' | 'constraint_violation'>
   comparatorId: string
+  constraintViolations?: Record<
+    string,
+    (ComparisonSpec['constraints'][number] & { actual: number | boolean })[]
+  >
+  decisionBasis?: Record<string, 'constraint_feasibility' | 'weighted_score'>
   exclusions?: Record<string, { code: string; reason: string; scope: Record<string, string> }>
 }
 export interface Feedback {
@@ -293,6 +298,14 @@ export interface Plan {
   baseline: Snapshot
   providers: Record<string, unknown>
   evidenceStrategy?: EvidenceStrategy
+  baselinePolicy?: {
+    version: string
+    qualityConstraintViolation: 'continue_repair'
+    unusableEvidence: 'stop_search'
+    candidateSelection: string
+    defaultComparison: string
+    limit: string
+  }
   [key: string]: unknown
 }
 export interface RunResult {
@@ -307,6 +320,16 @@ export interface RunResult {
   slow_mode?: SlowMode
   evidence_used?: EvidenceReceipt[]
   decision_basis?: (EvidenceDecision & { candidateId: string; generation: number })[]
+  baselineAssessment?: Record<
+    string,
+    {
+      verdict: Comparison['verdicts'][string]
+      searchAllowed: boolean
+      reason: string
+      comparison: Comparison
+    }
+  >
+  selectionOutcome?: 'no_feasible_candidate' | 'baseline_retained' | 'feasible_candidate'
   [key: string]: unknown
 }
 export interface RunStatus {

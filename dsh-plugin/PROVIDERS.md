@@ -136,6 +136,21 @@ Invalid identities fail the run. Failed/missing/nonfinite measurements and
 constraint violations cannot promote a candidate. Incomparable slow evidence
 is excluded from slow sample counts, correlations and family penalties.
 
+`constraint_violation` means all required weighted and constraint metrics are
+valid, finite/type-correct, sufficiently sampled and scoped, but an observed
+value fails a frozen quality requirement. Missing constraint metrics are
+`incomparable`, not evidence of a violation. A valid violating baseline may enter
+repair; invalid evidence still stops the current search path.
+
+The default `weighted_v1` and `weighted_exclusions_v1` providers use version `2`:
+feasible challengers outrank a violating incumbent before weighted-score/epsilon
+comparison. Violating challengers never enter ranking. `constraintViolations`
+preserves the metric, operator, bound and actual value; `decisionBasis` distinguishes
+`constraint_feasibility` from `weighted_score`. An excluded/failed baseline is
+still incomparable. Custom comparators retain ownership of comparison semantics
+and must not label unusable evidence as a valid constraint violation. Quality
+metrics cannot grant execution permissions or replace Executor/host safety checks.
+
 ## Policy and storage providers
 
 `TargetService`, `ComparatorService`, `GateService`, `FeedbackService`,
@@ -214,10 +229,10 @@ The adapter does not sandbox a trusted in-process function or control arbitrary
 nested requests: the caller must provide bounded work and full cost accounting.
 No subprocess/network execution mechanism is introduced by this adapter.
 
-byo-evaluator.js (source checkout: `../examples/native/byo-evaluator.js`) adapts an existing local
-function and changes the search provider. byo-experiment.json (source checkout: `../examples/native/byo-experiment.json`)
-and byo-profile.patch.yml (source checkout: `../examples/native/byo-profile.patch.yml`) are a complete
-zero-cost functional composition. They do not claim real optimization benefit.
+The shipped [BYO adapter](examples/product/byo-evaluator.js) wraps an existing
+local function. Use `duo init --example byo` and the
+[public examples guide](examples/product/README.md) for its complete CNY0
+composition. It does not claim real optimization benefit.
 
 `createControlEvaluation({evaluate, controls, discriminationMetric,
 reservationCnyPerCase})` from the same public export adapts an existing measurement
@@ -238,18 +253,15 @@ explicit callback request cap and all-inclusive fee reservation. Zero-cost local
 callbacks require no model allowance. Data purpose is caller-declared; DUO cannot
 identify secretly relabelled final answers. Do not use final data as controls.
 
-The runnable control adapter (source checkout: `../examples/native/evaluator-controls.js`) uses the
-existing `@deepseek-ai/schemastery` Standard Schema validation function (MIT;
-verified installed version 3.18.2) and separately checks allowed references. There
-is no downloaded dependency or copied library implementation. Its source/config,
-dependency version and fixed labels participate in descriptor identities. See
-contract (source checkout: `../examples/native/evaluator-controls-experiment.json`) and
-profile patch (source checkout: `../examples/native/evaluator-controls-profile.patch.yml`).
-The executor is an explicit fixture for this control experiment: fixed outputs,
-not the Target's generated answers, are measured. Scope is format/reference
-measurement, not answer correctness, independent final data or Slow fidelity.
+The shipped [control adapter](examples/product/evaluator-controls.js),
+[contract](examples/product/evaluator-controls-experiment.json) and
+[profile patch](examples/product/evaluator-controls-profile.patch.yml) use the
+existing local text measurement on four frozen outputs. Follow the installed
+setup in [the examples guide](examples/product/README.md). No research fixture or
+new dependency is required. The Executor artifact is not measured by this control
+run; scope is function plumbing, not Target correctness or independent evidence.
 
-The host verifier includes the passing controls, an explicitly constant evaluator
+The historical source-only schema-validator host verifier includes passing controls, an explicitly constant evaluator
 negative control (match rate 0.25, discrimination false), and a missing dependency
 that must refuse at plan time without creating a run. `evaluation_complete` does
 not certify control success: inspect the frozen constraints in `measurementChecks`.
@@ -437,6 +449,8 @@ CURRENT_STATUS.md and `/capabilities`; discovery also shows custom descriptors.
 Core does not inspect persona/config fields. A Target snapshot has `id`,
 `version`, optional `path`, and adapter-owned content. `identity(snapshot)` must
 be a stable content identity; the compatibility fallback is snapshot.version.
+The baseline is identified by `plan.baseline.id` throughout execution and reports;
+the name `baseline` is not required. The supplied custom adapter uses `original`.
 Candidate ids/parent versions, Delta, execution and measurements retain their
 existing meanings.
 

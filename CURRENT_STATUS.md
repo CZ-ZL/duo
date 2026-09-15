@@ -1,8 +1,8 @@
-# DUO 0.6.0 — current product support
+# DUO 0.6.1 — current product support
 
 DUO is a DSH-native component for bounded evaluation and optimization. The default bundle exposes preparation and waits for work providers; it does not wire a research fixture or authorize model spending.
 
-This page is generated from native/capabilities.js and package.json. Run scripts/sync_product_docs.mjs after an intentional support change. Public discovery uses the same catalog. PRODUCT_ACCEPTANCE.json retains the sealed 0.5.0 receipt; current acceptance evidence is recorded in docs/slow-evidence-strategy/QUEUE.md; historical experiment reports do not define current support.
+This page is generated from native/capabilities.js and package.json. Run scripts/sync_product_docs.mjs after an intentional support change. Public discovery uses the same catalog. This build is a local release candidate until a matching delivery receipt exists. The source's docs/product-foundation/RELEASE_CLOSEOUT.md tracks its finite gate. PRODUCT_ACCEPTANCE.json and docs/slow-evidence-strategy/QUEUE.md retain prior sealed acceptance; historical experiments do not define current support.
 
 | Target | Support | Mutable space | Warm start | Execution |
 |---|---|---|---|---|
@@ -25,6 +25,7 @@ Supported environment: Linux, Node 24+, tested DSH 0.1.2-rc.1 / Cordis 4.0.2. Pu
 - Trusted in-process providers; host owns permission enforcement.
 - Recovery only at unchanged settled checkpoints within the original deadline.
 - No automatic candidate adoption.
+- Valid baseline quality violations may enter repair; candidates must meet unchanged constraints. Invalid evidence still stops search. Inspect plan.baselinePolicy and result.baselineAssessment.
 - Method superiority is not established by product acceptance.
 
 Research is paused for this product release: no new benchmark, single-loop comparison, Graph/Bayesian, weak-to-strong, Generator/Slow research or additional loops. Historical method evidence has not established a general DUO quality/cost advantage.
