@@ -1,0 +1,187 @@
+{
+  "status": "COMPLETE_PUBLIC_SOURCE",
+  "scope": "Linux developer-preview public source; not method efficacy or security certification",
+  "version": "0.6.1 candidate",
+  "verifiedCodeCommit": "3670a659ca8d4d1452b08e803f3810858b4ed4db",
+  "ciUrl": "https://github.com/CZ-ZL/duo/actions/runs/35009839832",
+  "ciConclusion": "success",
+  "package": {
+    "files": 69,
+    "sha256": "0e842f5531e8261c801484ca196bba9d74c6272993fdd0bcbeacf046d9f40869",
+    "onlyChangedMembersSinceHomepage": [
+      "README.md",
+      "README.zh-CN.md",
+      "SECURITY.md"
+    ]
+  },
+  "publication": {
+    "repository": "CZ-ZL/duo",
+    "visibility": "public",
+    "timeUtc": "2026-09-15T18:59:10.947300+00:00",
+    "url": "https://github.com/CZ-ZL/duo",
+    "codeCommit": "3670a659ca8d4d1452b08e803f3810858b4ed4db"
+  },
+  "anonymousVerification": {
+    "timeUtc": "2026-09-15T19:00:21.779842+00:00",
+    "checks": [
+      {
+        "name": "repository",
+        "url": "https://api.github.com/repos/CZ-ZL/duo",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "bytes": 4878,
+        "sha256": "f8fce58247a8747d4381225aef9bb438307df044ab9cab8c39626bc81c983fa7"
+      },
+      {
+        "name": "readme",
+        "url": "https://raw.githubusercontent.com/CZ-ZL/duo/main/README.md",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "bytes": 5791,
+        "sha256": "0ddb7865c1f16480b1d5b001c67b8e96ed1c152a8ace241c6be7f651ea9206bb"
+      },
+      {
+        "name": "chinese-readme",
+        "url": "https://raw.githubusercontent.com/CZ-ZL/duo/main/README.zh-CN.md",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "bytes": 5189,
+        "sha256": "e4454aaeba9b627b4a8ab68f65af11ac1c0733178227ce1a39497a79e2c2ca06"
+      },
+      {
+        "name": "homepage",
+        "url": "https://github.com/CZ-ZL/duo",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "bytes": 309873,
+        "sha256": "c072feffb70d8c06653509803dba494c1c062cf13f55ddf14393768e6c300640"
+      }
+    ]
+  },
+  "securitySettings": [
+    {
+      "setting": "private-reporting",
+      "value": {
+        "enabled": true
+      }
+    },
+    {
+      "setting": "external-fork-approval",
+      "value": {
+        "approval_policy": "all_external_contributors"
+      }
+    }
+  ],
+  "workflowPermissions": {
+    "default_workflow_permissions": "read",
+    "can_approve_pull_request_reviews": false
+  },
+  "ci": {
+    "nativePassed": 340,
+    "pythonProductPassed": 451,
+    "researchDeselected": 86,
+    "freshDependencyStore": "PASS",
+    "publicChecks": 73,
+    "publicSteps": 97,
+    "publicProfiles": 14,
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "hostProfiles": 21,
+    "developmentNpmAdvisories": 0,
+    "hostNpmAdvisories": 0
+  },
+  "sourceScan": {
+    "files": 441,
+    "reachableCommits": 22,
+    "blobs": 864,
+    "unresolvedCredentialSignatures": 0,
+    "genericAuthorPathMatches": 27
+  },
+  "externalExposureScan": {
+    "releases": 2,
+    "releaseAssets": 5,
+    "ciArtifacts": 12,
+    "workflowLogBundles": 13,
+    "archives": 30,
+    "filesAndMembers": 3646,
+    "credentialSignatureHits": 0,
+    "failedDownloads": 0
+  },
+  "pythonAdvisory": {
+    "source": "https://api.osv.dev/v1/querybatch",
+    "versions": {
+      "PyYAML": "6.0.2",
+      "pytest": "9.0.3"
+    },
+    "listedVulnerabilities": 0
+  },
+  "skills": [
+    {
+      "repo": "addyosmani/agent-skills",
+      "commit": "be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39",
+      "path": "skills/shipping-and-launch/SKILL.md",
+      "url": "https://github.com/addyosmani/agent-skills/blob/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/shipping-and-launch/SKILL.md",
+      "sha256": "af610cf4892db7eab2e91c899e33feba90e1000bac4528b2f8dde930816ac125"
+    },
+    {
+      "repo": "addyosmani/agent-skills",
+      "commit": "be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39",
+      "path": "references/definition-of-done.md",
+      "url": "https://github.com/addyosmani/agent-skills/blob/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/references/definition-of-done.md",
+      "sha256": "d1c75d2ae65d2c7a9cd01f93fa8de63e00e75f2fe5d08be224d576157054dcee"
+    },
+    {
+      "repo": "addyosmani/agent-skills",
+      "commit": "be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39",
+      "path": "references/security-checklist.md",
+      "url": "https://github.com/addyosmani/agent-skills/blob/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/references/security-checklist.md",
+      "sha256": "963922cb36bc87b81e56c8f86ff8f6db813ed7efe88066914dceaf6adba2ac90"
+    },
+    {
+      "repo": "trailofbits/skills",
+      "commit": "027bc47a69a276c340717bafdc3708263094b9a4",
+      "path": "plugins/differential-review/skills/differential-review/SKILL.md",
+      "url": "https://github.com/trailofbits/skills/blob/027bc47a69a276c340717bafdc3708263094b9a4/plugins/differential-review/skills/differential-review/SKILL.md",
+      "sha256": "f9af6a8193fc1a9f8ca3c54bb8d19095a5f20c9472ca6d014488bbde50b67da0"
+    },
+    {
+      "repo": "trailofbits/skills",
+      "commit": "027bc47a69a276c340717bafdc3708263094b9a4",
+      "path": "plugins/differential-review/skills/differential-review/methodology.md",
+      "url": "https://github.com/trailofbits/skills/blob/027bc47a69a276c340717bafdc3708263094b9a4/plugins/differential-review/skills/differential-review/methodology.md",
+      "sha256": "16b335d24cf2145e3dc4a37f50056550d29db2efa20e6df78fec95ec1e6fb0b4"
+    },
+    {
+      "repo": "trailofbits/skills",
+      "commit": "027bc47a69a276c340717bafdc3708263094b9a4",
+      "path": "plugins/differential-review/skills/differential-review/reporting.md",
+      "url": "https://github.com/trailofbits/skills/blob/027bc47a69a276c340717bafdc3708263094b9a4/plugins/differential-review/skills/differential-review/reporting.md",
+      "sha256": "0016876dc6f158e926448bff1b6f634796757c7afe09dff177cfe30250724fc4"
+    }
+  ],
+  "findings": {
+    "critical": 0,
+    "high": 0,
+    "lowAddressed": [
+      "QC01 private reporting",
+      "QC02 immutable Action commits",
+      "QC03 publication guidance"
+    ]
+  },
+  "newModelRequests": 0,
+  "newModelCostCny": 0,
+  "npmPublished": false,
+  "newTagCreated": false,
+  "runtimeChanged": false,
+  "historicalOutcomesChanged": false,
+  "documentationFollowUp": "Publication receipt/index only; tested package members unchanged",
+  "limitations": [
+    "Trusted in-process providers, not OS/payment sandbox",
+    "Linux only, supported settled checkpoints only",
+    "Historical independent Caller evidence; no fresh blank-Agent run in this audit",
+    "86 archive-dependent research tests excluded",
+    "No general optimization advantage established",
+    "Bounded signature/advisory review, not exhaustive security certification",
+    "Existing non-blocking Action runtime deprecation annotation retained"
+  ]
+}

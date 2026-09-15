@@ -1,7 +1,7 @@
 # Repository presentation — 0.6.1 candidate
 
-Name: duo. Destination: CZ-ZL/duo, main. Public exposure is owner-authorized,
-pending the final audit; current visibility remains private until its receipt.
+Name: duo. Destination: CZ-ZL/duo, PUBLIC, main. Owner-authorized public
+exposure and anonymous access were verified on 2026-09-16 (Asia/Shanghai).
 Description: Composable DSH-native evaluation and optimization with explicit evidence modes, bounded budgets and traceable results.
 Homepage: README. Languages: README.md (English), README.zh-CN.md (Chinese).
 Documentation: docs/README.md. Current architecture: docs/ARCHITECTURE.md.
@@ -11,7 +11,9 @@ Homepage verified code: 5ec271077c8007f75164e96364545dddb07de3b1.
 Homepage CI: https://github.com/CZ-ZL/duo/actions/runs/35008412237.
 Organization verified code: e674101ea2f344cb43283d028320854103de644e.
 Organization CI: https://github.com/CZ-ZL/duo/actions/runs/35005165474.
-Current receipt: docs/releases/0.6.1/ORGANIZATION_EVIDENCE.json.
+Current receipt: docs/releases/0.6.1/PUBLIC_EVIDENCE.json.
+Verified code: 3670a659ca8d4d1452b08e803f3810858b4ed4db.
+Final CI: https://github.com/CZ-ZL/duo/actions/runs/35009839832.
 Earlier F01 verified code: 80f06eea5161791585f05cdc6639cd328bb57bf7.
 Earlier F01 CI: https://github.com/CZ-ZL/duo/actions/runs/35001366148.
 Sources and licenses: docs/THIRD_PARTY_NOTICES.md.

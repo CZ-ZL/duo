@@ -1,7 +1,7 @@
 # DUO Product Foundation & Productization
 
-Current follow-up: [final public-source audit](FINAL_PUBLIC_AUDIT.md), authorized
-by the owner together with public visibility after checks. The
+Current delivery: [final public-source audit](FINAL_PUBLIC_AUDIT.md) COMPLETE;
+CI35009839832 passed and owner-authorized public visibility is verified. The
 [homepage organization](ORGANIZATION.md#homepage-follow-up--2026-09-16) passed
 CI35008412237 and is complete. Earlier closures below remain historical.
 

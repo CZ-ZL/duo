@@ -1,8 +1,16 @@
 # Releases and verification
 
 Current package line: **0.6.1 candidate**. Last tagged release: **v0.6.0**.
-Public visibility is owner-authorized and pending the
-[final audit](../product-foundation/FINAL_PUBLIC_AUDIT.md). There is no npm publication.
+The repository is **public**. The [final audit](../product-foundation/FINAL_PUBLIC_AUDIT.md)
+and [publication receipt](0.6.1/PUBLIC_EVIDENCE.json) record the authorized exposure.
+There is no npm publication.
+
+Current verified source: `3670a659ca8d4d1452b08e803f3810858b4ed4db`.
+[CI35009839832](https://github.com/CZ-ZL/duo/actions/runs/35009839832) passed the
+complete product gate with the final documentation and pinned Actions.
+The 69-member package SHA256 is
+`0e842f5531e8261c801484ca196bba9d74c6272993fdd0bcbeacf046d9f40869`.
+Later publication receipts change documentation only.
 
 The [homepage follow-up](../product-foundation/ORGANIZATION.md) passed
 [CI35008412237](https://github.com/CZ-ZL/duo/actions/runs/35008412237).
@@ -20,6 +28,7 @@ Package documentation changes receive a new artifact hash.
 
 | Version / stage | Notes and evidence |
 |---|---|
+| 0.6.1 public source — current | [Audit](../product-foundation/FINAL_PUBLIC_AUDIT.md), [receipt](0.6.1/PUBLIC_EVIDENCE.json), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35009839832) |
 | 0.6.1 homepage organization | [Receipt](0.6.1/HOMEPAGE_EVIDENCE.json), [CI](https://github.com/CZ-ZL/duo/actions/runs/35008412237) |
 | 0.6.1 directory organization | [Receipt](0.6.1/ORGANIZATION_EVIDENCE.json), [migration/compatibility](../development/REPOSITORY_LAYOUT.md), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35005165474) |
 | 0.6.1 identity repair before directory migration | [Notes](0.6.1/RELEASE_NOTES.md), [sealed F01 receipt](0.6.1/F01_EVIDENCE.json), [passing CI](https://github.com/CZ-ZL/duo/actions/runs/35001366148) |

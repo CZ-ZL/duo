@@ -1,6 +1,6 @@
 # Final public-source audit — 2026-09-16
 
-Status: IN PROGRESS. The owner explicitly authorized public visibility after
+Status: COMPLETE_PUBLIC_SOURCE (Linux developer-preview scope). The owner explicitly authorized public visibility after
 this final audit. This supersedes earlier preparation-only visibility limits;
 it does not authorize npm publication, paid model experiments or deployment.
 The [existing A01–A13 contract](PRE_PUBLICATION_ACCEPTANCE.md) remains the
@@ -10,12 +10,12 @@ acceptance basis. Old failed results and later repairs remain separate records.
 
 | Check | Required outcome | Status |
 |---|---|---|
-| Q1 History and external exposure (A01) | Scan reachable history, current tree, release assets and Actions logs/artifacts; reconcile remote refs and other repository surfaces | Existing surfaces PASS; final CI output pending |
-| Q2 Supply chain and attribution (A02) | Review package boundaries, lifecycle scripts, licenses and exact-version dependency advisories; no unresolved blocking finding | Package/OSV PASS; final CI npm advisory refresh pending |
+| Q1 History and external exposure (A01) | Scan reachable history, current tree, release assets and Actions logs/artifacts; reconcile remote refs and other repository surfaces | PASS: 30 archives /3,646 members, source/history and final CI output scanned |
+| Q2 Supply chain and attribution (A02) | Review package boundaries, lifecycle scripts, licenses and exact-version dependency advisories; no unresolved blocking finding | PASS: package and fresh CI dependency audits; no listed vulnerabilities in the queried versions |
 | Q3 Critical code review (A03–A08) | Trace public input, plan, budget, evidence, selection and recovery; review changes since v0.6.0 with existing controls | PASS within declared trusted-provider scope; see review below |
-| Q4 Product verification (A09–A11) | Complete existing exact-code product CI and artifact checks; distinguish fresh scripted evidence from earlier independent Caller evidence | Homepage CI PASS; publication-document package CI pending |
-| Q5 Public guidance (A12) | Current setup, limitations, security contact and navigation usable without private context | Reporting instructions repaired; activate private form with public exposure |
-| Q6 Decision and exposure (A13) | Save findings and artifact identity; only then change visibility and verify unauthenticated access | PENDING |
+| Q4 Product verification (A09–A11) | Complete existing exact-code product CI and artifact checks; distinguish fresh scripted evidence from earlier independent Caller evidence | PASS: CI35009839832 at 3670a65, including the final package and action pins |
+| Q5 Public guidance (A12) | Current setup, limitations, security contact and navigation usable without private context | PASS: current guidance, active private reporting and anonymous access verified |
+| Q6 Decision and exposure (A13) | Save findings and artifact identity; only then change visibility and verify unauthenticated access | PASS: repository PUBLIC; anonymous homepage/API/both READMEs HTTP200 |
 
 Research outcomes, candidate generation and new benchmarks are outside scope.
 No professional security certification, exhaustive dependency source audit or
@@ -49,8 +49,8 @@ outside the published repository. Findings and final disposition follow below.
 
 | ID | Severity / evidence | Disposition |
 |---|---|---|
-| QC01 | LOW / FACT: package SECURITY.md directed readers to their original private distribution channel, which public newcomers do not have | Updated package and existing GitHub security policy to a private reporting form with a non-disclosing fallback; activation and readback are part of publication |
-| QC02 | LOW / FACT: four workflow actions referenced mutable major-version tags | Pinned the current tag commits; retained contents:read, no persisted checkout credentials, and disabled dependency install scripts; final CI verifies these exact pins |
+| QC01 | LOW / FACT: package SECURITY.md directed readers to their original private distribution channel, which public newcomers do not have | Updated package and existing GitHub security policy to a private reporting form with a non-disclosing fallback; activated and read back enabled=true during publication |
+| QC02 | LOW / FACT: four workflow actions referenced mutable major-version tags | Pinned the current tag commits; retained contents:read, no persisted checkout credentials, and disabled dependency install scripts; final CI passed with these exact pins |
 | QC03 | LOW / FACT: package installation docs and release procedure still described private-only distribution | Current guidance uses the release index and owner-authorized visibility; sealed older receipts remain unchanged |
 
 No new HIGH/CRITICAL issue was identified in the reviewed scope. This is not a
@@ -87,18 +87,19 @@ pins only. Native runtime bytes, exports, model configuration, objectives and
 all experiment outcomes remain unchanged. The new 69-member package SHA256 is
 `0e842f5531e8261c801484ca196bba9d74c6272993fdd0bcbeacf046d9f40869`.
 
-## Exposure and dependencies reviewed so far
+## Exposure and dependencies
 
-Source scan: 441 intended files, 21 reachable commits and 852 blobs; zero
+Source scan: 441 intended files, 22 reachable commits and 864 blobs; zero
 unresolved credential-signature or private filename hits. The 27 current generic
 author-path matches remain classified historical/test/legacy references.
 Remote refs comprise main and the two recorded tags, all covered by local objects.
 
-Downloaded five assets from both old Releases, ten retained CI artifacts and
-eleven completed-run log bundles, including failed/cancelled runs. Recursive
-inspection covered 2,690 files/members with no credential-signature hits.
+Downloaded five assets from both old Releases, twelve retained CI artifacts and
+thirteen completed-run log bundles, including failed/cancelled runs. Recursive
+inspection covered 3,646 files/members with no credential-signature hits.
 Issues and issue/review/commit comments were empty; wiki, discussions and Pages
-were disabled. Later CI outputs are checked separately before exposure.
+were disabled. The final CI outputs are included in those counts. Final evidence-only edits
+are checked separately and do not change any tested package member.
 
 Homepage CI35008412237 passed native 340, Python product 451 (86 research tests
 excluded), installed public 73 checks/97 steps, Slow 31 checks, baseline repair
@@ -107,7 +108,7 @@ dependency graphs returned zero advisories. OSV exact-version queries for
 PyYAML 6.0.2 and pytest 9.0.3 returned no listed vulnerabilities; this does not
 certify every version admitted by a dependency range. No forced audit upgrade.
 
-## Acceptance limits and remaining actions
+## Acceptance limits
 
 Independent Caller evidence is earlier evidence from the product/Slow tracks;
 their public guide and CLI inputs remain intact. This audit does not run a fresh
@@ -120,7 +121,42 @@ test or method-effectiveness claim is made. Linux developer-preview boundaries,
 trusted provider code and settled-checkpoint-only recovery remain documented.
 Hosted traffic metrics and production fleet rollout are outside this release.
 
-Remaining: verify the new exact package/Action pins in CI, inspect its output,
-record the final decision, change visibility under the owner's explicit grant,
-enable private reporting, and verify public access without authentication.
-No paid models, npm publication, new tag or automatic candidate adoption.
+## Final decision and publication
+
+APPROVE for public developer-preview source; publication completed after the
+READY decision was saved locally. No unresolved release blocker was identified
+within the stated scope. Three LOW release-preparation findings were addressed;
+no new HIGH/CRITICAL finding was reported. The result is a bounded review, not a
+whole-system security guarantee.
+
+Verified code: `3670a659ca8d4d1452b08e803f3810858b4ed4db`.
+[Final CI35009839832](https://github.com/CZ-ZL/duo/actions/runs/35009839832) passed:
+native 340; Python product 451 /86 research deselected; fresh dependency-store
+installation; public 73 checks /97 steps /14 profiles; Slow 31 checks;
+baseline repair five cases /26 commands; host 21 profiles; package, types,
+format, documentation and sandbox gates. Both npm advisory graphs returned zero.
+The CI archive matches the local SHA256 above. The existing non-blocking Actions
+Node runtime deprecation annotation remains recorded; it is maintenance debt,
+not a suppressed test failure.
+
+Publication at 2026-09-15 18:59 UTC (2026-09-16 Asia/Shanghai):
+[repository](https://github.com/CZ-ZL/duo) is PUBLIC. Unauthenticated requests
+returned HTTP200 for repository metadata, the homepage and both READMEs; their
+source bytes match the reviewed tree. Private vulnerability reporting is enabled.
+All external-contributor fork workflows require maintainer approval; default
+workflow permissions remain read-only with PR approval disabled.
+
+The [machine-readable receipt](../releases/0.6.1/PUBLIC_EVIDENCE.json) separates
+the verified code from this later evidence-only documentation update. Tags remain
+v0.5.0 and v0.6.0; source/package line 0.6.1 remains a candidate. No npm publish,
+new tag, paid model call, historical rewrite or candidate deployment occurred.
+No background monitoring or follow-on research is promised.
+
+Retained administrative failures: a private-reporting GET returned HTTP404 while
+the repository was private; the private-repo fork-approval GET returned HTTP422;
+a local receipt write used the package cwd and failed before writing. These were
+resolved or superseded by verified public readbacks and the corrected local path,
+and are not recast as product defects. Earlier product/CI failures remain intact.
+
+Next maintenance is ordinary issue triage and supported-host compatibility work;
+this audit does not automatically start another redesign or method experiment.
