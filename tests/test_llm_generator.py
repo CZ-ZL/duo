@@ -220,7 +220,7 @@ def test_parallel_evaluator_runs_all_questions_and_charges(tmp_path):
     from dualloop.plugins.dsh_executor import SessionResult
     from pathlib import Path as _P
 
-    bench = _P(__file__).resolve().parent.parent / "benchmarks" / "docs_qa"
+    bench = _P(__file__).resolve().parent.parent / "research" / "benchmarks" / "docs_qa"
     questions = load_questions(bench / "questions.dev.yml")
 
     class FakeExecutor:
@@ -320,7 +320,7 @@ def test_controller_runs_with_seeded_baseline_and_zero_generations(tmp_path):
     fast = seed_baseline_result(_synthetic_details(tmp_path / "f.json"), "fast")
     slow = seed_baseline_result(_synthetic_details(tmp_path / "s.json", "slow"),
                                 "slow")
-    config = Path(__file__).resolve().parent.parent / "experiments" / "docs_qa.yml"
+    config = Path(__file__).resolve().parent.parent / "research" / "experiments" / "docs_qa.yml"
     import yaml
     contract_source = yaml.safe_load(config.read_text())["contract"]
     provider = MockObjectiveProvider(contract_source)
@@ -356,7 +356,7 @@ def test_build_controller_wiring_with_self_contained_seed(tmp_path):
     import yaml
     from dualloop.controller import build_controller
     from dualloop.plugins.llm_generator import LlmDocsQaGenerator
-    config = yaml.safe_load((Path(__file__).resolve().parent.parent / 'experiments/docs_qa.yml').read_text())
+    config = yaml.safe_load((Path(__file__).resolve().parent.parent / 'research/experiments/docs_qa.yml').read_text())
     config['session_budget_file'] = str(tmp_path / 'budget.json')
     config['session_reservations_usd'] = {'generation': 0.1, 'evaluation': 0.2}
     config['resume'] = False
@@ -379,7 +379,7 @@ def test_build_controller_dispatches_to_real_wiring(tmp_path):
     from pathlib import Path as _P
     from dualloop.controller import build_controller
     from dualloop.plugins.llm_generator import LlmDocsQaGenerator
-    exp = _P(__file__).resolve().parent.parent / "experiments" / "docs_qa.yml"
+    exp = _P(__file__).resolve().parent.parent / "research" / "experiments" / "docs_qa.yml"
     config = yaml.safe_load(exp.read_text(encoding="utf-8"))
     config["session_budget_file"] = str(tmp_path / "demo_budget.json")
     # Offline construction bounds, not authorization or an edit to the historical experiment.

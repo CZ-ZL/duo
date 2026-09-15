@@ -77,7 +77,7 @@ def main():
     # independence. This scope measures output protocol, not the old lexical score.
     save(host.output / 'inputs/reuse-limits.json', {'targetSha256': sha(host.output / 'inputs/persona.txt'), 'sourceTarget': 'examples/native/persona.txt', 'finalIndependence': 'NOT_ESTABLISHED', 'note': 'All task sets already existed in earlier experiments. Do not call these fresh held-out data or mix new output-schema metrics with old scores.'})
     host.pack()
-    shutil.copyfile(ROOT / 'AGENT_GUIDE.md', host.output / 'PUBLIC_GUIDE.md')
+    shutil.copyfile(ROOT / 'dsh-plugin/AGENT_GUIDE.md', host.output / 'PUBLIC_GUIDE.md')
     save(host.output / 'pricing.json', pricing)
     experiment = host.output / 'experiment.json'
     save(experiment, {})  # Caller must complete and write its inspected draft.

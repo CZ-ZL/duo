@@ -1,5 +1,37 @@
 # Repository organization — bounded execution queue
 
+## Homepage follow-up — 2026-09-16
+
+Owner-approved follow-up to the sealed directory migration below. Baseline:
+`46615a11efb9532669d60ee4af65a5200958a17d`. Scope: first-use navigation and
+source layout, with no method research or runtime algorithm change.
+
+| Task | Completion condition | Status |
+|---|---|---|
+| H1 Entry points | Research inputs grouped; duplicate root guides consolidated; current links and source consumers resolve | COMPLETE: root 22 → 17 entries (9 files, 8 directories); 22 mapped paths |
+| H2 Bilingual homepage | Product purpose, primary navigation and local start precede detailed verification/history; two-loop diagram and attribution retained | COMPLETE: each README 139 → 83 lines; four primary navigation links |
+| H3 Verification and private delivery | Frozen input bytes and package identity preserved; relevant checks and private CI pass; evidence recorded | LOCAL PASS; private CI pending |
+
+Local evidence: affected Python tests 119 PASS /1 research deselected; canonical
+guide check 1 PASS; actual host compatibility 21 profiles PASS; format and generated
+docs checks PASS. All 69 package members match the previous verified archive;
+its SHA256 remains `d9fcf1880eed7b5d5a0ba9c8c28ab90dcb4c9cac0578ac809efcaef608d84d82`.
+No shipped file, public export, dependency or native algorithm changed.
+
+The first link audit found one stale release-index status link, corrected before
+commit; 19 current guides now have no missing local file links. 21 relocated or
+consolidated files and 38 sealed historical files passed exact-byte checks.
+Attribution content changes only the research directory path. Original research
+configuration, data, failure records and costs remain unchanged; their old paths
+refer to their original commits. The source migration also preserves ignores for
+both old and new journal directories.
+
+See [homepage migration](../development/HOMEPAGE_MIGRATION.json). Detailed local
+receipts are retained outside published source in
+`dualloop/runs/homepage-organization-20260916`. No paid request or method trial.
+
+## Sealed directory migration
+
 Owner-approved follow-up: 2026-09-16. Baseline: `1abb2e1`.
 Status: COMPLETE within the authorized private repository scope.
 This changes repository layout, references and verification entry paths; it

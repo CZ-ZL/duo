@@ -99,7 +99,7 @@ def discover():
         "commands": ["discover", "plan --experiment FILE --journal-dir NEW_DIR",
                      "run --experiment FILE --journal-dir NEW_DIR --plan-digest SHA256",
                      "status --journal-dir DIR"],
-        "guide": "AGENT_GUIDE.md", "example": "examples/agent_native/experiment.yml",
+        "guide": "dsh-plugin/AGENT_GUIDE.md", "example": "examples/agent_native/experiment.yml",
     }
 
 
@@ -469,7 +469,7 @@ def execute_plan(config, plan, expected_digest):
         factory = getattr(module, "create_bindings", None)
         if not callable(factory):
             raise AgentError("PLUGIN_INCOMPATIBLE", "adapter", "adapter must export create_bindings",
-                             "Implement the factory contract shown in AGENT_GUIDE.md.")
+                             "Implement the factory contract shown in dsh-plugin/AGENT_GUIDE.md.")
         bindings = invoke("adapter", lambda: factory(
             baseline_persona=baseline, run_dir=str(root), evaluators=deepcopy(plan["evaluators"]),
             options=deepcopy(config["agent"].get("adapter_options", {}))))

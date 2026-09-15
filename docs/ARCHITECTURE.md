@@ -97,5 +97,5 @@ With LLM Agents*](https://arxiv.org/abs/2602.10226). That work evaluates
 recommendation model changes against production metrics. DUO generalizes the
 idea to replaceable Agent components and makes additional evidence optional and
 explicit. It does not reproduce the paper's production system or inherit its
-results. See [attribution](../THIRD_PARTY_NOTICES.md) and the separately preserved
+results. See [attribution](THIRD_PARTY_NOTICES.md) and the separately preserved
 [DUO experiment outcomes](./research/EXPERIMENTS.md).

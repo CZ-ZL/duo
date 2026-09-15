@@ -25,7 +25,7 @@ DUO is an independent plugin, not an official DeepSeek product.
 
 ## Included third-party material
 
-- `benchmarks/docs_qa/dsh-snapshot/`: DeepSeek Harness documentation, MIT. The
+- `research/benchmarks/docs_qa/dsh-snapshot/`: DeepSeek Harness documentation, MIT. The
   directory includes the upstream license, pinned commit and file provenance.
 - `dsh-plugin/tests/fixtures/code-contract-audit/`: adapted BigCodeBench v0.1.4
   regression tasks, reference implementations and tests, Apache-2.0. The

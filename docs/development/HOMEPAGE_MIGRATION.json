@@ -1,0 +1,141 @@
+{
+  "scope": "HOMEPAGE_ORGANIZATION",
+  "baseCommit": "46615a11efb9532669d60ee4af65a5200958a17d",
+  "entries": [
+    {
+      "old": "benchmarks/docs_qa/SPEC.md",
+      "new": "research/benchmarks/docs_qa/SPEC.md",
+      "sha256": "bdd782fe1d5e840578573be30a8838b04b7f883ab610d295ecabb7e175627911",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/LICENSE",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/LICENSE",
+      "sha256": "ebb4f09972aee8608be255debaf78451a68e95c290f55c240dec2ecfa16ea6be",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/PROVENANCE.json",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/PROVENANCE.json",
+      "sha256": "cb611ea2f5a99e20e31c7a64ab8fb56c932bacdd8a00a5861ccfbc093aac4cd2",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/tool-execution-pipeline.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/tool-execution-pipeline.md",
+      "sha256": "c5609edcd9f56eb1ac510751b0e8a26c1da830bc54460de157d75335254b44fb",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "new": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/questions.dev.yml",
+      "new": "research/benchmarks/docs_qa/questions.dev.yml",
+      "sha256": "afd7facb95c8563e440b25139293576e49acd5a26e60b09c1de6f8bdf2ac7ee5",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/questions.holdout.yml",
+      "new": "research/benchmarks/docs_qa/questions.holdout.yml",
+      "sha256": "fc20ff2d838d78e0d814e79ccc0ef54030b312ea170e7bb96cbbcb22423c2468",
+      "byteIdentical": true
+    },
+    {
+      "old": "benchmarks/docs_qa/split_v1.archive.yml",
+      "new": "research/benchmarks/docs_qa/split_v1.archive.yml",
+      "sha256": "a1d09843654b5d7b6b748811df930ce0885b3e073367a8322bb207b875742ca7",
+      "byteIdentical": true
+    },
+    {
+      "old": "experiments/docs_qa.yml",
+      "new": "research/experiments/docs_qa.yml",
+      "sha256": "6487c424c0536b906f0b3e05086dd7968eeb85efcab4cc9e2c5946632811a191",
+      "byteIdentical": true
+    },
+    {
+      "old": "experiments/mock.yml",
+      "new": "research/experiments/mock.yml",
+      "sha256": "fbc9632bb5eb5601905e328358a7bf1ea0cc7bc06aa668fd29de08fa5894dfd3",
+      "byteIdentical": true
+    },
+    {
+      "old": "CHANGELOG.md",
+      "new": "docs/releases/CHANGELOG.md",
+      "sha256": "e1cde82856274e6917c3423ff50b6f50edf96b943929b30f311653a047486ff2",
+      "byteIdentical": true
+    },
+    {
+      "old": "THIRD_PARTY_NOTICES.md",
+      "new": "docs/THIRD_PARTY_NOTICES.md",
+      "sha256": "5ce3efb50e6b89ba8550211bc38748130cf2d40b645dd00c91946d58078b436d",
+      "byteIdentical": false
+    },
+    {
+      "old": "AGENT_GUIDE.md",
+      "new": "dsh-plugin/AGENT_GUIDE.md",
+      "sha256": "5f5fec11baf6a6a23930da22453c2dd58f19d1a7031303d666f0df944fcf5d04",
+      "byteIdentical": true,
+      "consolidatedDuplicate": true
+    },
+    {
+      "old": "CURRENT_STATUS.md",
+      "new": "dsh-plugin/CURRENT_STATUS.md",
+      "sha256": "f6ee78d560260a2b9a474ac1978aa4ad23d153f0fe7aeded15b95bebea0a0106",
+      "byteIdentical": true,
+      "consolidatedDuplicate": true
+    }
+  ],
+  "historicalPathRule": "Original relative paths refer to their recorded commits; frozen input bytes and outcomes are unchanged."
+}

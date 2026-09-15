@@ -13,7 +13,7 @@ assignees: ''
 ## Proposal
 
 <!-- Describe the behavior you would like. Note the current supported boundary
-(CURRENT_STATUS.md): supported/partial Target lifecycle and Linux process ownership.
+(dsh-plugin/CURRENT_STATUS.md): supported/partial Target lifecycle and Linux process ownership.
 Requests outside that boundary are welcome but should say so explicitly. -->
 
 ## Alternatives considered

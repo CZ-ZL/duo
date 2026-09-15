@@ -11,14 +11,14 @@ import json
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-CORPUS = ROOT / 'benchmarks/docs_qa/dsh-snapshot/docs'
+CORPUS = ROOT / 'research/benchmarks/docs_qa/dsh-snapshot/docs'
 PIN = '0a53fb55bea101816fa226bb964ae2bed71c343b'
 
 
 def prepare(output):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    questions = {q['id']: q for q in yaml.safe_load((ROOT / 'benchmarks/docs_qa/questions.dev.yml').read_text())}
+    questions = {q['id']: q for q in yaml.safe_load((ROOT / 'research/benchmarks/docs_qa/questions.dev.yml').read_text())}
     selections = {
         'sf-03': [('subsystems/sandbox.md', 9, 22)],
         'sy-03': [('subsystems/approval.md', 20, 34), ('tool-execution-pipeline.md', 5, 49)],
@@ -65,7 +65,7 @@ def prepare(output):
             assert all(key.lower() in row['input'].lower() for key in row['expected']['answerKeys']), row['id']
     (output / 'dataset.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
     (output / 'persona.txt').write_bytes((ROOT / 'examples/native/persona.txt').read_bytes())
-    provenance['benchmarks/docs_qa/questions.dev.yml'] = hashlib.sha256((ROOT / 'benchmarks/docs_qa/questions.dev.yml').read_bytes()).hexdigest()
+    provenance['research/benchmarks/docs_qa/questions.dev.yml'] = hashlib.sha256((ROOT / 'research/benchmarks/docs_qa/questions.dev.yml').read_bytes()).hexdigest()
     (output / 'provenance.json').write_text(json.dumps({'upstreamPin': PIN, 'sourceHashes': provenance,
         'search': '8 existing dev questions partitioned fast/slow', 'final': '4 public historical demo questions; never generator input; not unseen final',
         'limitations': ['Small supplied-context test, not retrieval/tool-use qualification.', 'Substring/citation judge has lexical and saturation limits; no general improvement claim.', 'Four final tasks are correlated across two source pages; no statistical significance claim.']}, indent=2) + '\n')

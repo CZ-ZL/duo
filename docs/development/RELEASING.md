@@ -1,7 +1,7 @@
 # Product release procedure
 
 0.6.1 candidate source and a verified CI artifact are delivered privately;
-0.6.0 remains the last tagged private release. Current support is recorded in CURRENT_STATUS.md. The
+0.6.0 remains the last tagged private release. Current support is recorded in [current capabilities](../../dsh-plugin/CURRENT_STATUS.md). The
 [pre-publication acceptance contract](../product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)
 and [current follow-up](../product-foundation/F01_REPAIR.md) govern this candidate's
 release decision; docs/slow-evidence-strategy/ACCEPTANCE.json is the sealed 0.6.0 receipt.

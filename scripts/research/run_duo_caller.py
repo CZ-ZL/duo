@@ -54,7 +54,7 @@ def main():
     if contract['permissions']!={'paid':True,'network':live,'externalSideEffects':False}:p.error('Contract permissions must match the explicit live/offline mode')
     host=Profile(args.dsh_package,args.output);(host.output/'inputs').mkdir();host.pack()
     for file,source in [('dataset.json',args.dataset),('answerKey.json',args.answer_key)]:shutil.copyfile(source,host.output/'inputs'/file)
-    shutil.copyfile(ROOT/'AGENT_GUIDE.md',host.output/'PUBLIC_GUIDE.md')
+    shutil.copyfile(ROOT/'dsh-plugin/AGENT_GUIDE.md',host.output/'PUBLIC_GUIDE.md')
     save(host.output/'pricing.json',pricing);save(host.output/'experiment.json',contract)
     save(host.output/'input-provenance.json',{str(x.resolve()):sha(x) for x in [args.contract,args.dataset,args.answer_key,target]})
     experiment=str(host.output/'experiment.json');providerName='deepseek-official' if live else 'duo-configured-caller-fixture';model='deepseek-v4-flash' if live else 'fixture'

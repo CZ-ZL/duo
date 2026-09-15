@@ -32,10 +32,10 @@ from dualloop.plugins.docs_qa_evaluator import DocsQaSlowEvaluator  # noqa: E402
 from dualloop.plugins.dsh_executor import DshDocsQaExecutor  # noqa: E402
 from dualloop.runtime.budget import SessionBudget  # noqa: E402
 
-BENCH = ROOT / "benchmarks" / "docs_qa"
+BENCH = ROOT / "research" / "benchmarks" / "docs_qa"
 CORPUS = Path("/home/agent/.openclaw/workspace/Research OS/"
               "deepseek_harness/upstream/docs")
-JOURNAL_DIR = ROOT / "experiments" / "journal"
+JOURNAL_DIR = ROOT / "research" / "experiments" / "journal"
 ABLATION_EXPERIMENT = "docs_qa-ablation"
 
 

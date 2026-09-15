@@ -1,6 +1,6 @@
 """Real (non-mock) wiring for the docs_qa demo experiment.
 
-build_real_controller() wires the frozen contract (experiments/docs_qa.yml)
+build_real_controller() wires the frozen contract (research/experiments/docs_qa.yml)
 to the real plugins: LlmDocsQaGenerator (proposer on the `headless` profile),
 SystemPromptMutator (cordis overlay + guardrails), DshDocsQaExecutor
 (sandboxed headless sessions), DocsQaFast/SlowEvaluator (dev/holdout), the
@@ -35,7 +35,7 @@ from .plugins.mock import MockObjectiveProvider, MockObserver
 from .runtime.budget import SessionBudget
 
 ROOT = Path(__file__).resolve().parent.parent
-BENCH = ROOT / "benchmarks" / "docs_qa"
+BENCH = ROOT / "research" / "benchmarks" / "docs_qa"
 CORPUS = Path("/home/agent/.openclaw/workspace/Research OS/"
               "deepseek_harness/upstream/docs")
 

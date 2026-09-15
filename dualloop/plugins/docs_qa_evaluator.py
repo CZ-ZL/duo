@@ -1,4 +1,4 @@
-"""docs_qa evaluators: programmatic judging per benchmarks/docs_qa/SPEC.md.
+"""docs_qa evaluators: programmatic judging per research/benchmarks/docs_qa/SPEC.md.
 
 FastEvaluator  (docs_qa_dev_v1):     24 dev questions, metric dict only.
 SlowEvaluator  (docs_qa_holdout_v1): 16 holdout questions + a trace-based

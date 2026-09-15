@@ -11,4 +11,4 @@ entry points. Their runnable script references now point to
 `scripts/research/`. They are not prerequisites for product installation.
 These scripts may require private historical inputs or explicitly authorized
 model calls. Moving them grants no spending permission and does not resume any
-experiment. Use [the product guide](../../AGENT_GUIDE.md) for current usage.
+experiment. Use [the product guide](../../dsh-plugin/AGENT_GUIDE.md) for current usage.

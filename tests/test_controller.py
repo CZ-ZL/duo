@@ -15,7 +15,7 @@ from dualloop.journal import JsonlJournal
 from dualloop.models import Candidate, Delta, FeedbackSummary
 from dualloop.plugins.mock import MockMutator
 
-MOCK_YML = Path(__file__).resolve().parent.parent / "experiments" / "mock.yml"
+MOCK_YML = Path(__file__).resolve().parent.parent / "research" / "experiments" / "mock.yml"
 TRAP = "proxy-trap"
 
 

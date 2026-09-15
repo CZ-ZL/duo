@@ -2,7 +2,7 @@
 
 This retained guide covers the earlier explicitly configured persona example.
 Current default usage, other Targets and evidence-mode negotiation are documented
-in [AGENT_GUIDE.md](../../AGENT_GUIDE.md) and [CURRENT_STATUS.md](../../CURRENT_STATUS.md).
+in [AGENT_GUIDE.md](../../dsh-plugin/AGENT_GUIDE.md) and [CURRENT_STATUS.md](../../dsh-plugin/CURRENT_STATUS.md).
 The example's persona requirement is not a requirement of the DUO Core.
 
 The profile supplies a persona, immutable objective contract, generator,

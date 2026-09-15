@@ -32,15 +32,10 @@ ${cap.boundaries.map((b) => '- ' + b).join('\n')}
 
 Research is paused for this product release: no new benchmark, single-loop comparison, Graph/Bayesian, weak-to-strong, Generator/Slow research or additional loops. Historical method evidence has not established a general DUO quality/cost advantage.
 `
-for (const p of ['CURRENT_STATUS.md', 'dsh-plugin/CURRENT_STATUS.md']) {
+// One generated page in the package; repository navigation links to it.
+for (const p of ['dsh-plugin/CURRENT_STATUS.md']) {
   if (process.argv.includes('--check')) {
     if (read(p) !== text)
       throw new Error(p + ' is stale; run node scripts/product/sync_product_docs.mjs')
   } else writeFileSync(new URL(p, root), text)
-}
-// The detailed reference has one canonical copy in the installable package.
-for (const name of ['AGENT_GUIDE.md']) {
-  if (process.argv.includes('--check')) {
-    if (read(name) !== read('dsh-plugin/' + name)) throw new Error(name + ' shipped copy drifted')
-  } else writeFileSync(new URL('dsh-plugin/' + name, root), read(name))
 }

@@ -591,7 +591,7 @@ class LoopController:
 
 
 def build_controller(config: dict, journal_dir) -> LoopController:
-    """Wire an experiment config (e.g. experiments/mock.yml) into a controller."""
+    """Wire an experiment config (e.g. research/experiments/mock.yml) into a controller."""
     plugins = config.get("plugins") or {}
     if plugins and plugins.get("fast_evaluator") != "mock":
         from .real_wiring import build_real_controller  # lazy: avoids a cycle

@@ -1,7 +1,8 @@
 # DUO Product Foundation & Productization
 
-Current follow-up: [physical repository organization](ORGANIZATION.md).
-Root documents, verification/research scripts and native tests are relocated;
+Current follow-up: [homepage organization](ORGANIZATION.md#homepage-follow-up--2026-09-16).
+Research inputs are grouped, duplicate root guides consolidated, and bilingual
+homepages focus on first use. Verification is tracked in the bounded follow-up;
 public exports and historical results stay intact. Earlier closures below remain
 historical.
 

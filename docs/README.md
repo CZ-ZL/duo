@@ -7,13 +7,13 @@ needed. A closed historical Goal does not establish the status of a newer build.
 |---|---|
 | Understand DUO | [English README](../README.md) · [中文 README](../README.zh-CN.md) |
 | Run the smallest local evaluation | [Quickstart](./QUICKSTART.md) |
-| Use DUO as a Calling Agent | [Agent Guide](../AGENT_GUIDE.md) · [tool reference](../dsh-plugin/AGENT_REFERENCE.md) |
-| Check supported targets and modes | [Current capabilities](../CURRENT_STATUS.md) |
+| Use DUO as a Calling Agent | [Agent Guide](../dsh-plugin/AGENT_GUIDE.md) · [tool reference](../dsh-plugin/AGENT_REFERENCE.md) |
+| Check supported targets and modes | [Current capabilities](../dsh-plugin/CURRENT_STATUS.md) |
 | Understand the two loops and code boundaries | [Current architecture](./ARCHITECTURE.md) |
 | Supply or replace a component | [Provider contracts](../dsh-plugin/PROVIDERS.md) · [runnable examples](../dsh-plugin/examples/product/README.md) |
 | Develop and verify a change | [Contributing](../CONTRIBUTING.md) · [tests](./development/TESTING.md) · [script map](../scripts/README.md) |
 | Review this release | [Release index and current verification](releases/README.md) · [release acceptance criteria](product-foundation/PRE_PUBLICATION_ACCEPTANCE.md) |
-| Understand origins and licenses | [Third-party notices and inspiration](../THIRD_PARTY_NOTICES.md) |
+| Understand origins and licenses | [Third-party notices and inspiration](THIRD_PARTY_NOTICES.md) |
 | Read research results | [Experiment record](./research/EXPERIMENTS.md) |
 
 ## Repository layout
@@ -38,16 +38,19 @@ docs/
   product-foundation/        Product audit, maintenance queue and acceptance
   slow-evidence-strategy/    Sealed Slow-semantics Goal and evidence
   history/                  Historical documentation snapshots
-benchmarks/, experiments/   Exposed historical research inputs
+research/                  Exposed historical inputs (benchmarks/, experiments/)
 ```
 
 `dsh-plugin/package.json` owns shipped files and exports. Runtime consumers do not
 need the repository's Python tests, research scripts or historical fixtures.
-`native/capabilities.js` owns current capability declarations; the two
-`CURRENT_STATUS.md` copies are generated from it.
+`native/capabilities.js` owns current capability declarations;
+`dsh-plugin/CURRENT_STATUS.md` is generated from it. Agent instructions have one
+canonical location in `dsh-plugin/`; repository navigation links to those same
+shipped guides. The [changelog](releases/CHANGELOG.md) lives with release records.
 
 Historical documents and receipts have moved out of the root. The
-[migration map](development/REPOSITORY_MIGRATION.json) records their original
+[first migration map](development/REPOSITORY_MIGRATION.json) and
+[homepage migration map](development/HOMEPAGE_MIGRATION.json) record their original
 paths and hashes. Frozen receipts still describe their original commits and
 layouts; they have not been rewritten as current results. Read
 [the layout guide](development/REPOSITORY_LAYOUT.md) for compatibility details.

@@ -3,7 +3,7 @@
 This is the historical source-level model/research entry, not the default
 installation path. Referenced `runs/` artifacts are retained in the private local
 archive and are not distributed here. Current product instructions are in
-[the Agent Guide](../../AGENT_GUIDE.md) and [CURRENT_STATUS.md](../../CURRENT_STATUS.md).
+[the Agent Guide](../../dsh-plugin/AGENT_GUIDE.md) and [CURRENT_STATUS.md](../../dsh-plugin/CURRENT_STATUS.md).
 No old budget or example grants new paid authority.
 
 The same entry also accepts an existing native contract via `--contract`, its
@@ -36,7 +36,7 @@ an export failure is retained separately without changing the original run resul
 
 The public native tool supports explicit settled baseline/generation pause and
 continuation within the original wall deadline and allowance. See
-[checkpoint use and limitations](../../AGENT_GUIDE.md). This launcher performs complete
+[checkpoint use and limitations](../../dsh-plugin/AGENT_GUIDE.md). This launcher performs complete
 runs by default; it does not convert an interrupted paid attempt into a new budget
 or automatically resume unknown work.
 

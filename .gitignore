@@ -22,6 +22,7 @@ runs/
 exports/
 release/
 experiments/journal/
+research/experiments/journal/
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal

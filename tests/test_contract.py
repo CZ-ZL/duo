@@ -11,7 +11,7 @@ from dualloop.contract import (
 )
 from pathlib import Path
 
-MOCK_YML = Path(__file__).resolve().parent.parent / "experiments" / "mock.yml"
+MOCK_YML = Path(__file__).resolve().parent.parent / "research" / "experiments" / "mock.yml"
 
 
 def full_contract_dict():

@@ -237,7 +237,7 @@ def test_v2_question_files_schema_and_cues():
     import re as _re
     from pathlib import Path as _P
     from dualloop.plugins.docs_qa_evaluator import load_questions
-    bench = _P(__file__).resolve().parent.parent / "benchmarks" / "docs_qa"
+    bench = _P(__file__).resolve().parent.parent / "research" / "benchmarks" / "docs_qa"
     for name in ("questions.dev.yml", "questions.holdout.yml"):
         qs = load_questions(bench / name)
         assert qs, name
@@ -417,7 +417,7 @@ def test_aggregate_sandbox_leak_free_false_on_leak():
 def test_demo_contract_loads_and_validates():
     from dualloop.contract import PluginRegistry, load_contract, validate_contract
     from pathlib import Path as _P
-    exp = _P(__file__).resolve().parent.parent / "experiments" / "docs_qa.yml"
+    exp = _P(__file__).resolve().parent.parent / "research" / "experiments" / "docs_qa.yml"
     import yaml as _yaml
     config = _yaml.safe_load(exp.read_text(encoding="utf-8"))
     contract = load_contract(config["contract"])

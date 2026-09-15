@@ -3,6 +3,10 @@
 Current package line: **0.6.1 candidate**. Last tagged private release: **v0.6.0**.
 The repository remains private; there is no npm publication.
 
+The [homepage follow-up](../product-foundation/ORGANIZATION.md) is being verified.
+It reorganizes source navigation and historical input paths; the installable
+package remains byte-identical to the verified artifact below.
+
 The directory-organization follow-up is **complete**:
 [exact-code CI passed](https://github.com/CZ-ZL/duo/actions/runs/35005165474) at
 `e674101ea2f344cb43283d028320854103de644e`.
@@ -22,5 +26,5 @@ Package documentation changes receive a new artifact hash.
 These records preserve original bytes and conclusions. Historical relative paths
 describe the original layouts; the [migration map](../development/REPOSITORY_MIGRATION.json)
 and recorded Git commits locate those inputs. They are not fresh acceptance of a
-later build. For supported capabilities read [CURRENT_STATUS](../../CURRENT_STATUS.md);
+later build. For supported capabilities read [CURRENT_STATUS](../../dsh-plugin/CURRENT_STATUS.md);
 for the release process read [RELEASING](../development/RELEASING.md).

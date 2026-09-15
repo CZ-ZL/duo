@@ -4,7 +4,7 @@ Use the [documentation map](./docs/README.md) and [current code boundaries](./do
 to locate a change. The [script map](./scripts/README.md) distinguishes product
 verification from retained research utilities.
 
-Read CURRENT_STATUS.md for supported persona, partial bounded configuration and
+Read [current capabilities](./dsh-plugin/CURRENT_STATUS.md) for supported persona, partial bounded configuration and
 custom adapter boundaries. Please keep fixes
 small and describe the user-visible behavior, relevant checks and remaining
 limitations. Optional providers should use the existing service contracts.

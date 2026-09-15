@@ -1,6 +1,6 @@
 # Release quickstart and recovery boundaries
 
-Use the [current status](../CURRENT_STATUS.md) and [0.6.1 release notes](./releases/0.6.1/RELEASE_NOTES.md)
+Use the [current status](../dsh-plugin/CURRENT_STATUS.md) and [0.6.1 release notes](./releases/0.6.1/RELEASE_NOTES.md)
 to identify the candidate. It is not yet a published release. Linux and the
 recorded DSH/Node versions are the supported verification environment.
 
@@ -39,7 +39,7 @@ Do not use an unverified intermediate archive from a failed acceptance attempt.
 
 Use the existing [product example guide](../dsh-plugin/examples/product/README.md)
 for `optimize`, `byo`, `replace`, `warm` and `custom`. The public `schemas` tool
-and [Agent Guide](../AGENT_GUIDE.md) are the interface authority. A custom Target
+and [Agent Guide](../dsh-plugin/AGENT_GUIDE.md) are the interface authority. A custom Target
 requires a compatible adapter; an arbitrary file is not automatically supported.
 
 ## Upgrade and rollback

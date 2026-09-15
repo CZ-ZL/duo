@@ -90,7 +90,7 @@ def main():
                           for name in ['verify_dsh_native.py', 'dsh_native_host_driver.js', 'dsh_embedded_host_driver.js', 'dsh_adoption_host_driver.js']})
     source_hashes.update({str(path.relative_to(ROOT)): sha(path)
                           for path in sorted((ROOT / 'examples/native').rglob('*')) if path.is_file()})
-    source_hashes['AGENT_GUIDE.md'] = sha(ROOT / 'AGENT_GUIDE.md')
+    source_hashes['dsh-plugin/AGENT_GUIDE.md'] = sha(ROOT / 'dsh-plugin/AGENT_GUIDE.md')
     fixture = out / 'fixture'
     shutil.copytree(ROOT / 'examples/native', fixture)
     results = []
@@ -157,7 +157,7 @@ def main():
             shutil.copyfile(ROOT / 'examples/native/adoption.js', profile / 'adoption.js')
         if embedded_case:
             shutil.copyfile(ROOT / 'examples/native/embedded-task.js', profile / 'embedded-task.js')
-            shutil.copyfile(ROOT / 'AGENT_GUIDE.md', profile / 'PUBLIC_GUIDE.md')
+            shutil.copyfile(ROOT / 'dsh-plugin/AGENT_GUIDE.md', profile / 'PUBLIC_GUIDE.md')
         if not packaged_case:
             shutil.copyfile(ROOT / 'examples/native/fixture-provider.js', profile / 'fixture-provider.js')
         if byo_case:

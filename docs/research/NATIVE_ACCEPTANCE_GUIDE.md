@@ -2,7 +2,7 @@
 
 Historical research/acceptance entry points. For current product verification
 use [TESTING.md](../development/TESTING.md); for first use read the
-[Agent Guide](../../AGENT_GUIDE.md) and [local examples](../QUICKSTART.md).
+[Agent Guide](../../dsh-plugin/AGENT_GUIDE.md) and [local examples](../QUICKSTART.md).
 These comparison commands are not required to install or validate the product.
 Method research is paused; real-model work needs a separate authorization.
 
