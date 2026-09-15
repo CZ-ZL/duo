@@ -9,7 +9,7 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'scripts'))
+sys.path.insert(0, str(ROOT / 'scripts/research'))
 from run_fact_comparison import inspect
 
 
@@ -60,7 +60,7 @@ def test_four_code_methods_use_named_host_python_evaluation_and_bounded_final(tm
     target = tmp_path / 'persona.txt'
     target.write_text('Implement the requested Python functions exactly.\n')
     out = tmp_path / 'comparison'
-    result = subprocess.run([sys.executable, 'scripts/run_code_comparison.py', '--mode', 'offline',
+    result = subprocess.run([sys.executable, 'scripts/research/run_code_comparison.py', '--mode', 'offline',
         '--search-profile', 'legacy-v1', '--output', str(out), '--dsh-package', dsh, '--benchmark-pack', str(pack), '--target', str(target)],
         cwd=ROOT, capture_output=True, text=True, timeout=240)
     assert result.returncode == 0, result.stdout + result.stderr
@@ -106,7 +106,7 @@ def test_four_code_methods_use_named_host_python_evaluation_and_bounded_final(tm
 
 
 def test_code_entry_refuses_unallocated_execute(tmp_path):
-    result = subprocess.run([sys.executable, 'scripts/run_code_comparison.py', '--mode', 'execute', '--output', str(tmp_path)],
+    result = subprocess.run([sys.executable, 'scripts/research/run_code_comparison.py', '--mode', 'execute', '--output', str(tmp_path)],
                             cwd=ROOT, capture_output=True, text=True, env={'PATH': os.environ['PATH']})
     assert result.returncode == 2 and 'Frozen comparison and explicit current allocation required' in result.stderr
     assert not (tmp_path / 'execution-claim.json').exists()
@@ -135,7 +135,7 @@ def test_code_preparation_refuses_unready_data_before_output(tmp_path, fault, ex
     target = tmp_path / 'persona.txt'
     target.write_text('Existing control Target')
     out = tmp_path / 'prepared'
-    result = subprocess.run(['node', '--loader', './scripts/dsh_native_loader.mjs', 'scripts/prepare_code_comparison.mjs',
+    result = subprocess.run(['node', '--loader', './scripts/product/dsh_native_loader.mjs', 'scripts/research/prepare_code_comparison.mjs',
         str(out), str(pack / 'dataset.json'), str(pack / 'answer-key.json'), str(target), str(fault == 'unqualified-live').lower()],
         cwd=ROOT, capture_output=True, text=True)
     assert result.returncode != 0 and expected in result.stderr
@@ -174,7 +174,7 @@ def test_history_profile_prepares_native_operators_and_stable_warm_target(tmp_pa
     warm = tmp_path / 'warm.json'
     warm.write_text(json.dumps({'runIds': ['prior-run'], 'maxRecords': 4, 'fixturePolicy': 'ideas_only'}))
     out = tmp_path / 'prepared'
-    result = subprocess.run(['node', '--loader', './scripts/dsh_native_loader.mjs', 'scripts/prepare_code_comparison.mjs',
+    result = subprocess.run(['node', '--loader', './scripts/product/dsh_native_loader.mjs', 'scripts/research/prepare_code_comparison.mjs',
         str(out), str(pack / 'dataset.json'), str(pack / 'answer-key.json'), str(target), 'false',
         'history-structured-v2', str(warm), str(journal)], cwd=ROOT, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
@@ -212,7 +212,7 @@ def test_history_profile_rejects_invalid_warm_configuration_before_output(tmp_pa
     warm = tmp_path / 'warm.json'
     warm.write_text(json.dumps({'runIds': ['../unsafe']}))
     out = tmp_path / 'bad'
-    result = subprocess.run(['node', '--loader', './scripts/dsh_native_loader.mjs', 'scripts/prepare_code_comparison.mjs',
+    result = subprocess.run(['node', '--loader', './scripts/product/dsh_native_loader.mjs', 'scripts/research/prepare_code_comparison.mjs',
         str(out), str(pack / 'dataset.json'), str(pack / 'answer-key.json'), str(target), 'false',
         'history-structured-v2', str(warm), str(tmp_path)], cwd=ROOT, capture_output=True, text=True)
     assert result.returncode != 0
@@ -266,7 +266,7 @@ def test_history_profile_public_host_consumes_deltas_and_real_control_slow(tmp_p
     pack=tmp_path/'pack';control_pack(pack)
     target=tmp_path/'persona.txt';target.write_text('Implement the requested Python functions exactly.\n')
     out=tmp_path/'comparison'
-    run=subprocess.run([sys.executable,'scripts/run_code_comparison.py','--mode','offline','--output',str(out),
+    run=subprocess.run([sys.executable,'scripts/research/run_code_comparison.py','--mode','offline','--output',str(out),
         '--dsh-package',dsh,'--benchmark-pack',str(pack),'--target',str(target)],cwd=ROOT,capture_output=True,text=True,timeout=360)
     assert run.returncode==0,run.stdout+run.stderr
     protocol=json.loads((out/'comparison-protocol.json').read_text())
@@ -296,7 +296,7 @@ def test_history_profile_public_host_consumes_deltas_and_real_control_slow(tmp_p
     warm_config=tmp_path/'warm.json'
     warm_config.write_text(json.dumps({'runIds':[source_id],'fixturePolicy':'ideas_only','maxRecords':6,'maxContextBytes':8192}))
     warm_out=tmp_path/'warm-comparison'
-    warm_run=subprocess.run([sys.executable,'scripts/run_code_comparison.py','--mode','offline','--output',str(warm_out),
+    warm_run=subprocess.run([sys.executable,'scripts/research/run_code_comparison.py','--mode','offline','--output',str(warm_out),
         '--dsh-package',dsh,'--benchmark-pack',str(pack),'--target',str(target),
         '--warm-start-config',str(warm_config),'--journal-root',str(out/'native-journal')],
         cwd=ROOT,capture_output=True,text=True,timeout=360)

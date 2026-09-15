@@ -1,6 +1,6 @@
 # Current DUO architecture
 
-This page maps the native 0.6.1 implementation. [DESIGN.md](../DESIGN.md) preserves
+This page maps the native 0.6.1 implementation. [DESIGN.md](./history/DESIGN.md) preserves
 the original design and its earlier Python bridge plan; the default product now
 runs in JavaScript inside DSH.
 
@@ -98,4 +98,4 @@ recommendation model changes against production metrics. DUO generalizes the
 idea to replaceable Agent components and makes additional evidence optional and
 explicit. It does not reproduce the paper's production system or inherit its
 results. See [attribution](../THIRD_PARTY_NOTICES.md) and the separately preserved
-[DUO experiment outcomes](../EXPERIMENTS.md).
+[DUO experiment outcomes](./research/EXPERIMENTS.md).

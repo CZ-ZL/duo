@@ -39,7 +39,7 @@ DSH package without installing dependencies:
 
 ```bash
 DUO_DSH_PACKAGE=/path/to/cached/@deepseek-ai/dsh node \
-  --loader ./scripts/dsh_native_loader.mjs --test \
+  --loader ./scripts/product/dsh_native_loader.mjs --test \
   dsh-plugin/native/method-feedback.test.js
 ```
 
@@ -50,12 +50,12 @@ digests to the Journal, show B2 consumed candidate Slow evidence and show B3 did
 not. If generation 2 or candidate Slow never happens, report the ablation inactive.
 Do not merge these controls or old pilot scores into formal method results.
 
-The fixed eight-run entry is `scripts/run_fact_comparison.py`. It delegates each
+The fixed eight-run entry is `scripts/research/run_fact_comparison.py`. It delegates each
 arm to `run_dsh_model.py`; it does not implement a separate optimizer. For a new
 output directory, run:
 
 ```bash
-python3 scripts/run_fact_comparison.py --mode offline --output /tmp/fact-control \
+python3 scripts/research/run_fact_comparison.py --mode offline --output /tmp/fact-control \
   --dsh-package /path/to/cached/@deepseek-ai/dsh \
   --dataset /path/to/dataset.json --answer-key /path/to/answerKey.json \
   --target examples/native/persona.txt

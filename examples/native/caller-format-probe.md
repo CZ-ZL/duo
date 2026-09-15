@@ -1,6 +1,6 @@
 # Diagnose Caller response format without executing returned tools
 
-`scripts/run_caller_format_probe.py` stages a named DSH profile for one fixed pair
+`scripts/research/run_caller_format_probe.py` stages a named DSH profile for one fixed pair
 of responses. It reuses the saved system/messages/tool schemas from an actual
 Caller request. `json_on` requests `response_format: {type: json_object}`;
 `json_off` omits that field. The recorded base request body must match in both
@@ -22,13 +22,13 @@ unknown cost, changed receipts, another batch or insufficient remaining quota.
 This is one reviewed slice of that batch, not a reset of its original allowance.
 
 ```sh
-python3 scripts/run_caller_format_probe.py --mode offline --dsh-package /absolute/path/to/cached/@deepseek-ai/dsh --parent-run /path/to/terminal-parent-run --batch-authorization /path/to/parent-authorization.json --batch-summary /path/to/current-parent-summary.json --output runs/new-offline-format-check
+python3 scripts/research/run_caller_format_probe.py --mode offline --dsh-package /absolute/path/to/cached/@deepseek-ai/dsh --parent-run /path/to/terminal-parent-run --batch-authorization /path/to/parent-authorization.json --batch-summary /path/to/current-parent-summary.json --output runs/new-offline-format-check
 
 # Same inputs, real adapter staging only; still zero model requests:
-python3 scripts/run_caller_format_probe.py --mode prepare-live --dsh-package /absolute/path/to/cached/@deepseek-ai/dsh --parent-run /path/to/terminal-parent-run --batch-authorization /path/to/parent-authorization.json --batch-summary /path/to/current-parent-summary.json --pricing /path/to/fresh-official-cny.json --output runs/new-prepared-format-check
+python3 scripts/research/run_caller_format_probe.py --mode prepare-live --dsh-package /absolute/path/to/cached/@deepseek-ai/dsh --parent-run /path/to/terminal-parent-run --batch-authorization /path/to/parent-authorization.json --batch-summary /path/to/current-parent-summary.json --pricing /path/to/fresh-official-cny.json --output runs/new-prepared-format-check
 
 # After separate approval of this diagnostic purpose within the parent batch:
-python3 scripts/run_caller_format_probe.py --mode execute --output runs/new-prepared-format-check --authorization /path/to/approved-probe-slice.json
+python3 scripts/research/run_caller_format_probe.py --mode execute --output runs/new-prepared-format-check --authorization /path/to/approved-probe-slice.json
 ```
 
 The existing parent authorization is insufficient for the new diagnostic scope.

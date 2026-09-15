@@ -5,7 +5,7 @@ import {readFileSync,writeFileSync} from 'node:fs'
 import {join} from 'node:path'
 import MethodFeedback from '../examples/native/method-feedback.js'
 import {compileProposal} from '../dsh-plugin/native/structured-generator.js'
-import {setup} from '../dsh-plugin/native/test-fixtures.js'
+import {setup} from '../dsh-plugin/tests/native/test-fixtures.js'
 
 test('property feedback keeps every candidate and task count while bounding test detail in the actual proposal',async t=>{
  const h=await setup(t),file=join(h.root,'data.json')

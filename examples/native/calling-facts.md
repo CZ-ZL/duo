@@ -9,7 +9,7 @@ and enforces the declared allowance. No file editing tools are needed in this
 profile; incomplete-input preparation remains in the separate onboarding example.
 
 Prerequisites: the current local package, an existing cached DSH, a persona you
-can read, and a frozen [fact task/key](fact-task.md). The contract must use
+can read, and a frozen [fact task/key](./fact-task.md). The contract must use
 `operation:"evaluate"`, Fast `fact-support-fast` version `2`, its matching data ID,
 no Slow/final, zero generations/quotas/topK, CNY.10 inner limit and one Fast
 execution. Use at least two inner operations for execution and deterministic
@@ -18,7 +18,7 @@ The supplied target is read without modification. Nothing generates or selects a
 benchmark or weakens the persona in this entry.
 
 ```sh
-python3 scripts/run_duo_caller.py --mode offline \
+python3 scripts/research/run_duo_caller.py --mode offline \
   --dsh-package /existing/node_modules/@deepseek-ai/dsh \
   --contract /authorized/evaluate.json \
   --dataset /authorized/facts/dataset.json \
@@ -34,7 +34,7 @@ makes zero requests and writes a sealed manifest and authorization template.
 Execution reuses the existing launcher:
 
 ```sh
-python3 scripts/run_duo_caller.py --mode execute \
+python3 scripts/research/run_duo_caller.py --mode execute \
   --output /authorized/prepared-caller \
   --authorization /authorized/bound-approval.json
 ```
@@ -57,8 +57,8 @@ Caller session events, the native Journal, `result.json`, `total-budget.json`,
 another request. Export does not satisfy the separate Caller-read/interpretation
 checks. Native inner cost and the total request ledger overlap; do not add them.
 
-The actual evaluator resource is [fact-evaluator-resource.js](fact-evaluator-resource.js).
-It isolates and reuses [fact-evaluator.js](fact-evaluator.js), publishes its public
+The actual evaluator resource is [fact-evaluator-resource.js](./fact-evaluator-resource.js).
+It isolates and reuses [fact-evaluator.js](./fact-evaluator.js), publishes its public
 service contract/bridge, and keeps the dataset/key private. Only the Caller binds
 that supplied bridge. This smoke does not test generating a new adapter, warm
 start, optimization benefit, final quality, or real business deployment. Those

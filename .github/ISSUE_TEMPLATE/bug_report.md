@@ -29,6 +29,6 @@ any log or configuration output.
 ## Test or command output
 
 <!-- Paste the relevant output of the command or offline check you ran, e.g.
-`bash scripts/release_gate.sh <output-dir>` or the scenario from TESTING.md.
+`bash scripts/release_gate.sh <output-dir>` or the scenario from docs/development/TESTING.md.
 Trim it to the failing portion and redact paths or data you do not wish to
 share. -->

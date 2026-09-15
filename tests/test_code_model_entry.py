@@ -18,7 +18,7 @@ def test_explicit_evaluator_process_boundary(tmp_path):
     code = '''
 import assert from 'node:assert/strict';
 import cp from 'node:child_process';
-import {installProcessGuard} from './scripts/dsh_model_run_host.js';
+import {installProcessGuard} from './scripts/research/dsh_model_run_host.js';
 const root=process.argv[1], script=root+'/code_evaluation.py';
 const args=['-I','-S',script,'--pack',root,'--tier','fast','--output',root+'/out'];
 const options={env:{PATH:'/usr/bin:/bin',LANG:'C.UTF-8'},timeout:1000,maxBuffer:2097152,signal:new AbortController().signal};
@@ -51,7 +51,7 @@ def test_independent_final_requires_explicit_bounded_tier_policy(tmp_path):
     code = '''
 import assert from 'node:assert/strict';
 import cp from 'node:child_process';
-import {installProcessGuard} from './scripts/dsh_model_run_host.js';
+import {installProcessGuard} from './scripts/research/dsh_model_run_host.js';
 const root=process.argv[1],script=root+'/code_evaluation.py';
 const base={script,pack:root,artifactRoot:root,tiers:['fast','final'],maxCalls:3};
 assert.throws(()=>installProcessGuard(base),/Invalid declared/);
@@ -80,7 +80,7 @@ def test_code_model_named_profile(tmp_path, scenario, score):
     if not dsh:
         pytest.skip('Set DUO_DSH_PACKAGE to the existing cached DSH; no install')
     output = tmp_path / scenario
-    result = subprocess.run(['python3', 'scripts/run_code_model.py', '--mode', 'offline',
+    result = subprocess.run(['python3', 'scripts/research/run_code_model.py', '--mode', 'offline',
         '--benchmark-pack', str(PACK), '--dsh-package', dsh, '--output', str(output),
         '--fixture-scenario', scenario], cwd=ROOT, text=True, capture_output=True, timeout=100)
     assert result.returncode == 0, result.stdout + result.stderr
@@ -120,7 +120,7 @@ def test_live_code_preparation_binds_private_pack_without_requests(tmp_path):
         'verifiedDate': datetime.now(timezone.utc).date().isoformat()}))
     output = tmp_path / 'prepared'
     env = {'PATH': os.environ['PATH']}
-    command = ['python3', 'scripts/run_code_model.py', '--mode', 'prepare-live',
+    command = ['python3', 'scripts/research/run_code_model.py', '--mode', 'prepare-live',
         '--benchmark-pack', str(PACK), '--dsh-package', dsh, '--output', str(output), '--pricing', str(pricing)]
     result = subprocess.run(command, cwd=ROOT, env=env, capture_output=True, text=True, timeout=60)
     assert result.returncode == 0, result.stdout + result.stderr
@@ -133,7 +133,7 @@ def test_live_code_preparation_binds_private_pack_without_requests(tmp_path):
     assert json.loads((run / 'prepare-receipt.json').read_text())['modelRequests'] == 0
     assert not list(run.glob('model-request-*-input.json'))
     assert not (output / 'fixture-answers.json').exists()
-    refusal = subprocess.run(['python3', 'scripts/run_dsh_model.py', '--mode', 'execute', '--output', str(run)],
+    refusal = subprocess.run(['python3', 'scripts/research/run_dsh_model.py', '--mode', 'execute', '--output', str(run)],
         cwd=ROOT, env=env, capture_output=True, text=True)
     assert refusal.returncode != 0 and 'explicit authorized CNY cap' in refusal.stderr
     assert not (run / 'execution-claim.json').exists()

@@ -1,8 +1,8 @@
 # DUO — 在 DSH 内评估和优化现有 Agent 组件
 
-[English](README.md) · [简体中文](README.zh-CN.md)
+[English](./README.md) · [简体中文](./README.zh-CN.md)
 
-[快速开始](RELEASE_QUICKSTART.md) · [Agent 指南](AGENT_GUIDE.md) · [文档导航](docs/README.md) · [架构说明](docs/ARCHITECTURE.md) · [来源](THIRD_PARTY_NOTICES.md)
+[快速开始](./docs/QUICKSTART.md) · [Agent 指南](./AGENT_GUIDE.md) · [文档导航](./docs/README.md) · [架构说明](./docs/ARCHITECTURE.md) · [来源](./THIRD_PARTY_NOTICES.md)
 
 [![产品验证](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
@@ -10,9 +10,9 @@ DUO 是 DeepSeek Harness 的原生插件。调用方提供一个已有的 Agent 
 
 **“没有改善，保留原版”是合法结果。** DUO 不自动部署候选。产品验收证明的是运行行为；目前尚未证明 DUO 相比合理单环具有普遍的质量或总费用优势。
 
-**0.6 产品线**收敛了 Slow evidence 模式，修复选择与累计预算边界，并提供有类型约束的扩展接口。请查看[当前能力](CURRENT_STATUS.md)、[0.6.1 候选版本说明](RELEASE_NOTES_v0.6.1.md)和[公开前验收标准](docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)。原有 [0.5.0 验收记录](PRODUCT_ACCEPTANCE.json)和 [0.6.0 发布记录](RELEASE_NOTES_v0.6.0.md)保持不变。
+**0.6 产品线**收敛了 Slow evidence 模式，修复选择与累计预算边界，并提供有类型约束的扩展接口。请查看[当前能力](./CURRENT_STATUS.md)、[0.6.1 候选版本说明](./docs/releases/0.6.1/RELEASE_NOTES.md)和[公开前验收标准](./docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)。原有 [0.5.0 验收记录](./docs/releases/0.5.0/ACCEPTANCE.json)和 [0.6.0 发布记录](./docs/releases/0.6.0/RELEASE_NOTES.md)保持不变。
 
-首次使用可从[最小评估、预期输出、升级与故障处理](RELEASE_QUICKSTART.md)开始；[本轮库审计报告](docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md)区分已验证能力与发布阻塞。
+首次使用可从[最小评估、预期输出、升级与故障处理](./docs/QUICKSTART.md)开始；[本轮库审计报告](./docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md)区分已验证能力与发布阻塞。
 
 ## 适合什么时候使用
 
@@ -25,7 +25,7 @@ DUO 是 DeepSeek Harness 的原生插件。调用方提供一个已有的 Agent 
 | Fast 和可用的新增证据来源 | `optimize-dual` | 取得新增证据，再决定终局选择 |
 | 新增证据可选 | `optimize-auto` | 协商可用模式，并明确说明降级 |
 
-Slow 是**证据获取与决策策略**。它可以请求计划内的测量、搁置、淘汰、晋级或停止。新增证据根据声明的覆盖范围和校准依据，标记为 `expanded_evidence` 或 `high_fidelity`。没有信息增量时标记 `unavailable`，基础优化仍然可用。价格更高或模型更强，不会自动提高可信度。具体边界见[证据策略说明](dsh-plugin/EVIDENCE_STRATEGY.md)。
+Slow 是**证据获取与决策策略**。它可以请求计划内的测量、搁置、淘汰、晋级或停止。新增证据根据声明的覆盖范围和校准依据，标记为 `expanded_evidence` 或 `high_fidelity`。没有信息增量时标记 `unavailable`，基础优化仍然可用。价格更高或模型更强，不会自动提高可信度。具体边界见[证据策略说明](./dsh-plugin/EVIDENCE_STRATEGY.md)。
 
 ## 运行一个免费本地示例
 
@@ -49,11 +49,11 @@ node dsh-plugin/bin/duo.mjs call --root /tmp/duo-demo --tool dualloop_report --a
 
 示例用确定性 provider，通过真实 DSH 工具测量本地文本格式，费用为 **¥0**；它没有测量 LLM Agent 的任务能力。`init` 拒绝覆盖已有目录，使用隔离 profile，保留原始 Target。调用、返回值和日志保存在示例目录内。
 
-还可以选择 `--example evaluate`、`dual`、`byo`、`replace`、`warm` 或 `custom`。[示例指南](dsh-plugin/examples/product/README.md)说明了组件替换、接入自定义 Evaluator 和历史复用的步骤。
+还可以选择 `--example evaluate`、`dual`、`byo`、`replace`、`warm` 或 `custom`。[示例指南](./dsh-plugin/examples/product/README.md)说明了组件替换、接入自定义 Evaluator 和历史复用的步骤。
 
 ## 安装到自己的 DSH profile
 
-[私有 v0.6.0 Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) 仍是最近的带标签版本。**0.6.1 候选源码及已验证的包已上传私有仓库**，对应的 [CI 已通过并保存安装包](https://github.com/CZ-ZL/duo/actions/runs/35001366148)。这不代表公开发布或 npm 发布；见[当前验收收据](PRE_PUBLICATION_EVIDENCE.json)。也可以在本地构建同一安装包：
+[发布索引](./docs/releases/README.md)集中记录当前候选版本、对应 CI 和安装包校验值。目录迁移与之前的 F01 验收分别记录；最近的私有 Release 标签仍为 v0.6.0。在本地构建安装包：
 
 ```sh
 cd dsh-plugin
@@ -67,7 +67,7 @@ dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.1.
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
-安装过程可能下载 peer dependencies。宿主 profile 需要提供 application 和 tools。默认 DUO bundle 暴露准备能力，等待工作 provider 接入；它不会配置模型路线或授予消费权限。详见[包安装说明](dsh-plugin/README.zh-CN.md)与 [Agent 使用指南](AGENT_GUIDE.md)。本仓库不向 npm registry 发布包。
+安装过程可能下载 peer dependencies。宿主 profile 需要提供 application 和 tools。默认 DUO bundle 暴露准备能力，等待工作 provider 接入；它不会配置模型路线或授予消费权限。详见[包安装说明](./dsh-plugin/README.zh-CN.md)与 [Agent 使用指南](./AGENT_GUIDE.md)。本仓库不向 npm registry 发布包。
 
 ## 架构与扩展边界
 
@@ -93,7 +93,7 @@ flowchart TD
     Q -->|停止| R
 ```
 
-两条回路分别是“开发历史 → 后续生成”和“Slow 决策 → 后续生成”。它们由同一个 Controller 调度，并非两个常驻 Agent。Final 证据不反馈给搜索。没有新增 Slow 证据时，`optimize-basic` 只走 Fast 路径，并明确报告为单保真优化。[实现架构说明](docs/ARCHITECTURE.md)进一步解释阶段顺序、模式协商，以及“计划启用 Slow”和“候选实际接受 Slow 验证”的区别。
+两条回路分别是“开发历史 → 后续生成”和“Slow 决策 → 后续生成”。它们由同一个 Controller 调度，并非两个常驻 Agent。Final 证据不反馈给搜索。没有新增 Slow 证据时，`optimize-basic` 只走 Fast 路径，并明确报告为单保真优化。[实现架构说明](./docs/ARCHITECTURE.md)进一步解释阶段顺序、模式协商，以及“计划启用 Slow”和“候选实际接受 Slow 验证”的区别。
 
 Controller 管理共用生命周期、取消和支持范围内的恢复。DSH/Cordis 管理 provider 绑定、模型执行、工具、权限和卸载。扩展通过已有服务接口完成：
 
@@ -106,7 +106,7 @@ Controller 管理共用生命周期、取消和支持范围内的恢复。DSH/Co
 | Feedback / history | 提供允许进入搜索的观测，筛选 warm-start 历史 |
 | Journal / Budget | 保留决策、账本、额度和已结算检查点 |
 
-Persona overlay 在配有兼容工作 provider 时受支持。内置 plugin config 为**部分支持**：仅允许修改 fetch 的 `maxBodyChars`，并且需要配套 Executor/Evaluator。自定义 Target 可以实现公开接口，无需修改 Core。[Provider 协议](dsh-plugin/PROVIDERS.md)和随包提供的 TypeScript 声明说明了具体接口。
+Persona overlay 在配有兼容工作 provider 时受支持。内置 plugin config 为**部分支持**：仅允许修改 fetch 的 `maxBodyChars`，并且需要配套 Executor/Evaluator。自定义 Target 可以实现公开接口，无需修改 Core。[Provider 协议](./dsh-plugin/PROVIDERS.md)和随包提供的 TypeScript 声明说明了具体接口。
 
 ## 需要了解的边界
 
@@ -126,14 +126,14 @@ npm run typecheck  # 需要设置 DUO_DSH_PACKAGE
 bash scripts/release_gate.sh /tmp/new-duo-release-check
 ```
 
-[TESTING.md](TESTING.md)分别说明原生回归、类型编译、隔离包与 DSH 验收、独立 Caller 使用和历史研究。[CONTRIBUTING.md](CONTRIBUTING.md)说明贡献流程，[RELEASING.md](RELEASING.md)说明交付流程。[代码整理记录](docs/slow-evidence-strategy/LEAN.md)保留修改理由与回归证据。
+[TESTING.md](./docs/development/TESTING.md)分别说明原生回归、类型编译、隔离包与 DSH 验收、独立 Caller 使用和历史研究。[CONTRIBUTING.md](./CONTRIBUTING.md)说明贡献流程，[RELEASING.md](./docs/development/RELEASING.md)说明交付流程。[代码整理记录](./docs/slow-evidence-strategy/LEAN.md)保留修改理由与回归证据。
 
-方法研究已暂停。[EXPERIMENTS.md](EXPERIMENTS.md)保留正式负结果及后续诊断；使用过的 final 数据仍标记为已消费，失败和费用不删除。本版本不增加 Graph/Bayesian、新 benchmark 或更多 loop。
+方法研究已暂停。[EXPERIMENTS.md](./docs/research/EXPERIMENTS.md)保留正式负结果及后续诊断；使用过的 final 数据仍标记为已消费，失败和费用不删除。本版本不增加 Graph/Bayesian、新 benchmark 或更多 loop。
 
-Python 协议保留独立版本 `0.1.0`，通过显式 legacy 路径使用。项目代码采用 [MIT 许可](LICENSE)，宿主与数据集的归属见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+Python 协议保留独立版本 `0.1.0`，通过显式 legacy 路径使用。项目代码采用 [MIT 许可](./LICENSE)，宿主与数据集的归属见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
 
 ## 来源与致谢
 
 双环思路受 Wang 等人的论文 [*Self-Evolving Recommendation System: End-To-End Autonomous Model Optimization With LLM Agents*](https://arxiv.org/abs/2602.10226) 启发：离线内环负责搜索，在线外环使用生产指标验证。DUO 将这一思路用于 Agent 组件和可组合证据策略；它不是论文作者的实现，不继承论文中的实验结果，也不代表作者背书。
 
-产品运行在 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 及其 [Cordis](https://github.com/cordiverse/cordis) 插件体系上。[第三方归属说明](THIRD_PARTY_NOTICES.md)分别记录论文启发、宿主依赖及改编的历史研究数据。[文档导航](docs/README.md)将产品使用、开发工具、发布验收和历史研究分别列出。
+产品运行在 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 及其 [Cordis](https://github.com/cordiverse/cordis) 插件体系上。[第三方归属说明](./THIRD_PARTY_NOTICES.md)分别记录论文启发、宿主依赖及改编的历史研究数据。[文档导航](./docs/README.md)将产品使用、开发工具、发布验收和历史研究分别列出。

@@ -1,8 +1,8 @@
 # Use DUO as an Agent subtask
 
-The caller-owned [`embedded-task.js`](embedded-task.js) plugin registers `duo_task`
+The caller-owned [`embedded-task.js`](./embedded-task.js) plugin registers `duo_task`
 in the existing DSH ToolRuntime. Load it with
-[`embedded-profile.patch.yml`](embedded-profile.patch.yml) after the native DUO
+[`embedded-profile.patch.yml`](./embedded-profile.patch.yml) after the native DUO
 bundle and your authorized providers. It reads no private DUO services or source
 files. No additional model, process, scheduler or configuration writer is added.
 
@@ -19,7 +19,7 @@ Your surrounding Agent should:
 
 The same consumer works with the configured evaluation-only, optimization or
 warm-start contract. For a no-generator example, use the existing
-[`evaluation-profile.patch.yml`](evaluation-profile.patch.yml) alongside this patch.
+[`evaluation-profile.patch.yml`](./evaluation-profile.patch.yml) alongside this patch.
 Native standalone plan/run/report remain available without the consumer.
 
 Nested calls retain the calling Agent, root call identity, opaque parent token and

@@ -10,7 +10,7 @@ rules are shared across splits, so this is within-family transfer only.
 Use the existing cached DSH resolution for local preparation; no install occurs:
 
 ```sh
-DUO_DSH_PACKAGE=/path/to/existing/node_modules/@deepseek-ai/dsh node --loader ./scripts/dsh_native_loader.mjs examples/native/fact-task.js --output /authorized/new-fact-task
+DUO_DSH_PACKAGE=/path/to/existing/node_modules/@deepseek-ai/dsh node --loader ./scripts/product/dsh_native_loader.mjs examples/native/fact-task.js --output /authorized/new-fact-task
 ```
 
 This creates `dataset.json`, `answerKey.json`, and `manifest.json`. The dataset
@@ -68,7 +68,7 @@ providers need not copy hashing rules or import private storage paths.
 Local control entry:
 
 ```sh
-DUO_DSH_PACKAGE=/path/to/existing/node_modules/@deepseek-ai/dsh node --loader ./scripts/dsh_native_loader.mjs --test dsh-plugin/native/fact-task.test.js dsh-plugin/native/fact-evaluator.test.js
+DUO_DSH_PACKAGE=/path/to/existing/node_modules/@deepseek-ai/dsh node --loader ./scripts/product/dsh_native_loader.mjs --test dsh-plugin/native/fact-task.test.js dsh-plugin/native/fact-evaluator.test.js
 ```
 
 The public-tool controls run controlled outputs through real Cordis services,

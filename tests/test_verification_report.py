@@ -24,7 +24,7 @@ def create_bindings(**kwargs):
     cfg["agent"]["adapter"] = str(adapter)
     source.write_text(yaml.safe_dump(cfg))
     out = tmp_path / "comparison"
-    call = subprocess.run([sys.executable, "scripts/verify_agent_native.py",
+    call = subprocess.run([sys.executable, "scripts/research/verify_agent_native.py",
                            "--experiment", str(source), "--execute-local",
                            "--repeats", "1", "--output", str(out)],
                           cwd=ROOT, capture_output=True, text=True)

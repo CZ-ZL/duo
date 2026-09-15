@@ -7,7 +7,7 @@ import sys
 import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'scripts'))
+sys.path.insert(0,str(ROOT/'scripts/research'))
 from prepare_code_format_pilot import prepare
 from test_code_property_study import engineering_property_pack
 read=lambda p:json.loads(p.read_text())
@@ -40,11 +40,11 @@ def test_development_only_one_generation_completes_native_host_without_final(tmp
     dsh=os.environ.get('DUO_DSH_PACKAGE')
     if not dsh:pytest.skip('Requires existing cached DSH')
     source,target,out,protocol=inputs(tmp_path);arm=protocol['arms'][0];inp=Path(arm['inputs']);run=Path(arm['directory'])
-    command=[sys.executable,'scripts/run_dsh_model.py','--mode','offline','--dsh-package',dsh,'--output',str(run),
+    command=[sys.executable,'scripts/research/run_dsh_model.py','--mode','offline','--dsh-package',dsh,'--output',str(run),
              '--contract',str(inp/'experiment.json'),'--dataset',str(inp/'pack/dataset.json'),'--profile-patch',str(inp/'providers.patch.yml'),
              '--model-config',str(inp/'model.json'),'--runtime-cwd',str(out/'execution-cwd'),'--max-cost-cny',str(arm['maxCostCny']),
              '--max-model-requests',str(arm['maxModelRequests']),'--generator','structured-generator']
-    for f in ['scripts/dsh_code_evaluator.js','scripts/code_evaluation.py','scripts/code_worker.py','examples/native/method-feedback.js','examples/native/code-method-fixture.js']:
+    for f in ['scripts/research/dsh_code_evaluator.js','scripts/research/code_evaluation.py','scripts/research/code_worker.py','examples/native/method-feedback.js','examples/native/code-method-fixture.js']:
         command+=['--profile-file',str(ROOT/f)]
     completed=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,timeout=120)
     (tmp_path/'host.stdout.txt').write_text(completed.stdout);(tmp_path/'host.stderr.txt').write_text(completed.stderr)

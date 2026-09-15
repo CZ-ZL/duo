@@ -2,7 +2,7 @@
 import hashlib,json,sys
 from pathlib import Path
 import pytest
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts/research'))
 from prepare_code_benchmark import prepare
 from code_evaluation import evaluate_batch,run_case
 GOAL=ROOT/'runs/code-method-goal-20260912';SOURCE=ROOT/'runs/code-benchmark-readiness-20260911/upstream/BigCodeBench-v0.1.4.jsonl';TASK='BigCodeBench/756'

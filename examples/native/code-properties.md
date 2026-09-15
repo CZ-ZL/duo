@@ -2,7 +2,7 @@
 
 Version `25-properties-v1` adds executable development checks for
 BigCodeBench/358 and412 through the existing caller-owned
-`scripts/dsh_code_evaluator.js` plugin and isolated Python worker. It changes no
+`scripts/research/dsh_code_evaluator.js` plugin and isolated Python worker. It changes no
 DSH/DUO core or scoring rule. Each task still passes only if every registered
 test passes. Scores from this version must not be pooled with evaluator24.
 
@@ -22,9 +22,9 @@ receipts. The finite corpus is evaluator-private development data, not final.
 From `dualloop/`, with the existing cached DSH installation:
 
 ```bash
-python3 scripts/prepare_code_properties.py --source-pack runs/code-method-goal-20260912/benchmark-v24-qualified --output /tmp/duo-properties-new
-python3 scripts/prepare_code_properties.py --qualify-pack /tmp/duo-properties-new --output /tmp/duo-properties-check-new
-python3 scripts/verify_code_benchmark.py --calibration-pack /tmp/duo-properties-new --dsh-package "$DUO_DSH_PACKAGE" --output /tmp/duo-properties-native-new
+python3 scripts/research/prepare_code_properties.py --source-pack runs/code-method-goal-20260912/benchmark-v24-qualified --output /tmp/duo-properties-new
+python3 scripts/research/prepare_code_properties.py --qualify-pack /tmp/duo-properties-new --output /tmp/duo-properties-check-new
+python3 scripts/research/verify_code_benchmark.py --calibration-pack /tmp/duo-properties-new --dsh-package "$DUO_DSH_PACKAGE" --output /tmp/duo-properties-native-new
 ```
 
 Each output directory must be new. Preparation validates the pinned source
@@ -65,8 +65,8 @@ profile. Bind the accepted production pack and the already selected final pack
 before preparing the study:
 
 ```bash
-python3 scripts/prepare_code_property_study.py --properties runs/c1-deterministic-slow-20260913/pack --c1-acceptance runs/c1-deterministic-slow-20260913/acceptance.json --final-pack runs/code-measurement-readiness-20260912/new-final-pack --final-readiness runs/code-measurement-readiness-20260912/final-readiness.json --output /tmp/duo-property-study-new
-python3 scripts/run_code_comparison.py --mode prepare-live --benchmark-pack /tmp/duo-property-study-new --target /absolute/original-persona.txt --search-profile properties-structured-v3 --pricing /absolute/current-cny-pricing.json --dsh-package /absolute/existing-dsh-package --output /tmp/duo-property-comparison-new
+python3 scripts/research/prepare_code_property_study.py --properties runs/c1-deterministic-slow-20260913/pack --c1-acceptance runs/c1-deterministic-slow-20260913/acceptance.json --final-pack runs/code-measurement-readiness-20260912/new-final-pack --final-readiness runs/code-measurement-readiness-20260912/final-readiness.json --output /tmp/duo-property-study-new
+python3 scripts/research/run_code_comparison.py --mode prepare-live --benchmark-pack /tmp/duo-property-study-new --target /absolute/original-persona.txt --search-profile properties-structured-v3 --pricing /absolute/current-cny-pricing.json --dsh-package /absolute/existing-dsh-package --output /tmp/duo-property-comparison-new
 ```
 
 Preparation makes no model requests. It rejects changed qualification sources,

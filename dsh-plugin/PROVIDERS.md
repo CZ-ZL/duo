@@ -6,8 +6,8 @@ Import the runtime definition classes from `@dual-loop/dsh-plugin/definitions`.
 They extend the actual Cordis `Service`, own named services and are loaded by
 `ctx.plugin(Provider, config)`. Consumers declare `static inject`; dispose effects
 through `ctx.effect`. The default bundle waits for work providers. Start with the
-[public local examples](examples/product/README.md). The retained
-[offline fixture](native/offline-fixture.js) is disabled by default and explicitly
+[public local examples](./examples/product/README.md). The retained
+[offline fixture](./native/offline-fixture.js) is disabled by default and explicitly
 synthetic; it remains available for compatibility.
 These are JavaScript runtime contracts with controller validation. TypeScript
 declarations now accompany `/definitions` and `/function-evaluators`; declaration
@@ -229,9 +229,9 @@ The adapter does not sandbox a trusted in-process function or control arbitrary
 nested requests: the caller must provide bounded work and full cost accounting.
 No subprocess/network execution mechanism is introduced by this adapter.
 
-The shipped [BYO adapter](examples/product/byo-evaluator.js) wraps an existing
+The shipped [BYO adapter](./examples/product/byo-evaluator.js) wraps an existing
 local function. Use `duo init --example byo` and the
-[public examples guide](examples/product/README.md) for its complete CNY0
+[public examples guide](./examples/product/README.md) for its complete CNY0
 composition. It does not claim real optimization benefit.
 
 `createControlEvaluation({evaluate, controls, discriminationMetric,
@@ -253,11 +253,11 @@ explicit callback request cap and all-inclusive fee reservation. Zero-cost local
 callbacks require no model allowance. Data purpose is caller-declared; DUO cannot
 identify secretly relabelled final answers. Do not use final data as controls.
 
-The shipped [control adapter](examples/product/evaluator-controls.js),
-[contract](examples/product/evaluator-controls-experiment.json) and
-[profile patch](examples/product/evaluator-controls-profile.patch.yml) use the
+The shipped [control adapter](./examples/product/evaluator-controls.js),
+[contract](./examples/product/evaluator-controls-experiment.json) and
+[profile patch](./examples/product/evaluator-controls-profile.patch.yml) use the
 existing local text measurement on four frozen outputs. Follow the installed
-setup in [the examples guide](examples/product/README.md). No research fixture or
+setup in [the examples guide](./examples/product/README.md). No research fixture or
 new dependency is required. The Executor artifact is not measured by this control
 run; scope is function plumbing, not Target correctness or independent evidence.
 
@@ -356,7 +356,7 @@ record/byte caps; malformed selections refuse the plan. `/history-feedback` supp
 in the provider descriptor and `warmStart.selector`. A custom Feedback subclass can
 override only this method and describe its own versioned identity. The default
 Feedback without this method retains balanced ordering. No new service or registry
-is required. See the [shipped warm-start example](examples/product/README.md); the additional
+is required. See the [shipped warm-start example](./examples/product/README.md); the additional
 model guide is source-only (`../examples/native/warm-start.md`).
 
 The native Journal supports `events({maxEvents,maxBytes})` as a bounded read-only
@@ -474,4 +474,4 @@ local formatting measurements, not qualification for arbitrary Agent tasks.
 
 ## Slow evidence strategy (0.6 development)
 
-[EVIDENCE_STRATEGY.md](EVIDENCE_STRATEGY.md) defines evidenceSource metadata, evidenceCoverage receipts, Comparator.aggregate and Gate.decide optional hooks, default policy semantics and preset negotiation. Existing compare/select-only providers remain supported through scoped default adapters. Metadata is a trusted declaration, not proof or new authority.
+[EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md) defines evidenceSource metadata, evidenceCoverage receipts, Comparator.aggregate and Gate.decide optional hooks, default policy semantics and preset negotiation. Existing compare/select-only providers remain supported through scoped default adapters. Metadata is a trusted declaration, not proof or new authority.

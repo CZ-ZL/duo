@@ -1,8 +1,8 @@
 # DUO — evaluation and optimization inside DSH
 
-[English](README.md) · [简体中文](README.zh-CN.md)
+[English](./README.md) · [简体中文](./README.zh-CN.md)
 
-[Quickstart](RELEASE_QUICKSTART.md) · [Agent Guide](AGENT_GUIDE.md) · [Documentation](docs/README.md) · [Architecture](docs/ARCHITECTURE.md) · [Origins](THIRD_PARTY_NOTICES.md)
+[Quickstart](./docs/QUICKSTART.md) · [Agent Guide](./AGENT_GUIDE.md) · [Documentation](./docs/README.md) · [Architecture](./docs/ARCHITECTURE.md) · [Origins](./THIRD_PARTY_NOTICES.md)
 
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
@@ -10,9 +10,9 @@ DUO is a DeepSeek Harness plugin for improving an existing Agent component under
 
 **Retaining the original is a valid result.** DUO does not automatically deploy candidates. Its product checks establish runtime behavior; a general quality or total-cost advantage over a reasonable single loop has not been established.
 
-The **0.6 product line** adds explicit Slow evidence modes, repairs selection and cumulative budget boundaries, and ships typed extension contracts. See [current capabilities](CURRENT_STATUS.md), [0.6.1 candidate notes](RELEASE_NOTES_v0.6.1.md), and [pre-publication acceptance](docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md). The earlier [0.5.0 acceptance](PRODUCT_ACCEPTANCE.json) and [0.6.0 release](RELEASE_NOTES_v0.6.0.md) remain unchanged.
+The **0.6 product line** adds explicit Slow evidence modes, repairs selection and cumulative budget boundaries, and ships typed extension contracts. See [current capabilities](./CURRENT_STATUS.md), [0.6.1 candidate notes](./docs/releases/0.6.1/RELEASE_NOTES.md), and [pre-publication acceptance](./docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md). The earlier [0.5.0 acceptance](./docs/releases/0.5.0/ACCEPTANCE.json) and [0.6.0 release](./docs/releases/0.6.0/RELEASE_NOTES.md) remain unchanged.
 
-First use: [minimal evaluation, expected outputs, upgrades and fault handling](RELEASE_QUICKSTART.md).
+First use: [minimal evaluation, expected outputs, upgrades and fault handling](./docs/QUICKSTART.md).
 
 ## When to use it
 
@@ -25,7 +25,7 @@ Use DUO when you have an existing component that can be changed safely, an obser
 | Fast evidence and an applicable additional source | `optimize-dual` | Acquire additional evidence before terminal selection |
 | Optional additional evidence | `optimize-auto` | Negotiate the available mode and disclose any fallback |
 
-Slow is an **evidence acquisition and decision strategy**, not a more expensive model score. It can request a planned measurement, hold, reject, promote or stop. Additional evidence is labeled `expanded_evidence` or `high_fidelity` according to its declared coverage and qualification. With no information increment, Slow is `unavailable`; basic optimization remains usable. Read [the evidence contract](dsh-plugin/EVIDENCE_STRATEGY.md) for the exact boundaries.
+Slow is an **evidence acquisition and decision strategy**, not a more expensive model score. It can request a planned measurement, hold, reject, promote or stop. Additional evidence is labeled `expanded_evidence` or `high_fidelity` according to its declared coverage and qualification. With no information increment, Slow is `unavailable`; basic optimization remains usable. Read [the evidence contract](./dsh-plugin/EVIDENCE_STRATEGY.md) for the exact boundaries.
 
 ## Run a free local example
 
@@ -49,11 +49,11 @@ node dsh-plugin/bin/duo.mjs call --root /tmp/duo-demo --tool dualloop_report --a
 
 The example measures local text hygiene at **¥0**. It exercises real DSH tools with deterministic providers; it does not measure LLM Agent quality. `init` refuses an existing directory, preserves the original Target, and stages an isolated profile. Calls, responses and logs remain under the example directory.
 
-Use `--example evaluate`, `dual`, `byo`, `replace`, `warm` or `custom` for other paths. The [example guide](dsh-plugin/examples/product/README.md) explains setup, component replacement and history reuse.
+Use `--example evaluate`, `dual`, `byo`, `replace`, `warm` or `custom` for other paths. The [example guide](./dsh-plugin/examples/product/README.md) explains setup, component replacement and history reuse.
 
 ## Install in your own DSH profile
 
-The [private v0.6.0 release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) remains the last tagged release. **0.6.1 candidate source and its verified package are available in the private repository**, with [passing exact-code CI and its artifact](https://github.com/CZ-ZL/duo/actions/runs/35001366148). This is not a public release or npm publication; see [the current receipt](PRE_PUBLICATION_EVIDENCE.json). To build the same package locally:
+The [release index](./docs/releases/README.md) records the current candidate, exact-code CI and artifact hashes. The directory migration is tracked separately from earlier F01 acceptance; the last tagged private release remains v0.6.0. To build the package locally:
 
 ```sh
 cd dsh-plugin
@@ -67,7 +67,7 @@ dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.1.
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
-Installation may download peer dependencies. The profile must provide an application and tools. DUO's default bundle exposes preparation and waits for work providers; it does not enable a model route or grant spending authority. Read [package setup](dsh-plugin/README.md) and the [Agent guide](AGENT_GUIDE.md). This repository does not publish the package to npm.
+Installation may download peer dependencies. The profile must provide an application and tools. DUO's default bundle exposes preparation and waits for work providers; it does not enable a model route or grant spending authority. Read [package setup](./dsh-plugin/README.md) and the [Agent guide](./AGENT_GUIDE.md). This repository does not publish the package to npm.
 
 ## Architecture and extension boundaries
 
@@ -93,7 +93,7 @@ flowchart TD
     Q -->|Stop| R
 ```
 
-The two return paths are development history → generation and Slow decisions → later generation. One Controller schedules them; these are not two permanently running Agents. Final evidence never returns to search. Without additional Slow evidence, `optimize-basic` runs the Fast path and explicitly reports single-fidelity optimization. The [implementation map](docs/ARCHITECTURE.md) explains stage order, mode negotiation and the difference between a planned and an actually exercised Slow path.
+The two return paths are development history → generation and Slow decisions → later generation. One Controller schedules them; these are not two permanently running Agents. Final evidence never returns to search. Without additional Slow evidence, `optimize-basic` runs the Fast path and explicitly reports single-fidelity optimization. The [implementation map](./docs/ARCHITECTURE.md) explains stage order, mode negotiation and the difference between a planned and an actually exercised Slow path.
 
 The controller owns the shared lifecycle, cancellation and supported recovery. DSH/Cordis owns provider binding, model execution, tools, permissions and disposal. Changes use existing service seams:
 
@@ -106,7 +106,7 @@ The controller owns the shared lifecycle, cancellation and supported recovery. D
 | Feedback / history | Expose permitted search observations and screen warm-start records |
 | Journal / Budget | Preserve decisions, accounting, allowances and settled checkpoints |
 
-Persona overlays are supported with matching work providers. Built-in plugin configuration support is **partial**, limited to fetch `maxBodyChars`; it needs a compatible Executor/Evaluator. Custom adapters can implement the public Target contract without changing the core. [Provider contracts](dsh-plugin/PROVIDERS.md) and shipped TypeScript declarations document the supported seams.
+Persona overlays are supported with matching work providers. Built-in plugin configuration support is **partial**, limited to fetch `maxBodyChars`; it needs a compatible Executor/Evaluator. Custom adapters can implement the public Target contract without changing the core. [Provider contracts](./dsh-plugin/PROVIDERS.md) and shipped TypeScript declarations document the supported seams.
 
 ## Boundaries that matter
 
@@ -126,14 +126,14 @@ npm run typecheck  # DUO_DSH_PACKAGE must be set
 bash scripts/release_gate.sh /tmp/new-duo-release-check
 ```
 
-[TESTING.md](TESTING.md) separates native regression, declaration compilation, isolated package/DSH acceptance, independent Caller usage and historical research. [CONTRIBUTING.md](CONTRIBUTING.md) covers small changes and [RELEASING.md](RELEASING.md) covers delivery. See [the cleanup record](docs/slow-evidence-strategy/LEAN.md) for rationale and regression evidence.
+[TESTING.md](./docs/development/TESTING.md) separates native regression, declaration compilation, isolated package/DSH acceptance, independent Caller usage and historical research. [CONTRIBUTING.md](./CONTRIBUTING.md) covers small changes and [RELEASING.md](./docs/development/RELEASING.md) covers delivery. See [the cleanup record](./docs/slow-evidence-strategy/LEAN.md) for rationale and regression evidence.
 
-Method research is paused. [EXPERIMENTS.md](EXPERIMENTS.md) preserves formal negative results and subsequent diagnostics. Used final datasets stay consumed; failures and fees are retained. No Graph/Bayesian, new benchmark or additional loops are part of this release.
+Method research is paused. [EXPERIMENTS.md](./docs/research/EXPERIMENTS.md) preserves formal negative results and subsequent diagnostics. Used final datasets stay consumed; failures and fees are retained. No Graph/Bayesian, new benchmark or additional loops are part of this release.
 
-The Python protocol remains separately versioned at `0.1.0` behind the explicit legacy path. Project code is [MIT licensed](LICENSE); host and dataset attribution is in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The Python protocol remains separately versioned at `0.1.0` behind the explicit legacy path. Project code is [MIT licensed](./LICENSE); host and dataset attribution is in [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md).
 
 ## Origins and attribution
 
 The dual-loop idea is inspired by Wang et al., [*Self-Evolving Recommendation System: End-To-End Autonomous Model Optimization With LLM Agents*](https://arxiv.org/abs/2602.10226). DUO adapts its offline-inner / online-outer structure to Agent components and explicit evidence strategies. It is not the authors' implementation and does not claim their results or endorsement.
 
-DUO runs on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) and its [Cordis](https://github.com/cordiverse/cordis) plugin model. [Third-party notices](THIRD_PARTY_NOTICES.md) distinguish paper inspiration, host dependencies and adapted research fixtures. The [documentation map](docs/README.md) separates product usage, development, release evidence and historical research.
+DUO runs on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) and its [Cordis](https://github.com/cordiverse/cordis) plugin model. [Third-party notices](./THIRD_PARTY_NOTICES.md) distinguish paper inspiration, host dependencies and adapted research fixtures. The [documentation map](./docs/README.md) separates product usage, development, release evidence and historical research.

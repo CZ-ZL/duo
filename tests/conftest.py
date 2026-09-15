@@ -5,7 +5,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 
 def pytest_configure(config):
-    config.addinivalue_line('markers', 'research: requires retained experiment or benchmark artifacts; see TESTING.md')
+    config.addinivalue_line('markers', 'research: requires retained experiment or benchmark artifacts; see docs/development/TESTING.md')
 
 
 def pytest_collection_modifyitems(items):

@@ -3,7 +3,7 @@ import json, os, sys
 from pathlib import Path
 import pytest
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'scripts'))
+sys.path.insert(0,str(ROOT/'scripts/research'))
 from prepare_code_benchmark import prepare
 from code_evaluation import run_case
 GOAL=ROOT/'runs/code-method-goal-20260912'
@@ -30,7 +30,7 @@ def task_func(source_directory, destination_directory, file_pattern):
 
 def test_759_reference_obeys_approved_missing_source_rule(owner_pack,tmp_path):
     r=json.loads((owner_pack/'answer-key.json').read_text())['tasks']['BigCodeBench/759']
-    tests=(ROOT/'scripts/fixtures/code-owner-759-tests.py.txt').read_text()
+    tests=(ROOT/'scripts/research/fixtures/code-owner-759-tests.py.txt').read_text()
     result=run_case(r['code_prompt']+r['canonical_solution'],tests,tmp_path/'reference')
     assert result['status']=='completed' and result['passed']==result['planned']==6
 
@@ -79,7 +79,7 @@ def task_func(n=10,total=100):
 
 def test_595_insertion_is_observable_and_real(owner_pack,tmp_path):
     row=json.loads((owner_pack/'answer-key.json').read_text())['tasks']['BigCodeBench/595']
-    tests=(ROOT/'scripts/fixtures/code-owner-595-tests.py.txt').read_text()
+    tests=(ROOT/'scripts/research/fixtures/code-owner-595-tests.py.txt').read_text()
     for name,code,ok in [('reference',row['code_prompt']+row['canonical_solution'],True),('left-insertion',INSERT_ALT,True),
                          ('wrong-position',INSERT_ALT.replace("return array('i',values),pos,new_num","return array('i',values),0,total"),False),
                          ('wrong-sum',INSERT_ALT.replace('values.append(remaining)','values.append(remaining+1)'),False)]:
@@ -106,7 +106,7 @@ def task_func(directory):
 
 def test_779_backup_is_repeatable_and_preserves_sources_on_failure(owner_pack,tmp_path):
     row=json.loads((owner_pack/'answer-key.json').read_text())['tasks']['BigCodeBench/779']
-    tests=(ROOT/'scripts/fixtures/code-owner-779-tests.py.txt').read_text()
+    tests=(ROOT/'scripts/research/fixtures/code-owner-779-tests.py.txt').read_text()
     for name,code,ok in [('reference',row['code_prompt']+row['canonical_solution'],True),('pathlib',BACKUP_ALT,True),
                          ('no-backup',BACKUP_ALT.replace('shutil.copytree(src,backup/src.name)','pass'),False),
                          ('no-clean',BACKUP_ALT.replace('for child in src.iterdir():','for child in []:'),False),

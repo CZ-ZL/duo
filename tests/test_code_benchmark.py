@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('code_evaluation', ROOT / 'scripts/code_evaluation.py')
+spec = importlib.util.spec_from_file_location('code_evaluation', ROOT / 'scripts/research/code_evaluation.py')
 evaluation = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(evaluation)
 

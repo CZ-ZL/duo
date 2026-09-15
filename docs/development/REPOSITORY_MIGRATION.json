@@ -1,0 +1,1125 @@
+{
+  "baseCommit": "1abb2e154bbeca6dc12c15d56925c3ecd8372c49",
+  "moves": [
+    {
+      "old": "AGENT_REFERENCE.md",
+      "new": "dsh-plugin/AGENT_REFERENCE.md",
+      "originalSha256": "63a69d988f55bc34e45b7b3c7eea75515cfb85f625d807f456a2b682b6de3e9a",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": true
+    },
+    {
+      "old": "CODE_BENCHMARK_GUIDE.md",
+      "new": "docs/research/CODE_BENCHMARK_GUIDE.md",
+      "originalSha256": "cec0ca423559768c376bbf2908e10bf6fb956d24055b502c9637956b7bf04bc3",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "DELIVERY_REPORT.zh.md",
+      "new": "docs/history/pre-organization/DELIVERY_REPORT.zh.md",
+      "originalSha256": "faef02d1dc664becd91bb444b704fbab8253bb345baa4a10d3e53d7c17c090fc",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "DESIGN.md",
+      "new": "docs/history/DESIGN.md",
+      "originalSha256": "4a16900116bdb66692e399e041bf963a17d507c7d75b5d15c41a92bcf68b90ec",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "DESIGN_COVERAGE.md",
+      "new": "docs/history/pre-organization/DESIGN_COVERAGE.md",
+      "originalSha256": "a8586851a6569d1329a39710977e6ed074ebe6aefd0ec4df921afd7c60dbfc23",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "EXPERIMENTS.md",
+      "new": "docs/research/EXPERIMENTS.md",
+      "originalSha256": "529853d24cf4b1dd966ccff7519bccafce729ac875b38c71dcbbff661b8ab4b2",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "HISTORICAL_EVIDENCE.json",
+      "new": "docs/research/HISTORICAL_EVIDENCE.json",
+      "originalSha256": "bba8559b8ba4dbc79d583adcac1d4539bc38c22d699be670f4473f4723c2df48",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "NATIVE_ACCEPTANCE_GUIDE.md",
+      "new": "docs/research/NATIVE_ACCEPTANCE_GUIDE.md",
+      "originalSha256": "d70f893ea901ffed84d006ae4dd028ccd7531331c90e4f39bac4f5949d57b5f8",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "NATIVE_CALLING_GUIDE.md",
+      "new": "docs/research/NATIVE_CALLING_GUIDE.md",
+      "originalSha256": "9a5f095f0da4021ac8d56bbcb99f3772e068b3dd655324eae973d32ab44e6862",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "NATIVE_MODEL_GUIDE.md",
+      "new": "docs/research/NATIVE_MODEL_GUIDE.md",
+      "originalSha256": "f85fff1bd82f12b7628c2fae9a0e2241313fa3dbf70dd03b89418b83d93bd297",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "PRE_PUBLICATION_EVIDENCE.json",
+      "new": "docs/releases/0.6.1/F01_EVIDENCE.json",
+      "originalSha256": "04e688fc7c46bda669c09c57eba20276280d7cc57fa2accd51fc9c1fb6ec90c0",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "PRODUCT_ACCEPTANCE.json",
+      "new": "docs/releases/0.5.0/ACCEPTANCE.json",
+      "originalSha256": "26508540d6dc09ecef028c177a422e4e99069c681903ff8da1c6e7d2747b868c",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "PUBLICATION_EVIDENCE.json",
+      "new": "docs/releases/0.4.0/PUBLICATION_EVIDENCE.json",
+      "originalSha256": "39e3a09f25e16c047f9bf41f8e49341ca9af124693048944b9cbb3d8198667e6",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "RELEASE_EVIDENCE.json",
+      "new": "docs/releases/0.4.0/LOCAL_EVIDENCE.json",
+      "originalSha256": "72138a2ea40494106671565daad92a830b46fdfe6756252a8fe6639eee54636a",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "RELEASE_NOTES_v0.4.0.md",
+      "new": "docs/releases/0.4.0/RELEASE_NOTES.md",
+      "originalSha256": "89a57ea75a9980fb6c081cb709a760783dc8bdd14992b9c99831de1d37691a3e",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "RELEASE_NOTES_v0.5.0.md",
+      "new": "docs/releases/0.5.0/RELEASE_NOTES.md",
+      "originalSha256": "b90ee71861cd41de9c82d21ea800088a58b00be6d885302de9efc7e367c9b560",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "RELEASE_NOTES_v0.6.0.md",
+      "new": "docs/releases/0.6.0/RELEASE_NOTES.md",
+      "originalSha256": "d235142c5162e6d8b37c1db5b45eea500ce475f011c3414c63fe1fd98fcb0ab5",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "RELEASE_NOTES_v0.6.1.md",
+      "new": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "originalSha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "RELEASE_QUICKSTART.md",
+      "new": "docs/QUICKSTART.md",
+      "originalSha256": "3be87eeb6551257f4e08c3bb96afb73e8db346a1d88bcfdb43378c09b05950ef",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "RELEASING.md",
+      "new": "docs/development/RELEASING.md",
+      "originalSha256": "776881f9903b609dd4d8a63121221e309c4dab3e9588e29c104efc0694c9498e",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "STATUS.md",
+      "new": "docs/history/pre-organization/STATUS.md",
+      "originalSha256": "a905baf94ceda4e66623a8ae2272d45ee6056739cc062345507c7ecd4c7660cf",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "TESTING.md",
+      "new": "docs/development/TESTING.md",
+      "originalSha256": "ba563b2d8eba5a8742aea6a166154bbfb6eb1233fca020bdea3817802b0703dc",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/core-bridge.test.js",
+      "new": "dsh-plugin/tests/core-bridge.test.js",
+      "originalSha256": "c0ac25900e959374bf2f52c81b9a177f428a58575a58d9483fb790eddaa41925",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/adoption.test.js",
+      "new": "dsh-plugin/tests/native/adoption.test.js",
+      "originalSha256": "e5125160afa739ad809876448fd643d5c11cd2ac09dfdb4cf72106b5dfc9e3d5",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/baseline-identity.test.js",
+      "new": "dsh-plugin/tests/native/baseline-identity.test.js",
+      "originalSha256": "506572a147141e283638f86d4cc349722722afba53a24d8aa977966be805eb2a",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/baseline-repair.test.js",
+      "new": "dsh-plugin/tests/native/baseline-repair.test.js",
+      "originalSha256": "a2c5600a328354573401f2a2b0f9e12597014ec4e8b86ecb009be61b2ef4461e",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/bounded-tie-gate.test.js",
+      "new": "dsh-plugin/tests/native/bounded-tie-gate.test.js",
+      "originalSha256": "becbc82d89e442f070d8b568b5772e427516eff66f6ecd7607f658e60865bb3a",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/config-target.test.js",
+      "new": "dsh-plugin/tests/native/config-target.test.js",
+      "originalSha256": "74e13971d394791d9f1f0a93a0b97df2bc1b57127e4d0ab3719fd0f00b09720b",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/controller.test.js",
+      "new": "dsh-plugin/tests/native/controller.test.js",
+      "originalSha256": "cc62b11df0d0bb93e3cdb971ca49755ffc6b151d4d54c789516b9d91e6a0e743",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/deferred-runtime.test.js",
+      "new": "dsh-plugin/tests/native/deferred-runtime.test.js",
+      "originalSha256": "6acd0d4b6efa89a30e1eeb90506fdb52d2553f6c9b9ab532971006f44a1f3092",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/docs-sync.test.js",
+      "new": "dsh-plugin/tests/native/docs-sync.test.js",
+      "originalSha256": "7bbd445afc735ff9cd84e0ae5910cd0ca7d094f0122d3748ef61484bfd3ab41c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/embedded-task.test.js",
+      "new": "dsh-plugin/tests/native/embedded-task.test.js",
+      "originalSha256": "a7a9aa2c8b3bbdbc16b3c4800c06f8bd6d6711638593c8802a13b33f96fb2dbb",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/evaluation-only.test.js",
+      "new": "dsh-plugin/tests/native/evaluation-only.test.js",
+      "originalSha256": "bc7c88e385c51ac07fc5c2d6c028dea41df04eeffd115ccb848d12f783562ed0",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/evaluator-controls.test.js",
+      "new": "dsh-plugin/tests/native/evaluator-controls.test.js",
+      "originalSha256": "607f674b4b990d558c71a0208559970018291acdbd6a7f993daddcf959604663",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fact-evaluator.test.js",
+      "new": "dsh-plugin/tests/native/fact-evaluator.test.js",
+      "originalSha256": "66051ba27ecea71ddb2097a53f6c9e1f362f49cae517deed2cc514c334f7077c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fact-task.test.js",
+      "new": "dsh-plugin/tests/native/fact-task.test.js",
+      "originalSha256": "d666e0fb2f86369de72f990a2d817aa89adc1183d4f2513db2d3a300bf202ccf",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fetch-evaluation.test.js",
+      "new": "dsh-plugin/tests/native/fetch-evaluation.test.js",
+      "originalSha256": "afb980f0c33bcd5defb9995b6995811720febe7a1c7b70cc33fd4e3200aa1afe",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-contract-audit/LICENSE",
+      "new": "dsh-plugin/tests/fixtures/code-contract-audit/LICENSE",
+      "originalSha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-contract-audit/NOTICE.md",
+      "new": "dsh-plugin/tests/fixtures/code-contract-audit/NOTICE.md",
+      "originalSha256": "863fb6843d4c95c5eeb7d5a3115d068f89b8db9eeaa9bb0872a661204c706239",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-contract-audit/PROVENANCE.json",
+      "new": "dsh-plugin/tests/fixtures/code-contract-audit/PROVENANCE.json",
+      "originalSha256": "e26cbf50eafcf217f7629d1b2a14e7049afbbe7f6f363f9c1cf5ee910a52edd0",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-contract-audit/answer-key.json",
+      "new": "dsh-plugin/tests/fixtures/code-contract-audit/answer-key.json",
+      "originalSha256": "3302fc82f98f109a8306d49b82a38ad689b8fed0cd2d4859d397acca6025e969",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-contract-audit/dataset.json",
+      "new": "dsh-plugin/tests/fixtures/code-contract-audit/dataset.json",
+      "originalSha256": "b4a4d77e13950dc7b06b3e3ea4ed1b6a09a1c980b6e998325830c8f7396b8815",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-method-goal/NOTICE.md",
+      "new": "dsh-plugin/tests/fixtures/code-method-goal/NOTICE.md",
+      "originalSha256": "ad04e9dbf606eae5744c518ef8d0f798f92e2998aa2cf7bf392109056bf2fd5c",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-method-goal/PROVENANCE.json",
+      "new": "dsh-plugin/tests/fixtures/code-method-goal/PROVENANCE.json",
+      "originalSha256": "dcfc83a0c291768e2ba1f0b2804a47e9d49557880f987a049b8a04de0e9bbb57",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-method-goal/b1-code-evaluation/evaluation.json",
+      "new": "dsh-plugin/tests/fixtures/code-method-goal/b1-code-evaluation/evaluation.json",
+      "originalSha256": "87caae36c8161dc4ef03171850d9e1db623d60427a49c4665a11af8695b3427b",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/fixtures/code-method-goal/b1-development-pack/dataset.json",
+      "new": "dsh-plugin/tests/fixtures/code-method-goal/b1-development-pack/dataset.json",
+      "originalSha256": "cd7560d9f98ff2dcd97eefb83e91b270216081b58f5e73ab05b98d3c55bc52b6",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/function-evaluators.test.js",
+      "new": "dsh-plugin/tests/native/function-evaluators.test.js",
+      "originalSha256": "665bc8cbd4703596ab5094fa7b974c1d68b929ef93e998a69cb3c4ebd2046299",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/history-feedback.test.js",
+      "new": "dsh-plugin/tests/native/history-feedback.test.js",
+      "originalSha256": "b0ab1605c415211df2b105177c320869fbe9ac4f56542cfce0b794f56242f10b",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/json-output.test.js",
+      "new": "dsh-plugin/tests/native/json-output.test.js",
+      "originalSha256": "96f6f739c869a8bd60a6a47795843e9bfb053189316ac8cd6df5a5b96e4ca38a",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/ladder.test.js",
+      "new": "dsh-plugin/tests/native/ladder.test.js",
+      "originalSha256": "144783763ba30b07a54e6dd0e2bf9d78daea9cca0a2135e525f7a91f0b50fa67",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/maturation-diagnostics.test.js",
+      "new": "dsh-plugin/tests/native/maturation-diagnostics.test.js",
+      "originalSha256": "0a197a67b38fa5294ab80d8b3737e69b85639d0cf0885b8d9521ad569ce34ea6",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/method-feedback.test.js",
+      "new": "dsh-plugin/tests/native/method-feedback.test.js",
+      "originalSha256": "157988c4b47876e8fb617b85cd165e89a2b73c1754b371488004c347e402333c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/model-accounting.test.js",
+      "new": "dsh-plugin/tests/native/model-accounting.test.js",
+      "originalSha256": "da18e34620433dfa023c4f9f8036c51d15051a55eef14ad47504994636895ce8",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/model-executor.test.js",
+      "new": "dsh-plugin/tests/native/model-executor.test.js",
+      "originalSha256": "72d9d86fc3b66e9f15a18197a7d21fbb7739e799ffc3c7ad553e2cb15a5c6325",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/observer.test.js",
+      "new": "dsh-plugin/tests/native/observer.test.js",
+      "originalSha256": "b082f7a0c69c3c1976e22648c5291c9315f9e6eddfeb885b2d84fe2cf2fa567c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/onboarding.test.js",
+      "new": "dsh-plugin/tests/native/onboarding.test.js",
+      "originalSha256": "7f8c43f6787a525c477f8d2ef232401ca7c240d385b3a8720655f0a9f8589593",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/policies.test.js",
+      "new": "dsh-plugin/tests/native/policies.test.js",
+      "originalSha256": "4b317c497cd7fa0c4f3ba048eedb380d44c59a8e74e0df18ad16b835ac3a9d50",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/product-review.test.js",
+      "new": "dsh-plugin/tests/native/product-review.test.js",
+      "originalSha256": "776691b4b36da8476125209765cc892cd79a6e308c3db2b5b61edf790feb77ea",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/product-target.test.js",
+      "new": "dsh-plugin/tests/native/product-target.test.js",
+      "originalSha256": "a0971dd770276649f1e79dc05ba49f3e4f2497f39c94912ce90192f8afddbe84",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/schema-answer-evaluator.test.js",
+      "new": "dsh-plugin/tests/native/schema-answer-evaluator.test.js",
+      "originalSha256": "cf0d5434cc3e0f3addfb16fe26ad2a71231c77d4595e979c9929c2dfdf3e360c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/semantic-evaluators.test.js",
+      "new": "dsh-plugin/tests/native/semantic-evaluators.test.js",
+      "originalSha256": "bdc3180d33d32320d5275ed9c5151fcebc086a3e45eae7ce6b4fceee1bc13ca9",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/slow-evidence.test.js",
+      "new": "dsh-plugin/tests/native/slow-evidence.test.js",
+      "originalSha256": "5c14040ea295160331876d065c16ad4286d999ab3ddb309754c4c694176fe929",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/stages.test.js",
+      "new": "dsh-plugin/tests/native/stages.test.js",
+      "originalSha256": "f51eb487f08858af561ad6d2af050f2da957da791ca6020a5bdacbfdfaa69242",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/store.test.js",
+      "new": "dsh-plugin/tests/native/store.test.js",
+      "originalSha256": "342307f516cefeb9df32498428a0d7ae4e2ae7e4acaf739a13b8a7483d5c4086",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/structured-generator.test.js",
+      "new": "dsh-plugin/tests/native/structured-generator.test.js",
+      "originalSha256": "332f6aa8fa1e98859e8aa6059191c43f0c8cf190bc20c76875b2052132f42be7",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/test-fixtures.js",
+      "new": "dsh-plugin/tests/native/test-fixtures.js",
+      "originalSha256": "170c6dcf83a02a93f2ac0c8de0613322f805a580f3ee0f6937b384a2102d589c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/tools.test.js",
+      "new": "dsh-plugin/tests/native/tools.test.js",
+      "originalSha256": "897abd3a678b85fdf5c1edbf2882d425becf00e0738c2418d8cd11cde835903a",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "dsh-plugin/native/warm-start.test.js",
+      "new": "dsh-plugin/tests/native/warm-start.test.js",
+      "originalSha256": "b8ab554ffae0b80645cf6c0e52f67051e95eac613fe6508523a1c365d6056303",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "experiment-evidence.json",
+      "new": "docs/research/experiment-evidence.json",
+      "originalSha256": "a7337a6283c86f749b1b5a0a9d290157039da8d065f429176e0d3413e140c6c2",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/audit_native_efficiency.py",
+      "new": "scripts/research/audit_native_efficiency.py",
+      "originalSha256": "3c36eda45c676e73955ab1c7a307bcc6b786fa0488efa3572459cb69162e942a",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/calibrate_docs_qa.py",
+      "new": "scripts/research/calibrate_docs_qa.py",
+      "originalSha256": "0d1aa30b335fe4a891c8a22d02213f707db469b4250004e4ddbd4b9efd53be05",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/caller_diagnostics.mjs",
+      "new": "scripts/research/caller_diagnostics.mjs",
+      "originalSha256": "b5f671398aa8dbbe8f3fd5e7e654b0544f91d627f2d679fe07b390bf808167f9",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/check_code_benchmark.py",
+      "new": "scripts/research/check_code_benchmark.py",
+      "originalSha256": "201efbf0caa45cd50dd9b79166825f4c1ef6d82c0aefa21cb63bbbe4405c76ab",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/check_public_types.mjs",
+      "new": "scripts/product/check_public_types.mjs",
+      "originalSha256": "2530b1176590789b6db9b61842258472096944473c735dd0ef9ed341579f6ab7",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/check_release_package.py",
+      "new": "scripts/product/check_release_package.py",
+      "originalSha256": "f2878e667f279ea6eb10e30954278c59b0847c541d7298460b97c738464fe27d",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_contract_tests.py",
+      "new": "scripts/research/code_contract_tests.py",
+      "originalSha256": "25945028361cfbcdf228e30e37685b5d14d031b5e16ff655c1694c8bfb25c68b",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_disk_usage_contract.py",
+      "new": "scripts/research/code_disk_usage_contract.py",
+      "originalSha256": "8e1e44aa7dd4fd6d9e1e01fca61a68a990768fa6d4c4d017c0addbaf77178a2e",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_evaluation.py",
+      "new": "scripts/research/code_evaluation.py",
+      "originalSha256": "c7007c4304ca7dd71f330d3aa2f43194d1ff3683634ab8b142517d1562bf7609",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_file_hash_contract.py",
+      "new": "scripts/research/code_file_hash_contract.py",
+      "originalSha256": "56668da026130ece21d5853d0bc37e4f4deffb6ca9cab5816665e93d24e696aa",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_json_io_contract.py",
+      "new": "scripts/research/code_json_io_contract.py",
+      "originalSha256": "fb2a35dac63fb65714b8b03257c7af2e27e1b3e7a6894dc42ff9c1e8c7d80a0f",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_owner_contracts.py",
+      "new": "scripts/research/code_owner_contracts.py",
+      "originalSha256": "78463ac2a1739e04afdfa296ea29ef07bdc4e90261f908f17ccf52343e2b4d6f",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_remaining_contract_tests.py",
+      "new": "scripts/research/code_remaining_contract_tests.py",
+      "originalSha256": "bbf39f9f5c0480a1cf7fff60cd1fdd7842801c02b6c651f618cc6bd9a8ac2738",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_salt_api_contract.py",
+      "new": "scripts/research/code_salt_api_contract.py",
+      "originalSha256": "904325bb3605970c22de49b7f8d04c515ab19ba751663561e3f79147c2f5eebe",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/code_worker.py",
+      "new": "scripts/research/code_worker.py",
+      "originalSha256": "e9687eb19bf2db83ff49a15af377c50afed264e08352f93cca03ef6da15af565",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/diagnose_native_evaluator.mjs",
+      "new": "scripts/research/diagnose_native_evaluator.mjs",
+      "originalSha256": "69986871b6ea437cd65c2935cf9813c90ffff7dfacb76aaa8f147325b9aaa171",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_adoption_host_driver.js",
+      "new": "scripts/product/dsh_adoption_host_driver.js",
+      "originalSha256": "ca1fb89372974d72c1841ff7820be001d41bf9db4549952a21ab8e081303c765",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_caller_format_fixture.js",
+      "new": "scripts/research/dsh_caller_format_fixture.js",
+      "originalSha256": "2bdf570493b408ea596aa4b45332a4c72baebca83f13481e4aeb76b6d4548670",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_caller_format_probe.js",
+      "new": "scripts/research/dsh_caller_format_probe.js",
+      "originalSha256": "da20e1e6487f005433735647dbc32933dfbeac65da445285031917a38309656f",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_caller_host.js",
+      "new": "scripts/research/dsh_caller_host.js",
+      "originalSha256": "c50aabd37ce220c5b880ff7564f19004ed609fc6da6256b8ae8ea5ddee890e72",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_calling_fixture.js",
+      "new": "scripts/research/dsh_calling_fixture.js",
+      "originalSha256": "952ffd102876dcd08f93238e18c9b74c757ca0a961f015a346699144e387e839",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_calling_host.js",
+      "new": "scripts/research/dsh_calling_host.js",
+      "originalSha256": "1e0a8888f6005f41f0b0aa6b4ed72792d793da7fedfce7a5c232b7a8a8de6573",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_code_control_host.js",
+      "new": "scripts/research/dsh_code_control_host.js",
+      "originalSha256": "7b2c4e7a8da7ca44d0b61dfbea399a69270d114674a73643b482e7cd40421dea",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_code_evaluator.js",
+      "new": "scripts/research/dsh_code_evaluator.js",
+      "originalSha256": "f2ffd305174eaff12a0c39238d0f89a5549cf7f10316b3a8356ae82cf5e414ca",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_code_model_fixture.js",
+      "new": "scripts/research/dsh_code_model_fixture.js",
+      "originalSha256": "511e83ecf3d20cc378c903afb6bb1666cb040da2c4b52cfb90d8ce6a6416dc66",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_configured_caller_fixture.js",
+      "new": "scripts/research/dsh_configured_caller_fixture.js",
+      "originalSha256": "aa4ed81ae52ed16b12affe50d822b28afe692b36c7ff0de179ab7a349331dd16",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_embedded_host_driver.js",
+      "new": "scripts/product/dsh_embedded_host_driver.js",
+      "originalSha256": "4c37d879cee0c8848520a06838541ae0f66db90115265ee3963fb838b4702628",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_host_driver.js",
+      "new": "scripts/research/dsh_host_driver.js",
+      "originalSha256": "ca3f8974126f0a1871bae5654f9be113aa396794e572f0a76317e28ec451e02c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_maturation_delivery.js",
+      "new": "scripts/research/dsh_maturation_delivery.js",
+      "originalSha256": "bc466b641f77988d0ed82184b4116310cd153cf6556582334c2c8ce347620ec5",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_maturation_fixture.js",
+      "new": "scripts/research/dsh_maturation_fixture.js",
+      "originalSha256": "4ee1c8e12c24b28b2a8fea444c0c77f632876e1944372e8b0588ea65ff9dbd40",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_maturation_host.js",
+      "new": "scripts/research/dsh_maturation_host.js",
+      "originalSha256": "0ef0b104041dd47bfc287918904e80df571fc15f9d6705616f1c9837ba01e368",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_model_executor_host.js",
+      "new": "scripts/research/dsh_model_executor_host.js",
+      "originalSha256": "469b3cc51bb96a43ad04ff9eb0aa90bce0217fee58759670dfb5b3eee801641c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_model_fixture.js",
+      "new": "scripts/research/dsh_model_fixture.js",
+      "originalSha256": "189280167d05792cfb69de90e3d57cabf7643e6a58d7b285d62ea5ab95a463c1",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_model_profile.py",
+      "new": "scripts/research/dsh_model_profile.py",
+      "originalSha256": "9e17e5cbc1e313c00e152829b30828dbafd1ea9ad707168339cf8eb232890eed",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_model_run_host.js",
+      "new": "scripts/research/dsh_model_run_host.js",
+      "originalSha256": "43c3a49e52628e0bc60497f9fb7ae2857c60eefbb248548694e80db8d34ebd43",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_native_host_driver.js",
+      "new": "scripts/product/dsh_native_host_driver.js",
+      "originalSha256": "e1132f6cdde1ad983a00c025a2007769ef070e22234ac0e406ec30a614174b8f",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_native_loader.mjs",
+      "new": "scripts/product/dsh_native_loader.mjs",
+      "originalSha256": "87a7aad549a02bbe8d6e0185e7c07cfe12ac37e66451f013d2ef59dfef2200d9",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_semantic_diagnostic_host.js",
+      "new": "scripts/research/dsh_semantic_diagnostic_host.js",
+      "originalSha256": "b9883bae2b8a572e4b1c940e26cc2fe9c954f75df6152adbaa72a868b520b4d0",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/dsh_semantic_evaluator_host.js",
+      "new": "scripts/research/dsh_semantic_evaluator_host.js",
+      "originalSha256": "9c2e3d3bff84e57658ef3f8c9bfcbed2cff873997d6ae2f35457f29ba454a885",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-disk-delimiter-tests-v1.py.txt",
+      "new": "scripts/research/fixtures/code-disk-delimiter-tests-v1.py.txt",
+      "originalSha256": "2795d54cd729dccdf0ca3eb5e84fc894dd6fe29d6c86638a4d92954a3b52626c",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-disk-usage-tests-v1.py.txt",
+      "new": "scripts/research/fixtures/code-disk-usage-tests-v1.py.txt",
+      "originalSha256": "3276bcd032b3ff5d4de7136e850556353aaa769a9ad12fde28adaddc7e9467d9",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-file-hash-tests-v1.py.txt",
+      "new": "scripts/research/fixtures/code-file-hash-tests-v1.py.txt",
+      "originalSha256": "23bb8b337a75d2e12b54494341f9c4dcb7dcd3bd9ce0f0e1326c420648b5f993",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-json-io-tests-v1.py.txt",
+      "new": "scripts/research/fixtures/code-json-io-tests-v1.py.txt",
+      "originalSha256": "ea09654685c9a06632ae5c3e67db5946f4f0146b34df315e3c824707fb0d8338",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-library-v1.json",
+      "new": "scripts/research/fixtures/code-library-v1.json",
+      "originalSha256": "f0f5e3bac6a874282c9fad917e47c3a64aa631f0aeb5c89f38a9b7138a54165a",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-owner-327-tests.py.txt",
+      "new": "scripts/research/fixtures/code-owner-327-tests.py.txt",
+      "originalSha256": "cd7af1c20fa96fbd7df0033416a060e0e7347f3a05a06f9d15f8043009bcab08",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-owner-595-tests.py.txt",
+      "new": "scripts/research/fixtures/code-owner-595-tests.py.txt",
+      "originalSha256": "79d702a4c3eb6f68702d71cc210b71805c5deef400063d4688a16c651bd65286",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-owner-759-tests.py.txt",
+      "new": "scripts/research/fixtures/code-owner-759-tests.py.txt",
+      "originalSha256": "3ada4c5d63593b1cc5872c9567a0b29b7c86e8e777b792416f5f475d21784bef",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-owner-779-tests.py.txt",
+      "new": "scripts/research/fixtures/code-owner-779-tests.py.txt",
+      "originalSha256": "32f137e279b077f092af992a13baf54d57858b68189da169c79010af979368d3",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-owner-861-tests.py.txt",
+      "new": "scripts/research/fixtures/code-owner-861-tests.py.txt",
+      "originalSha256": "ff753172ab8053ccf3a2d209f520d7d3f7c09ca78f21d1b706b829e34bd67639",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-owner-931-tests.py.txt",
+      "new": "scripts/research/fixtures/code-owner-931-tests.py.txt",
+      "originalSha256": "dde6309d20df3b52b3275d06afa985c34f98dd620dca355d0efc06a64d86ef6b",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-owner-contracts.json",
+      "new": "scripts/research/fixtures/code-owner-contracts.json",
+      "originalSha256": "09030a180d7c9b5b43d583978b2e247ad8d76409804b10f01f8e2bc8aa613caf",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-properties-v1/358.py",
+      "new": "scripts/research/fixtures/code-properties-v1/358.py",
+      "originalSha256": "8226733569f93d8a20a17383974dd9dd6ee80bddad0c044c45be03e65646a425",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-properties-v1/412.py",
+      "new": "scripts/research/fixtures/code-properties-v1/412.py",
+      "originalSha256": "f234ce79e07dcf3727495edd6e67769e90d56c8076557d3ea98b6c1423b6798e",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/fixtures/code-salt-api-tests-v1.py.txt",
+      "new": "scripts/research/fixtures/code-salt-api-tests-v1.py.txt",
+      "originalSha256": "d5ff7d3f506f5867ba3c775b4a9ce7b2cd8fdb593184997e070891af66e6d05d",
+      "historicalBytesPreserved": true,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/maturation_batch.py",
+      "new": "scripts/research/maturation_batch.py",
+      "originalSha256": "0310ebfb3b54a4e21f386513a5626b95552cd7cad195c855f4eff7193301aa95",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/maturation_diagnostics.mjs",
+      "new": "scripts/research/maturation_diagnostics.mjs",
+      "originalSha256": "29da122dc876306e98d3baec146593cbb09fdbcebd9f72d17d3210c24e0a6634",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/plan_budget.py",
+      "new": "scripts/research/plan_budget.py",
+      "originalSha256": "07ae6225ff717ce05ae71f2dbeace1de1bf7ef0287e09e58c76f34990163d200",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_benchmark.py",
+      "new": "scripts/research/prepare_code_benchmark.py",
+      "originalSha256": "0e6b740bb891aaa185d5b11ac7bb9b6c7e10a79a683601a37e9a712c6ef26d05",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_comparison.mjs",
+      "new": "scripts/research/prepare_code_comparison.mjs",
+      "originalSha256": "d217ad75465ee9110270725fded1c7c7eef754bfdc93e9e1d00944fc045c75d5",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_final.py",
+      "new": "scripts/research/prepare_code_final.py",
+      "originalSha256": "5a98d85c61a916a341d463e646545d65d17baf9ffa02c59d37127fab69b13e17",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_format_pilot.py",
+      "new": "scripts/research/prepare_code_format_pilot.py",
+      "originalSha256": "46c52b73925868016dbfa0d854b045e9f1392fd2925b1a68b33e8f466041f650",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_properties.py",
+      "new": "scripts/research/prepare_code_properties.py",
+      "originalSha256": "8ac9e8f67dc68474e79be23e6cd74437fde227397fc9d69a1473d51b3b582d30",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_property_study.py",
+      "new": "scripts/research/prepare_code_property_study.py",
+      "originalSha256": "39d46ea6ea4689998de0751a0189caa35a8c1ed3c1e80a1aec62695245c168d5",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_review_controls.py",
+      "new": "scripts/research/prepare_code_review_controls.py",
+      "originalSha256": "5a62567324674a5f433fad3ad7500e79f62c8071c7e8b2deae62f14db4cc9f94",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_code_single_loop.mjs",
+      "new": "scripts/research/prepare_code_single_loop.mjs",
+      "originalSha256": "f7692cc13b9d5cfda5b6de002118e2984e05b60d34989a4ab6d645f3676fc1fe",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_fact_comparison.mjs",
+      "new": "scripts/research/prepare_fact_comparison.mjs",
+      "originalSha256": "8d8bf1b5f82b2c149942a1f0aa50df8880f552f361511849577d2678659d1a74",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_native_comparison.py",
+      "new": "scripts/research/prepare_native_comparison.py",
+      "originalSha256": "f6dfb1bced90a4282f2b44c7dc66a8655776f8169f4032ee9a176f73fde06554",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/prepare_native_docs_mini.py",
+      "new": "scripts/research/prepare_native_docs_mini.py",
+      "originalSha256": "a28b7b88975e074027fd401797727ab9840f82250f2cef0cdea94095f75d7efe",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_ablation.py",
+      "new": "scripts/research/run_ablation.py",
+      "originalSha256": "271b306fb4df31695924e35edab80af191a89fbcd984247b626848bf95cc5c55",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_caller_format_probe.py",
+      "new": "scripts/research/run_caller_format_probe.py",
+      "originalSha256": "e351178951f0b58b9e9fd5e79658f391a751ee0deefc108f0769706af2ff8c62",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_code_comparison.py",
+      "new": "scripts/research/run_code_comparison.py",
+      "originalSha256": "eaeca18f988f69021526ed88ccc1c6028e3876fb8cd4678cd46484017298b3ab",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_code_model.py",
+      "new": "scripts/research/run_code_model.py",
+      "originalSha256": "367d0b1f1bb06a3d83b7d8fd8482feac48d62d6e024a9f35b38eb8c079cfe93c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_code_review.py",
+      "new": "scripts/research/run_code_review.py",
+      "originalSha256": "d9c4df02c593645f76c58887e1e6a8c0053acc9db4fe2d01c72e5e192717fd46",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_dsh_model.py",
+      "new": "scripts/research/run_dsh_model.py",
+      "originalSha256": "18d99bce4ae4e69cc5f7b7723669d5a45f69a6378133b00aac7c875a1944311a",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_duo_caller.py",
+      "new": "scripts/research/run_duo_caller.py",
+      "originalSha256": "3938310e8fd8025ba023334377ca2a97c9c7b21d85efddc2d8ace21e7cd5cdc9",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_fact_comparison.py",
+      "new": "scripts/research/run_fact_comparison.py",
+      "originalSha256": "11dc2c962cdf3c5b9e1f0c388157cfa3fe5fa58993651e166359386a0f139626",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_maturation_calling.py",
+      "new": "scripts/research/run_maturation_calling.py",
+      "originalSha256": "3ee9f8c33b8b995eb85ddc5eb7970f5aad0b11835ba1fa4d7f98eb4b2dcd8d20",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_maturation_delivery.py",
+      "new": "scripts/research/run_maturation_delivery.py",
+      "originalSha256": "c96326577cf06fc060f923b593b620b29f65757733c733211441543ed0fa976c",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_native_calling.py",
+      "new": "scripts/research/run_native_calling.py",
+      "originalSha256": "8d9276cf808cdae810ddfdccf4d056d42155a1c9886cd59819e5dd79b924255f",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_native_comparison.py",
+      "new": "scripts/research/run_native_comparison.py",
+      "originalSha256": "cd7630689f7b8e88b83f3e1a0c12f56192aec83249a6340992059a1fb618242f",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/run_native_semantic_diagnostic.py",
+      "new": "scripts/research/run_native_semantic_diagnostic.py",
+      "originalSha256": "cf52fa95b241e3667b025a48e691c34e4d139258b91688becabf495c0ea7b9cd",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/sync_product_docs.mjs",
+      "new": "scripts/product/sync_product_docs.mjs",
+      "originalSha256": "5d8a46e102020842d639fcec052852e260dfa0a8087e22c352c354db8500268f",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_agent_native.py",
+      "new": "scripts/research/verify_agent_native.py",
+      "originalSha256": "bf2a4b0346b9a097bb4999653cd3854426bad2ede5038133d31699b1f4524e80",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_baseline_repair.py",
+      "new": "scripts/product/verify_baseline_repair.py",
+      "originalSha256": "f11386721c0786d0001576e633033611db33fa25214acb26cc0dffa5c1f6efda",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_code_benchmark.py",
+      "new": "scripts/research/verify_code_benchmark.py",
+      "originalSha256": "8a95cd8db238771bcda262cfc935cdc591a31344124f88e23fe72d4a924181d7",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_dsh_host.py",
+      "new": "scripts/research/verify_dsh_host.py",
+      "originalSha256": "1f1d0d1f5f2cbbe7ddc9599e30f0bd745b71491712f36dc58517eeb8e56a8edd",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_dsh_model_executor.py",
+      "new": "scripts/research/verify_dsh_model_executor.py",
+      "originalSha256": "ef923b5508a78fd8b5380a8d9e6813f6f39523b6c7732fde58331bbd94f6df84",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_dsh_native.py",
+      "new": "scripts/product/verify_dsh_native.py",
+      "originalSha256": "8f84c31fbdfedcfaaa80d310e6a67823bbdf1e698e5608b85baa0e7a39fae482",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_product_examples.py",
+      "new": "scripts/product/verify_product_examples.py",
+      "originalSha256": "3f6cecd36a07d45c282e02810781ed547cf4024b8d65f3873cda741cf94861e9",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_product_install.py",
+      "new": "scripts/product/verify_product_install.py",
+      "originalSha256": "48d4af19f7694433dca56b737705c23de58467aab3520db424d6de174ed3c114",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    },
+    {
+      "old": "scripts/verify_slow_evidence.py",
+      "new": "scripts/product/verify_slow_evidence.py",
+      "originalSha256": "37e5e856df331353e8d8cd59a97c8fc85468389a25ce3f509ad8b6af4a4e3dcb",
+      "historicalBytesPreserved": false,
+      "deduplicatedCopy": false
+    }
+  ]
+}

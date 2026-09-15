@@ -6,7 +6,7 @@ the original persona or adopts a candidate. Reading `dualloop_status` and
 
 After a completed run, use the public `dualloop_status({runId})` response and
 choose an explicit candidate ID. The caller-owned helpers in
-[adoption.js](adoption.js) use only that response and Node's built-in SHA256:
+[adoption.js](./adoption.js) use only that response and Node's built-in SHA256:
 
 ```js
 import {preparePersonaDelivery,personaReplacement} from './adoption.js'
@@ -31,7 +31,7 @@ destination, active profile change or model check needs its own authority.
 
 The existing DSH composition uses `@deepseek-ai/dsh-fs-local`,
 `@deepseek-ai/dsh-fs-observation-policy` and `@deepseek-ai/dsh-tool-fs` alongside
-the current tools and Agent services; [example rows](adoption-profile.patch.yml)
+the current tools and Agent services; [example rows](./adoption-profile.patch.yml)
 are for an already-authorized isolated profile. These rows do not restrict
 paths or grant file permissions: the host must separately enforce the allowed
 destination and operation. Do not load them globally merely to use DUO.
@@ -74,7 +74,7 @@ candidate and original, but direct adoption is unavailable there.
 Offline executable acceptance from the project root:
 
 ```sh
-python3 scripts/verify_dsh_native.py --dsh-package /absolute/path/to/installed/@deepseek-ai/dsh --scenario adoption --output runs/my-new-adoption-check
+python3 scripts/product/verify_dsh_native.py --dsh-package /absolute/path/to/installed/@deepseek-ai/dsh --scenario adoption --output runs/my-new-adoption-check
 ```
 
 The output must be a new directory. It uses cached packages, a new DSH home,

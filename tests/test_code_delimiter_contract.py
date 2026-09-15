@@ -2,7 +2,7 @@
 import json,sys
 from pathlib import Path
 import pytest
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts/research'))
 from prepare_code_benchmark import prepare
 from code_evaluation import evaluate_batch,run_case
 GOAL=ROOT/'runs/code-method-goal-20260912';SOURCE=ROOT/'runs/code-benchmark-readiness-20260911/upstream/BigCodeBench-v0.1.4.jsonl';TASK='BigCodeBench/973'
@@ -15,7 +15,7 @@ def test_delimiter_check_is_versioned_with_old_test_and_reference_preserved(pack
     assert key['evaluatorVersion']==m['evaluatorVersion']=='15' and key['version']==m['testSuiteVersion']=='bigcodebench-unittest-dev-contract-v12'
     assert all(row==key['tasks'][id_] for id_,row in old['tasks'].items() if id_!=TASK)
     assert all(v==key['tasks'][TASK][k] for k,v in old['tasks'][TASK].items() if k!='test')
-    assert key['tasks'][TASK]['test']==old['tasks'][TASK]['test']+'\n'+(ROOT/'scripts/fixtures/code-disk-delimiter-tests-v1.py.txt').read_text()
+    assert key['tasks'][TASK]['test']==old['tasks'][TASK]['test']+'\n'+(ROOT/'scripts/research/fixtures/code-disk-delimiter-tests-v1.py.txt').read_text()
     d=json.loads((pack/'dataset.json').read_text());od=json.loads((GOAL/'benchmark-v14-dev-contract11/dataset.json').read_text());assert all(d[t]['tasks']==od[t]['tasks'] and d[t]['id']=='bigcodebench-stdlib-v15-dev-contract12-'+t for t in ['fast','slow','final'])
 
 def test_production_accepts_statvfs_and_detects_ignored_argument(pack,tmp_path):

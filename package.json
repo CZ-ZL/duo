@@ -4,9 +4,9 @@
   "private": true,
   "description": "Development checks for the DUO product package; never published",
   "scripts": {
-    "format": "prettier --write dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js scripts/sync_product_docs.mjs",
-    "format:check": "prettier --check dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js scripts/sync_product_docs.mjs",
-    "typecheck": "node scripts/check_public_types.mjs"
+    "format": "prettier --write dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js scripts/product/sync_product_docs.mjs",
+    "format:check": "prettier --check dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js scripts/product/sync_product_docs.mjs",
+    "typecheck": "node scripts/product/check_public_types.mjs"
   },
   "devDependencies": {
     "@types/node": "24.3.1",

@@ -2,7 +2,7 @@
 
 DUO is a DSH-native component for bounded evaluation and optimization. The default bundle exposes preparation and waits for work providers; it does not wire a research fixture or authorize model spending.
 
-This page is generated from native/capabilities.js and package.json. Run scripts/sync_product_docs.mjs after an intentional support change. Public discovery uses the same catalog. This build is a local release candidate until a matching delivery receipt exists. The source's docs/product-foundation/RELEASE_CLOSEOUT.md tracks its finite gate. PRODUCT_ACCEPTANCE.json and docs/slow-evidence-strategy/QUEUE.md retain prior sealed acceptance; historical experiments do not define current support.
+This page is generated from native/capabilities.js and package.json. Run scripts/product/sync_product_docs.mjs after an intentional support change. Public discovery uses the same catalog. This build is a local release candidate until a matching delivery receipt exists. In the source repository, docs/releases/README.md indexes current verification and docs/development/REPOSITORY_LAYOUT.md explains the layout. docs/releases/0.5.0/ACCEPTANCE.json and docs/slow-evidence-strategy/QUEUE.md retain prior sealed acceptance; historical experiments do not define current support.
 
 | Target | Support | Mutable space | Warm start | Execution |
 |---|---|---|---|---|

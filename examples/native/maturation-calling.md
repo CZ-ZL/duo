@@ -1,13 +1,13 @@
 # Caller attachment, real inner providers and later warm start
 
-Run `scripts/run_maturation_calling.py --help` from the project root. This entry
+Run `scripts/research/run_maturation_calling.py --help` from the project root. This entry
 uses the existing DSH profile loader, native DUO controller, model generator,
 Executor and persistent budget; it is an acceptance application, not a second
 optimization engine. It does not alter user profiles or adopt candidates.
 
 The initial profile includes the public DUO guide, an unchanged existing persona,
 a proposed frozen objective/contract, and a caller-owned measurement resource.
-The resource [schema-answer-evaluator.js](schema-answer-evaluator.js) applies
+The resource [schema-answer-evaluator.js](./schema-answer-evaluator.js) applies
 the installed Schemastery validator to actual task answers. It checks required
 task IDs, types, nonempty answers and citations from the supplied source paths.
 It does not judge semantic correctness. Control samples distinguish malformed
@@ -34,7 +34,7 @@ adapter. The offline control queries the uncatalogued resource, observes its
 coding-catalog refusal, then still attaches the real existing host service.
 
 DSH rejects unresolved required top-level plugins during boot. The optional
-[`deferred-runtime`](deferred-profile.patch.yml) composition keeps preparation
+[`deferred-runtime`](./deferred-profile.patch.yml) composition keeps preparation
 available before the Evaluator exists, then mounts the existing Controller,
 Observer and tools once their dependencies are present. Unloading a dependency
 retracts those consumers. `evaluationOnly: true` selects the existing evaluation
@@ -81,7 +81,7 @@ behavior are unchanged. A rejected model response retains its original output
 and usage; no replacement persona is fabricated.
 
 If both native experiments completed and only Caller report delivery hit its
-request cap, `scripts/run_maturation_delivery.py --help` exposes a bounded
+request cap, `scripts/research/run_maturation_delivery.py --help` exposes a bounded
 result-delivery continuation. It validates the retained journals, seeds the
 original Caller event history through DSH `agents.create({sessionId, seed})`,
 and exposes only `dualloop_report`. A read-only Observer provider reconstructs
@@ -101,13 +101,13 @@ continuation is not real Caller delivery or an uninterrupted combined run.
 
 ```sh
 # New output directory; existing cached DSH only. No model calls or fees.
-python3 scripts/run_maturation_calling.py --mode offline --dsh-package /absolute/path/to/installed/@deepseek-ai/dsh --output runs/my-new-combination
+python3 scripts/research/run_maturation_calling.py --mode offline --dsh-package /absolute/path/to/installed/@deepseek-ai/dsh --output runs/my-new-combination
 
 # Separately stage real adapters and a sealed manifest; still no model calls.
-python3 scripts/run_maturation_calling.py --mode prepare-live --dsh-package /absolute/path/to/installed/@deepseek-ai/dsh --pricing /path/to/fresh-official-cny.json --output runs/my-new-preparation
+python3 scripts/research/run_maturation_calling.py --mode prepare-live --dsh-package /absolute/path/to/installed/@deepseek-ai/dsh --pricing /path/to/fresh-official-cny.json --output runs/my-new-preparation
 
 # Only after the user authorizes this exact new scope, plan, manifest and caps:
-python3 scripts/run_maturation_calling.py --mode execute --output runs/my-new-preparation --authorization /path/to/approved-allocation.json
+python3 scripts/research/run_maturation_calling.py --mode execute --output runs/my-new-preparation --authorization /path/to/approved-allocation.json
 ```
 
 `authorization-template.json` is blank authority, not a grant. The shared launch
@@ -189,7 +189,7 @@ provider/accounting errors take precedence. These codes identify recorded
 symptoms, not the upstream model cause, and do not trigger an automatic retry.
 
 For a separately approved, bounded diagnostic of this symptom, see the
-[Caller response-format probe](caller-format-probe.md). It records two model
+[Caller response-format probe](./caller-format-probe.md). It records two model
 responses without executing tools and retains the parent batch's consumption.
 
 Artifacts include the sealed preparation, resource/target hashes, Caller session,

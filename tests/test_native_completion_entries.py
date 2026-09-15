@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def command(script,*args):
-    return subprocess.run([sys.executable,str(ROOT/'scripts'/script),*map(str,args)],cwd=ROOT,
+    return subprocess.run([sys.executable,str(ROOT/'scripts/research'/script),*map(str,args)],cwd=ROOT,
         env={'PATH':os.environ['PATH']},text=True,capture_output=True,timeout=90)
 
 
@@ -44,6 +44,7 @@ def test_native_caller_actual_loop_success_and_unknown_usage_stop(tmp_path):
         out=tmp_path/('unknown' if missing else 'normal')
         r=command('run_native_calling.py','--mode','offline','--output',out,'--dsh-package',dsh,
                   *(['--fixture-missing-usage'] if missing else []))
+        assert (out/'result.json').is_file(), r.stderr + r.stdout
         report=json.loads((out/'result.json').read_text())
         assert report['paidCalls']==0 and report['costCny']==0
         assert report['modelAutonomyEvaluated'] is False

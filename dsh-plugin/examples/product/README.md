@@ -99,9 +99,9 @@ Cross-run/Calling Agent request limits still belong to the current authorization
 the native ledger does not include Caller inference. Omission does not renew money.
 
 **Evaluator controls from the installed package:** the preparation interface
-points to [the existing function adapter](byo-evaluator.js),
-[control adapter](evaluator-controls.js), [control contract](evaluator-controls-experiment.json)
-and [profile patch](evaluator-controls-profile.patch.yml). Use a NEW evaluate
+points to [the existing function adapter](./byo-evaluator.js),
+[control adapter](./evaluator-controls.js), [control contract](./evaluator-controls-experiment.json)
+and [profile patch](./evaluator-controls-profile.patch.yml). Use a NEW evaluate
 workspace, then copy these templates into that workspace only:
 
 ```sh

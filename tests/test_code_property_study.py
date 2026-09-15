@@ -8,7 +8,7 @@ import subprocess
 import sys
 import pytest
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'scripts'))
+sys.path.insert(0,str(ROOT/'scripts/research'))
 from prepare_code_property_study import prepare
 P=ROOT/'runs/c1-deterministic-slow-20260913/pack'
 C1=ROOT/'runs/c1-deterministic-slow-20260913/acceptance.json'
@@ -55,7 +55,7 @@ def test_refuses_drift_and_unqualified_receipts_before_output(tmp_path,fault):
 
 
 def native_prepare(pack,output,target,live='true'):
-    return subprocess.run(['node','--loader','./scripts/dsh_native_loader.mjs','scripts/prepare_code_comparison.mjs',
+    return subprocess.run(['node','--loader','./scripts/product/dsh_native_loader.mjs','scripts/research/prepare_code_comparison.mjs',
         str(output),str(pack/'dataset.json'),str(pack/'answer-key.json'),str(target),live,'properties-structured-v3'],
         cwd=ROOT,text=True,capture_output=True,timeout=30)
 
@@ -119,7 +119,7 @@ def test_three_generation_public_host_preserves_real_input_identity_and_ablation
     pack=tmp_path/'pack';engineering_property_pack(pack)
     target=tmp_path/'persona.txt';target.write_text('Existing engineering persona. Implement requested functions.')
     output=tmp_path/'comparison'
-    command=[sys.executable,'scripts/run_code_comparison.py','--mode','offline','--benchmark-pack',str(pack),
+    command=[sys.executable,'scripts/research/run_code_comparison.py','--mode','offline','--benchmark-pack',str(pack),
         '--target',str(target),'--dsh-package',dsh,'--search-profile','properties-structured-v3','--output',str(output)]
     result=subprocess.run(command,cwd=ROOT,text=True,capture_output=True,timeout=300)
     assert result.returncode==0,result.stdout+result.stderr
@@ -194,7 +194,7 @@ def test_property_budget_reduction_reaches_all_native_inputs_before_freeze(tmp_p
     pack=tmp_path/'study';prepare(P,C1,F,C2,pack)
     target=tmp_path/'persona.txt';target.write_text('Existing original target.')
     out=tmp_path/'comparison'
-    r=subprocess.run(['node','--loader','./scripts/dsh_native_loader.mjs','scripts/prepare_code_comparison.mjs',
+    r=subprocess.run(['node','--loader','./scripts/product/dsh_native_loader.mjs','scripts/research/prepare_code_comparison.mjs',
         str(out),str(pack/'dataset.json'),str(pack/'answer-key.json'),str(target),'true','properties-structured-v3','','',cap],
         cwd=ROOT,capture_output=True,text=True,timeout=30)
     if cap!='2.75':

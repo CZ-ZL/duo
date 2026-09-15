@@ -15,7 +15,7 @@
 - Add a bounded pre-publication audit, release/rollback guide, missing fixture
   attribution and baseline-repair CI evidence collection.
 
-See [0.6.1 release notes](RELEASE_NOTES_v0.6.1.md) for exact artifact and evidence
+See [0.6.1 release notes](./docs/releases/0.6.1/RELEASE_NOTES.md) for exact artifact and evidence
 limits. Exact-code private CI passed fresh-store installation, the complete
 product gate and dependency advisory queries. Public exposure is not authorized;
 no v0.6.1 tag or npm publication was made. Historical results are unchanged.

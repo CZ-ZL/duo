@@ -27,7 +27,7 @@ def test_live_preparation_checks_composed_provider_settings_before_authorization
     patch = tmp_path / 'provider.patch.yml'
     patch.write_text(yaml.safe_dump([{'id': 'deepseek', 'config': config}]))
     out = tmp_path / 'out'
-    r = subprocess.run([sys.executable, str(ROOT / 'scripts/run_dsh_model.py'),
+    r = subprocess.run([sys.executable, str(ROOT / 'scripts/research/run_dsh_model.py'),
         '--mode', 'prepare-live', '--dsh-package', dsh, '--output', str(out),
         '--profile-patch', str(patch), '--pricing', str(pricing)], cwd=ROOT,
         env={'PATH': os.environ['PATH']}, text=True, capture_output=True, timeout=60)
@@ -46,7 +46,7 @@ def test_public_native_entry_accepts_evaluation_contract_and_byo_profile_patch(t
     dsh = os.environ.get('DUO_DSH_PACKAGE')
     if not dsh:
         pytest.skip('Requires explicitly selected cached DSH')
-    generated = subprocess.run(['node', '--loader', './scripts/dsh_native_loader.mjs',
+    generated = subprocess.run(['node', '--loader', './scripts/product/dsh_native_loader.mjs',
         'examples/native/fact-task.js', '--output', str(tmp_path / 'data')], cwd=ROOT,
         env={'PATH': os.environ['PATH'], 'DUO_DSH_PACKAGE': dsh}, text=True, capture_output=True)
     assert generated.returncode == 0, generated.stderr
@@ -89,7 +89,7 @@ def test_public_native_entry_accepts_evaluation_contract_and_byo_profile_patch(t
     groups.write_text(json.dumps([{'id': 'test-whole-batch', 'limits': limits, 'maxModelRequestsPerRun': 1},
         {'id': 'test-pilot', 'limits': {**limits, 'maxCostCny': .2}, 'maxModelRequestsPerRun': 1}]))
     out = tmp_path / 'out'
-    command = [sys.executable, str(ROOT / 'scripts/run_dsh_model.py'), '--mode', 'offline',
+    command = [sys.executable, str(ROOT / 'scripts/research/run_dsh_model.py'), '--mode', 'offline',
         '--dsh-package', dsh, '--output', str(out), '--dataset', str(data),
         '--contract', str(contract), '--profile-patch', str(patch),
         '--profile-file', str(ROOT / 'examples/native/fact-evaluator.js'),
@@ -130,7 +130,7 @@ def test_public_native_entry_accepts_evaluation_contract_and_byo_profile_patch(t
 
 
 def invoke(tmp_path, authorization=None):
-    cmd = [sys.executable, str(ROOT / 'scripts/run_dsh_model.py'), '--mode', 'execute', '--output', str(tmp_path)]
+    cmd = [sys.executable, str(ROOT / 'scripts/research/run_dsh_model.py'), '--mode', 'execute', '--output', str(tmp_path)]
     if authorization is not None:
         path = tmp_path / 'authorization.json'
         path.write_text(json.dumps(authorization))
@@ -289,7 +289,7 @@ def test_maturation_scope_requires_its_own_sealed_cny_allocation(tmp_path):
 
 def test_attempt_caps_cannot_increase_the_cny_allocation(tmp_path):
     for args in [['--max-cost-cny', 'nan'], ['--max-cost-cny', '3.01'], ['--max-model-requests', '15'], ['--max-model-requests', '0']]:
-        r = subprocess.run([sys.executable, str(ROOT / 'scripts/run_dsh_model.py'), '--mode', 'prepare-live', '--output', str(tmp_path / 'unused'), *args], env={'PATH': os.defpath}, text=True, capture_output=True)
+        r = subprocess.run([sys.executable, str(ROOT / 'scripts/research/run_dsh_model.py'), '--mode', 'prepare-live', '--output', str(tmp_path / 'unused'), *args], env={'PATH': os.defpath}, text=True, capture_output=True)
         assert r.returncode == 2
         assert 'Attempt limits require' in r.stderr
         assert not (tmp_path / 'unused').exists()
@@ -322,7 +322,7 @@ def test_native_comparison_arm_reuses_named_host_and_independent_final(tmp_path)
         pytest.skip('Set DUO_DSH_PACKAGE to an existing cached installation for host acceptance')
     for arm, generations, mode in [('baseline', 0, 'optimize'), ('single_loop', 2, 'fast_only'), ('dual_loop', 2, 'optimize')]:
         out = tmp_path / arm
-        r = subprocess.run([sys.executable, str(ROOT / 'scripts/run_dsh_model.py'), '--mode', 'offline',
+        r = subprocess.run([sys.executable, str(ROOT / 'scripts/research/run_dsh_model.py'), '--mode', 'offline',
             '--output', str(out), '--dsh-package', dsh, '--arm', arm,
             '--candidates-per-generation', '1'], cwd=ROOT, env={'PATH': os.environ['PATH']}, text=True, capture_output=True, timeout=60)
         assert r.returncode == 0, r.stderr + r.stdout
@@ -362,7 +362,7 @@ def test_rejected_preparation_leaves_no_output_directory(tmp_path):
         'inputCnyPerMillion': 2, 'cacheReadCnyPerMillion': .04, 'outputCnyPerMillion': 8,
         'verifiedDate': '2000-01-01'}))
     out = tmp_path / 'out'
-    r = subprocess.run([sys.executable, str(ROOT / 'scripts/run_dsh_model.py'),
+    r = subprocess.run([sys.executable, str(ROOT / 'scripts/research/run_dsh_model.py'),
         '--mode', 'prepare-live', '--dsh-package', '/nonexistent-dsh', '--output', str(out),
         '--pricing', str(pricing)], cwd=ROOT, env={'PATH': os.environ['PATH']}, text=True,
         capture_output=True, timeout=60)
@@ -376,7 +376,7 @@ def test_offline_run_exports_unique_candidates_and_named_skips(tmp_path):
     if not dsh:
         pytest.skip('Requires explicitly selected cached DSH')
     out = tmp_path / 'out'
-    r = subprocess.run([sys.executable, str(ROOT / 'scripts/run_dsh_model.py'), '--mode', 'offline',
+    r = subprocess.run([sys.executable, str(ROOT / 'scripts/research/run_dsh_model.py'), '--mode', 'offline',
         '--dsh-package', dsh, '--output', str(out), '--fixture-scenario', 'improve'], cwd=ROOT,
         env={'PATH': os.environ['PATH']}, text=True, capture_output=True, timeout=120)
     assert r.returncode == 0, r.stdout + r.stderr

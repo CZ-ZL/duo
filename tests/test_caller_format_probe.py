@@ -6,8 +6,8 @@ import sys
 import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'scripts'))
-spec=importlib.util.spec_from_file_location('caller_format_probe',ROOT/'scripts/run_caller_format_probe.py')
+sys.path.insert(0,str(ROOT/'scripts/research'))
+spec=importlib.util.spec_from_file_location('caller_format_probe',ROOT/'scripts/research/run_caller_format_probe.py')
 probe=importlib.util.module_from_spec(spec);spec.loader.exec_module(probe)
 
 def save(path,value):

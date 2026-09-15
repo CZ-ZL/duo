@@ -27,11 +27,11 @@ DUO is an independent plugin, not an official DeepSeek product.
 
 - `benchmarks/docs_qa/dsh-snapshot/`: DeepSeek Harness documentation, MIT. The
   directory includes the upstream license, pinned commit and file provenance.
-- `dsh-plugin/native/fixtures/code-contract-audit/`: adapted BigCodeBench v0.1.4
+- `dsh-plugin/tests/fixtures/code-contract-audit/`: adapted BigCodeBench v0.1.4
   regression tasks, reference implementations and tests, Apache-2.0. The
   directory includes LICENSE, NOTICE.md and PROVENANCE.json. All fixture
   partitions are exposed test data, including the historical `final` label.
-- `dsh-plugin/native/fixtures/code-method-goal/`: a second public regression
+- `dsh-plugin/tests/fixtures/code-method-goal/`: a second public regression
   fixture using the same 36 BigCodeBench task inputs and retained local test
   observations. See its NOTICE.md and PROVENANCE.json and the adjacent
   `code-contract-audit/LICENSE` (Apache-2.0). Its `final` field is also exposed

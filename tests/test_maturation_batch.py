@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts/research'))
 from maturation_batch import continuation_allocation
 from dsh_model_profile import sha, seal_manifest
 from test_caller_format_probe import parent, save, probe as probe_entry

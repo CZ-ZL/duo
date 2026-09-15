@@ -37,10 +37,10 @@ observations can enter later generation through existing feedback providers;
 final results and raw outputs do not. Warm-history compatibility includes every
 declared stage and its providers.
 
-The [three-stage contract](three-stage-experiment.json) and
-[profile patch](three-stage-profile.patch.yml) reuse the existing BYO function
+The [three-stage contract](./three-stage-experiment.json) and
+[profile patch](./three-stage-profile.patch.yml) reuse the existing BYO function
 evaluator and structural fixture generator, and the
-[four-level ladder contract](ladder-experiment.json) shows caller-named rungs
+[four-level ladder contract](./ladder-experiment.json) shows caller-named rungs
 (`lint/benchmark/holdout/audit`). These examples deliberately repeat simple
 fixture checks to demonstrate engineering composition. They are not evidence of
 optimization benefit, empirical fidelity or independent Caller success.
@@ -48,7 +48,7 @@ optimization benefit, empirical fidelity or independent Caller success.
 From `dualloop`, use a cached DSH and a new output directory:
 
 ```sh
-python3 scripts/verify_dsh_native.py --dsh-package /path/to/node_modules/@deepseek-ai/dsh --output /authorized/new-stage-check --scenario byo --scenario three-stage
+python3 scripts/product/verify_dsh_native.py --dsh-package /path/to/node_modules/@deepseek-ai/dsh --output /authorized/new-stage-check --scenario byo --scenario three-stage
 ```
 
 This packages the current plugin offline, starts real named DSH profiles, calls

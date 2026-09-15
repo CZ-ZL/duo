@@ -1,10 +1,10 @@
 # @dual-loop/dsh-plugin 0.6.1
 
-[English](README.md) · 简体中文
+[English](./README.md) · 简体中文
 
 DUO 是 DSH 原生的评估与优化组件。它在明确的目标、评估规则和预算下，隔离修改 Target，评估候选，并交付可追溯的结果。没有改善时保留原版是合法结果；产品验收不代表优化方法已经证明优于单环。
 
-先读 [当前支持状态](CURRENT_STATUS.md)、[Agent Guide](AGENT_GUIDE.md)、[组件协议](PROVIDERS.md) 和 [安全边界](SECURITY.md)。原生运行时使用 JavaScript；只有显式 legacy 路径需要 Python。
+先读 [当前支持状态](./CURRENT_STATUS.md)、[Agent Guide](./AGENT_GUIDE.md)、[组件协议](./PROVIDERS.md) 和 [安全边界](./SECURITY.md)。原生运行时使用 JavaScript；只有显式 legacy 路径需要 Python。
 
 ## 安装
 
@@ -40,13 +40,13 @@ duo call --root /tmp/my-duo --tool dualloop_report --args '{"runId":"PASTE_RUN_I
 | `optimize-dual` | 上述输入 + 有信息增量的证据源 | 完整双环；证据缺失时明确拒绝准备 |
 | `optimize-auto` | 上述输入，附加证据可选 | 协商可用模式；降级写入 plan、Journal 和 result |
 
-Slow 是证据获取与决策策略。更多同族任务属于 `expanded_evidence`；有适用的独立校准依据才可声明 `high_fidelity`。更贵的模型不自动更可信。无新增证据时是 `unavailable`，仍可使用 basic。详情见 [Evidence Strategy](EVIDENCE_STRATEGY.md)。
+Slow 是证据获取与决策策略。更多同族任务属于 `expanded_evidence`；有适用的独立校准依据才可声明 `high_fidelity`。更贵的模型不自动更可信。无新增证据时是 `unavailable`，仍可使用 basic。详情见 [Evidence Strategy](./EVIDENCE_STRATEGY.md)。
 
 ## 接入自己的组件
 
 真实使用时，在自己的 profile patch 中配置 `duo-contract` 的 experiment 路径、`duo-journal` 的隔离目录，并接入符合公开协议的 Executor / Evaluator。优化还需要 Generator。只评估时设置 `duo-runtime.config.evaluationOnly: true`。配置 patch 替换整个 config 对象；相对 ES module 需要 profile package.json 声明 `type: module`。
 
-Target、Generator、Executor、Evaluator、Comparator、Gate、Feedback 使用既有 Cordis 服务替换，无需修改 Core。具体可运行的 BYO evaluator、组件替换、自定义 Target、warm start 和恢复示例见 [公开示例](examples/product/README.md)。公开类型通过 `/definitions` 导出。
+Target、Generator、Executor、Evaluator、Comparator、Gate、Feedback 使用既有 Cordis 服务替换，无需修改 Core。具体可运行的 BYO evaluator、组件替换、自定义 Target、warm start 和恢复示例见 [公开示例](./examples/product/README.md)。公开类型通过 `/definitions` 导出。
 
 ## 边界
 
@@ -57,4 +57,4 @@ Target、Generator、Executor、Evaluator、Comparator、Gate、Feedback 使用�
 - warm start 不继承 final 数据、费用或授权；不同证据模式的历史只能保留允许的想法。
 - 不自动采用候选，不提供跨平台保证，不全局发布 npm。历史 legacy API 与显式 fixture export 保留，fixture 默认关闭。
 
-0.6.1 当前为本地待发布构建，是否已上传以对应 GitHub 回执为准。历史源码、验收记录和研究归档位于 [私有 GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](LICENSE)。
+0.6.1 当前为本地待发布构建，是否已上传以对应 GitHub 回执为准。历史源码、验收记录和研究归档位于 [私有 GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](./LICENSE)。

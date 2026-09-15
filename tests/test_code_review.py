@@ -9,7 +9,7 @@ import sys
 import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'scripts'))
+sys.path.insert(0,str(ROOT/'scripts/research'))
 from prepare_code_review_controls import prepare,IDS,QUOTES
 
 
@@ -28,7 +28,7 @@ def test_native_review_controls_and_stop_boundaries(tmp_path,scenario,requests,p
     dsh=os.environ.get('DUO_DSH_PACKAGE')
     if not dsh:pytest.skip('Use existing cached DSH')
     source=controls(tmp_path);out=tmp_path/'host'
-    run=subprocess.run([sys.executable,'scripts/run_code_review.py','--mode','offline','--controls',str(source),'--output',str(out),
+    run=subprocess.run([sys.executable,'scripts/research/run_code_review.py','--mode','offline','--controls',str(source),'--output',str(out),
         '--dsh-package',dsh,'--fixture-scenario',scenario],cwd=ROOT,capture_output=True,text=True,timeout=90)
     assert run.returncode==(0 if scenario=='normal' else 1),run.stdout+run.stderr
     report=json.loads((out/'qualification.json').read_text())
@@ -72,7 +72,7 @@ def test_native_review_controls_and_stop_boundaries(tmp_path,scenario,requests,p
 def test_review_live_preparation_requires_correct_tariff_before_output(tmp_path):
     source=controls(tmp_path);out=tmp_path/'host'
     price=tmp_path/'price.json';price.write_text(json.dumps({'currency':'CNY','verifiedDate':'1900-01-01','model':'wrong'}))
-    run=subprocess.run([sys.executable,'scripts/run_code_review.py','--mode','prepare-live','--controls',str(source),
+    run=subprocess.run([sys.executable,'scripts/research/run_code_review.py','--mode','prepare-live','--controls',str(source),
         '--output',str(out),'--dsh-package',str(tmp_path/'unused'),'--pricing',str(price)],cwd=ROOT,capture_output=True,text=True)
     assert run.returncode==2 and 'Current tariff must bind the exact reviewer model' in run.stderr
     assert not out.exists()
@@ -90,7 +90,7 @@ def test_review_live_preparation_binds_thinking_and_output_envelope(tmp_path,max
     price.write_text(json.dumps({'id':'offline-preparation-tariff-fixture','currency':'CNY',
         'verifiedDate':datetime.now(timezone.utc).date().isoformat(),'model':'deepseek-v4-pro',
         'inputCnyPerMillion':9,'cacheReadCnyPerMillion':.3,'outputCnyPerMillion':27}))
-    run=subprocess.run([sys.executable,'scripts/run_code_review.py','--mode','prepare-live',
+    run=subprocess.run([sys.executable,'scripts/research/run_code_review.py','--mode','prepare-live',
         '--controls',str(source),'--output',str(out),'--dsh-package',dsh,'--pricing',str(price),
         '--judge-thinking','enabled','--judge-max-tokens',str(max_tokens)]+(
             ['--judge-reservation-cny',str(reservation)] if reservation else []),cwd=ROOT,capture_output=True,text=True,timeout=90)
@@ -119,7 +119,7 @@ def test_review_live_preparation_binds_thinking_and_output_envelope(tmp_path,max
 @pytest.mark.parametrize('reservation',['0','nan','inf'])
 def test_review_refuses_invalid_explicit_reservation(tmp_path,reservation):
     out=tmp_path/'must-not-exist'
-    run=subprocess.run([sys.executable,'scripts/run_code_review.py','--mode','offline',
+    run=subprocess.run([sys.executable,'scripts/research/run_code_review.py','--mode','offline',
         '--controls',str(tmp_path/'unused'),'--output',str(out),'--dsh-package',str(tmp_path/'unused'),
         '--judge-reservation-cny',reservation],cwd=ROOT,capture_output=True,text=True)
     assert run.returncode==2 and 'finite positive' in run.stderr
@@ -135,7 +135,7 @@ def test_review_refuses_invalid_or_unfunded_output_cap_before_output(tmp_path,ma
     price.write_text(json.dumps({'id':'boundary-fixture','currency':'CNY','model':'deepseek-v4-pro',
         'verifiedDate':datetime.now(timezone.utc).date().isoformat(),
         'inputCnyPerMillion':9,'cacheReadCnyPerMillion':.3,'outputCnyPerMillion':28.2421875}))
-    run=subprocess.run([sys.executable,'scripts/run_code_review.py','--mode','prepare-live',
+    run=subprocess.run([sys.executable,'scripts/research/run_code_review.py','--mode','prepare-live',
         '--controls',str(source),'--output',str(out),'--dsh-package',str(tmp_path/'unused'),
         '--pricing',str(price),'--judge-thinking','enabled','--judge-max-tokens',max_tokens],
         cwd=ROOT,capture_output=True,text=True)

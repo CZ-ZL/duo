@@ -20,7 +20,7 @@ def test_retained_caller_delivery_is_read_only_and_preserves_evidence(tmp_path, 
     before = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in SOURCE.rglob('*')
               if p.is_file() and ('journal' in p.parts or p.name in ['result.json', 'requests.json', 'session-events.json'])}
     out = tmp_path / 'delivery'
-    cmd = [sys.executable, str(ROOT / 'scripts/run_maturation_delivery.py'), '--mode', 'offline',
+    cmd = [sys.executable, str(ROOT / 'scripts/research/run_maturation_delivery.py'), '--mode', 'offline',
            '--source', str(SOURCE), '--output', str(out), '--dsh-package', dsh]
     if missing_usage:
         cmd.append('--fixture-missing-usage')
@@ -49,7 +49,7 @@ def test_retained_caller_delivery_is_read_only_and_preserves_evidence(tmp_path, 
 
 
 def test_delivery_rejects_live_without_bound_authorization_before_key_access(tmp_path):
-    p = subprocess.run([sys.executable, str(ROOT / 'scripts/run_maturation_delivery.py'),
+    p = subprocess.run([sys.executable, str(ROOT / 'scripts/research/run_maturation_delivery.py'),
                         '--mode', 'execute', '--output', str(tmp_path)], capture_output=True, text=True)
     assert p.returncode == 2
     assert 'Explicit report-delivery authorization required' in p.stderr
@@ -58,7 +58,7 @@ def test_delivery_rejects_live_without_bound_authorization_before_key_access(tmp
 
 @pytest.mark.parametrize('case', ['valid', 'blank', 'reset_consumption', 'extra_total', 'extra_money', 'wrong_transfer'])
 def test_delivery_transfer_requires_explicit_unchanged_caps(case):
-    sys.path.insert(0, str(ROOT / 'scripts'))
+    sys.path.insert(0, str(ROOT / 'scripts/research'))
     from dsh_model_profile import seal_manifest
     from run_maturation_delivery import validate_authorization
     carry = {'batch': 'test-only', 'priorRequests': 81, 'priorCostCny': .481069129,

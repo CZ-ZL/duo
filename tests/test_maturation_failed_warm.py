@@ -16,7 +16,7 @@ def test_terminal_warm_run_preserves_consumption_accounting_and_strict_acceptanc
     if not dsh:
         pytest.skip('Requires explicitly selected existing cached DSH package')
     output = tmp_path / 'host'
-    cmd = [sys.executable, str(ROOT / 'scripts/run_maturation_calling.py'), '--mode', 'offline',
+    cmd = [sys.executable, str(ROOT / 'scripts/research/run_maturation_calling.py'), '--mode', 'offline',
            '--output', str(output), '--dsh-package', dsh]
     if invalid:
         cmd.append('--fixture-invalid-warm-proposal')

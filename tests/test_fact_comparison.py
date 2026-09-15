@@ -15,10 +15,10 @@ def test_all_four_methods_run_native_with_full_single_loop_and_active_screened_f
     dsh=os.environ.get('DUO_DSH_PACKAGE')
     if not dsh:pytest.skip('Select the existing cached DSH installation')
     facts=tmp_path/'facts'
-    made=subprocess.run(['node','--loader','./scripts/dsh_native_loader.mjs','examples/native/fact-task.js','--output',str(facts)],cwd=ROOT,capture_output=True,text=True)
+    made=subprocess.run(['node','--loader','./scripts/product/dsh_native_loader.mjs','examples/native/fact-task.js','--output',str(facts)],cwd=ROOT,capture_output=True,text=True)
     assert made.returncode==0,made.stderr
     out=tmp_path/'comparison'
-    result=subprocess.run([sys.executable,'scripts/run_fact_comparison.py','--mode','offline','--output',str(out),
+    result=subprocess.run([sys.executable,'scripts/research/run_fact_comparison.py','--mode','offline','--output',str(out),
         '--dsh-package',dsh,'--dataset',str(facts/'dataset.json'),'--answer-key',str(facts/'answerKey.json'),
         '--target',str(ROOT/'examples/native/persona.txt')],cwd=ROOT,capture_output=True,text=True,timeout=180)
     assert result.returncode==0,result.stdout+result.stderr
@@ -62,7 +62,7 @@ def test_all_four_methods_run_native_with_full_single_loop_and_active_screened_f
         value=json.loads(path.read_text())
         if value.get('sessionId') in session_ids:
             value['system']='CONTROLLED WRONG PERSONA';path.write_text(json.dumps(value));break
-    audit=subprocess.run([sys.executable,'scripts/run_fact_comparison.py','--mode','inspect','--output',str(tampered)],cwd=ROOT,capture_output=True,text=True)
+    audit=subprocess.run([sys.executable,'scripts/research/run_fact_comparison.py','--mode','inspect','--output',str(tampered)],cwd=ROOT,capture_output=True,text=True)
     assert audit.returncode==0,audit.stderr
     changed_report=json.loads((tampered/'comparison-result.json').read_text())
     assert changed_report['ablationControls'][0]['state']=='INACTIVE_OR_UNVERIFIED'
@@ -71,7 +71,7 @@ def test_all_four_methods_run_native_with_full_single_loop_and_active_screened_f
 
 
 def test_new_method_entry_refuses_unfrozen_or_unallocated_execution_before_credentials(tmp_path):
-    run=subprocess.run([sys.executable,'scripts/run_fact_comparison.py','--mode','execute','--output',str(tmp_path)],
+    run=subprocess.run([sys.executable,'scripts/research/run_fact_comparison.py','--mode','execute','--output',str(tmp_path)],
         cwd=ROOT,env={'PATH':os.environ['PATH']},capture_output=True,text=True)
     assert run.returncode==2
     assert 'Frozen comparison and explicit current allocation required' in run.stderr
@@ -84,7 +84,7 @@ def test_inspection_keeps_unknown_usage_and_unfinished_repeats_without_crashing(
     (arm/'result.json').write_text(json.dumps({'status':'failed','budget':{'costCny':None}}))
     protocol={'live':True,'arms':[{'id':'set1-B1','method':'B1','repeat':1,'directory':'arm'}],'limitations':[]}
     (tmp_path/'comparison-protocol.json').write_text(json.dumps(protocol))
-    run=subprocess.run([sys.executable,'scripts/run_fact_comparison.py','--mode','inspect','--output',str(tmp_path)],cwd=ROOT,capture_output=True,text=True)
+    run=subprocess.run([sys.executable,'scripts/research/run_fact_comparison.py','--mode','inspect','--output',str(tmp_path)],cwd=ROOT,capture_output=True,text=True)
     assert run.returncode==0,run.stderr
     report=json.loads((tmp_path/'comparison-result.json').read_text())
     assert report['status']=='INCOMPLETE' and report['totalCostCny'] is None
@@ -95,13 +95,13 @@ def test_inspection_keeps_unknown_usage_and_unfinished_repeats_without_crashing(
 def test_runtime_context_refuses_ambient_configuration_and_execute_override(tmp_path):
     runtime=tmp_path/'runtime';runtime.mkdir();(runtime/'.env').write_text('CONTROL_ONLY=1\n')
     output=tmp_path/'new-host'
-    refused=subprocess.run([sys.executable,'scripts/run_dsh_model.py','--mode','offline','--output',str(output),
+    refused=subprocess.run([sys.executable,'scripts/research/run_dsh_model.py','--mode','offline','--output',str(output),
         '--dsh-package',str(tmp_path/'unused-dsh'),'--runtime-cwd',str(runtime)],cwd=ROOT,
         env={'PATH':os.environ['PATH']},capture_output=True,text=True)
     assert refused.returncode==2 and 'without ambient .env or Cordis configuration' in refused.stderr
     assert not output.exists()
     frozen=tmp_path/'frozen';frozen.mkdir();(frozen/'prepared.json').write_text(json.dumps({'runtimeCwd':str(runtime)}))
-    refused=subprocess.run([sys.executable,'scripts/run_dsh_model.py','--mode','execute','--output',str(frozen),'--runtime-cwd',str(tmp_path)],
+    refused=subprocess.run([sys.executable,'scripts/research/run_dsh_model.py','--mode','execute','--output',str(frozen),'--runtime-cwd',str(tmp_path)],
         cwd=ROOT,env={'PATH':os.environ['PATH']},capture_output=True,text=True)
     assert refused.returncode==2 and 'Frozen runtime working directory cannot be overridden' in refused.stderr
     assert not (frozen/'execution-claim.json').exists()

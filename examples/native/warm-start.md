@@ -3,14 +3,14 @@
 Run the existing offline acceptance entry using an already installed DSH package:
 
 ```bash
-python3 scripts/verify_dsh_native.py \
+python3 scripts/product/verify_dsh_native.py \
   --dsh-package /absolute/path/to/node_modules/@deepseek-ai/dsh \
   --output /absolute/path/to/new-empty-verification-output
 ```
 
 The `duo-native-warm-start` profile uses
-[`warm-start-experiment.json`](warm-start-experiment.json), the existing native
-bundle and [`fixture-provider.js`](fixture-provider.js). It supplies CNY zero-cost
+[`warm-start-experiment.json`](./warm-start-experiment.json), the existing native
+bundle and [`fixture-provider.js`](./fixture-provider.js). It supplies CNY zero-cost
 generation/execution/evaluation with `observeWarmStart:true`, no network or tools.
 The verifier packs locally without scripts or dependency installation and loads
 an isolated DSH profile. It never edits a user profile or original contract.

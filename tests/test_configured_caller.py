@@ -13,7 +13,7 @@ def test_public_caller_attaches_fact_measurement_and_retains_delivery(tmp_path,l
     dsh=os.environ.get('DUO_DSH_PACKAGE')
     if not dsh: pytest.skip('Select an existing cached DSH package')
     prepared=tmp_path/'facts'
-    gen=subprocess.run(['node','--loader','./scripts/dsh_native_loader.mjs','examples/native/fact-task.js','--output',str(prepared)],cwd=ROOT,capture_output=True,text=True)
+    gen=subprocess.run(['node','--loader','./scripts/product/dsh_native_loader.mjs','examples/native/fact-task.js','--output',str(prepared)],cwd=ROOT,capture_output=True,text=True)
     assert gen.returncode==0,gen.stderr
     target=tmp_path/'persona.txt';target.write_bytes((ROOT/'examples/native/persona.txt').read_bytes());original=target.read_bytes()
     dataset=json.loads((prepared/'dataset.json').read_text())
@@ -23,7 +23,7 @@ def test_public_caller_attaches_fact_measurement_and_retains_delivery(tmp_path,l
     contract['permissions']['paid']=True
     file=tmp_path/'experiment.json';file.write_text(json.dumps(contract))
     out=tmp_path/'host'
-    cmd=[sys.executable,str(ROOT/'scripts/run_duo_caller.py'),'--mode','offline','--output',str(out),'--dsh-package',dsh,'--contract',str(file),'--dataset',str(prepared/'dataset.json'),'--answer-key',str(prepared/'answerKey.json'),'--caller-max-requests',str(limit)]
+    cmd=[sys.executable,str(ROOT/'scripts/research/run_duo_caller.py'),'--mode','offline','--output',str(out),'--dsh-package',dsh,'--contract',str(file),'--dataset',str(prepared/'dataset.json'),'--answer-key',str(prepared/'answerKey.json'),'--caller-max-requests',str(limit)]
     # Freeze an explicit fixture envelope for the complete public guide/tool
     # transcript (observed 56,108 bytes). Production's 52 KiB default and the
     # input/cost admission guard remain unchanged; this is zero-API transport.

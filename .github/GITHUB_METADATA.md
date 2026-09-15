@@ -4,10 +4,10 @@ Name: duo. Destination: CZ-ZL/duo, private, main.
 Description: Composable DSH-native evaluation and optimization with explicit evidence modes, bounded budgets and traceable results.
 Homepage: README. Languages: README.md (English), README.zh-CN.md (Chinese).
 Documentation: docs/README.md. Current architecture: docs/ARCHITECTURE.md.
-Capabilities: CURRENT_STATUS.md. Candidate: RELEASE_NOTES_v0.6.1.md.
-Current follow-up: docs/product-foundation/F01_REPAIR.md.
-Verified code: 80f06eea5161791585f05cdc6639cd328bb57bf7.
-Passing CI: https://github.com/CZ-ZL/duo/actions/runs/35001366148.
+Capabilities: CURRENT_STATUS.md. Verification index: docs/releases/README.md.
+Current follow-up: docs/product-foundation/ORGANIZATION.md.
+Earlier F01 verified code: 80f06eea5161791585f05cdc6639cd328bb57bf7.
+Earlier F01 CI: https://github.com/CZ-ZL/duo/actions/runs/35001366148.
 Sources and licenses: THIRD_PARTY_NOTICES.md.
 Last tagged release: v0.6.0; a source upload alone is not a new release.
 Research evidence remains separate; no general quality/cost advantage is claimed.

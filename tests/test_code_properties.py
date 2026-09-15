@@ -9,7 +9,7 @@ import subprocess
 import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'scripts'))
+sys.path.insert(0,str(ROOT/'scripts/research'))
 from prepare_code_properties import prepare,qualify
 SOURCE=ROOT/'runs/code-method-goal-20260912/benchmark-v24-qualified'
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
@@ -52,7 +52,7 @@ def test_public_native_fast_and_slow_controls(tmp_path):
         pytest.skip('Set DUO_DSH_PACKAGE to existing cached DSH; no install')
     pack=tmp_path/'properties';prepare(SOURCE,pack)
     output=tmp_path/'host'
-    result=subprocess.run([sys.executable,str(ROOT/'scripts/verify_code_benchmark.py'),
+    result=subprocess.run([sys.executable,str(ROOT/'scripts/research/verify_code_benchmark.py'),
         '--calibration-pack',str(pack),'--dsh-package',dsh,'--output',str(output)],
         text=True,capture_output=True,timeout=90)
     assert result.returncode==0, result.stdout+result.stderr

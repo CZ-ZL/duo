@@ -1,8 +1,8 @@
 # @dual-loop/dsh-plugin 0.6.1
 
-English · [简体中文](README.zh-CN.md)
+English · [简体中文](./README.zh-CN.md)
 
-DSH-native evaluation and optimization services. Read [CURRENT_STATUS.md](CURRENT_STATUS.md), [AGENT_GUIDE.md](AGENT_GUIDE.md), [PROVIDERS.md](PROVIDERS.md) and [SECURITY.md](SECURITY.md). The native runtime is JavaScript; Python is only for the explicit legacy/source compatibility path.
+DSH-native evaluation and optimization services. Read [CURRENT_STATUS.md](./CURRENT_STATUS.md), [AGENT_GUIDE.md](./AGENT_GUIDE.md), [PROVIDERS.md](./PROVIDERS.md) and [SECURITY.md](./SECURITY.md). The native runtime is JavaScript; Python is only for the explicit legacy/source compatibility path.
 
 Install a reviewed tarball into an existing authorized DSH profile (Linux, Node24+, tested DSH0.1.2-rc.1 / Cordis4.0.2):
 
@@ -36,7 +36,7 @@ For an existing target/evaluator, set these rows in your own cordis.patch.yml:
 
 For optimization set evaluationOnly:false and supply a Generator too. Your provider implements the public Executor/Evaluators service contracts. Config patches replace the whole config object. Relative provider modules require a versioned profile package.json with type:module. Use ordinary DSH/Cordis replacement, not edits to DUO core.
 
-Start immediately with [the public local examples](examples/product/README.md):
+Start immediately with [the public local examples](./examples/product/README.md):
 
 ```sh
 duo init --root /tmp/my-duo --dsh-package /path/to/node_modules/@deepseek-ai/dsh --example evaluate
@@ -52,4 +52,4 @@ Advanced exports include /target, /config-target, /model-generator, /structured-
 
 The existing /offline-fixture export remains explicitly synthetic compatibility material, disabled by default. The /legacy API retains its Python/YAML contracts and separate ledgers. Current support does not imply method superiority, automatic adoption, arbitrary recovery, OS sandboxing or cross-platform compatibility.
 
-This 0.6.1 build is a local release candidate until a matching private GitHub release receipt exists; it is not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.
+This 0.6.1 build is a local release candidate until a matching private GitHub release receipt exists; it is not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.

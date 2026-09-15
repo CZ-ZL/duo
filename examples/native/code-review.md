@@ -8,7 +8,7 @@ All five earlier request receipts and their costs are preserved (one v3 control
 was valid, but no earlier full calibration passed). Historical replay instructions
 below are retained for reproducibility, not authorization for more tuning.
 See `runs/c1-final-calibration-20260913/model-reviewer-verdict.json` and the
-[qualified bounded deterministic alternative](code-properties.md).
+[qualified bounded deterministic alternative](./code-properties.md).
 
 `code-contract-review.js` is a caller-owned native `EvaluatorsService` plugin.
 It reviews the public task contract and the actual Executor's Python artifact,
@@ -38,9 +38,9 @@ establish reviewer quality. Final is excluded from this adapter.
 From `dualloop/`, first create and verify the fixed development controls:
 
 ```bash
-python3 scripts/prepare_code_review_controls.py --benchmark-pack runs/code-method-goal-20260912/benchmark-v24-qualified --output /tmp/duo-review-controls-new
-python3 scripts/prepare_code_review_controls.py --benchmark-pack runs/code-method-goal-20260912/benchmark-v24-qualified --verify-controls /tmp/duo-review-controls-new --output /tmp/duo-review-execution-new
-python3 scripts/run_code_review.py --mode offline --controls /tmp/duo-review-controls-new --dsh-package "$DUO_DSH_PACKAGE" --output /tmp/duo-review-host-new
+python3 scripts/research/prepare_code_review_controls.py --benchmark-pack runs/code-method-goal-20260912/benchmark-v24-qualified --output /tmp/duo-review-controls-new
+python3 scripts/research/prepare_code_review_controls.py --benchmark-pack runs/code-method-goal-20260912/benchmark-v24-qualified --verify-controls /tmp/duo-review-controls-new --output /tmp/duo-review-execution-new
+python3 scripts/research/run_code_review.py --mode offline --controls /tmp/duo-review-controls-new --dsh-package "$DUO_DSH_PACKAGE" --output /tmp/duo-review-host-new
 ```
 
 Every output directory must be new. These four batches use three fixed existing
@@ -70,7 +70,7 @@ unusable for ranking; the evaluator does not salvage a partial score or retry.
 deepseek-v4-pro` freezes a live package without making requests. Its tariff must
 bind that exact model and the current UTC date. The plan allows four total
 requests, CNY0.30 reservation each, CNY1.20 total, no retries or optimization.
-Execution uses existing `scripts/run_dsh_model.py --mode execute --output
+Execution uses existing `scripts/research/run_dsh_model.py --mode execute --output
 /absolute/review-output/run --authorization /absolute/approved-allocation.json`.
 The authorization must bind the prepared plan and manifest and cover this
 purpose within the current parent ledger. Preparation itself grants no spending.
