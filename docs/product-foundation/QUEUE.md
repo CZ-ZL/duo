@@ -19,8 +19,8 @@ Engineering verification, independent use and optimization benefit are distinct.
 | U1 current starter, U0 | Shipped editable document-QA Target/data/function evaluator, existing model providers and isolated host setup; no private wiring | ENGINEERING VERIFIED: grounded-qa uses existing model providers and a content evaluator; seven targeted checks PASS; live path awaits G4/G5 |
 | U2 complete first-use guide, U1 | Two labeled paths finish with a report; package reader has every required file | ENGINEERING VERIFIED: bilingual packaged Quickstart, source redirect, lean Agent Guide and current model entry |
 | U3 result and homepage, U1–2 | Bilingual positioning, scenario, genuine result, two start paths, support limits, later theory/research | PASS: real historical config result extracted with source hashes; current starter remains explicitly pending; two independent homepage readers passed |
-| U4 independent/product checks, U1–3 | G1–G8 evidence, retained failed attempts and intervention records | IN PROGRESS: G1/G2/G3/G6 PASS; G7 local links and package checks pass; G4/G5 BLOCKED pending grant |
-| U5 reviewed delivery, U4 | Exact code/package checks, authorized GitHub push, rendered page and CI verified | IN PROGRESS: full local product gate PASS; final source preview delivery/CI next. No tagged Release while live acceptance is pending |
+| U4 independent/product checks, U1–3 | G1–G8 evidence, retained failed attempts and intervention records | G1/G2/G3/G6/G7/G8 PASS; G4/G5 BLOCKED pending new grant; independent paid Caller not run |
+| U5 reviewed delivery, U4 | Exact code/package checks, authorized GitHub push, rendered page and CI verified | ENGINEERING DELIVERED: 99c6458 / CI35072852975 PASS; identical public-install/CI archive, actual GitHub render checked. No tagged Release while G4/G5 await authority |
 
 Gate states are only PASS / FAIL / BLOCKED / NOT_RUN. Queue task progress is not
 a gate pass. Evidence is kept in the local run directory and a sanitized receipt
@@ -35,8 +35,8 @@ use is required.
 | G4 live starter | BLOCKED | New Goal paid grant absent; at least one real generated/executed candidate required |
 | G5 unfamiliar Caller | BLOCKED | Public starter plus current grant; same live run may satisfy G4 |
 | G6 errors | PASS | Installed missing Evaluator, unsupported model and unfunded plan refusals with required action |
-| G7 docs/package/demo | BLOCKED | 145 current links/anchors, bilingual commands, archive and GitHub render PASS. Fresh public install hit default pnpm store then registry TLS ECONNRESET; store instruction fixed, network retest pending |
-| G8 regression/delivery | NOT_RUN | Local release gate: 357 native, 451 Python product, 73 public, 31 Slow, 5 baseline-repair, 21 host profiles PASS; exact-commit CI pending |
+| G7 docs/package/demo | PASS | 145 links/anchors, identical bilingual commands, actual GitHub render and fresh public-source guide install/run/report/re-read PASS at 99c6458; store/TLS failures retained |
+| G8 regression/delivery | PASS | Local release gate: 357 native, 451 Python product, 73 public, 31 Slow, 5 baseline-repair, 21 host profiles PASS; 99c6458 / CI35072852975 PASS; subsequent evidence-only files do not change tested package |
 
 Budget proposal: up to 6 inner model requests / CNY1 for one normal three-request
 starter and, only if needed after retained failure inspection, one fresh Caller

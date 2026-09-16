@@ -1,6 +1,6 @@
 {
   "gate": "G7",
-  "status": "BLOCKED",
+  "status": "PASS",
   "attempts": [
     {
       "id": "g7-public-install",
@@ -77,5 +77,23 @@
     "g7-public-install/receipt.json": "5b0a41e7408b6148b89286b64845179bf6f486ffa3c5282dccc60c7fff3a3b55",
     "g7-public-install/store-fix.json": "9e98a63a1eea08ae17964b814029d2024f4045bfd85ecc673f2a0e277fa94d68",
     "g7-install-control/report.json": "3c5b1f2f77f09301eab0261d735b1cd9d6faeea616d66d37a1c5a1684074cc69"
+  },
+  "retest": {
+    "status": "PASS",
+    "exitCode": 0,
+    "source": "Published Quickstart blocks 1-3, only owner DSH path supplied; additional Target SHA and repeated-report equality checks",
+    "credentialEnvironmentInherited": false,
+    "retryReason": "Read-only registry probe recovered to HTTP200 after retained ECONNRESET failures",
+    "sourceCommit": "99c6458a58405fd506b0946e09b61350c361a549",
+    "archiveSha256": "0910ead5c7dcf44d6b11783ed24ae8db04bff15e1d21a352b75c853a2028057a",
+    "runId": "e412e7fe6da626ded4d5a2d1392dcecca5af428634fd4c57c80a2076cbf09a1a",
+    "runStatus": "completed",
+    "costCny": 0,
+    "modelRequests": 0,
+    "originalUnchanged": true,
+    "repeatedReportEqual": true
+  },
+  "recheck": {
+    "status": 200
   }
 }

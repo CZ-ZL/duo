@@ -1,6 +1,6 @@
 # Product expression and first use
 
-Status: **ACTIVE — engineering checks in progress; live acceptance blocked**.
+Status: **ACTIVE — engineering delivered; live acceptance blocked**.
 This is a bounded product-use Goal. Historical experiment Goals remain closed.
 The current source package is 0.6.3; release delivery is tracked separately below.
 
@@ -35,8 +35,8 @@ qualify the sample measurement plumbing, not an optimization gain.
 | G4 real starter | BLOCKED | No applicable paid grant for this Goal; zero live starter requests. Offline checks cannot satisfy this gate |
 | G5 unfamiliar live Caller | BLOCKED | Shares the prospective G4 run; fresh Caller has not been launched for paid work |
 | G6 preparation/errors | PASS | Installed package: absent evaluator reports duoEvaluators ABSENT, executionReady false, attach_authorized_evaluator; unsupported model refuses before workspace creation; unfunded plan refuses with next action and no dispatched work |
-| G7 docs/package/demo | BLOCKED | 145 relative links/anchors, 7 identical bilingual shell blocks, archive checks and rendered GitHub pages PASS. Fresh public-source install failed at default pnpm store; guide now supplies an isolated store. The next step hit registry TLS ECONNRESET, reproduced by the known-good install verifier and a read-only probe; full retest pending registry access. |
-| G8 regression/delivery | NOT_RUN | Full local gate PASS: 357 native, 451 Python product, 73 public-example checks, 31 Slow checks, 5 repair cases, 21 host profiles. Exact commit/CI/render pending |
+| G7 docs/package/demo | PASS | 145 links/anchors, 7 identical bilingual shell blocks, archive and rendered GitHub checks PASS. After the store repair and an HTTP200 registry recheck, a fresh public-source clone at 99c6458 followed exact Quickstart commands through report/re-read, original unchanged. Failed attempts retained in G7_ATTEMPTS.json |
+| G8 regression/delivery | PASS | Full local gate PASS: 357 native, 451 Python product, 73 public-example checks, 31 Slow checks, 5 repair cases, 21 host profiles. Commit 99c6458 and CI35072852975 PASS; public source-install archive matches CI SHA. Later evidence-only commit changes no shipped bytes |
 
 Local evidence root: `runs/first-use-convergence-20260916/` outside the public
 source checkout. Public projections omit credentials, private paths, raw user
@@ -75,7 +75,7 @@ not stand in for current starter acceptance.
   historical example, local installation check and pending real starter. They
   noted that exact contracts, provider lists, artifact paths and checkpoint
   details require the linked guides, as intended.
-- Public-source install round 1 failed with pnpm ERR_SQLITE_ERROR at its default store. Supplying the documented isolated writable store passed that point, then dependency downloads failed with ERR_PNPM_META_FETCH_FAIL. A direct Node fetch reported ECONNRESET before TLS establishment; the unchanged reference install verifier also failed. No TLS bypass or hidden cached-install success was used. Prior fresh-install PASS remains a separate earlier run.
+- Public-source install round 1 failed with pnpm ERR_SQLITE_ERROR at its default store. Supplying the documented isolated writable store passed that point, then dependency downloads failed with ERR_PNPM_META_FETCH_FAIL. A direct Node fetch reported ECONNRESET before TLS establishment; the unchanged reference install verifier also failed. No TLS bypass or hidden cached-install success was used. Prior fresh-install PASS remains a separate earlier run. Once the read-only probe returned HTTP200, a new public-source install at 99c6458 completed the entire guide and repeated report read at zero inner model cost.
 - No G5 session has run; do not claim zero interventions as live Caller success.
 
 ## Scope of the cleanup
@@ -106,3 +106,22 @@ guides plus owner configuration/authority, let it run the starter, and retain
 its actions, document reads, elapsed time, failures and any assistance. Use that
 same run for G4/G5. Update the homepage example only from observed results.
 Total Goal stays open until all mandatory gates pass.
+
+## Engineering delivery
+
+Code and packaged guides: [99c6458](https://github.com/CZ-ZL/duo/commit/99c6458a58405fd506b0946e09b61350c361a549).
+[CI35072852975](https://github.com/CZ-ZL/duo/actions/runs/35072852975) passed the
+full product gate and both dependency advisory checks. The publicly cloned and
+locally installed archive matches the CI artifact:
+
+`0910ead5c7dcf44d6b11783ed24ae8db04bff15e1d21a352b75c853a2028057a`.
+
+[Delivery receipt](./first-use/DELIVERY.json) binds the version, gates and cost
+scope. This evidence update is outside the shipped package and changes no tested
+bytes. GitHub rendered English/Chinese articles and the updated About entry were
+checked. Version 0.6.3 remains an untagged source preview; v0.6.2 remains the latest
+Release. No npm publication or visibility change. Inner model requests/cost for
+this Goal: **0 / CNY0**; Caller host and local compute are not priced here.
+
+Only G4/G5 remain blocked. Their shared real run needs a new owner grant; the
+Goal is not closed and no method improvement is claimed.
