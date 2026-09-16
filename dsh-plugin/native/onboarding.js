@@ -11,6 +11,7 @@ import { resolveNativeContract, freeze } from './contract.js'
 import { finalizeDuoError } from './tools.js'
 import { fail } from './definitions.js'
 import { inspectEvaluators, inspectMeasurement } from './evaluator-discovery.js'
+import { workTargetCompatibility } from './provider-contract.js'
 import { objectiveSchema, searchStagesSchema, searchTiersOf } from './stages.js'
 import {
   productCapabilities,
@@ -21,6 +22,26 @@ import {
 
 export const name = 'dual-loop-onboarding'
 export const inject = ['tools']
+function inspectWorkTargets(ctx, spec) {
+  const bindings = {},
+    unavailable = []
+  for (const [key, service] of [
+    ['generator', 'duoGenerator'],
+    ['executor', 'duoExecutor'],
+  ]) {
+    if (key === 'generator' && (spec?.mode === 'evaluation_only' || spec?.operation === 'evaluate'))
+      continue
+    try {
+      bindings[key] = ctx.get(service)?.describe()
+    } catch {
+      unavailable.push(key)
+    }
+  }
+  const result = workTargetCompatibility(spec, bindings)
+  for (const key of unavailable) result.components[key].status = 'UNAVAILABLE'
+  if (unavailable.length && result.status !== 'INCOMPATIBLE') result.status = 'UNKNOWN'
+  return result
+}
 function inspectRuntimeAvailability(ctx) {
   const services = Object.fromEntries(
     ['duoGenerator', 'duoExecutor', 'duoEvaluators', 'duoController'].map((key) => {
@@ -645,6 +666,7 @@ export function apply(ctx) {
     () => {
       const runtimeAvailability = inspectRuntimeAvailability(ctx),
         evaluators = inspectEvaluators(ctx)
+      let currentSpec
       let evidenceStrategy = {
         status: 'INPUTS_REQUIRED',
         nextAction:
@@ -653,7 +675,8 @@ export function apply(ctx) {
       try {
         const contract = ctx.get('duoContract')
         if (contract) {
-          const strategy = negotiateEvidence(contract.resolve().spec, evaluators.items)
+          currentSpec = contract.resolve().spec
+          const strategy = negotiateEvidence(currentSpec, evaluators.items)
           evidenceStrategy = {
             ...strategySummary(strategy),
             target: strategy.target,
@@ -678,6 +701,7 @@ export function apply(ctx) {
         ),
         runtimeAvailability,
         configuredTarget: describeConfiguredTarget(ctx),
+        targetCompatibility: inspectWorkTargets(ctx, currentSpec),
         evaluators,
         evidenceStrategy,
       }
@@ -778,8 +802,26 @@ export function apply(ctx) {
         result.readyForPlan = false
         result.preparation.status = 'preparation_required'
       }
+      const targetCompatibility = inspectWorkTargets(ctx, effective)
+      if (targetCompatibility.status === 'INCOMPATIBLE') {
+        result.readyForPlan = false
+        if (result.status === 'draft_valid') result.status = 'draft_valid_providers_incompatible'
+        result.preparation.status =
+          result.status === 'invalid' ? 'invalid_draft' : 'provider_incompatible'
+        result.preparation.recommendedOperation = 'prepare_inputs'
+        result.preparation.actions.unshift({
+          kind: 'repair_work_provider_binding',
+          executesWork: false,
+          components: targetCompatibility.components,
+          description:
+            'Bind Generator/Executor providers that support the requested Target kind. A persona provider is not a general component provider.',
+          doneWhen:
+            'Required work providers declare matching targetKinds and the new plan passes; declarations do not qualify task performance.',
+        })
+      }
       return {
         ...result,
+        targetCompatibility,
         evidenceStrategy,
         runtimeAvailability: inspectRuntimeAvailability(ctx),
         evaluators,

@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import JsonContract from '../../native/contract.js'
 import * as Onboarding from '../../native/onboarding.js'
-import { EvaluatorsService } from '../../native/definitions.js'
+import { EvaluatorsService, GeneratorService, ExecutorService } from '../../native/definitions.js'
 
 async function host(t) {
   const ctx = new Context(),
@@ -40,6 +40,69 @@ function value(r) {
   assert.equal(r.isError, false, JSON.stringify(r.error))
   return r.value
 }
+test('public preparation exposes and rejects incompatible work targets without calling providers', async (t) => {
+  const h = await host(t)
+  let generatorInspections = 0
+  class Generator extends GeneratorService {
+    describe() {
+      generatorInspections++
+      return {
+        id: 'config-only',
+        targetKinds: ['dsh-plugin-config'],
+        secretConfig: 'DO_NOT_EXPOSE',
+      }
+    }
+    async propose() {
+      assert.fail('preparation must not generate')
+    }
+  }
+  class Executor extends ExecutorService {
+    describe() {
+      return { id: 'persona-only', targetKinds: ['dsh-persona'] }
+    }
+    async execute() {
+      assert.fail('preparation must not execute')
+    }
+  }
+  for (const Provider of [Generator, Executor]) {
+    const fiber = await h.ctx.plugin(Provider)
+    t.after(() => fiber.dispose())
+  }
+  const discovered = value(await h.call('dualloop_describe'))
+  assert.deepEqual(discovered.targetCompatibility.components.generator.targetKinds, [
+    'dsh-plugin-config',
+  ])
+  assert.ok(!JSON.stringify(discovered).includes('DO_NOT_EXPOSE'))
+  const c = draft()
+  const designed = value(
+    await h.call('dualloop_design', { draft: c, experimentPath: '/project/e.json' }),
+  )
+  assert.equal(designed.targetCompatibility.status, 'INCOMPATIBLE')
+  assert.equal(designed.readyForPlan, false)
+  assert.ok(
+    designed.preparation.actions.some(
+      (a) => a.kind === 'repair_work_provider_binding' && !a.executesWork,
+    ),
+  )
+  const inspected = generatorInspections
+  const evaluated = value(
+    await h.call('dualloop_design', {
+      draft: {
+        ...c,
+        operation: 'evaluate',
+        generations: 0,
+        quotas: { exploit: 0, explore: 0, innovate: 0 },
+        slow: null,
+        final: null,
+      },
+      experimentPath: '/project/e.json',
+    }),
+  )
+  assert.equal(evaluated.targetCompatibility.components.generator.status, 'NOT_REQUIRED')
+  assert.equal(evaluated.targetCompatibility.status, 'DECLARED_MATCH')
+  assert.equal(generatorInspections, inspected)
+})
+
 test('missing-evaluator preparation points to resources present in the installable package', async (t) => {
   const { call } = await host(t)
   const result = value(

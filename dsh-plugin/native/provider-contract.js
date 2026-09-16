@@ -18,6 +18,57 @@ const methods = freeze({
 export const providerContractDependencies = (spec) =>
   Object.keys(methods).filter((key) => key !== 'duoGenerator' || spec?.mode !== 'evaluation_only')
 
+// Legacy providers without a declaration remain usable, never certified as
+// target-independent. This is a type declaration check, not task qualification.
+export function workTargetCompatibility(spec, bindings) {
+  const targetKind = spec?.target?.kind,
+    components = Object.fromEntries(
+      ['generator', 'executor'].map((key) => {
+        const d = bindings[key],
+          kinds = d?.targetKinds
+        let status
+        if (
+          key === 'generator' &&
+          (spec?.mode === 'evaluation_only' || spec?.operation === 'evaluate')
+        )
+          status = 'NOT_REQUIRED'
+        else if (!d) status = 'MISSING'
+        else if (kinds === undefined) status = 'UNKNOWN'
+        else if (
+          !Array.isArray(kinds) ||
+          !kinds.length ||
+          kinds.some(
+            (kind) => typeof kind !== 'string' || !new RegExp(targetKindSchema.pattern).test(kind),
+          )
+        )
+          status = 'INVALID_DECLARATION'
+        else if (!targetKind) status = 'INPUTS_REQUIRED'
+        else status = kinds.includes(targetKind) ? 'DECLARED_MATCH' : 'INCOMPATIBLE'
+        return [
+          key,
+          {
+            status,
+            providerId: typeof d?.id === 'string' ? d.id : null,
+            targetKinds:
+              Array.isArray(kinds) && status !== 'INVALID_DECLARATION' ? [...kinds] : null,
+          },
+        ]
+      }),
+    ),
+    states = Object.values(components).map((row) => row.status)
+  const status = states.some((s) => ['INVALID_DECLARATION', 'INCOMPATIBLE'].includes(s))
+    ? 'INCOMPATIBLE'
+    : (['MISSING', 'INPUTS_REQUIRED', 'UNKNOWN'].find((s) => states.includes(s)) ??
+      'DECLARED_MATCH')
+  return {
+    targetKind: targetKind ?? null,
+    status,
+    components,
+    limitation:
+      'Declared Target-kind support only; not execution or measurement qualification. Undeclared legacy support is UNKNOWN.',
+  }
+}
+
 // Read-only declared binding checks shared by public provider tests and planning.
 // Call with resolveNativeContract(...).spec; trusted describe methods must not do work.
 export function inspectProviderContracts(ctx, spec) {
@@ -55,6 +106,19 @@ export function inspectProviderContracts(ctx, spec) {
   const generator = spec.mode === 'evaluation_only' ? null : ctx.duoGenerator.describe(),
     executor = ctx.duoExecutor.describe(),
     evaluators = ctx.duoEvaluators.describe()
+  const targetCompatibility = workTargetCompatibility(spec, { generator, executor })
+  for (const [key, row] of Object.entries(targetCompatibility.components)) {
+    if (row.status === 'INVALID_DECLARATION')
+      fail(
+        'DUO_PROVIDER_TARGET_INVALID',
+        `${key} targetKinds must be a nonempty list of valid Target kinds`,
+      )
+    if (row.status === 'INCOMPATIBLE')
+      fail(
+        `DUO_${key.toUpperCase()}_TARGET_INCOMPATIBLE`,
+        `${key} ${row.providerId} supports ${row.targetKinds.join(', ')}, not ${spec.target.kind}; bind a matching provider and inspect a new plan before work`,
+      )
+  }
   if (!Array.isArray(evaluators))
     fail('DUO_PROVIDER_INVALID', 'Evaluator provider must describe its measurements')
   const required = [...(generator ? [generator] : []), executor],
@@ -129,5 +193,13 @@ export function inspectProviderContracts(ctx, spec) {
       },
     ),
   )
-  return freeze(structuredClone({ generator, executor, evaluators: selectedEvaluators, policies }))
+  return freeze(
+    structuredClone({
+      generator,
+      executor,
+      evaluators: selectedEvaluators,
+      policies,
+      targetCompatibility,
+    }),
+  )
 }

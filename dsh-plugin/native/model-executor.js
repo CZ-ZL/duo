@@ -17,7 +17,7 @@ export default class ModelExecutor extends ExecutorService {
       )
   }
   describe() {
-    return modelDescriptor('dsh-agent-executor', this.state)
+    return { ...modelDescriptor('dsh-agent-executor', this.state), targetKinds: ['dsh-persona'] }
   }
   async execute({ candidate, applied, tier, signal }) {
     if (typeof tier !== 'string' || !this.state.dataset[tier]?.tasks)

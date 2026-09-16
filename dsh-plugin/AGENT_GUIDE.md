@@ -24,6 +24,13 @@ Read CURRENT_STATUS.md for support and examples/product/README.md for a free ins
 
 An objective is {evaluatorId,version,dataId,metric,direction,weights}. Use the live schema for full authoring. Preset defaults are inspectable and may be overridden explicitly; missing owner decisions stay unresolved.
 
+Check targetCompatibility in describe/design and providers.targetCompatibility
+in the plan. Built-in model-generator, structured-generator and model-executor
+are persona-specific. Changing Target requires matching work providers too;
+the custom example demonstrates a complete non-persona binding. Declared
+mismatches stop before work. Legacy undeclared support is UNKNOWN, not universal
+compatibility; inspect its provider contract. Evaluate-only needs no Generator.
+
 A baseline may have valid measurements but fail quality constraints. Inspect
 plan.baselinePolicy: DUO can start repair from this original without requiring a
 hand-repaired replacement. The default comparator favors a constraint-satisfying

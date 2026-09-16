@@ -46,7 +46,11 @@ export async function apply(ctx) {
   }
   class Generator extends GeneratorService {
     describe() {
-      return { ...descriptor('supplied-text-generator'), configDigest: 'trim-v1' }
+      return {
+        ...descriptor('supplied-text-generator'),
+        targetKinds: ['local-text'],
+        configDigest: 'trim-v1',
+      }
     }
     async propose({ champion, quotas, nextId, feedback }) {
       return {
@@ -76,7 +80,11 @@ export async function apply(ctx) {
   }
   class Executor extends ExecutorService {
     describe() {
-      return { ...descriptor('supplied-text-executor'), configDigest: 'content-v1' }
+      return {
+        ...descriptor('supplied-text-executor'),
+        targetKinds: ['local-text'],
+        configDigest: 'content-v1',
+      }
     }
     async execute({ applied, signal }) {
       signal?.throwIfAborted()

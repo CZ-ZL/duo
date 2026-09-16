@@ -1,5 +1,9 @@
 # Releases and verification
 
+Source 0.6.2 adds declared Target/provider compatibility checks. Release verification
+is in progress; the current installable release below remains unchanged until a
+matching 0.6.2 delivery receipt is recorded.
+
 Current installable release: **[v0.6.1 developer preview](https://github.com/CZ-ZL/duo/releases/tag/v0.6.1)** (prerelease). The previous non-prerelease tag is v0.6.0.
 
 [Distribution notes](0.6.1/DISTRIBUTION.md) and [receipt](0.6.1/DISTRIBUTION_EVIDENCE.json) cover the current build: `31a88508f5d8748ef166f816400b32e4a58500d2`, [CI35050843877](https://github.com/CZ-ZL/duo/actions/runs/35050843877) PASS. The 69-member tarball SHA256 is `46d8841ad00e0c109550e57287cf01a4830e841a2f1895931370232bba6063c2`. Download it and SHA256SUMS from that fixed Release.

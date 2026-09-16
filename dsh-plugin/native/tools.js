@@ -15,6 +15,7 @@ export function summarizePlan(plan) {
     const row = pick(value, [
       'id',
       'version',
+      'targetKinds',
       'configDigest',
       'dataId',
       'dataDigest',

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.2 — Target/provider compatibility
+
+- Declare built-in model generators/executor as persona-specific and the config
+  generator as config-specific. Preparation and plan summaries expose scope.
+- Reject declared Target/work-provider mismatches before execution. Legacy
+  providers without scope remain usable with compatibility marked UNKNOWN.
+- Preserve persona, config and custom adapters, optional Snapshot fields and
+  historical evidence; clarify the default and non-persona example bindings.
+
+
 ## 0.6.1 — Unreleased product repair candidate
 
 - Use Target-owned original identity in final execution, comparison and reports;

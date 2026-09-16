@@ -31,6 +31,8 @@ export type WorkDescriptor = Reservation & {
   permissions: Permissions
   evidenceKind?: string
   configDigest?: string
+  /** Supported Target kinds. Omission is legacy UNKNOWN, never universal support. */
+  targetKinds?: string[]
   maxRequests?: number
   [key: string]: unknown
 }
@@ -176,6 +178,7 @@ export interface Delta {
 export interface Snapshot {
   id: string
   version: string
+  /** Adapter-owned optional fields retained for source compatibility; Core does not require them. */
   persona?: string
   config?: Record<string, string | number>
   path?: string

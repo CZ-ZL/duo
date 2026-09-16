@@ -1,6 +1,6 @@
 {
   "name": "@dual-loop/dsh-plugin",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "DSH plugin for agent evaluation and budgeted optimization of prompts and supported component configs, with custom evaluators, candidate comparisons and traceable reports",
   "license": "MIT",
   "type": "module",

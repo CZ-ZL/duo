@@ -379,6 +379,7 @@ export default class StructuredGenerator extends GeneratorService {
   describe() {
     return {
       ...modelDescriptor('dsh-structured-generator', this.state),
+      targetKinds: ['dsh-persona'],
       version: '7',
       operatorsDigest: digest(operators),
       historyPolicy: 'all_latest_candidates',

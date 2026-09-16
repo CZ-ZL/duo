@@ -25,7 +25,25 @@ export function describeFailure(error = {}, defaultComponent = 'duoController') 
       'Inspect dualloop_status and dualloop_budget_status; reconcile supported receipts and obtain any missing authorization before a new run',
     costState = 'UNKNOWN_UNTIL_LEDGER_INSPECTION',
     sideEffectState = 'UNKNOWN_UNTIL_EXECUTION_INSPECTION'
-  if (code === 'DUO_ADDITIONAL_EVIDENCE_REQUIRED') {
+  if (
+    [
+      'DUO_GENERATOR_TARGET_INCOMPATIBLE',
+      'DUO_EXECUTOR_TARGET_INCOMPATIBLE',
+      'DUO_PROVIDER_TARGET_INVALID',
+    ].includes(code)
+  ) {
+    component = code.includes('GENERATOR')
+      ? 'duoGenerator'
+      : code.includes('EXECUTOR')
+        ? 'duoExecutor'
+        : 'duoProviders'
+    retryable = true
+    recoveryCondition = 'Work providers declare valid support for the configured Target kind'
+    nextAction =
+      'Bind matching Generator/Executor providers for this Target, then inspect a new plan; do not retry the incompatible binding'
+    costState = 'NO_WORK_DISPATCHED_BY_THIS_CALL'
+    sideEffectState = 'NO_WORK_DISPATCHED_BY_THIS_CALL'
+  } else if (code === 'DUO_ADDITIONAL_EVIDENCE_REQUIRED') {
     component = 'duoController'
     retryable = true
     recoveryCondition =

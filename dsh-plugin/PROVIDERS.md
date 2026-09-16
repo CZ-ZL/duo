@@ -10,9 +10,9 @@ through `ctx.effect`. The default bundle waits for work providers. Start with th
 [offline fixture](./native/offline-fixture.js) is disabled by default and explicitly
 synthetic; it remains available for compatibility.
 These are JavaScript runtime contracts with controller validation. TypeScript
-declarations now accompany `/definitions` and `/function-evaluators`; declaration
-syntax was checked, but semantic tsc validation was not run because no compiler
-was available. Arbitrary third-party provider qualification is not implied.
+declarations accompany `/definitions` and `/function-evaluators`; public consumer
+types are compiled in the product gate. Arbitrary third-party provider
+qualification is not implied.
 
 ## Work providers
 
@@ -23,6 +23,24 @@ was available. Arbitrary third-party provider qualification is not implied.
 configuration/data fingerprints. Fixture providers set `evidenceKind: "fixture"`.
 The controller freezes these descriptors into its plan. Never mutate behavior
 under an unchanged descriptor. Declarations are trusted metadata, not a sandbox.
+
+Generator and Executor descriptors should include `targetKinds: ['my-target']`.
+Declared lists must be nonempty valid Target kinds; there is no wildcard.
+Preparation exposes `targetCompatibility`; full and summary plans retain it
+under `providers.targetCompatibility`. A mismatch fails planning before work
+with `DUO_GENERATOR_TARGET_INCOMPATIBLE` or `DUO_EXECUTOR_TARGET_INCOMPATIBLE`.
+Malformed declarations return `DUO_PROVIDER_TARGET_INVALID`.
+Legacy providers without the field remain compatible at the API level and report
+`UNKNOWN`, never universal Target support. `DECLARED_MATCH` means type declarations
+match; review execution behavior separately. Evaluate-only ignores the Generator.
+Changing a declaration invalidates the previous plan; inspect a new plan.
+
+The built-in `/model-generator`, `/structured-generator` and `/model-executor`
+support `dsh-persona`. `/config-generator` supports the bounded
+`dsh-plugin-config` adapter and still requires a matching config Executor.
+The bundled `custom` example supplies its own `local-text` Target, Generator
+and Executor. Installing a different Target alone does not adapt existing work
+providers. The default `/target` export remains the persona adapter for compatibility.
 
 Plan binding also checks concrete method definitions without invoking work.
 Inherited concrete methods are supported; inherited abstract defaults, missing
@@ -453,6 +471,12 @@ The baseline is identified by `plan.baseline.id` throughout execution and report
 the name `baseline` is not required. The supplied custom adapter uses `original`.
 Candidate ids/parent versions, Delta, execution and measurements retain their
 existing meanings.
+
+The optional `Snapshot.persona` and `Snapshot.config` TypeScript fields remain
+for existing consumers; custom snapshots need neither. The bounded fetch adapter
+keeps an immutable persona in its input and identity as execution context;
+its Delta changes only the declared fetch config field. This is adapter-specific,
+not a requirement on every Target or permission to change the Agent's prompt.
 
 For warm start implement pure `validateSnapshot(snapshot)` and
 `projectDelta(delta)` plus `apply(candidate,parent)`. History validates the full

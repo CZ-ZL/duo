@@ -77,6 +77,7 @@ export default class ConfigGenerator extends GeneratorService {
   describe() {
     return {
       ...modelDescriptor('fetch-config-generator', this.state),
+      targetKinds: ['dsh-plugin-config'],
       version: '1',
       historyPolicy: 'all_latest_candidates',
       mutableFields: ['maxBodyChars'],

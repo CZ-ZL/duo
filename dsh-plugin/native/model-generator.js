@@ -13,6 +13,7 @@ export default class ModelGenerator extends GeneratorService {
   describe() {
     return {
       ...modelDescriptor('dsh-agent-generator', this.state),
+      targetKinds: ['dsh-persona'],
       version: this.state.dataset.responseMode === 'python-code-v1' ? '6' : '5',
       slowFeedback: 'same_run_search_v1',
       warmStart: 'native_journal_search_history_v1',

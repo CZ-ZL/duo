@@ -99,7 +99,11 @@ export const descriptors = (expanded = false) =>
 export async function apply(ctx, config = {}) {
   class Generator extends GeneratorService {
     describe() {
-      return { ...descriptor('local-trim-generator'), configDigest: 'trim-line-ends-v1' }
+      return {
+        ...descriptor('local-trim-generator'),
+        targetKinds: ['dsh-persona'],
+        configDigest: 'trim-line-ends-v1',
+      }
     }
     async propose({ champion, quotas, nextId, feedback }) {
       // Historical ideas reach this deterministic generator and are recorded;
@@ -133,7 +137,11 @@ export async function apply(ctx, config = {}) {
   }
   class Executor extends ExecutorService {
     describe() {
-      return { ...descriptor('local-text-executor'), configDigest: 'text-pass-through-v1' }
+      return {
+        ...descriptor('local-text-executor'),
+        targetKinds: ['dsh-persona'],
+        configDigest: 'text-pass-through-v1',
+      }
     }
     async execute({ applied, signal }) {
       signal?.throwIfAborted()

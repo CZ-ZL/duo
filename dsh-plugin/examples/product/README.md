@@ -6,6 +6,12 @@ private account, research archive or historical ledger. They do not measure an
 LLM Agent's task quality or establish method benefit. Local functions are real
 measurements; the example is intentionally narrow.
 
+The default examples use the persona adapter to transform text; this is a
+sample binding, not a requirement of DUO Core. For a non-persona walkthrough use
+`--example custom`: it supplies a content Target and matching Generator/Executor.
+Inspect `providers.targetCompatibility` in the plan. Swapping only the Target
+does not make persona-specific model providers compatible with other data shapes.
+
 The `custom` adapter uses `original` as its baseline ID. Final measurements and
 reports use the identity supplied by that Target, rather than a required literal
 name. Its provider version is 2; inspect a new plan after replacing an older copy.

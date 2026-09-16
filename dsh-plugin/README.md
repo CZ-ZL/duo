@@ -1,4 +1,4 @@
-# @dual-loop/dsh-plugin 0.6.1
+# @dual-loop/dsh-plugin 0.6.2
 
 English · [简体中文](./README.zh-CN.md)
 
@@ -7,10 +7,10 @@ DSH-native evaluation and optimization services. Read [CURRENT_STATUS.md](./CURR
 Install a reviewed tarball into an existing authorized DSH profile (Linux, Node24+, tested DSH0.1.2-rc.1 / Cordis4.0.2):
 
 ```sh
-curl -fL -o dual-loop-dsh-plugin-0.6.1.tgz https://github.com/CZ-ZL/duo/releases/download/v0.6.1/dual-loop-dsh-plugin-0.6.1.tgz
-curl -fL -o SHA256SUMS https://github.com/CZ-ZL/duo/releases/download/v0.6.1/SHA256SUMS
+curl -fL -o dual-loop-dsh-plugin-0.6.2.tgz https://github.com/CZ-ZL/duo/releases/download/v0.6.2/dual-loop-dsh-plugin-0.6.2.tgz
+curl -fL -o SHA256SUMS https://github.com/CZ-ZL/duo/releases/download/v0.6.2/SHA256SUMS
 sha256sum -c SHA256SUMS
-dsh plugin --profile YOUR_PROFILE add ./dual-loop-dsh-plugin-0.6.1.tgz
+dsh plugin --profile YOUR_PROFILE add ./dual-loop-dsh-plugin-0.6.2.tgz
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
@@ -41,6 +41,12 @@ For an existing target/evaluator, set these rows in your own cordis.patch.yml:
 
 For optimization set evaluationOnly:false and supply a Generator too. Your provider implements the public Executor/Evaluators service contracts. Config patches replace the whole config object. Relative provider modules require a versioned profile package.json with type:module. Use ordinary DSH/Cordis replacement, not edits to DUO core.
 
+The default Target is the persona adapter. Built-in model generators and the
+model executor also support persona only; another Target needs matching work
+providers. Discovery/preparation reports targetCompatibility and the plan rejects
+declared mismatches before work. Use `--example custom` for a complete non-persona
+example. Undeclared legacy support is UNKNOWN, not universal compatibility.
+
 Start immediately with [the public local examples](./examples/product/README.md):
 
 ```sh
@@ -57,4 +63,4 @@ Advanced exports include /target, /config-target, /model-generator, /structured-
 
 The existing /offline-fixture export remains explicitly synthetic compatibility material, disabled by default. The /legacy API retains its Python/YAML contracts and separate ledgers. Current support does not imply method superiority, automatic adoption, arbitrary recovery, OS sandboxing or cross-platform compatibility.
 
-This 0.6.1 developer-preview build uses a versioned GitHub Release tarball; the repository release index records its matching verification and archive hash. It is not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.
+This 0.6.2 developer-preview build uses a versioned GitHub Release tarball; the repository release index records its matching verification and archive hash. It is not published to npm. The sealed 0.5.0 acceptance remains unchanged. Read [EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md) for basic/dual/auto presets and evidence policy contracts.

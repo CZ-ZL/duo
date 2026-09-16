@@ -1,6 +1,6 @@
 {
   "name": "duo-development",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "private": true,
   "description": "Development checks for the DUO product package; never published",
   "scripts": {

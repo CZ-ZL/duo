@@ -1,4 +1,4 @@
-# DUO 0.6.1 — current product support
+# DUO 0.6.2 — current product support
 
 DUO is a DSH-native component for bounded evaluation and optimization. The default bundle exposes preparation and waits for work providers; it does not wire a research fixture or authorize model spending.
 
