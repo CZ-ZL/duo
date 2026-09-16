@@ -1,5 +1,10 @@
 # Ecosystem distribution and Agent discovery — 2026-09-16
 
+Current installable package: [v0.6.2](../releases/0.6.2/RELEASE_NOTES.md), with
+[delivery evidence](../releases/0.6.2/DELIVERY_EVIDENCE.json). The existing catalog
+PR5216 now references its verified tarball; upstream review remains pending.
+The 0.6.1 distribution receipts below preserve that earlier delivery unchanged.
+
 Status: DELIVERED; COMMUNITY CATALOG REVIEW PENDING. Owner approved the preceding distribution plan and improving Agent discoverability. This is a bounded follow-up to the closed public-source audit. No core redesign, paid model experiment, npm publication or automatic adoption.
 
 | Task | Acceptance | Status |

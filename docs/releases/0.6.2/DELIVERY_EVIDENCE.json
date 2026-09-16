@@ -1,0 +1,127 @@
+{
+  "status": "DELIVERED_CATALOG_REVIEW_PENDING",
+  "codeCommit": "f0a644335ec22941fd17a761070d93820f5468fc",
+  "version": "0.6.2",
+  "ciUrl": "https://github.com/CZ-ZL/duo/actions/runs/35055408273",
+  "ciConclusion": "success",
+  "releaseKind": "DEVELOPER_PREVIEW_PRERELEASE",
+  "package": {
+    "name": "dual-loop-dsh-plugin-0.6.2.tgz",
+    "sha256": "22ea56ded0d85ae0788e1fe975ec476330a8b411250f73b4b69eec6ed495c866",
+    "members": 69
+  },
+  "verification": {
+    "nativePassed": 350,
+    "nativeFailed": 0,
+    "pythonProductPassed": 451,
+    "researchDeselected": 86,
+    "freshDependencyInstall": "PASS",
+    "publicChecks": 73,
+    "publicCommands": 97,
+    "publicProfiles": 14,
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "baselineRepairCommands": 26,
+    "hostProfiles": 21,
+    "typecheck": "PASS",
+    "format": "PASS",
+    "generatedDocs": "PASS",
+    "sandbox": "PASS",
+    "npmDevelopmentAdvisories": 0,
+    "npmHostAdvisories": 0,
+    "boundedCredentialSignatureHits": []
+  },
+  "installedBoundaryControl": {
+    "status": "PASS",
+    "scope": "Installed package, scripted public DSH tools; wrong target declaration in isolated example copy, then restored",
+    "discoveryReadiness": false,
+    "designReadyForPlan": false,
+    "planRejection": "DUO_EXECUTOR_TARGET_INCOMPATIBLE",
+    "noJournalMutationOnRejection": true,
+    "matchingCustomRun": "completed",
+    "targetFields": [
+      "content",
+      "id",
+      "path",
+      "version"
+    ],
+    "operations": 6,
+    "modelRequests": 0,
+    "costCny": 0,
+    "independentCaller": "NOT_RUN"
+  },
+  "compatibility": {
+    "undeclaredLegacyWorkProviders": "UNKNOWN; remains compatible",
+    "personaTarget": "RETAINED",
+    "oldSnapshotFields": "RETAINED",
+    "arbitraryTargetSupport": "NOT_CLAIMED"
+  },
+  "supersededCi": {
+    "conclusion": "cancelled",
+    "headSha": "8a740103a7ab724101ffd422d27a81c11047d4d2",
+    "status": "completed",
+    "url": "https://github.com/CZ-ZL/duo/actions/runs/35055184669"
+  },
+  "limits": [
+    "Target-kind declarations do not establish task or measurement compatibility",
+    "Changed paths have scripted installed-DSH acceptance; no fresh independent LLM Caller",
+    "No method efficacy claim; Linux developer preview",
+    "CI retained upstream Action/runtime deprecation warnings"
+  ],
+  "newModelRequests": 0,
+  "newModelCostCny": 0,
+  "npmPublished": false,
+  "releaseUrl": "https://github.com/CZ-ZL/duo/releases/tag/v0.6.2",
+  "publicDownload": {
+    "timeUtc": "2026-09-16T04:31:10.876847+00:00",
+    "assets": [
+      {
+        "asset": "dual-loop-dsh-plugin-0.6.2.tgz",
+        "url": "https://github.com/CZ-ZL/duo/releases/download/v0.6.2/dual-loop-dsh-plugin-0.6.2.tgz",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "sourceMatches": true,
+        "sha256": "22ea56ded0d85ae0788e1fe975ec476330a8b411250f73b4b69eec6ed495c866",
+        "bytes": 142781
+      },
+      {
+        "asset": "SHA256SUMS",
+        "url": "https://github.com/CZ-ZL/duo/releases/download/v0.6.2/SHA256SUMS",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "sourceMatches": true,
+        "sha256": "935015a28c40d436d753a445e980ea299e5b59232a6ba6d15d9ec8d2f3fa953d",
+        "bytes": 97
+      },
+      {
+        "asset": "VERIFICATION.json",
+        "url": "https://github.com/CZ-ZL/duo/releases/download/v0.6.2/VERIFICATION.json",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "sourceMatches": true,
+        "sha256": "ad746302d90c17ea557f11697a2cc996f90513a8d8d5df463c8a401e6c3aa2da",
+        "bytes": 2398
+      }
+    ]
+  },
+  "tagCommit": "f0a644335ec22941fd17a761070d93820f5468fc",
+  "catalog": {
+    "pullRequest": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/5216",
+    "state": "OPEN",
+    "headCommit": "848a1764de8db1a170d4240e7c1c62898674aca7",
+    "entryMatchesReadback": true,
+    "tarballVersion": "0.6.2",
+    "checksAtReceipt": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/actions/runs/35055942986/job/104666044474",
+        "name": "check",
+        "startedAt": "2026-09-16T04:31:41Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "PR check"
+      }
+    ]
+  }
+}

@@ -1,12 +1,15 @@
 # Releases and verification
 
-Source 0.6.2 adds declared Target/provider compatibility checks. Release verification
-is in progress; the current installable release below remains unchanged until a
-matching 0.6.2 delivery receipt is recorded.
+Current installable release: **[v0.6.2 developer preview](https://github.com/CZ-ZL/duo/releases/tag/v0.6.2)** (prerelease). The previous non-prerelease tag is v0.6.0.
 
-Current installable release: **[v0.6.1 developer preview](https://github.com/CZ-ZL/duo/releases/tag/v0.6.1)** (prerelease). The previous non-prerelease tag is v0.6.0.
-
-[Distribution notes](0.6.1/DISTRIBUTION.md) and [receipt](0.6.1/DISTRIBUTION_EVIDENCE.json) cover the current build: `31a88508f5d8748ef166f816400b32e4a58500d2`, [CI35050843877](https://github.com/CZ-ZL/duo/actions/runs/35050843877) PASS. The 69-member tarball SHA256 is `46d8841ad00e0c109550e57287cf01a4830e841a2f1895931370232bba6063c2`. Download it and SHA256SUMS from that fixed Release.
+[Release notes](0.6.2/RELEASE_NOTES.md) and [receipt](0.6.2/DELIVERY_EVIDENCE.json)
+cover declared Target/provider compatibility checks at
+`f0a644335ec22941fd17a761070d93820f5468fc`.
+[CI35055408273](https://github.com/CZ-ZL/duo/actions/runs/35055408273) passed.
+The 69-member tarball SHA256 is
+`22ea56ded0d85ae0788e1fe975ec476330a8b411250f73b4b69eec6ed495c866`.
+Anonymous downloads match the CI-tested artifact. Download it and SHA256SUMS
+from that fixed Release. v0.6.1 and its artifacts remain unchanged.
 
 The remaining entries preserve earlier verification stages.
 The repository is **public**. The [final audit](../product-foundation/FINAL_PUBLIC_AUDIT.md)
@@ -36,7 +39,8 @@ Package documentation changes receive a new artifact hash.
 
 | Version / stage | Notes and evidence |
 |---|---|
-| 0.6.1 ecosystem distribution — current | [Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.1), [notes](0.6.1/DISTRIBUTION.md), [receipt](0.6.1/DISTRIBUTION_EVIDENCE.json) |
+| 0.6.2 Target/provider compatibility — current | [Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.2), [notes](0.6.2/RELEASE_NOTES.md), [receipt](0.6.2/DELIVERY_EVIDENCE.json) |
+| 0.6.1 ecosystem distribution | [Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.1), [notes](0.6.1/DISTRIBUTION.md), [receipt](0.6.1/DISTRIBUTION_EVIDENCE.json) |
 | 0.6.1 public-source audit | [Audit](../product-foundation/FINAL_PUBLIC_AUDIT.md), [receipt](0.6.1/PUBLIC_EVIDENCE.json), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35009839832) |
 | 0.6.1 homepage organization | [Receipt](0.6.1/HOMEPAGE_EVIDENCE.json), [CI](https://github.com/CZ-ZL/duo/actions/runs/35008412237) |
 | 0.6.1 directory organization | [Receipt](0.6.1/ORGANIZATION_EVIDENCE.json), [migration/compatibility](../development/REPOSITORY_LAYOUT.md), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35005165474) |

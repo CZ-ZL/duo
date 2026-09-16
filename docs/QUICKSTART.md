@@ -1,6 +1,6 @@
 # Release quickstart and recovery boundaries
 
-Use the [current status](../dsh-plugin/CURRENT_STATUS.md) and [0.6.1 distribution notes](./releases/0.6.1/DISTRIBUTION.md)
+Use the [current status](../dsh-plugin/CURRENT_STATUS.md) and [release index](./releases/README.md)
 to identify the exact developer-preview build and its installation artifact. Linux and the
 recorded DSH/Node versions are the supported verification environment.
 
