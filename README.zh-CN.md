@@ -24,30 +24,31 @@ DUO 是一个 DSH 插件：让你的 Agent 尝试修改，用你的测试比较�
 
 交付物包括候选 Delta、逐题检查、选择依据、实际用量和报告。没有改善也是
 有效结果。这个 starter 使用 basic 模式，只有开发测量，没有独立 Slow 或
-final。真实模型与陌生 Caller 验收仍待运行，状态见
+final。独立 Caller 已仅凭公开指南与用户配置跑通这条路径，步骤保留在
 [验收记录](./docs/product-foundation/FIRST_USE.md)。
 
 ## 一份实际结果
 
-下面来自 **v0.4.0 的历史配置实验**，不是当前 starter 的成绩。
-当时通过任务专用执行组件，修改 Agent 保留检索文档的长度。
+下面来自 **0.6.3 的真实 starter 运行**。原版已经答对四道题。模型生成的新提示词
+要求逐字提取来源、禁止使用外部知识，并在文档缺少答案时明确拒答。DUO 执行并
+测量了这个候选；它没有比原版更好，所以最终保留原版。
 
 | 报告内容 | 实际记录 |
 |---|---|
-| 改了什么 | Fetch 配置 `maxBodyChars`：100,000 → 150,000 |
-| 候选 | B2 `dl-0001`，从原版生成 |
-| 开发测量 | Fast 6/6；额外 Slow 检查 12/12；晋级获准 |
-| 为什么进入诊断 final | 按冻结规则选中：Fast 高分，且已实际经过 Slow |
-| 诊断 final | 原版 8/12；候选 12/12 |
-| 整个对照批次的费用 | 44 次模型请求，¥0.18554908，包含其他候选和实验组 |
+| 候选 | `dl-0001`，从原版生成，保存在独立的提示词 overlay 中 |
+| 改了什么 | 要求精确提取来源、不使用外部知识，缺少答案时返回 `NOT_IN_RUNBOOK` |
+| 开发测量 | 原版 4/4；候选 4/4，使用 `starter-runbook-fast` 评估器 v2 |
+| 选择依据 | 两者平分，保留原版；Target 文件未变 |
+| 本次内层模型费用 | 3 次请求，**¥0.00735072**；本地评分未增加模型请求 |
+| 独立确认 | 没有：本次 basic 运行未配置 Slow 或 final |
 
-单环候选同样得到 12/12。这些是同一公开来源中新问题上的单次执行，不能据此
-宣称 DUO 普遍更强。没有部署候选。费用按实际 API 用量与冻结费率计算，
-Calling Agent 推理和本地计算另计。
+[实际候选、逐题检查、用量与来源哈希](./docs/product-foundation/first-use/STARTER_RESULT.json)
+从运行产物中提取。评估器检查事实与引用；正确命令外的一层行内代码反引号不算
+事实错误。上面的费用不包含 Calling Agent 自身推理和本地计算。
 
-[脱敏结果与来源哈希](./docs/product-foundation/first-use/HISTORICAL_RESULT.json)
-从保留的运行产物中提取；[完整背景、失败和负结果](./docs/research/EXPERIMENTS.md)
-仍可查阅。
+这次没有测到提升，但交付了一个实际测过的候选，以及保留原版的具体依据。
+[历史配置实验](./docs/product-foundation/first-use/HISTORICAL_RESULT.json)与
+[研究结果、失败和限制](./docs/research/EXPERIMENTS.md)仍单独保留。
 
 ## 从这里开始
 
@@ -56,7 +57,7 @@ Calling Agent 推理和本地计算另计。
 | 路径 | 做什么 |
 |---|---|
 | [免费安装检查](./dsh-plugin/QUICKSTART.zh-CN.md#免费安装检查) | 安装包、检查能力、查看计划、运行本地文本检查并保存报告。不调用模型，验证产品流程。 |
-| [真实任务 starter](./dsh-plugin/QUICKSTART.zh-CN.md#真实任务-starter) | 接入已授权的模型，运行上述文档问答任务。正常最多 3 次内层模型请求，关闭重试；真实验收待运行。 |
+| [真实任务 starter](./dsh-plugin/QUICKSTART.zh-CN.md#真实任务-starter) | 接入已授权的模型，运行上述文档问答任务。正常最多 3 次内层模型请求，关闭重试；已由独立 Caller 按公开指南运行。 |
 
 当前为开发者预览版，需要 Linux、Node24+ 和已有 DSH 安装，
 已验证 DSH0.1.2-rc.1 / Cordis4.0.2。安装不会配置模型账号或授予消费权限。

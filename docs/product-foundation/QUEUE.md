@@ -2,52 +2,42 @@
 
 ## Active: product expression and first use — 2026-09-16
 
-Goal: a new reader understands the work, prerequisites and output; an unfamiliar
-Caller completes a real task through shipped public instructions. Scope is
-homepage, one task starter, document routing and necessary thin example wiring.
-No core redesign, registry, scheduler, method benchmark, Graph/Bayesian or adoption.
-The historical closures below stay unchanged. Current released package is 0.6.2;
-this follow-up starts at `582bbbe9651c5ec501b0ef41259ed17af14f3176`.
+Goal: a new reader understands purpose, requirements and outputs; an unfamiliar
+Caller completes a real task using public materials and owner resources.
+Scope remains homepage, one starter, document routing and thin example wiring.
+No core redesign or method research. Earlier closed Goals below remain unchanged.
 
-Tracking uses this queue and local `runs/first-use-convergence-20260916/` evidence.
-The session Goal was created for this separate objective. Status: ACTIVE.
-Engineering verification, independent use and optimization benefit are distinct.
+Persistent evidence: this queue, FIRST_USE.md and local
+`runs/first-use-convergence-20260916/`. Current package: 0.6.3 source preview.
 
-| Task / dependency | Observable result | State and next step |
+| Task / dependency | Observable result | State |
 |---|---|---|
-| U0 audit and authorization | Entry/obstacle/evidence table; release and ledger checked | Audit found a missing packaged live composition and stale Provider model-guide path; old research allowance released, no paid transfer |
-| U1 current starter, U0 | Shipped editable document-QA Target/data/function evaluator, existing model providers and isolated host setup; no private wiring | ENGINEERING VERIFIED: grounded-qa uses existing model providers and a content evaluator; seven targeted checks PASS; live path awaits G4/G5 |
-| U2 complete first-use guide, U1 | Two labeled paths finish with a report; package reader has every required file | ENGINEERING VERIFIED: bilingual packaged Quickstart, source redirect, lean Agent Guide and current model entry |
-| U3 result and homepage, U1–2 | Bilingual positioning, scenario, genuine result, two start paths, support limits, later theory/research | PASS: real historical config result extracted with source hashes; current starter remains explicitly pending; two independent homepage readers passed |
-| U4 independent/product checks, U1–3 | G1–G8 evidence, retained failed attempts and intervention records | G1/G2/G3/G6/G7/G8 PASS; G4/G5 BLOCKED: owner approved 6 requests / CNY1; two fresh Callers stopped at registry TLS, zero consumption; both attempts retained |
-| U5 reviewed delivery, U4 | Exact code/package checks, authorized GitHub push, rendered page and CI verified | ENGINEERING DELIVERED: 88f1a99 / CI35075348488 PASS; CI/local/Caller2 archives identical; rendered guides checked. No tagged Release while G4/G5 await successful execution |
+| U0 audit | Reader task → obstacle → minimum fix → evidence | PASS: FIRST_USE.md audit and claims map |
+| U1 starter, U0 | Editable real prompt/runbook/tasks/evaluator with existing model providers | PASS: Caller4 actually generated, executed and evaluated dl-0001; original retained |
+| U2 guide, U1 | Complete free and real paths with public installation/recovery/config/results | PASS: packaged bilingual Quickstart; existing-host install path exposed and run; exact patch path fixed |
+| U3 homepage, U1–2 | Actual current result, clear support/budget boundaries, two start paths | PASS: actual v2 4/4 tie / CNY0.00735072; two new homepage-only readers passed |
+| U4 product checks, U1–3 | G1–G7 evidence; all failures retained | PASS: four Caller attempts retained; v1 and v2 measurements separated |
+| U5 delivery, U4 | Reviewed final package/commit, GitHub rendering and CI | IN_PROGRESS: a367da7 runtime CI PASS; final documentation/package delivery pending |
 
-Gate states are only PASS / FAIL / BLOCKED / NOT_RUN. Queue task progress is not
-a gate pass. Evidence is kept in the local run directory and a sanitized receipt
-on delivery. No gate is satisfied by author self-review alone where independent
-use is required.
-
-| Gate | State | Required evidence / current blocker |
+| Gate | State | Evidence |
 |---|---|---|
-| G1 facts | PASS | Claims map in FIRST_USE.md; current code/catalog and source-extracted result |
-| G2 comprehension | PASS | Two fresh homepage-only readers, 5/5 each; raw answers and hashes in first-use/G2* |
-| G3 free path | PASS | Installed tarball + exact guide commands; Target SHA unchanged; report re-read byte-equal; zero model calls |
-| G4 live starter | BLOCKED | Registry TLS reset prevented installation; no model request; authorized 6 / CNY1 remains entirely unspent |
-| G5 unfamiliar Caller | BLOCKED | Two fresh Callers stopped at registry TLS; second verified public cache fix; no implementation reading/assistance, but no completed use |
-| G6 errors | PASS | Installed missing Evaluator, unsupported model and unfunded plan refusals with required action |
-| G7 docs/package/demo | PASS | 145 links/anchors, identical bilingual commands, actual GitHub render and fresh public-source guide install/run/report/re-read PASS at 99c6458; store/TLS failures retained |
-| G8 regression/delivery | PASS | 88f1a99 / CI35075348488 full gate, clean install and advisory checks PASS; 357 native /451 Python product; CI/local/Caller2 archive identical; runtime unchanged |
+| G1 facts | PASS | FIRST_USE.md claims map; current catalog and actual receipts |
+| G2 understanding | PASS | first-use/G2_CURRENT.json; both raw answers/input hashes; prior G2.json retained |
+| G3 free path | PASS | first-use/OFFLINE_INSTALL.json; public commands, unchanged Target, report re-read equal, no model calls |
+| G4 live starter | PASS | first-use/STARTER_RESULT.json; real nonbaseline candidate execution/evaluation, known cost |
+| G5 unfamiliar Caller | PASS | Fresh Caller4, public guide plus owner resources, no source reading/intervention; ~183 seconds |
+| G6 preparation/errors | PASS | Missing evaluator, unsupported model, absent authority; v2 starter regression rerun |
+| G7 documents/package/demo | PASS | Current files/anchors/eight bilingual command blocks; actual free and real runs; extracted result |
+| G8 delivery | NOT_RUN | Final docs commit CI pending; a367da7 runtime/evaluator full CI PASS |
 
-New owner-approved budget: up to 6 inner model requests / CNY1 for one normal three-request
-starter and, only if needed after retained failure inspection, one fresh Caller
-retest. No automatic retry or old allowance transfer. Caller host cost is
-outside DUO accounting. Stop on limits, unknown charges, missing permissions or
-no further verification value. Both attempts consumed a total of 0 requests / CNY0. See first-use/LIVE_ATTEMPT_1.json
-and LIVE_ATTEMPT_2.json. The complete 6-request / CNY1 grant is still unspent.
-Restore registry connectivity before the next fresh Caller; no new grant is needed
-within the existing cumulative cap. The public cache fix has a fresh packaging check.
-Close only when all G1–G8 pass; otherwise deliver engineering work with exact
-pending gates and the next executable task.
+Budget settled: 6/6 authorized requests, CNY0.01585472/1. No retries or unknown
+fees. CNY0.98414528 unused money grants no more requests. No old funds transferred.
+Caller host inference/local compute unpriced. Original Targets unchanged; no
+candidate adoption. Research remains paused and method advantage unproven.
+
+Next executable task: final package/link/diff/privacy review, push documentation,
+verify exact GitHub CI and rendered pages, then record all Gates PASS and close
+this Goal. No new paid call or subsequent research is authorized by closure.
 
 ---
 

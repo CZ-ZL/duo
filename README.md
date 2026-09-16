@@ -28,32 +28,35 @@ one prompt change, executes that candidate and checks the answers.
 You get the candidate Delta, per-task checks, selection reason, recorded usage
 and a report. No improvement is a valid outcome. This starter uses basic mode:
 it has development checks, without independent Slow or final evidence.
-Its live-model and unfamiliar-Caller acceptance are still pending; the
-[acceptance record](./docs/product-foundation/FIRST_USE.md) tracks that boundary.
+An independent Caller has completed this path using the public guide and owner-supplied
+configuration; the [acceptance record](./docs/product-foundation/FIRST_USE.md) retains the steps.
 
-## What a recorded result looks like
+## What you get back
 
-This is a **historical v0.4.0 configuration experiment**, not a result from the
-current starter. It used a task-specific execution binding to change how much
-retrieved documentation an Agent kept.
+In the **0.6.3 starter run below**, the original already answered all four
+questions correctly. The model generated a prompt that required verbatim
+extraction and explicit abstention when the runbook had no answer. DUO ran it,
+measured the answers, and kept the original because the candidate did no better.
 
 | Report item | Observed result |
 |---|---|
-| Change | Fetch setting `maxBodyChars`: 100,000 → 150,000 |
-| Candidate | B2 `dl-0001`, generated from the original |
-| Development checks | Fast 6/6; additional Slow checks 12/12; promotion accepted |
-| Why it was sent to diagnostic final | Frozen selection rule: Fast-high and already Slow-measured |
-| Diagnostic final | Original 8/12; candidate 12/12 |
-| Cost of the whole comparison package | 44 model requests, ¥0.18554908; includes other candidates and arms |
+| Candidate | `dl-0001`, generated from the original; a separate prompt overlay |
+| Change | Require exact source extraction, no outside knowledge, and `NOT_IN_RUNBOOK` when the answer is absent |
+| Development measurement | Original 4/4; candidate 4/4, with `starter-runbook-fast` evaluator v2 |
+| Decision | Equal scores; retain the original. The Target file was unchanged |
+| This run's inner model cost | 3 requests, **¥0.00735072**; local evaluation added no model requests |
+| Independent confirmation | None: this basic run had no Slow or final test |
 
-The single-loop candidate also scored 12/12. These are single executions on new
-questions from the same public source, so this result does not establish a
-general DUO advantage. No candidate was deployed. Costs use observed API usage
-and frozen tariffs; Caller inference and local compute are separate.
+The [actual candidate, task checks, usage and source hashes](./docs/product-foundation/first-use/STARTER_RESULT.json)
+are extracted from the retained run. The evaluator checks facts and citations;
+a single inline-code wrapper does not make a correct command wrong. Calling
+Agent inference and local compute are outside the inner cost above.
 
-The [redacted result and source hashes](./docs/product-foundation/first-use/HISTORICAL_RESULT.json)
-come from the retained run. [Full context, failures and negative results](./docs/research/EXPERIMENTS.md)
-remain available.
+There was no measured gain in this run. The useful output is a tested candidate
+and an inspectable reason to leave the original alone. [Earlier configuration
+results](./docs/product-foundation/first-use/HISTORICAL_RESULT.json) and
+[research results, failures and limitations](./docs/research/EXPERIMENTS.md)
+remain available separately.
 
 ## Start here
 
@@ -62,7 +65,7 @@ Use the **[Quickstart](./dsh-plugin/QUICKSTART.md)**. Choose one path:
 | Path | What it does |
 |---|---|
 | [Free installation check](./dsh-plugin/QUICKSTART.md#free-installation-check) | Install the package, discover capabilities, inspect a plan, run local text checks and save the report. No model requests; this checks the product flow. |
-| [Real task starter](./dsh-plugin/QUICKSTART.md#real-task-starter) | Connect your authorized model and run the document-QA task above. Normally at most three inner model requests, with retries disabled. Live acceptance pending. |
+| [Real task starter](./dsh-plugin/QUICKSTART.md#real-task-starter) | Connect your authorized model and run the document-QA task above. Normally at most three inner model requests, with retries disabled; independently exercised through the public guide. |
 
 Developer preview. Requires Linux, Node24+ and an existing DSH installation;
 tested with DSH0.1.2-rc.1 / Cordis4.0.2. Installation does not configure your model

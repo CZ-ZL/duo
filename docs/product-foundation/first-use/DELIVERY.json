@@ -1,18 +1,18 @@
 {
-  "status": "ENGINEERING_DELIVERED_LIVE_ACCEPTANCE_BLOCKED_BY_REGISTRY",
+  "status": "PRODUCT_PATH_VERIFIED_FINAL_DELIVERY_PENDING",
   "goalClosed": false,
   "sourceVersion": "0.6.3",
   "taggedReleaseCreated": false,
   "latestPreviousRelease": "v0.6.2",
-  "testedCommit": "88f1a9929159a789b34253c7854dc81c4810eb12",
-  "runtimeImplementationCommit": "ca5689c2156c27a52b1a3758168a68501f5f636c",
+  "testedCommit": "a367da74e407c231be81ed528f3d02fba82b588a",
+  "runtimeImplementationCommit": "a367da74e407c231be81ed528f3d02fba82b588a",
   "ci": {
-    "conclusion": "success",
-    "headSha": "88f1a9929159a789b34253c7854dc81c4810eb12",
     "status": "completed",
-    "url": "https://github.com/CZ-ZL/duo/actions/runs/35075348488"
+    "conclusion": "success",
+    "headSha": "a367da74e407c231be81ed528f3d02fba82b588a",
+    "url": "https://github.com/CZ-ZL/duo/actions/runs/35078970516"
   },
-  "archiveSha256": "cdaa5f137c9320af71189f92a152bc67cb10ba8ca8c95a6501abb09ccde6ab52",
+  "archiveSha256": "a5244d716bed67bd69648840bd1732c5860f72ca687c1b1f512a91e2e4556a68",
   "publicGuideRun": {
     "status": "PASS",
     "exitCode": 0,
@@ -36,33 +36,34 @@
     "G1": "PASS",
     "G2": "PASS",
     "G3": "PASS",
-    "G4": "BLOCKED",
-    "G5": "BLOCKED",
+    "G4": "PASS",
+    "G5": "PASS",
     "G6": "PASS",
     "G7": "PASS",
-    "G8": "PASS"
+    "G8": "NOT_RUN"
   },
-  "g4g5Blocker": "Owner grant 6 requests / CNY1 is entirely unspent. Two fresh independent Callers stopped at registry TLS during isolated dependency installation; no model execution or candidate evaluation.",
-  "subsequentCommitScope": "Evidence-only update outside the package; all shipped bytes equal CI-tested 88f1a99",
-  "currentInnerModelRequests": 0,
-  "currentInnerCostCny": 0,
+  "subsequentCommitScope": "Final homepage/Quickstart status and evidence update only; runtime and sample evaluator equal live-tested a367da7",
+  "currentInnerModelRequests": 6,
+  "currentInnerCostCny": 0.01585472,
   "callerHostCost": "NOT_METERED_BY_DUO",
   "localComputeCost": "NOT_PRICED",
   "originalTargetUnchanged": true,
   "automaticCandidateAdoption": false,
   "npmPublished": false,
   "visibilityChanged": false,
-  "renderingVerification": "Actual public GitHub HTML contained rendered English and Chinese README articles, scenario/result and start anchors; browser screenshot not taken",
+  "renderingVerification": "Previous public pages verified; current final documentation rendering pending",
   "about": {
     "homepageUrl": "https://github.com/CZ-ZL/duo#start-here",
     "verified": true
   },
   "liveAttempts": [
     "LIVE_ATTEMPT_1.json",
-    "LIVE_ATTEMPT_2.json"
+    "LIVE_ATTEMPT_2.json",
+    "LIVE_ATTEMPT_3.json",
+    "STARTER_RESULT.json"
   ],
-  "remainingAuthorizedRequests": 6,
-  "remainingAuthorizedCostCny": 1,
+  "remainingAuthorizedRequests": 0,
+  "remainingAuthorizedCostCny": 0.98414528,
   "cacheRepairVerification": {
     "status": "PASS",
     "changedPackageFiles": [
@@ -75,6 +76,30 @@
     "secondCallerDependencyInstall": "BLOCKED_REGISTRY_TLS",
     "bilingualShellBlocks": 7,
     "entryLinksChecked": 136,
-    "renderedGitHubGuides": true
+    "renderedGitHubGuides": true,
+    "scope": "Historical cache repair evidence, not current final review"
+  },
+  "liveTestedCommit": "a367da74e407c231be81ed528f3d02fba82b588a",
+  "coreRuntimeUnchanged": true,
+  "monetaryRemainderAllowsRequests": false,
+  "currentStarter": "STARTER_RESULT.json",
+  "currentHomepageReaders": "G2_CURRENT.json",
+  "offlinePublicGuideRun": "OFFLINE_INSTALL.json",
+  "finalDelivery": "PENDING_FINAL_DOC_COMMIT_CI",
+  "archiveScope": "Final documentation archive; exact final-commit CI verification pending",
+  "liveArchiveSha256": "53b03964c4215dbff1a4d130d58a615b939f5462b2e1d784587b0b85b4e05641",
+  "finalReview": {
+    "status": "PASS",
+    "localLinksAndAnchors": 155,
+    "bilingualCommandBlocks": 8,
+    "privacySignatureScan": "PASS",
+    "archiveSha256": "a5244d716bed67bd69648840bd1732c5860f72ca687c1b1f512a91e2e4556a68",
+    "liveArchiveSha256": "53b03964c4215dbff1a4d130d58a615b939f5462b2e1d784587b0b85b4e05641",
+    "changedPackageFilesSinceLiveRun": [
+      "package/QUICKSTART.md",
+      "package/QUICKSTART.zh-CN.md"
+    ],
+    "liveRuntimeAndEvaluatorUnchanged": true,
+    "errors": []
   }
 }

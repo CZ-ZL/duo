@@ -11,7 +11,7 @@ DSH 0.1.2-rc.1 / Cordis 4.0.2。当前是开发者预览版，详见
 
 ## 安装到隔离 profile
 
-0.6.3 是尚未发布的源码预览，真实验收待完成。以下命令把当前公开源码打成
+0.6.3 是尚未打 tag 的源码预览。以下命令把当前公开源码打成
 本地 tarball 再安装；此步骤需要 Git 和 npm，无需安装源码依赖或构建。
 保留 DUO_SOURCE_COMMIT 和 SHA256SUMS。校验文件记录本地产物，不是独立
 签名的发布凭据。上一个 Release 仍是
@@ -99,8 +99,9 @@ cat "$DUO_WORK/report-summary.json"
 
 ## 真实任务 starter
 
-**验收状态：** 已实现并通过离线检查，真实模型与陌生 Caller 验收仍待单独
-授权执行。离线检查不是一次已经跑通的真实演示。
+**验收状态：**独立 Caller 已按公开指南完成真实 starter，使用评估器 v2。
+原版与生成候选平分，最终保留原版，见[运行记录](https://github.com/CZ-ZL/duo/blob/main/docs/product-foundation/first-use/STARTER_RESULT.json)。
+这验证产品使用路径；本次没有独立 Slow 或 final 测试。
 
 样例 Agent 根据虚构的部署手册回答问题。DUO 先测原提示词，再让模型生成一个
 Delta，执行候选并测量输出。评估器检查实际命令、端点、引用，以及文档未提供

@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "sourceCommit": "9b358fc94669b6d3848212cef0ef45432152aff3",
+  "archiveSha256": "15aca4a6ed9c69a0d3e0c54362476089c2c237ea9fcd96909677cabfccc491a5",
+  "dependencyMode": "EXISTING_HOST_PEERS_OFFLINE",
+  "credentialEnvironmentInherited": false,
+  "modelRequests": 0,
+  "costCny": 0,
+  "originalUnchanged": true,
+  "repeatedReportEqual": true,
+  "exitCode": 0,
+  "commands": "Published install block with public offline replacement plus free plan/run/report blocks; SHA and repeated-report verification added",
+  "evidenceHashes": {
+    "commands.sh": "9bb74d0bfdceaeaf21251104f62212c2d6aad736ed71155b6170566b7f305f17",
+    "stdout.log": "e5c3fea1a6e2162920728e4585b42fa38fb4dabadb596d54d464e4fd1a010b35",
+    "stderr.log": "4afa15ed6c0e5711621287c553dc3fb968115c7b54731c374989fad8b4b38287",
+    "exit.json": "8d0a3c4f38724d315722e1814daa84564776bbbb93cbc19278fa2befe8105836"
+  },
+  "mechanism": "Existing installer option exposed in public Quickstart; no runtime or dependency resolver changes",
+  "preflight": {
+    "actualInstalledProfile": "plan/run/report PASS",
+    "dependencyMode": "EXISTING_HOST_PEERS_OFFLINE"
+  }
+}

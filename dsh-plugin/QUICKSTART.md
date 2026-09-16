@@ -14,7 +14,7 @@ account or authorize spending.
 
 ## Install once in an isolated profile
 
-Version 0.6.3 is an unreleased source preview while live acceptance is pending.
+Version 0.6.3 is an untagged source preview.
 These commands package the current public source locally, then install that
 archive. Git and npm are needed for this step; no source dependencies or build
 are required. Keep DUO_SOURCE_COMMIT and SHA256SUMS with the report. The checksum
@@ -112,9 +112,10 @@ same describe/plan/run/report commands. No Generator runs in that mode.
 
 ## Real task starter
 
-**Acceptance status:** the starter is implemented and checked offline. Real-model
-and independent-Caller acceptance are pending a separately authorized run. Do not
-treat the local checks as a completed live demonstration.
+**Acceptance status:** an independent Caller completed the real starter using
+this public guide, with evaluator v2. The original and generated candidate tied;
+the original was retained. See the [recorded run](https://github.com/CZ-ZL/duo/blob/main/docs/product-foundation/first-use/STARTER_RESULT.json).
+This validates the product path, without an independent Slow or final test.
 
 The sample Agent answers questions about a fictional deployment runbook. DUO
 measures the original prompt, asks the model for one prompt Delta, executes that

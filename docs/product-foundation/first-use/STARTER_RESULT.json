@@ -1,0 +1,282 @@
+{
+  "gateG4": "PASS",
+  "gateG5": "PASS",
+  "sourceCommit": "a367da74e407c231be81ed528f3d02fba82b588a",
+  "packageVersion": "0.6.3",
+  "evaluator": {
+    "id": "starter-runbook-fast",
+    "version": "2",
+    "scoring": "Exact requested fact/citation, with whitespace trimming and one complete inline-code wrapper ignored; literal answerExact retained"
+  },
+  "runId": "d1ed04392f66bb08c71954bb3a9b68b25a323dc94cfcca27be77fe1d718896d4",
+  "status": "completed",
+  "optimizationMode": "single_fidelity",
+  "slowMode": "unavailable",
+  "selectedId": "baseline",
+  "selectionOutcome": "baseline_retained",
+  "conclusion": "insufficient_evidence",
+  "improvementProven": false,
+  "originalTargetUnchanged": true,
+  "overlaySystemPromptVerified": true,
+  "modelRequests": 3,
+  "costCny": 0.00735072,
+  "callerHostCost": "NOT_METERED_BY_DUO",
+  "localCompute": "NOT_PRICED",
+  "retryCount": 0,
+  "unknownFees": false,
+  "independentCaller": {
+    "context": "Fresh session; public guides plus owner host/model reference/workspace and bounded authority only",
+    "implementerInterventions": 0,
+    "implementationSourceRead": false,
+    "firstEffectiveCompletionUtc": "2026-09-16T09:25:40.483Z",
+    "timeToFirstCompletionSecondsApprox": 183,
+    "docsRead": [
+      "Public Quickstart",
+      "Public Agent Guide",
+      "Current Status",
+      "Required DSH skill/mirror safety notice",
+      "Official model tariff",
+      "Owner model JSON"
+    ],
+    "recovery": "Public documented existing-host installation; raw public GitHub/official-page fetch after web-tool timeout; no hidden wiring"
+  },
+  "candidates": [
+    {
+      "id": "baseline",
+      "version": "aecbcad2f3f1c82d817ac7812f943339a567079d519e5c69061f163ddc66dfdb",
+      "parentId": null,
+      "generation": 0,
+      "delta": null,
+      "hypothesis": null,
+      "fast": {
+        "candidateId": "baseline",
+        "costCny": 0,
+        "costEvidence": null,
+        "currency": "CNY",
+        "dataId": "parcel-runbook-development-v1",
+        "evaluatorId": "starter-runbook-fast",
+        "evidence": [
+          {
+            "correct": 4,
+            "dataDigest": "9c69a954ff60acbee0e659ec21220afa5bca080df12e9f7939d227c1358fc5a4",
+            "kind": "runbook-task-checks",
+            "rows": [
+              {
+                "answerCorrect": true,
+                "answerExact": true,
+                "citationCorrect": true,
+                "taskId": "deploy",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "answerExact": true,
+                "citationCorrect": true,
+                "taskId": "readiness",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "answerExact": true,
+                "citationCorrect": true,
+                "taskId": "rollback",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "answerExact": true,
+                "citationCorrect": true,
+                "taskId": "sla",
+                "valid": true
+              }
+            ],
+            "total": 4
+          }
+        ],
+        "metrics": {
+          "sample_size": 4,
+          "task_accuracy": 1
+        },
+        "ok": true,
+        "tier": "fast",
+        "version": "2",
+        "state": "EVALUATED"
+      },
+      "slow": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "final": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "status": "champion",
+      "fastComparison": {
+        "verdict": "not_better",
+        "score": 1,
+        "rank": 0,
+        "decisionBasis": "weighted_score",
+        "constraintViolations": []
+      },
+      "selected": true
+    },
+    {
+      "id": "dl-0001",
+      "version": "28b2c58f6cc950d248f91e49765d203be063e5c23b503835692d78686f1834d2",
+      "parentId": "baseline",
+      "generation": 1,
+      "delta": {
+        "kind": "cordis-overlay",
+        "persona": "You are {{model}}, working in {{cwd}}. Answer strictly from the supplied documentation; never use outside knowledge. First locate the exact span in the document that contains the requested command, endpoint, or value, then quote it verbatim in your reasoning before answering. Give the precise answer asked for, using the document's exact wording, with no paraphrase and no added detail. Cite the specific source file and the line range where the quoted span appears; if the quoted span is absent, do not answer from memory. When the documentation does not contain the answer, state exactly NOT_IN_RUNBOOK with no citations. Keep answers concise and copy values character-for-character, including flags, punctuation, and path spelling.\n",
+        "target": "system-prompt"
+      },
+      "hypothesis": "Refining the champion by mandating verbatim quotation of the exact supporting span and requiring the citation to name the source where that quoted span literally appears will reduce paraphrase drift and unsupported citations, improving exact-answer accuracy and citation precision on grounded document tasks.",
+      "fast": {
+        "candidateId": "dl-0001",
+        "costCny": 0,
+        "costEvidence": null,
+        "currency": "CNY",
+        "dataId": "parcel-runbook-development-v1",
+        "evaluatorId": "starter-runbook-fast",
+        "evidence": [
+          {
+            "correct": 4,
+            "dataDigest": "9c69a954ff60acbee0e659ec21220afa5bca080df12e9f7939d227c1358fc5a4",
+            "kind": "runbook-task-checks",
+            "rows": [
+              {
+                "answerCorrect": true,
+                "answerExact": false,
+                "citationCorrect": true,
+                "taskId": "deploy",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "answerExact": false,
+                "citationCorrect": true,
+                "taskId": "readiness",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "answerExact": false,
+                "citationCorrect": true,
+                "taskId": "rollback",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "answerExact": true,
+                "citationCorrect": true,
+                "taskId": "sla",
+                "valid": true
+              }
+            ],
+            "total": 4
+          }
+        ],
+        "metrics": {
+          "sample_size": 4,
+          "task_accuracy": 1
+        },
+        "ok": true,
+        "tier": "fast",
+        "version": "2",
+        "state": "EVALUATED"
+      },
+      "slow": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "final": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "status": "rejected",
+      "fastComparison": {
+        "verdict": "not_better",
+        "score": 1,
+        "rank": 1,
+        "decisionBasis": "weighted_score",
+        "constraintViolations": []
+      },
+      "selected": false
+    }
+  ],
+  "modelReceipts": [
+    {
+      "operation": "generate",
+      "candidateId": null,
+      "candidateVersion": null,
+      "sessionId": "duo-42c6c013-3c3b-4a41-8ebe-16bdb23f2885",
+      "status": "completed",
+      "costCny": 0.00223072,
+      "attempts": 1,
+      "usage": {
+        "inputTokens": 196,
+        "outputTokens": 226,
+        "totalTokens": 1190,
+        "cacheReadTokens": 768
+      }
+    },
+    {
+      "operation": "execute",
+      "candidateId": "dl-0001",
+      "candidateVersion": "28b2c58f6cc950d248f91e49765d203be063e5c23b503835692d78686f1834d2",
+      "sessionId": "duo-d4ea8354-9b69-419d-8e7b-424609b04852",
+      "status": "completed",
+      "costCny": 0.002684,
+      "attempts": 1,
+      "usage": {
+        "inputTokens": 990,
+        "outputTokens": 88,
+        "totalTokens": 1078,
+        "cacheReadTokens": 0
+      }
+    },
+    {
+      "operation": "execute",
+      "candidateId": "baseline",
+      "candidateVersion": "aecbcad2f3f1c82d817ac7812f943339a567079d519e5c69061f163ddc66dfdb",
+      "sessionId": "duo-7ad93f45-83d3-49c9-bd47-fdeb070e771a",
+      "status": "completed",
+      "costCny": 0.002436,
+      "attempts": 1,
+      "usage": {
+        "inputTokens": 890,
+        "outputTokens": 82,
+        "totalTokens": 972,
+        "cacheReadTokens": 0
+      }
+    }
+  ],
+  "sourceArtifacts": {
+    "CALLER_RECORD.md": "79092d69a18ebd900adb1ea5559855ab8df88b8d00a17a2289b3472833f2e7c0",
+    "accounting-audit.json": "123de0225e60faf145713d1ef9eb0c089044b1c26e3189a54c4042455eb38677",
+    "public-call-index.json": "9c58a38171affd816b3c0291952eee8ae4c5102429408e2dc7df8442e45b1cf0",
+    "duo-qa-run/report.json": "633e7184bbe199eefe3326dee77c4de37dc5caaec376adbbebb3d516a2937b34"
+  },
+  "limits": [
+    "Four public development questions, one generation; no independent Slow or final evidence",
+    "Model observations are single executions, not method comparison",
+    "Usage-based CNY accounting is not a provider invoice",
+    "Prior evaluator v1 results retained separately in LIVE_ATTEMPT_3.json, never pooled or overwritten"
+  ],
+  "frozenTariff": {
+    "id": "deepseek-flash-cny-20260916",
+    "currency": "CNY",
+    "inputCnyPerMillion": 2,
+    "cacheReadCnyPerMillion": 0.04,
+    "outputCnyPerMillion": 8,
+    "schedule": "deepseek-weekday-utc-v1",
+    "source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+    "verifiedDate": "2026-09-16",
+    "rateClass": "peak"
+  },
+  "usageConvention": "inputTokens are uncached input; cacheReadTokens are counted separately in these DSH receipts"
+}

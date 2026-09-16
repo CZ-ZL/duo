@@ -3,9 +3,11 @@
 ## 0.6.3 — unreleased source preview
 
 - Package bilingual Quickstarts covering installation through saved reports.
-- Add one grounded-QA starter using existing model providers and a local factual-answer/citation evaluator. Live acceptance remains pending authorization.
+- Add one grounded-QA starter using existing model providers and a local factual-answer/citation evaluator. An independent Caller completed a real run: original and candidate 4/4, original retained; no optimization gain claimed.
 - Refuse unsupported model setup, missing paid authority or missing credentials before dispatch with an actionable diagnostic. Free examples still forward no credentials.
-- Put an extracted, explicitly historical result on the homepage; preserve all research conclusions.
+- Put the current source-extracted starter result on both homepages; preserve historical results and all research conclusions.
+- Document existing-host offline installation alongside the registry path and isolate package-manager caches.
+- Version the sample evaluator as v2: normalize one inline-code wrapper while retaining literal matches; preserve the v1 1/4 result and its cost.
 - Separate Agent lifecycle instructions from provider/reference detail and repair the stale current-model guide path.
 
 
@@ -34,7 +36,7 @@
 - Add a bounded pre-publication audit, release/rollback guide, missing fixture
   attribution and baseline-repair CI evidence collection.
 
-See [0.6.1 release notes](./docs/releases/0.6.1/RELEASE_NOTES.md) for exact artifact and evidence
+See [0.6.1 release notes](./0.6.1/RELEASE_NOTES.md) for exact artifact and evidence
 limits. Exact-code private CI passed fresh-store installation, the complete
 product gate and dependency advisory queries. Public exposure is not authorized;
 no v0.6.1 tag or npm publication was made. Historical results are unchanged.
