@@ -6,20 +6,19 @@
 
 [![产品验证](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
-DUO 是一个 DeepSeek Harness（DSH）插件，用来试改 Agent 的提示词或支持的组件配置。你给它测试方法和预算，它负责测原版、生成候选、跑测试，留下每个版本的改动、结果和花费。
+Agent 给你一版改法，解释得也挺有道理。真要换掉原版，你还是想把两版放在一起跑跑：哪些题做对了，有没有改坏别的地方，多花的钱值不值。
 
-也可以先只测原版，看过结果再决定要不要继续改。试了一轮没有更好的版本，就保留原版。是否采用某次改动，由你决定。
+DUO 是一个 DeepSeek Harness（DSH）插件，让 Agent 把这些尝试跑完、记下来。你给它要改的对象、测试方法和预算，它会先测原版，再试其他版本。提示词和部分组件配置已经可以这样用，其他对象需要接适配器，具体见[当前支持范围](./dsh-plugin/CURRENT_STATUS.md)。
 
-## 它会帮你做哪些事
+跑完以后，你可以翻到每一版改了什么、测试结果如何、为什么被留下或淘汰，以及花了多少钱。没成功的尝试也在里面。如果这一轮没有找到值得替换的版本，就继续用原版。DUO 不会替你把候选部署上去。
 
-Agent 可以通过 DUO 的工具准备实验、给你看计划、运行并读取报告，使用 DSH 已经接好的模型、工具和权限。
+## 一次实验怎么跑
 
-- 用你的测试判断好坏。评估器、Target 适配器、候选生成器和选择策略都能按公开接口替换。
-- 先筛选，再补测。Fast 跑初步测试；符合条件的候选再由 Slow 按计划补测，反馈给后续尝试。没有额外测试，也能使用基础优化模式。
-- 失败的尝试也留下来。你能查到每次改了什么、得了多少分、为什么被选中或淘汰，以及费用凭据。费用不明时，后续付费操作会停下；调用 DUO 的 Agent 自身费用需要宿主另设预算。
-- 下次实验可以接着用兼容的开发历史。最终测试的结果不会反馈给搜索；在支持的已结算检查点恢复运行时，沿用原来的额度。
+可以先只测原版。连要改哪里都还不清楚时，先看一次评估结果，比急着生成新版本有用。目标或测试没准备好，Agent 可以调用准备工具，列出还缺什么。
 
-还没想好目标或测试方法时，准备工具会列出缺少的条件。能改哪些东西取决于接入的适配器；提示词、部分配置字段和自定义适配器的要求见[当前支持范围](./dsh-plugin/CURRENT_STATUS.md)。
+开始尝试改法后，Fast 会先跑一轮测试。你还有额外任务、边界测试或别的评估手段，就可以让 Slow 按计划接着检查入选版本，再把允许的反馈带到下一轮。没有这些额外检查，也能用基础模式；报告会写清楚这次测到了哪里。
+
+测试方法由你提供，生成器和选择策略也可以换。DUO 使用 DSH 已经接好的模型、工具和权限。预算约束 DUO 内部的操作，调用它的 Agent 自身花费需要在宿主另外设限。费用不明时，后续付费操作会停下。
 
 ## 让你的 Agent 使用
 
@@ -42,7 +41,7 @@ Agent 可以通过 DUO 的工具准备实验、给你看计划、运行并读取
 | [GEPA / optimize_anything](https://gepa-ai.github.io/gepa/api/optimize_anything/optimize_anything/) | 根据评分与反馈搜索文本形式的候选，支持配置优化引擎和预算，也提供 [Agent skill](https://gepa-ai.github.io/gepa/guides/agent-skill/)。 | 需要优化提示词、代码或其他可表示为文本的对象。 |
 | DUO | 在 DSH 中试改候选、按需补测，记录结果和花费。 | 已在用 DSH，希望让 Agent 通过工具完成这些实验。 |
 
-这里选择 DUO 的主要理由是它接在 DSH 里。其他工具也有 Agent 接口、扩展机制和预算控制。DUO 目前是开发者预览版，支持提示词和部分配置字段，其他对象需要自定义适配器。
+如果你已经在 DSH 里工作，DUO 可以直接接着用那里的模型、工具和权限。至于双环是否更适合你的任务，需要跑过才知道。我们做过的[对照实验](./docs/research/EXPERIMENTS.md)还没有证明它比合理的单环更好或更便宜，失败和后续诊断都保留着。当前版本仍是开发者预览。
 
 ## 先运行一个本地示例
 
@@ -104,12 +103,14 @@ Fast 生成改法、跑测试，再用开发集上的结果指导下一次尝试
 
 要换优化对象，需要提供 Target 适配器和匹配的执行组件。候选怎么生成、怎么评估和选择、如何使用历史，也有对应的替换接口，见 [Provider 指南](./dsh-plugin/PROVIDERS.md)。模型接入、工具、权限和插件生命周期由 DSH/Cordis 管理。
 
+做下一次实验时，可以通过 warm start 复用兼容的开发历史。最终测试的结果不会混进搜索。在支持的已结算检查点恢复运行，也会沿用原有额度。
+
 Provider 是受信任的进程内代码；恢复仅覆盖支持的已结算检查点。使用前查阅[能力边界](./dsh-plugin/CURRENT_STATUS.md)与[安全说明](./dsh-plugin/SECURITY.md)。
 
 ## 开发、证据与来源
 
 - 开发：[贡献说明](./CONTRIBUTING.md)、[测试](./docs/development/TESTING.md)、[目录说明](./docs/development/REPOSITORY_LAYOUT.md)。
 - 版本与验收：[发布索引](./docs/releases/README.md)、[变更记录](./docs/releases/CHANGELOG.md)。
-- 研究：[实验结果](./docs/research/EXPERIMENTS.md)。研究已暂停。已有实验尚未证明 DUO 相比合理单环有普遍的质量或总费用优势。产品测试通过，只说明这套流程能按预期运行。
+- 研究：[实验结果](./docs/research/EXPERIMENTS.md)。方法研究已暂停，目前先把安装、使用和扩展这几件事做好。产品测试通过，只说明这套流程能按预期运行。
 
 双环思路受 Wang 等人的 [*Self-Evolving Recommendation System*](https://arxiv.org/abs/2602.10226) 启发。DUO 是独立的 Agent 组件适配，不继承论文的实验结论。运行基础为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 和 [Cordis](https://github.com/cordiverse/cordis)。代码采用 [MIT 许可](./LICENSE)，详细归属见[来源与第三方说明](./docs/THIRD_PARTY_NOTICES.md)。

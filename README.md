@@ -6,20 +6,19 @@
 
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
-DUO is a DeepSeek Harness (DSH) plugin for trying changes to an Agent's prompt or supported component settings. Give it tests and a budget. It evaluates the original, generates alternatives, runs them, and keeps the changes, results and costs for you to review.
+An Agent suggests a change and gives you a convincing explanation. Before keeping it, you'd probably want to run the original alongside it, check whether anything got worse, and see what the extra work cost.
 
-You can start by testing the original before asking it to try anything new. If none of the changes earn their place, keeping the original is a valid outcome. You decide whether to apply a candidate.
+DUO is a DeepSeek Harness (DSH) plugin that lets your Agent run and keep track of those attempts. You give it something to change, tests and a budget. It evaluates the original, then tries other versions. Prompts and some component settings are supported today; other targets need adapters. See [current support](./dsh-plugin/CURRENT_STATUS.md) for the details.
 
-## What it handles
+After a run, you can look through each version's changes, test results, selection decisions and costs. Failed attempts stay in the record too. If the run doesn't find a replacement worth keeping, you can carry on with the original. DUO won't deploy a candidate for you.
 
-Your Agent can prepare an experiment, show you the plan, run it and read the report through DUO's tools. It uses the model, tools and permissions already connected to DSH.
+## Running an experiment
 
-- Use your own tests. Evaluators, Target adapters, generators and selection policies can be replaced through the public interfaces.
-- Spend extra testing effort on candidates that pass the initial screen. Fast runs the initial tests; Slow adds the further checks specified in the plan and returns feedback for later attempts. With no additional tests, you can still run basic optimization.
-- Review failed attempts as well as successes. The report keeps candidate changes, scores, selection reasons and cost receipts. Unknown costs block further paid work; the calling Agent's own model costs need a separate host budget.
-- Reuse compatible development history in a later run. Final-test evidence stays out of search. Recovery is supported at settled checkpoints and keeps the original allowance.
+You can start by evaluating the original. If you aren't sure what to change, that gives you something to work from before generating new versions. When the goal or tests aren't ready, your Agent can use the preparation tools to find out what's missing.
 
-If you haven't settled on a goal or tests, the preparation tools show what is still missing. What DUO can change depends on the connected adapter. See [current support](./dsh-plugin/CURRENT_STATUS.md) for prompts, the limited configuration target and custom-adapter requirements.
+Once you start trying changes, Fast runs the initial tests. If you have extra tasks, boundary checks or another way to evaluate a candidate, Slow can follow the plan to check the admitted versions further and return permitted feedback to the next round. Without those extra checks, basic mode still works. The report says how far the testing went.
+
+You supply the tests, and you can replace the generator or selection policy. DUO uses the models, tools and permissions you've already connected to DSH. Its budget covers operations inside DUO; the Agent calling it needs its own host budget. Unknown costs block further paid work.
 
 ## Use from your Agent
 
@@ -42,7 +41,7 @@ There is overlap with other evaluation and optimization tools. This is a guide t
 | [GEPA / optimize_anything](https://gepa-ai.github.io/gepa/api/optimize_anything/optimize_anything/) | Search over scorable text artifacts with evaluator feedback, configurable engines and budgets. It also provides an [Agent skill](https://gepa-ai.github.io/gepa/guides/agent-skill/). | You want an optimizer for prompts, code or other text-represented candidates. |
 | DUO | Run candidate changes inside DSH, add further tests when available, and keep the results and costs. | You use DSH and want your Agent to run these experiments through its tools. |
 
-DSH integration is the main reason to choose DUO here. Other tools also offer Agent access, extensions and budget controls. DUO is a developer preview: it supports prompts, has a limited built-in config adapter, and needs custom adapters for other targets.
+If you already work in DSH, DUO can use the models, tools and permissions you have there. Whether two loops suit your task is something to test. Our completed [comparison](./docs/research/EXPERIMENTS.md) did not establish that DUO was better or cheaper than a reasonable single loop. We've kept the failures and follow-up diagnostics. The current version is still a developer preview.
 
 ## Try a local example
 
@@ -104,12 +103,14 @@ Additional tasks or boundary tests count as `expanded_evidence`. Calling evidenc
 
 To change what DUO tests, supply a Target adapter and matching work providers. You can also replace how it generates candidates, evaluates them, selects them or uses history. The [Provider guide](./dsh-plugin/PROVIDERS.md) documents the interfaces and types. DSH/Cordis manages model access, tools, permissions and plugin lifecycle.
 
+Warm start lets a later experiment reuse compatible development history. Final-test results stay out of search. Recovery at supported settled checkpoints keeps the original allowance.
+
 Providers are trusted in-process code. Recovery covers supported settled checkpoints. Review [capability boundaries](./dsh-plugin/CURRENT_STATUS.md) and [security guidance](./dsh-plugin/SECURITY.md) before use.
 
 ## Development, evidence and origins
 
 - Development: [contributing](./CONTRIBUTING.md), [tests](./docs/development/TESTING.md), [repository layout](./docs/development/REPOSITORY_LAYOUT.md).
 - Versions and acceptance: [release index](./docs/releases/README.md), [changelog](./docs/releases/CHANGELOG.md).
-- Research: [experiment results](./docs/research/EXPERIMENTS.md). Research is paused. The experiments so far have not established a general quality or total-cost advantage over a reasonable single loop. Passing the product tests shows that the workflow runs as intended.
+- Research: [experiment results](./docs/research/EXPERIMENTS.md). Method research is paused while we focus on installation, use and extension. Passing the product tests shows that the workflow runs as intended.
 
 The two-loop approach was inspired by Wang et al.'s [*Self-Evolving Recommendation System*](https://arxiv.org/abs/2602.10226). DUO is an independent adaptation to Agent components and does not inherit the paper's experimental results. It runs on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) and [Cordis](https://github.com/cordiverse/cordis). Code is [MIT licensed](./LICENSE); see [origins and third-party notices](./docs/THIRD_PARTY_NOTICES.md) for attribution.
