@@ -1,53 +1,48 @@
 # DUO
 
-**Let your Agent try changes. Compare test results and costs before you decide.**
-
 **English** · [简体中文](./README.zh-CN.md)
 
 [Install](./dsh-plugin/README.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [Documentation](./docs/README.md) · [Origins](./docs/THIRD_PARTY_NOTICES.md)
 
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
-Changing an Agent means more than editing a prompt: you need to run tests, compare versions and keep track of what each attempt cost. **DUO puts that work into one repeatable workflow inside DeepSeek Harness (DSH).**
+DUO is a DeepSeek Harness (DSH) plugin for trying changes to an Agent's prompt or supported component settings. Give it tests and a budget. It evaluates the original, generates alternatives, runs them, and keeps the changes, results and costs for you to review.
 
-Choose a prompt or supported component setting, define how to judge it, and set a budget. DUO measures the original, generates alternative versions and tests them. You get the proposed changes, evaluation results and cost records to decide what to keep. If the evidence does not justify a replacement, DUO can recommend keeping the original. Applying a change remains your decision.
+You can start by testing the original before asking it to try anything new. If none of the changes earn their place, keeping the original is a valid outcome. You decide whether to apply a candidate.
 
-## Why choose DUO?
+## What it handles
 
-DUO is built for teams already using DSH who want an Agent to run improvement experiments through public tools, with an inspectable plan and a record of every decision.
+Your Agent can prepare an experiment, show you the plan, run it and read the report through DUO's tools. It uses the model, tools and permissions already connected to DSH.
 
-| Feature | What it gives you |
-|---|---|
-| **An Agent-operated DSH workflow** | Discover capabilities, prepare inputs, inspect a plan, run and retrieve a report through public tools. Reuse DSH's model, tool and permission services. |
-| **Search and additional validation have separate jobs** | Fast screens changes with available tests. Slow follows the frozen plan to acquire more evidence, such as additional tasks or boundary checks, for admitted candidates; permitted feedback informs later search. Basic optimization can run without extra evidence and reports that limitation. |
-| **Your tests and replaceable components** | Bring an executable evaluator; replace the Target adapter, Generator or selection policy through supported interfaces. This lets you change what is tested and how candidates are chosen without editing DUO Core. |
-| **A budget and a record for each attempt** | Inspect candidate changes, results, failures, selection reasons and inner-operation cost receipts. Unknown costs stop paid work. The Calling Agent's own costs need a separate host budget. |
-| **History you can reuse with clear boundaries** | Warm start screens compatible development history. Final evidence stays out of search; recovery preserves the original allowance at supported settled checkpoints. |
+- Use your own tests. Evaluators, Target adapters, generators and selection policies can be replaced through the public interfaces.
+- Spend extra testing effort on candidates that pass the initial screen. Fast runs the initial tests; Slow adds the further checks specified in the plan and returns feedback for later attempts. With no additional tests, you can still run basic optimization.
+- Review failed attempts as well as successes. The report keeps candidate changes, scores, selection reasons and cost receipts. Unknown costs block further paid work; the calling Agent's own model costs need a separate host budget.
+- Reuse compatible development history in a later run. Final-test evidence stays out of search. Recovery is supported at settled checkpoints and keeps the original allowance.
 
-You can start with evaluation only. If the goal or tests are unclear, the calling Agent can use DUO's preparation tools to identify what is missing before a run. Supported changes depend on the connected adapter; [current support](./dsh-plugin/CURRENT_STATUS.md) lists prompt support, the limited configuration target and custom-adapter requirements.
+If you haven't settled on a goal or tests, the preparation tools show what is still missing. What DUO can change depends on the connected adapter. See [current support](./dsh-plugin/CURRENT_STATUS.md) for prompts, the limited configuration target and custom-adapter requirements.
 
 ## Use from your Agent
 
-For example, ask your Agent:
+Once the plugin and work providers are set up, you can ask:
 
-> “Check where this Agent fails my existing tests. Then try changes within a ¥2 budget and show me the results and costs. Leave the original unchanged.”
+> “Run this Agent against my tests and show me where it fails. Then try a few changes, spend no more than ¥2, and show me what happened. Don't apply anything yet.”
 
-Install the [versioned plugin package](./dsh-plugin/README.md) into your DSH profile, then start with `dualloop_describe`. Your Agent uses the public tools to check suitability, prepare the tests and providers, inspect the plan, run within your authorization and retrieve the report. Model access and executable evaluators must be connected; the [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) explains the setup.
+Install the [plugin package](./dsh-plugin/README.md) into your DSH profile. Your Agent starts with `dualloop_describe` to check what is available and what needs setting up. The [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) covers connecting models and evaluators, inspecting a plan, running it and reading the results.
 
-Use the release tarball linked above: the installable bundle lives in `dsh-plugin/`, while the repository root contains development tools. Community catalog submission status is tracked [here](./docs/product-foundation/DISTRIBUTION.md).
+Use the Release tarball in the installation guide. The installable package lives in `dsh-plugin/`; the repository root is for development. The [distribution notes](./docs/product-foundation/DISTRIBUTION.md) track the community catalog submission.
 
-## How does DUO fit alongside other tools?
+## Choosing a tool
 
-These tools overlap. The table compares documented workflows and intended use, not benchmark performance; official sources were checked on September 16, 2026.
+There is overlap with other evaluation and optimization tools. This is a guide to their documented uses; it does not rank their performance. The linked official sources were checked on September 16, 2026.
 
 | Tool | Documented focus | When to consider it |
 |---|---|---|
 | [Promptfoo](https://www.promptfoo.dev/docs/intro/) | Evaluation and red teaming, configurable assertions, comparison views and CI integration. | You mainly need to test and compare LLM application behavior. |
 | [DSPy](https://dspy.ai/diving-deeper/choosing-an-optimizer/) | Build LM programs and optimize their instructions, examples or, with a suitable optimizer, model weights against a metric. | You develop in DSPy and want to optimize a program within that framework. |
 | [GEPA / optimize_anything](https://gepa-ai.github.io/gepa/api/optimize_anything/optimize_anything/) | Search over scorable text artifacts with evaluator feedback, configurable engines and budgets. It also provides an [Agent skill](https://gepa-ai.github.io/gepa/guides/agent-skill/). | You want an optimizer for prompts, code or other text-represented candidates. |
-| **DUO** | A DSH-native experiment lifecycle combining candidate search, optional additional evidence, replaceable policies and budget receipts. | You already use DSH and want an Agent to prepare, run and explain bounded experiments on supported components. |
+| DUO | Run candidate changes inside DSH, add further tests when available, and keep the results and costs. | You use DSH and want your Agent to run these experiments through its tools. |
 
-DUO's emphasis is that combination inside DSH. Agent access, extensibility and budget controls are shared capabilities, not exclusive claims. Current support is a developer preview: prompts are supported, the built-in config adapter is limited, and other targets need adapters. A general quality or cost advantage has not been established.
+DSH integration is the main reason to choose DUO here. Other tools also offer Agent access, extensions and budget controls. DUO is a developer preview: it supports prompts, has a limited built-in config adapter, and needs custom adapters for other targets.
 
 ## Try a local example
 
@@ -62,7 +57,7 @@ node dsh-plugin/bin/duo.mjs call --root /tmp/duo-demo --tool dualloop_describe
 node dsh-plugin/bin/duo.mjs call --root /tmp/duo-demo --tool dualloop_plan --args '{"view":"summary"}'
 ```
 
-This creates an isolated example and shows its plan. Follow the [quickstart](./docs/QUICKSTART.md) to inspect the plan, run it and retrieve the report. The example measures local text formatting through real DSH tools at **CNY 0** inner cost. It demonstrates the product workflow, not LLM task quality.
+This creates an isolated example and shows its plan. Follow the [quickstart](./docs/QUICKSTART.md) to run it and retrieve the report. The example checks local text formatting through DSH tools, with no model calls or fees. It lets you try the workflow; it does not measure an LLM's task performance.
 
 For an existing profile, see [package installation](./dsh-plugin/README.md). Tested host versions and platform boundaries are recorded in [current capabilities](./dsh-plugin/CURRENT_STATUS.md) and the [release index](./docs/releases/README.md).
 
@@ -71,9 +66,9 @@ For an existing profile, see [package installation](./dsh-plugin/README.md). Tes
 | Your need | Preset | Behavior |
 |---|---|---|
 | Measure the original first | `evaluate` | Evaluation only |
-| Optimize with an available measurement | `optimize-basic` | Single-fidelity search and selection |
-| Use Fast plus available additional evidence | `optimize-dual` | Dual-loop search, validation and feedback |
-| Negotiate from connected capabilities | `optimize-auto` | Explicit mode and downgrade reporting in plan and result |
+| Try changes using the tests you have | `optimize-basic` | Generate, test and select candidates |
+| Add further checks after Fast screening | `optimize-dual` | Search with Fast, then use Slow checks and feedback |
+| Choose a mode from the connected providers | `optimize-auto` | Record the chosen mode and any downgrade in the plan and result |
 
 [Runnable examples](./dsh-plugin/examples/product/README.md) cover custom Targets, BYO Evaluators, component replacement and warm start. An arbitrary file is not automatically a supported Target: it needs a compatible adapter and measurement.
 
@@ -101,13 +96,13 @@ flowchart TD
     Q -->|Stop| R
 ```
 
-Fast iterates on development evidence. Slow identifies evidence gaps, acquires planned additional measurements and produces feedback for later search. One Controller schedules both loops; two resident Agents are not required. Final evidence never feeds back into search.
+Fast generates changes, tests them and uses the development results to guide the next attempt. Slow checks what remains untested, runs the additional measurements allowed by the plan, and sends feedback to later generations. One Controller schedules both loops. Final-test results stay out of search.
 
-Slow does not mean a more expensive model. Broader coverage is labeled `expanded_evidence`; `high_fidelity` requires a stated basis relevant to the objective. Without additional evidence, basic optimization still runs and reports single fidelity. See the [architecture](./docs/ARCHITECTURE.md) and [evidence strategy](./dsh-plugin/EVIDENCE_STRATEGY.md).
+Additional tasks or boundary tests count as `expanded_evidence`. Calling evidence `high_fidelity` requires an explanation of why it better measures the objective; a higher model price is not enough. Without additional evidence, basic optimization still runs and reports that limitation. See the [architecture](./docs/ARCHITECTURE.md) and [evidence strategy](./dsh-plugin/EVIDENCE_STRATEGY.md).
 
 ## Integrate and extend
 
-Target, Generator, Executor, Evaluator, comparison and promotion policies, feedback and history strategies compose through existing service interfaces. DSH/Cordis supplies models, tools, permissions and lifecycle. Public contracts and type declarations are documented in the [Provider guide](./dsh-plugin/PROVIDERS.md).
+To change what DUO tests, supply a Target adapter and matching work providers. You can also replace how it generates candidates, evaluates them, selects them or uses history. The [Provider guide](./dsh-plugin/PROVIDERS.md) documents the interfaces and types. DSH/Cordis manages model access, tools, permissions and plugin lifecycle.
 
 Providers are trusted in-process code. Recovery covers supported settled checkpoints. Review [capability boundaries](./dsh-plugin/CURRENT_STATUS.md) and [security guidance](./dsh-plugin/SECURITY.md) before use.
 
@@ -115,6 +110,6 @@ Providers are trusted in-process code. Recovery covers supported settled checkpo
 
 - Development: [contributing](./CONTRIBUTING.md), [tests](./docs/development/TESTING.md), [repository layout](./docs/development/REPOSITORY_LAYOUT.md).
 - Versions and acceptance: [release index](./docs/releases/README.md), [changelog](./docs/releases/CHANGELOG.md).
-- Research: [historical results](./docs/research/EXPERIMENTS.md). Method research is paused. A general quality or total-cost advantage over a reasonable single loop has not been established; product acceptance does not establish method efficacy.
+- Research: [experiment results](./docs/research/EXPERIMENTS.md). Research is paused. The experiments so far have not established a general quality or total-cost advantage over a reasonable single loop. Passing the product tests shows that the workflow runs as intended.
 
 The two-loop approach was inspired by Wang et al.'s [*Self-Evolving Recommendation System*](https://arxiv.org/abs/2602.10226). DUO is an independent adaptation to Agent components and does not inherit the paper's experimental results. It runs on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) and [Cordis](https://github.com/cordiverse/cordis). Code is [MIT licensed](./LICENSE); see [origins and third-party notices](./docs/THIRD_PARTY_NOTICES.md) for attribution.
