@@ -6,32 +6,31 @@
 
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
-DUO is a DSH plugin that lets your Agent try changes, run your tests against the
-original and each candidate, and return the results and costs for you to review.
+DUO is a DSH plugin that lets an Agent try changes, compare the original and each
+candidate using supplied tests, and return the results, decisions and costs.
 
-You provide a supported Target, an evaluator, model access when needed, and a
+The calling Agent supplies a supported Target, an evaluator, model access when needed, and a
 budget. DUO handles the repeated generation, execution, comparison and recording.
-It leaves the original in place. You decide whether to adopt a candidate.
+It leaves the original in place. Adopting a candidate requires the user's decision.
 
-## A task you can give it
+## A sample task
 
-Suppose your Agent answers questions from a deployment runbook. You want it to
-return the documented command, cite the source, and say when the document has
-no answer.
+An Agent answering questions from a deployment runbook needs to return the
+documented command, cite the source, and say when the document has no answer.
 
 The [grounded-QA starter](./dsh-plugin/QUICKSTART.md#real-task-starter) supplies
 an editable prompt, a runbook, four questions, an evaluator and the provider
-configuration. You supply your DSH path, supported model configuration, work
-directory and authorized budget. DUO measures the original, asks the model for
+configuration. The remaining inputs are the DSH path, supported model configuration,
+work directory and authorized budget. DUO measures the original, asks the model for
 one prompt change, executes that candidate and checks the answers.
 
-You get the candidate Delta, per-task checks, selection reason, recorded usage
+The output includes the candidate Delta, per-task checks, selection reason, recorded usage
 and a report. No improvement is a valid outcome. This starter uses basic mode:
 it has development checks, without independent Slow or final evidence.
 An independent Caller has completed this path using the public guide and owner-supplied
 configuration; the [acceptance record](./docs/product-foundation/FIRST_USE.md) retains the steps.
 
-## What you get back
+## An actual result
 
 In the **0.6.3 starter run below**, the original already answered all four
 questions correctly. The model generated a prompt that required verbatim
@@ -65,19 +64,19 @@ Use the **[Quickstart](./dsh-plugin/QUICKSTART.md)**. Choose one path:
 | Path | What it does |
 |---|---|
 | [Free installation check](./dsh-plugin/QUICKSTART.md#free-installation-check) | Install the package, discover capabilities, inspect a plan, run local text checks and save the report. No model requests; this checks the product flow. |
-| [Real task starter](./dsh-plugin/QUICKSTART.md#real-task-starter) | Connect your authorized model and run the document-QA task above. Normally at most three inner model requests, with retries disabled; independently exercised through the public guide. |
+| [Real task starter](./dsh-plugin/QUICKSTART.md#real-task-starter) | Connect an authorized model and run the document-QA task above. Normally at most three inner model requests, with retries disabled; independently exercised through the public guide. |
 
 Developer preview. Requires Linux, Node24+ and an existing DSH installation;
-tested with DSH0.1.2-rc.1 / Cordis4.0.2. Installation does not configure your model
+tested with DSH0.1.2-rc.1 / Cordis4.0.2. Installation does not configure a model
 account or grant spending authority. DUO's ledger covers inner work, not every
 request made by the Calling Agent.
 
-## What you can use
+## Capabilities
 
-- **Your own tests.** Supply an evaluator or wrap an existing test function.
-  You choose what counts as a useful result.
+- **Custom tests.** Supply an evaluator or wrap an existing test function.
+  The supplied evaluation rules define what counts as a useful result.
 - **Candidate experiments.** Generate and compare changes; add further checks
-  when you have evidence beyond the initial evaluation.
+  when evidence beyond the initial evaluation is available.
 - **Reusable history.** Keep failed attempts, decisions and costs. Warm start
   can pass compatible development history to a later experiment.
 - **Bounded execution.** Inspect the plan before running, enforce inner budget
@@ -120,7 +119,7 @@ Additional tasks or boundary tests count as `expanded_evidence`. Calling evidenc
 
 ## Integrate and extend
 
-To change what DUO tests, supply a Target adapter and matching work providers. You can also replace how it generates candidates, evaluates them, selects them or uses history. The [Provider guide](./dsh-plugin/PROVIDERS.md) documents the interfaces and types. DSH/Cordis manages model access, tools, permissions and plugin lifecycle.
+Changing what DUO tests requires a Target adapter and matching work providers. Candidate generation, evaluation, selection and history use also have replacement interfaces. The [Provider guide](./dsh-plugin/PROVIDERS.md) documents the interfaces and types. DSH/Cordis manages model access, tools, permissions and plugin lifecycle.
 
 Warm start lets a later experiment reuse compatible development history. Final-test results stay out of search. Recovery at supported settled checkpoints keeps the original allowance.
 

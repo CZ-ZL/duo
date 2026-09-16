@@ -3,13 +3,14 @@
 English · [简体中文](./README.zh-CN.md)
 
 DUO lets a DSH Agent evaluate an original prompt or supported component, try
-candidate changes against your tests, and return the changes, decisions and costs.
+candidate changes against supplied tests, and return the changes, decisions and costs.
 
 **[Start here: install → free check or real task → saved report](./QUICKSTART.md)**
 
 The Quickstart includes every command, the supplied task/evaluator and the
-owner-provided model configuration. Its real starter acceptance is still pending;
-the local path checks product operation without model calls.
+owner-provided model configuration. An independent Caller has completed the real
+starter through this public guide; the original and candidate tied, so the original
+was retained. The local path checks product operation without model calls.
 
 Developer preview: Linux / Node24+, tested DSH0.1.2-rc.1 / Cordis4.0.2.
 Version 0.6.3 is an unreleased source preview; the Quickstart packages its public
