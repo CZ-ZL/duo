@@ -2,6 +2,14 @@
 
 DUO evaluates or optimizes an existing Target inside DSH. Use it when the owner has an observable goal, an executable evaluator and permission to test changes. It returns evidence, candidate overlays and costs. Retaining the original is valid. It never automatically deploys a candidate. Format checks are not Agent task quality; product acceptance is not method superiority.
 
+Start with `dualloop_describe({})` when the user asks to:
+
+- evaluate an existing Agent prompt or supported component before changing it;
+- compare candidate changes against executable tests or a custom evaluator;
+- try bounded optimization, inspect failures/costs, or reuse compatible experiment history.
+
+For example: “Evaluate this Agent against my tests before changing anything” / “先用现有测试评估这个 Agent，不要直接修改原版”. Missing metrics or an unclear target are preparation cases: inspect authorized project evidence, then use `dualloop_design`; ask the owner about material goal tradeoffs. A one-off answer, arbitrary code rewrite or automatic deployment is outside this workflow. Cost reduction needs an actual cost measurement and quality constraints; no improvement is promised.
+
 Read CURRENT_STATUS.md for support and examples/product/README.md for a free installed-package example. The default bundle exposes preparation while waiting for work providers.
 
 1. **Discover:** `dualloop_describe({})` reports supported/partial Target capabilities, replacement seams, schemas, the active Target descriptor and evaluator declarations. Visible bindings alone are not a validated plan. `dualloop_discover` is the retained execution-composition view and requires a valid plan.

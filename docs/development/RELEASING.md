@@ -1,6 +1,6 @@
 # Product release procedure
 
-0.6.1 is the current source candidate; 0.6.0 remains the last tagged release.
+0.6.1 is the current developer-preview distribution line. Consult the release index for the actual tag and artifact status.
 The [release index](../releases/README.md) records current verification and
 visibility. Current support is recorded in [current capabilities](../../dsh-plugin/CURRENT_STATUS.md). The
 [pre-publication acceptance contract](../product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)

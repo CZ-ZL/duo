@@ -1,7 +1,7 @@
 {
   "name": "@dual-loop/dsh-plugin",
   "version": "0.6.1",
-  "description": "Composable DSH-native evaluation and optimization with explicit evidence modes, bounded budgets and traceable results",
+  "description": "DSH plugin for agent evaluation and budgeted optimization of prompts and supported component configs, with custom evaluators, candidate comparisons and traceable reports",
   "license": "MIT",
   "type": "module",
   "main": "index.js",
@@ -87,7 +87,12 @@
     "dsh-plugin",
     "deepseek-harness",
     "cordis",
-    "dualloop"
+    "dualloop",
+    "agent-evaluation",
+    "agent-optimization",
+    "prompt-optimization",
+    "custom-evaluator",
+    "warm-start"
   ],
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",

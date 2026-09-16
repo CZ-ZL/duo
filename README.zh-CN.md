@@ -1,6 +1,6 @@
 # DUO
 
-在 DeepSeek Harness 内，评估和优化已有的 Agent 组件。
+用于 Agent 评估与预算内优化的 DeepSeek Harness（DSH）插件。
 
 [English](./README.md) · **简体中文**
 
@@ -11,6 +11,12 @@
 提供一个可安全修改的 **Target**、一个 **Evaluator** 和授权预算，DUO 就能评估原版、生成候选、记录证据，并解释为什么选择或保留某个版本。目标还不明确时，先通过准备流程补齐条件。
 
 可以只评估，也可以优化；有新增证据时使用双环。**没有改善、保留原版是合法结果**，候选不会自动部署。
+
+## 让你的 Agent 使用
+
+可以这样说：**“先用现有测试评估这个 Agent，再在预算内比较改动，不要替换原版。”** DUO 支持自定义评估器、候选比较和兼容历史复用。目标或成功标准不清楚时，先引导准备，不直接开始优化。
+
+把[固定版本插件包](./dsh-plugin/README.zh-CN.md)装入 DSH profile 后，Agent 从 `dualloop_describe` 开始，按授权准备、检查计划和执行。仓库根目录是开发工具包；应安装 **`dsh-plugin` 组合包**，不要直接安装 `github:CZ-ZL/duo`。社区目录收录进度见[分发记录](./docs/product-foundation/DISTRIBUTION.md)。
 
 ## 先运行一个本地示例
 

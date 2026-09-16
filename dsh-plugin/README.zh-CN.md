@@ -11,7 +11,10 @@ DUO 是 DSH 原生的评估与优化组件。它在明确的目标、评估规�
 已验证环境：Linux、Node 24.14.1、DSH 0.1.2-rc.1、Cordis 4.0.2、pnpm 11.24.0。把审查过的安装包加入一个已获授权的 DSH profile：
 
 ```sh
-dsh plugin --profile YOUR_PROFILE add /absolute/path/dual-loop-dsh-plugin-0.6.1.tgz
+curl -fL -o dual-loop-dsh-plugin-0.6.1.tgz https://github.com/CZ-ZL/duo/releases/download/v0.6.1/dual-loop-dsh-plugin-0.6.1.tgz
+curl -fL -o SHA256SUMS https://github.com/CZ-ZL/duo/releases/download/v0.6.1/SHA256SUMS
+sha256sum -c SHA256SUMS
+dsh plugin --profile YOUR_PROFILE add ./dual-loop-dsh-plugin-0.6.1.tgz
 dsh --profile YOUR_PROFILE --dump-config
 ```
 
@@ -57,4 +60,6 @@ Target、Generator、Executor、Evaluator、Comparator、Gate、Feedback 使用�
 - warm start 不继承 final 数据、费用或授权；不同证据模式的历史只能保留允许的想法。
 - 不自动采用候选，不提供跨平台保证，不全局发布 npm。历史 legacy API 与显式 fixture export 保留，fixture 默认关闭。
 
-0.6.1 当前为源码候选版本，验证状态与安装包哈希以仓库发布索引为准。历史源码、验收记录和研究归档位于 [GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](./LICENSE)。
+0.6.1 是通过固定版本 GitHub Release 分发的开发预览，验证状态与安装包哈希以仓库发布索引为准。历史源码、验收记录和研究归档位于 [GitHub 仓库](https://github.com/CZ-ZL/duo)。许可证为 MIT，见 [LICENSE](./LICENSE)。
+
+安装包来自固定版本 GitHub Release；校验通过后安装到你授权的 profile。仓库根目录不是插件组合包，不要直接安装 `github:CZ-ZL/duo`。安装后请 Agent 先调用 `dualloop_describe`，了解适用性和缺少的配置。

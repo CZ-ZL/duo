@@ -1,6 +1,8 @@
 # DUO Product Foundation & Productization
 
-Current delivery: [final public-source audit](FINAL_PUBLIC_AUDIT.md) COMPLETE;
+Current follow-up: [ecosystem distribution and Agent discovery](DISTRIBUTION.md), owner-authorized; no method research or npm publication.
+
+Previous delivery: [final public-source audit](FINAL_PUBLIC_AUDIT.md) COMPLETE;
 CI35009839832 passed and owner-authorized public visibility is verified. The
 [homepage organization](ORGANIZATION.md#homepage-follow-up--2026-09-16) passed
 CI35008412237 and is complete. Earlier closures below remain historical.

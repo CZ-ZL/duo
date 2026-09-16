@@ -640,7 +640,7 @@ export function apply(ctx) {
     )
   add(
     'dualloop_describe',
-    'Read the native product schema, current visible provider bindings, preparation guide and evaluator declarations. No authority is implied.',
+    'Start here to evaluate an Agent target, compare candidate changes or optimize a supported prompt/config within a budget. Discover DUO capabilities, evaluators and missing setup. Read-only; no model calls, spending or deployment.',
     {},
     () => {
       const runtimeAvailability = inspectRuntimeAvailability(ctx),
@@ -685,7 +685,7 @@ export function apply(ctx) {
   )
   add(
     'dualloop_design',
-    'Inspect a partial native CNY contract draft, list missing inputs and validate without saving, binding providers or running anything.',
+    'Prepare an evaluation or optimization when the target, success criteria or evaluator may be incomplete. Inspect a partial CNY contract and report missing inputs; no saving, provider binding, model calls or execution.',
     {
       draft: { type: 'object', additionalProperties: true, required: true },
       preset: {

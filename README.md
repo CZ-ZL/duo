@@ -1,6 +1,6 @@
 # DUO
 
-Evaluate and optimize existing Agent components in DeepSeek Harness.
+A DeepSeek Harness (DSH) plugin for Agent evaluation and budgeted optimization.
 
 **English** · [简体中文](./README.zh-CN.md)
 
@@ -11,6 +11,12 @@ Evaluate and optimize existing Agent components in DeepSeek Harness.
 Supply a safely editable **Target**, an **Evaluator** and an authorized budget. DUO evaluates the original, generates candidates, records evidence, and explains why a version was selected or retained. If the objective is unclear, start with preparation to identify what is missing.
 
 Evaluate only, optimize with one evidence source, or use two loops when additional evidence is available. **No improvement; retain the original** is a valid outcome. Candidates are never deployed automatically.
+
+## Use from your Agent
+
+Ask: **“Evaluate this Agent against my tests; then compare bounded changes without replacing the original.”** DUO supports custom evaluators, candidate comparisons and compatible history reuse. Missing targets or success criteria start a preparation conversation, not an automatic run.
+
+Install the [versioned plugin tarball](./dsh-plugin/README.md) into your DSH profile. The Agent starts with `dualloop_describe`, then prepares, plans and runs within your authorization. The repository root is a development package; install the **`dsh-plugin` bundle**, not `github:CZ-ZL/duo`. Community catalog submission status is tracked [here](./docs/product-foundation/DISTRIBUTION.md).
 
 ## Try a local example
 
