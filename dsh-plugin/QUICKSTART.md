@@ -25,6 +25,8 @@ it does not contain this new starter.
 Run these Bash commands in a new working directory. Replace only the DSH path:
 `DUO_DSH_PACKAGE` is the installed directory containing `lib/bin.js`, not a
 private profile or an API key. The remaining paths are created under this directory.
+If the registry is unreachable, review the [existing-host option](#install-with-existing-host-dependencies)
+below before running the install command.
 
 ```sh
 export DUO_DSH_PACKAGE=/absolute/path/to/node_modules/@deepseek-ai/dsh
@@ -51,6 +53,27 @@ On ERR_PNPM_META_FETCH_FAIL, retain the output and restore registry connectivity
 before retrying; do not disable TLS verification. The archive is the plugin; the GitHub repository root
 is not an installable DSH bundle. These commands create a separate profile and
 do not read or modify your usual profile. Keep the archive and checksum for recovery.
+
+### Install with existing host dependencies
+
+For an already complete DSH 0.1.2-rc.1 installation, DUO can use the host's
+installed peer dependencies. This is useful when the npm registry is unavailable.
+It does not install DSH, fetch missing dependencies, or make model calls offline.
+
+In the install block above, replace only the `plugin add` command with:
+
+```sh
+node "$DUO_DSH_PACKAGE/lib/bin.js" plugin --profile starter add "$PWD/dual-loop-dsh-plugin-0.6.3.tgz" --ignore-scripts --store-dir "$PWD/pnpm-store" --fetch-retries=0 --fetch-timeout=15000 --offline --config.auto-install-peers=false
+```
+
+Then continue with `--dump-config`, `--help` and the chosen task path below.
+If an online install already failed, keep its logs and start these steps in a
+new working directory. This option uses DSH's existing host dependency resolution;
+it does not copy a private profile or require manual module links. pnpm may warn
+that peers are absent from the isolated profile. Confirm discovery and planning
+actually load them; if a component is missing or incompatible, stop and install
+the required host dependencies before running. A successful pack alone is not
+a load check. The standard registry installation remains available above.
 
 ## Free installation check
 

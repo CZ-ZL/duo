@@ -20,6 +20,7 @@ DSH 0.1.2-rc.1 / Cordis 4.0.2。当前是开发者预览版，详见
 在新工作目录执行以下 Bash 命令。只替换 DSH 路径：
 `DUO_DSH_PACKAGE` 是含有 `lib/bin.js` 的已安装包目录，不是私有
 profile 或密钥。其余路径在当前目录下创建。
+如果 registry 无法访问，先阅读下方[复用宿主依赖](#复用宿主依赖安装)，再执行安装命令。
 
 ```sh
 export DUO_DSH_PACKAGE=/absolute/path/to/node_modules/@deepseek-ai/dsh
@@ -43,6 +44,25 @@ node "$DUO_PACKAGE/bin/duo.mjs" --help
 遇到 ERR_PNPM_META_FETCH_FAIL 时保留输出，恢复 registry 连接后再重试，不关闭 TLS 校验。
 安装对象是插件 tarball，不是 GitHub 仓库根目录。这些步骤不读取或改写日常
 profile。保留安装包与校验文件，便于以后回退。
+
+### 复用宿主依赖安装
+
+如果已经完整安装 DSH 0.1.2-rc.1，DUO 可以使用该宿主已有的 peer 依赖，
+适用于 npm registry 暂时无法访问的情况。这不会安装 DSH、补下载缺失依赖，
+也不意味着真实模型调用可以离线完成。
+
+在上面的安装代码块中，仅把 `plugin add` 命令替换为：
+
+```sh
+node "$DUO_DSH_PACKAGE/lib/bin.js" plugin --profile starter add "$PWD/dual-loop-dsh-plugin-0.6.3.tgz" --ignore-scripts --store-dir "$PWD/pnpm-store" --fetch-retries=0 --fetch-timeout=15000 --offline --config.auto-install-peers=false
+```
+
+随后继续执行 `--dump-config`、`--help` 及下方选定的任务路径。
+如果在线安装已经失败，保留日志，在新的工作目录从头执行这些步骤。
+这条路径使用 DSH 已有的宿主依赖解析，不复制私有 profile，也不需要手工链接模块。
+pnpm 可能提示隔离 profile 中缺少 peer；必须通过发现和计划确认组件实际加载。
+若组件缺失或版本不兼容，先停止并补齐所需宿主依赖，再运行任务。打包成功本身
+不能证明加载成功。上面的标准 registry 安装路径仍然可用。
 
 ## 免费安装检查
 
