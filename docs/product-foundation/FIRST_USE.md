@@ -32,11 +32,11 @@ qualify the sample measurement plumbing, not an optimization gain.
 | G1 factual claims | PASS | Claims table below, actual historical-source extraction, current capability catalog and changed-code review |
 | G2 homepage understanding | PASS | Two fresh sessions, English and Chinese; only the respective homepage supplied; five answers each match the product. Raw answers and input hashes retained under first-use/ |
 | G3 free installed path | PASS | Fresh registry install of actual 0.6.3 tarball; exact Quickstart commands completed describe/plan/run/report and re-read; original SHA unchanged, repeated report byte-equal, no model environment inherited |
-| G4 real starter | BLOCKED | Owner approved 6 requests / CNY1. Caller 1 stopped before model execution: registry TLS reset. Actual requests/cost 0/CNY0; candidate evaluation not reached |
-| G5 unfamiliar live Caller | BLOCKED | Fresh public-guide-only Caller retained all actions and independently recovered npm-cache EROFS; install then blocked by registry. No implementer intervention, but no live-use pass |
+| G4 real starter | BLOCKED | Owner approved 6 requests / CNY1. Two independent Callers stopped before model execution: registry TLS reset. Actual requests/cost 0/CNY0; candidate evaluation not reached |
+| G5 unfamiliar live Caller | BLOCKED | Two fresh public-guide-only Callers retained actions; the second verified the npm-cache fix, but registry TLS still prevented installation. No implementer intervention, but no live-use pass |
 | G6 preparation/errors | PASS | Installed package: absent evaluator reports duoEvaluators ABSENT, executionReady false, attach_authorized_evaluator; unsupported model refuses before workspace creation; unfunded plan refuses with next action and no dispatched work |
 | G7 docs/package/demo | PASS | 145 links/anchors, 7 identical bilingual shell blocks, archive and rendered GitHub checks PASS. After the store repair and an HTTP200 registry recheck, a fresh public-source clone at 99c6458 followed exact Quickstart commands through report/re-read, original unchanged. Failed attempts retained in G7_ATTEMPTS.json |
-| G8 regression/delivery | NOT_RUN | Cache-guide repair CI pending; prior full local gate PASS: 357 native, 451 Python product, 73 public-example checks, 31 Slow checks, 5 repair cases, 21 host profiles. Commit 99c6458 and CI35072852975 PASS; public source-install archive matches CI SHA. Current repair changes packaged guides only; runtime unchanged |
+| G8 regression/delivery | PASS | Fresh CI35075348488 at 88f1a99: 357 native, 451 Python product, public examples, Slow semantics, repair cases, host profiles, clean installation and dependency audits PASS. CI/local/Caller2 archives match. Runtime unchanged; two packaged guides corrected |
 
 Local evidence root: `runs/first-use-convergence-20260916/` outside the public
 source checkout. Public projections omit credentials, private paths, raw user
@@ -88,6 +88,12 @@ not stand in for current starter acceptance.
   timing, input scope, zero-consumption settlement and remaining authorization.
   Zero implementer interventions does not count as successful use when no
   candidate was executed.
+- After a read-only registry probe returned HTTP200, a second fresh Caller used
+  the repaired public guide at 88f1a99. Packing passed without cache failure,
+  but dependency downloads again failed before TLS establishment. Its own
+  curl/Node diagnostics reproduced the failure. See
+  [LIVE_ATTEMPT_2.json](./first-use/LIVE_ATTEMPT_2.json). No third session was
+  launched. Both attempts consumed zero inner requests and zero model charges.
 
 ## Scope of the cleanup
 
@@ -121,20 +127,20 @@ Total Goal stays open until all mandatory gates pass.
 
 ## Engineering delivery
 
-Code and packaged guides: [99c6458](https://github.com/CZ-ZL/duo/commit/99c6458a58405fd506b0946e09b61350c361a549).
-[CI35072852975](https://github.com/CZ-ZL/duo/actions/runs/35072852975) passed the
-full product gate and both dependency advisory checks. The publicly cloned and
-locally installed archive matches the CI artifact:
+Code and packaged guides: [88f1a99](https://github.com/CZ-ZL/duo/commit/88f1a9929159a789b34253c7854dc81c4810eb12).
+[CI35075348488](https://github.com/CZ-ZL/duo/actions/runs/35075348488) passed the full product gate, clean
+installation and both dependency advisory checks. The local package, the second
+Caller's publicly cloned package and the downloaded CI artifact are byte-identical:
 
-`0910ead5c7dcf44d6b11783ed24ae8db04bff15e1d21a352b75c853a2028057a`.
+`cdaa5f137c9320af71189f92a152bc67cb10ba8ca8c95a6501abb09ccde6ab52`.
 
-[Delivery receipt](./first-use/DELIVERY.json) binds the version, gates and cost
-scope. The current follow-up changes the two shipped installation guides only;
-runtime bytes remain identical. Its own package/CI evidence must be checked before
-delivery. GitHub rendered English/Chinese articles and the updated About entry
-were checked in the prior delivery. Version 0.6.3 remains an untagged source preview; v0.6.2 remains the latest
-Release. No npm publication or visibility change. Inner model requests/cost for
-this Goal: **0 / CNY0**; Caller host and local compute are not priced here.
+[Delivery receipt](./first-use/DELIVERY.json) records the gates and cost scope.
+Only the bilingual Quickstart files differ from the previously tested archive;
+runtime bytes are unchanged. Actual GitHub HTML renders both repaired guides.
+The following evidence-only update changes no shipped bytes. Version 0.6.3
+remains an untagged source preview; v0.6.2 is the latest Release. No npm
+publication, visibility change or automatic adoption. Inner model requests/cost
+for this Goal: **0 / CNY0**; Caller inference and local compute are not priced.
 
 G4/G5 have spending authority but are blocked by registry connectivity. The
 6-request / CNY1 grant is entirely unspent. Restore connectivity, then use a new

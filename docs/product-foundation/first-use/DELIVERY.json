@@ -4,15 +4,15 @@
   "sourceVersion": "0.6.3",
   "taggedReleaseCreated": false,
   "latestPreviousRelease": "v0.6.2",
-  "testedCommit": "99c6458a58405fd506b0946e09b61350c361a549",
+  "testedCommit": "88f1a9929159a789b34253c7854dc81c4810eb12",
   "runtimeImplementationCommit": "ca5689c2156c27a52b1a3758168a68501f5f636c",
   "ci": {
     "conclusion": "success",
-    "headSha": "99c6458a58405fd506b0946e09b61350c361a549",
+    "headSha": "88f1a9929159a789b34253c7854dc81c4810eb12",
     "status": "completed",
-    "url": "https://github.com/CZ-ZL/duo/actions/runs/35072852975"
+    "url": "https://github.com/CZ-ZL/duo/actions/runs/35075348488"
   },
-  "archiveSha256": "0910ead5c7dcf44d6b11783ed24ae8db04bff15e1d21a352b75c853a2028057a",
+  "archiveSha256": "cdaa5f137c9320af71189f92a152bc67cb10ba8ca8c95a6501abb09ccde6ab52",
   "publicGuideRun": {
     "status": "PASS",
     "exitCode": 0,
@@ -40,10 +40,10 @@
     "G5": "BLOCKED",
     "G6": "PASS",
     "G7": "PASS",
-    "G8": "NOT_RUN"
+    "G8": "PASS"
   },
-  "g4g5Blocker": "New 6-request / CNY1 authority exists; first independent Caller could not install because registry TLS reset. No model requests. See LIVE_ATTEMPT_1.json.",
-  "subsequentCommitScope": "Bilingual installation guide adds workspace npm cache; current CI pending. Runtime unchanged.",
+  "g4g5Blocker": "Owner grant 6 requests / CNY1 is entirely unspent. Two fresh independent Callers stopped at registry TLS during isolated dependency installation; no model execution or candidate evaluation.",
+  "subsequentCommitScope": "Evidence-only update outside the package; all shipped bytes equal CI-tested 88f1a99",
   "currentInnerModelRequests": 0,
   "currentInnerCostCny": 0,
   "callerHostCost": "NOT_METERED_BY_DUO",
@@ -57,5 +57,24 @@
     "homepageUrl": "https://github.com/CZ-ZL/duo#start-here",
     "verified": true
   },
-  "liveAttempt": "LIVE_ATTEMPT_1.json"
+  "liveAttempts": [
+    "LIVE_ATTEMPT_1.json",
+    "LIVE_ATTEMPT_2.json"
+  ],
+  "remainingAuthorizedRequests": 6,
+  "remainingAuthorizedCostCny": 1,
+  "cacheRepairVerification": {
+    "status": "PASS",
+    "changedPackageFiles": [
+      "QUICKSTART.md",
+      "QUICKSTART.zh-CN.md"
+    ],
+    "runtimeChanged": false,
+    "ciLocalCaller2ArchiveEqual": true,
+    "secondCallerNpmPack": "PASS",
+    "secondCallerDependencyInstall": "BLOCKED_REGISTRY_TLS",
+    "bilingualShellBlocks": 7,
+    "entryLinksChecked": 136,
+    "renderedGitHubGuides": true
+  }
 }

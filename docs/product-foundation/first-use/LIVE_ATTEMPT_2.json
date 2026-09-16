@@ -1,0 +1,35 @@
+{
+  "attempt": 2,
+  "gates": {
+    "G4": "BLOCKED",
+    "G5": "BLOCKED"
+  },
+  "reason": "Registry TLS still unstable; isolated install failed before load",
+  "sourceCommit": "88f1a9929159a789b34253c7854dc81c4810eb12",
+  "packageVersion": "0.6.3",
+  "archiveSha256": "cdaa5f137c9320af71189f92a152bc67cb10ba8ca8c95a6501abb09ccde6ab52",
+  "start": "2026-09-16T08:45:34Z",
+  "end": "2026-09-16T08:49:03.886624+00:00",
+  "firstEffectiveRun": null,
+  "candidateEvaluated": false,
+  "modelRequests": 0,
+  "costCny": 0,
+  "unknownFees": false,
+  "implementerInterventions": 0,
+  "productImplementationRead": false,
+  "callerHostCost": "NOT_METERED_BY_DUO",
+  "localCompute": "NOT_PRICED",
+  "workingTarget": "NOT_CREATED",
+  "automaticRetries": 0,
+  "npmCacheRepair": "PASS: public workspace cache command packaged archive without EROFS",
+  "failedStage": "DSH plugin add: ERR_PNPM_META_FETCH_FAIL, including dsh-llm and schemastery",
+  "independentDiagnosis": "curl SSL_ERROR_SYSCALL; Node ECONNRESET before TLS connection",
+  "sourceArtifacts": {
+    "CALLER_RECORD.md": "7cb74a9adf2f66682450bc636a3182d84011dd96c9e445fd74b1ebb85b792d76",
+    "evidence/accounting.json": "438e89c9d0799033347539eeae3322de73e9e721cc5e022a73073b8412f19836",
+    "evidence/install.stdout.log": "17234400ab6c5ba3c951207ef1eed05b85bf9f7e86d151f604eb8ba9c43bded8",
+    "evidence/install.stderr.log": "c76a4d4354f19955bf81c4fe0fdc37625432c1a56776ca94f1804dd905967844",
+    "evidence/registry-node.stderr.log": "cebd0a2eb308021d2eed71a72cf6d72047747eff89ffa8e28920fca93c3a1ef2"
+  },
+  "continuation": "Stop further Caller attempts until stable registry access. Existing cumulative 6-request / CNY1 grant remains unspent; no new grant required within that limit."
+}
