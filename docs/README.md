@@ -6,7 +6,7 @@ needed. A closed historical Goal does not establish the status of a newer build.
 | Need | Start here |
 |---|---|
 | Understand DUO | [English README](../README.md) · [中文 README](../README.zh-CN.md) |
-| Run the smallest local evaluation | [Quickstart](./QUICKSTART.md) |
+| Install, check locally, or run a real task | [English Quickstart](../dsh-plugin/QUICKSTART.md) · [中文](../dsh-plugin/QUICKSTART.zh-CN.md) |
 | Use DUO as a Calling Agent | [Agent Guide](../dsh-plugin/AGENT_GUIDE.md) · [tool reference](../dsh-plugin/AGENT_REFERENCE.md) |
 | Check supported targets and modes | [Current capabilities](../dsh-plugin/CURRENT_STATUS.md) |
 | Understand the two loops and code boundaries | [Current architecture](./ARCHITECTURE.md) |
@@ -20,10 +20,11 @@ needed. A closed historical Goal does not establish the status of a newer build.
 
 ```text
 dsh-plugin/                 Installable DSH product and public contracts
-  bin/duo.mjs               Public local CLI
+  bin/duo.mjs               Public setup and tool transport
   native/                   Production runtime modules
   tests/                    Native tests, helpers and exposed fixtures
   examples/product/         Shipped, deterministic product examples
+  examples/model/           Grounded-QA starter and content evaluator
 scripts/
   release_gate.sh           Stable entry for the complete product gate
   product/                  Package, types, docs and DSH verification

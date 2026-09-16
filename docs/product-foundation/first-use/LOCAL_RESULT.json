@@ -1,0 +1,127 @@
+{
+  "kind": "CURRENT_LOCAL_INSTALLATION_CHECK_NOT_MODEL_QUALITY",
+  "packageVersion": "0.6.3",
+  "archiveSha256": "aba313870be3e5c4931e71c7b008f7dfda809e526299144736e93b2e5300afcd",
+  "reportSha256": "86d7eb4118297ac615caa1ff786930c794c75ac2444af15883ce45ec781006d5",
+  "runId": "82a970fb93c91c701926f368b341e0181b6a55e8daf38cfe30a7f4f56d7cc322",
+  "status": "completed",
+  "selectedId": "dl-0001",
+  "conclusion": "insufficient_evidence",
+  "candidates": [
+    {
+      "id": "baseline",
+      "parentId": null,
+      "version": "5dd29d953e66c64762460e7840dd9db14702c4d9bed9b689e162281a55a80b44",
+      "generation": 0,
+      "status": "champion",
+      "delta": null,
+      "fast": {
+        "candidateId": "baseline",
+        "costCny": 0,
+        "costEvidence": null,
+        "currency": "CNY",
+        "dataId": "local-text-fast",
+        "evaluatorId": "local-fast",
+        "evidence": [
+          {
+            "cleanLines": 1,
+            "kind": "local_trailing_whitespace_check",
+            "lines": 3
+          }
+        ],
+        "evidenceCoverage": [
+          "line-end-whitespace"
+        ],
+        "metrics": {
+          "quality": 0.3333333333333333,
+          "safe": true,
+          "sample_size": 3
+        },
+        "ok": true,
+        "tier": "fast",
+        "version": "1",
+        "state": "EVALUATED"
+      },
+      "fastComparison": {
+        "verdict": "not_better",
+        "score": 0.3333333333333333,
+        "rank": 1,
+        "decisionBasis": "weighted_score",
+        "constraintViolations": []
+      },
+      "selected": false
+    },
+    {
+      "id": "dl-0001",
+      "parentId": "baseline",
+      "version": "4f7f86720beb6a1d57e3eaca7bee6a05848671b8d21a9f8f33a338558b46a81b",
+      "generation": 1,
+      "status": "champion",
+      "delta": {
+        "kind": "cordis-overlay",
+        "persona": "You are {{model}} in {{cwd}}.\nKeep the supplied task constraints.\n",
+        "target": "system-prompt"
+      },
+      "fast": {
+        "candidateId": "dl-0001",
+        "costCny": 0,
+        "costEvidence": null,
+        "currency": "CNY",
+        "dataId": "local-text-fast",
+        "evaluatorId": "local-fast",
+        "evidence": [
+          {
+            "cleanLines": 3,
+            "kind": "local_trailing_whitespace_check",
+            "lines": 3
+          }
+        ],
+        "evidenceCoverage": [
+          "line-end-whitespace"
+        ],
+        "metrics": {
+          "quality": 1,
+          "safe": true,
+          "sample_size": 3
+        },
+        "ok": true,
+        "tier": "fast",
+        "version": "1",
+        "state": "EVALUATED"
+      },
+      "fastComparison": {
+        "verdict": "better",
+        "score": 1,
+        "rank": 0,
+        "decisionBasis": "weighted_score",
+        "constraintViolations": []
+      },
+      "selected": true
+    },
+    {
+      "id": "dl-0002",
+      "parentId": "dl-0001",
+      "version": "4f7f86720beb6a1d57e3eaca7bee6a05848671b8d21a9f8f33a338558b46a81b",
+      "generation": 2,
+      "status": "duplicate_skipped",
+      "delta": {
+        "kind": "cordis-overlay",
+        "persona": "You are {{model}} in {{cwd}}.\nKeep the supplied task constraints.\n",
+        "target": "system-prompt"
+      },
+      "fast": {
+        "state": "NOT_EVALUATED",
+        "reason": "Exact content duplicate of dl-0001; execution and evaluation were skipped. No earlier score was copied.",
+        "metrics": null
+      },
+      "fastComparison": null,
+      "selected": false
+    }
+  ],
+  "innerCostCny": 0,
+  "modelRequests": 0,
+  "callerHostCost": "NOT_METERED_BY_DUO",
+  "localComputeCost": "NOT_PRICED",
+  "originalUnchanged": true,
+  "repeatedReportByteEqual": true
+}

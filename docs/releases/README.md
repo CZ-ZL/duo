@@ -11,6 +11,10 @@ The 69-member tarball SHA256 is
 Anonymous downloads match the CI-tested artifact. Download it and SHA256SUMS
 from that fixed Release. v0.6.1 and its artifacts remain unchanged.
 
+Source preview: **0.6.3 first-use convergence** adds the packaged grounded-QA
+starter and reorganized entry guides. It is not tagged or released while live
+G4/G5 acceptance awaits new authorization. See the [active gate record](../product-foundation/FIRST_USE.md).
+
 The remaining entries preserve earlier verification stages.
 The repository is **public**. The [final audit](../product-foundation/FINAL_PUBLIC_AUDIT.md)
 and [publication receipt](0.6.1/PUBLIC_EVIDENCE.json) record the authorized exposure.

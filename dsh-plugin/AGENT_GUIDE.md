@@ -1,62 +1,86 @@
 # Use DUO from an Agent
 
-DUO evaluates or optimizes an existing Target inside DSH. Use it when the owner has an observable goal, an executable evaluator and permission to test changes. It returns evidence, candidate overlays and costs. Retaining the original is valid. It never automatically deploys a candidate. Format checks are not Agent task quality; product acceptance is not method superiority.
+DUO runs bounded evaluation and candidate experiments inside DSH. Use it when an
+owner has a supported object to change, a measurable goal and permission to test.
+It returns changes, measurements, decisions, costs and retained failures.
+A one-off answer, arbitrary code rewrite or automatic deployment needs a different
+workflow.
 
-Start with `dualloop_describe({})` when the user asks to:
+## First use
 
-- evaluate an existing Agent prompt or supported component before changing it;
-- compare candidate changes against executable tests or a custom evaluator;
-- try bounded optimization, inspect failures/costs, or reuse compatible experiment history.
+Follow the packaged [Quickstart](./QUICKSTART.md) from installation to a saved
+report. It has a free local check and a complete grounded-QA model template.
+It states the live-acceptance status, necessary owner inputs and request bound.
+No source-code reading or historical research guide is needed for that path.
 
-For example: “Evaluate this Agent against my tests before changing anything” / “先用现有测试评估这个 Agent，不要直接修改原版”. Missing metrics or an unclear target are preparation cases: inspect authorized project evidence, then use `dualloop_design`; ask the owner about material goal tradeoffs. A one-off answer, arbitrary code rewrite or automatic deployment is outside this workflow. Cost reduction needs an actual cost measurement and quality constraints; no improvement is promised.
+For an existing authorized profile, use these public tools directly:
 
-Read CURRENT_STATUS.md for support and examples/product/README.md for a free installed-package example. The default bundle exposes preparation while waiting for work providers.
+| Step | Tool / required check |
+|---|---|
+| Discover | `dualloop_describe({})`: active Target, providers, compatibility, missing bindings, tools and schemas. Bindings alone are not authority or a validated plan. |
+| Prepare | `dualloop_design({preset,draft,experimentPath,context})`: inspect missing inputs and the resolved contract. This is read-only. |
+| Configure | Save the inspected contract with authorized host tools. Set `duo-contract.config.experiment` and `duo-journal.config.root`; attach matching work providers. The starter supplies this wiring for its task. |
+| Plan | `dualloop_plan({view:"summary"})`: check target, providers, evidence mode, limits, permissions, history, `planDigest` and `runId`. The full view has complete details. |
+| Execute | `dualloop_run({planDigest})` within owner authority. A digest never grants permission. Changed inputs require a new plan. |
+| Retrieve | `dualloop_status({runId})`, `dualloop_report({runId,view:"summary"})`, `dualloop_budget_status({runId})`. These read retained records without model work. Save the report through host tools. |
 
-1. **Discover:** `dualloop_describe({})` reports supported/partial Target capabilities, replacement seams, schemas, the active Target descriptor and evaluator declarations. Visible bindings alone are not a validated plan. `dualloop_discover` is the retained execution-composition view and requires a valid plan.
-2. **Prepare:** `dualloop_design({preset:"evaluate"|"optimize-basic"|"optimize-dual"|"optimize-auto",draft,experimentPath,context})` is read-only. Presets fill lifecycle defaults, never the target, objective or paid authority. Supply id, target:{kind,path} and an explicit objective (fast for a simple case). Optimize needs an explicit budget; evaluate defaults to zero-cost local work. The returned draft/resolved.spec is the complete inspectable contract; retain its preset field. Basic needs only Fast; dual requires declared additional evidence; auto shows any fallback. The optimize alias means auto. Inspect evidenceStrategy and EVIDENCE_STRATEGY.md.
-3. **Resolve missing inputs:** follow the combined issues/preparation list. Bring an evaluator, find a compatible visible provider, build a function adapter around existing tests, or compose measurement functions. Do not invent goals, answer keys, permissions or money. Check fixed correct/incorrect controls before using a measurement for search. A config Target needs a compatible Executor/Evaluator; persona execution does not establish config execution.
-4. **Configure:** save the inspected contract using authorized host filesystem tools. Set duo-contract.config.experiment and duo-journal.config.root in your DSH profile. Attach work providers through existing DSH/Cordis interfaces. The deferred runtime exposes execution/report tools once dependencies are present. For no-generator evaluation use duo-runtime.config.evaluationOnly:true. If the host supplies authorized cordis_define/cordis_run tools, discover and use them; do not assume they exist.
-5. **Plan:** `dualloop_plan({view:"summary"})` returns Target, providers, stages, limits, screened history and exact planDigest/runId. Inspect evidenceStrategy.status, slow_mode, active/skipped tiers and limitations. Price/model strength never establishes fidelity. Inspect full details when necessary. Changes require a new plan; a digest grants no permission. Reuse actual owner authorization.
-6. **Run:** `dualloop_run({planDigest})` uses frozen limits; paused runs retain their cumulative allowance. Evaluation-only generates nothing. Unknown cost stops paid work. Never retry to discover a fee. Optional pauseAfter:"baseline" or "generation" requests a settled checkpoint.
-7. **Read:** `dualloop_status({runId})`, `dualloop_report({runId,view:"summary"})` and `dualloop_budget_status({runId})` need no model calls. Report optimization_mode, slow_mode, additional_evidence_acquired, evidence_gaps, decision_basis, limitations, stage states and costs. A planned dual whose candidates never obtain additional evidence is NOT_OBSERVED. Unpromoted candidates have no later-stage score. Save the report through your host for a delivery artifact; rendered output alone is not a saved-file receipt.
-8. **Reuse or recover:** warmStart:{runIds:[...]} creates a new experiment using screened history in the authorized Journal. It imports no old fees, final scores or authority. Changed evidence modes admit ideas only, not comparable measurements. Recovery instead uses the same planDigest and resumeFrom equal to status.checkpoint.digest. Original deadline/budget remain. No supported checkpoint means no automatic replay.
-9. **Replace:** change one supported Cordis provider row, inspect its identity/permissions/contracts and re-plan. Removing a required provider retracts dependent tools. Target-specific history validation/projection is required for warm start. Legacy adapters without it remain limited.
+`dualloop_discover` is the retained execution-composition view requiring a valid
+plan; start onboarding with `dualloop_describe`.
 
-An objective is {evaluatorId,version,dataId,metric,direction,weights}. Use the live schema for full authoring. Preset defaults are inspectable and may be overridden explicitly; missing owner decisions stay unresolved.
+## Prepare the missing pieces
 
-Check targetCompatibility in describe/design and providers.targetCompatibility
-in the plan. Built-in model-generator, structured-generator and model-executor
-are persona-specific. Changing Target requires matching work providers too;
-the custom example demonstrates a complete non-persona binding. Declared
-mismatches stop before work. Legacy undeclared support is UNKNOWN, not universal
-compatibility; inspect its provider contract. Evaluate-only needs no Generator.
+A draft needs an id, `target:{kind,path}` and an objective:
+`{evaluatorId,version,dataId,metric,direction,weights}`. Live schemas give the full
+contract. Optimize also needs an explicit budget. Presets supply lifecycle
+defaults, never the user's goal, tests or authority:
 
-A baseline may have valid measurements but fail quality constraints. Inspect
-plan.baselinePolicy: DUO can start repair from this original without requiring a
-hand-repaired replacement. The default comparator favors a constraint-satisfying
-candidate over a violating incumbent, even if its weighted score is lower;
-otherwise weighted score and epsilon apply as before. Missing/failed/insufficient
-evidence still stops search. Execution safety belongs to the host/Executor
-permission boundary, not to a quality metric named "safe".
+- `evaluate`: measure the original, no Generator.
+- `optimize-basic`: generate and select with available Fast evidence.
+- `optimize-dual`: requires applicable additional evidence.
+- `optimize-auto`: records the available mode and any fallback in plan and result.
 
-Read baselineAssessment for original violations, searchAllowed and the recorded
-comparison. selectionOutcome describes search only: feasible_candidate,
-baseline_retained or no_feasible_candidate. If no candidate meets the unchanged
-constraints, DUO selects no solution and leaves the original untouched. There is
-no multi-step promotion through still-infeasible parents. Inspect final evidence
-and conclusion separately: feasible on development evidence is not independent
-validation or authorization to deploy. Changed comparator versions require a new
-plan; historical results remain sealed and may enter warm start only under the
-existing compatibility rules.
+If the user does not know what to change, inspect authorized project evidence
+first, then use design to identify missing decisions. Ask about material tradeoffs
+with concrete examples. Bring an evaluator, find a visible compatible one, wrap
+existing tests, or compose measurement functions. Check known correct/incorrect
+controls before search. Do not invent answer keys.
 
-Caller preparation and optional interpretation need their own host budget. The DUO ledger covers inner operations, not every Calling Agent request. Permission declarations are checked claims; the host enforces actual access. Existing authorization is reused; example files grant none.
+[Current support](./CURRENT_STATUS.md) separates built-in and adapter-dependent
+Targets. Model Generator/Executor bindings currently support persona/prompt;
+configuration and custom Targets need matching work providers. Inspect
+`targetCompatibility` in discovery and `providers.targetCompatibility` in plans.
+Legacy undeclared support is UNKNOWN.
 
-For local CNY0 work keep permissions.paid:false and maxCostCny:0 on every run;
-omit the optional maxCumulativeCostCny, which currently accepts positive amounts
-only. Do not grant a positive allowance to bypass that validation. See the
-packaged examples/product/README.md for control checks and actual warm history
-fields: role/use/source/delta, not the candidate's private family field.
+## Interpret and continue
 
-Failures expose cause, recoverability, nextAction (required action), costState and sideEffectState. UNKNOWN requires retained-evidence inspection, not inferred zero. dualloop_budget_reconcile applies only an observed already-staged receipt hash; it never creates usage evidence or repeats work.
+A completed run is not necessarily an independently confirmed improvement.
+Report the selected candidate, original comparison, actual evidence, modes,
+limitations, stop reason and known/unknown costs. Basic has no independent Slow
+evidence. Planned dual with no actual acquisition reports NOT_OBSERVED.
+Unpromoted candidates do not have later-stage scores.
 
-See AGENT_REFERENCE.md and PROVIDERS.md in this package. Original profiles remain unchanged; adoption/rollback needs explicit host authorization. Python/YAML remains behind /legacy with separate schemas and ledgers.
+Warm start creates a **new experiment** with screened history:
+`warmStart:{runIds:[...]}`. Recovery continues the **same run** at a supported
+settled checkpoint using the original `planDigest` and
+`resumeFrom:status.checkpoint.digest`. Neither restores money nor extends deadlines.
+Final evidence cannot enter search. See [API reference](./AGENT_REFERENCE.md) for
+compatibility, constraints and recovery boundaries.
+
+Replace supported components through ordinary Cordis rows, then inspect a new
+plan. Missing providers retract dependent execution tools. The
+[local examples](./examples/product/README.md) cover custom Targets, BYO Evaluator,
+history replacement and warm start. Complete contracts are in
+[PROVIDERS.md](./PROVIDERS.md), modes in [EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md).
+
+## Authority and errors
+
+Reuse existing owner authorization; examples grant none. Native budget covers DUO
+inner operations. Calling Agent inference and local computing resources are
+separate. For local CNY0 work keep paid permission false and maxCostCny zero;
+omit the optional positive-only cumulative cap.
+
+Errors include cause, recoverability, nextAction, costState and sideEffectState.
+Unknown cost requires retained-evidence inspection, not inferred zero or retry.
+Reconciliation accepts observed staged receipts; it cannot create usage evidence.
+The host enforces actual access; providers are trusted in-process code. Adoption
+needs separate owner authority. [SECURITY.md](./SECURITY.md) defines this boundary.

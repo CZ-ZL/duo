@@ -1,0 +1,34 @@
+{
+  "gate": "G2",
+  "state": "PASS",
+  "round": 1,
+  "independentSessions": [
+    "first_use_reader_en",
+    "first_use_reader_zh"
+  ],
+  "context": "fork_turns:none; only respective README, no expected answers, no source/link access, no product execution",
+  "inputs": {
+    "README.md": "c7fb899091d981ab98861ed5aa227ede62fea1fb16c0b168430fd518461596c2",
+    "README.zh-CN.md": "83c23e750217defb380460b0639b2cdf5a5f6a729da6a6f8bcb9d753715cd689"
+  },
+  "questions": [
+    "What is DUO and where does it run?",
+    "What work does it perform for the caller?",
+    "What must the caller supply?",
+    "What can the caller obtain after execution?",
+    "What are its current support boundaries and where would you begin?"
+  ],
+  "checks": {
+    "environment": "PASS",
+    "work": "PASS",
+    "inputs": "PASS",
+    "outputs": "PASS",
+    "boundaries_and_entry": "PASS"
+  },
+  "limitations": "Readers request contract/format/provider/cost/checkpoint details; these belong to linked Quickstart/reference. No live-use claim. Both explicitly identify starter acceptance as pending.",
+  "rawAnswers": {
+    "en": "1. **What DUO is and where it runs:** DUO is a plugin for DeepSeek Harness (DSH) that lets a calling Agent experiment with changes to an Agent component. It runs within a DSH/Cordis environment and currently requires Linux, Node 24+, and an existing DSH installation. The stated tested versions are DSH 0.1.2-rc.1 and Cordis 4.0.2.\n\n2. **What it does for the caller:** It generates candidate changes, executes the original and candidates, applies the caller’s evaluator, compares results, and records decisions and costs. Its Fast loop searches for candidates; its Slow loop can collect additional evidence and feed that evidence back into the search. Basic mode works without independent Slow or final evidence. DUO preserves the original, and the user decides whether to adopt a candidate.\n\n3. **What the caller supplies:** A supported Target, an evaluator or wrapped test function, any necessary model access, and an authorized budget. The grounded-QA starter supplies sample materials and provider configuration; the caller still supplies the DSH path, supported model configuration, working directory, and budget. Supporting other kinds of Target requires adapters and compatible work providers.\n\n4. **What execution returns:** Candidate changes, called “Deltas,” task-level checks, selection reasons, recorded usage and costs, and a report. The retained history includes failed attempts and decisions; compatible development history can support later experiments. A run may produce no improvement. Optional additional and final evaluations depend on the plan. The historical example illustrates such a report, but does not establish a general advantage for DUO or validate the current starter.\n\n5. **Support boundaries and where I would begin:** Prompt/persona overlays are supported. Configuration changes are restricted to one fetch setting with matching execution providers. DUO is a developer preview; the starter’s live-model and unfamiliar-Caller acceptance remain pending. Providers execute as trusted code in the host process, without sandboxing arbitrary plugins. Budget accounting covers inner work, not all calling-Agent requests, and recovery supports only certain settled checkpoints.\n\n   I would start with the Quickstart’s free installation check to verify installation, inspect a plan, exercise local checks, and save a report. I would then try the grounded-QA starter with authorized model access and a budget.\n\nThe homepage leaves several practical details unresolved:\n\n- It does not define the precise Target and Delta formats or show how the calling Agent invokes DUO.\n- It does not enumerate supported model configurations, checkpoint types, or provider compatibility requirements.\n- It mentions “promotion” and an “incumbent,” but does not fully explain their operational effect. I understand them as experiment decisions; adoption remains the user’s responsibility.\n- It says the starter normally uses at most three inner model requests, but does not give a monetary estimate or fully explain the accounting boundary.\n- The exact report format, artifact locations, and procedure for adopting a successful candidate require following the linked documentation.\n\nThese are my conclusions from the specified README alone.",
+    "zh": "1. **DUO 是什么，运行在哪？**  \n   我的理解是，DUO 是安装在 DSH 中的 Agent 优化插件：让模型提出修改，用调用方的测试比较原版与候选，并记录结果和花费。当前要求 Linux、Node 24+ 和已有 DSH；首页列出的已验证组合是 DSH 0.1.2-rc.1 / Cordis 4.0.2。\n\n2. **它替调用方完成什么？**  \n   它负责生成候选修改、执行候选、评估比较、记录决策与用量，并利用允许复用的开发历史继续尝试。如果计划中有新增证据来源，还能补测并反馈给后续搜索。原版保留，最终是否采用候选由调用方决定。\n\n3. **调用方需要提供什么？**  \n   需要提供受支持的修改对象、评估器、必要的模型接入和授权预算。使用文档问答 starter 时，提示词、手册、四道题和评估器已有准备，调用方填写 DSH 路径、模型配置、工作目录和预算。换其他优化对象，需要适配器和匹配的执行组件。\n\n4. **执行后能取得什么？**  \n   能得到候选 Delta、测试结果、选择依据、实际用量和报告；文档问答 starter 会提供逐题检查。结果可能没有改善，也不会自动部署候选。费用账本只覆盖内层工作，不能直接当成调用方使用 DUO 的全部成本。\n\n5. **当前支持边界是什么，从哪里开始？**  \n   当前是开发者预览版，支持 prompt/persona overlay；配置修改仅覆盖一个 fetch 字段，并要求匹配的执行 provider。其他对象需要自行扩展。Provider 是可信的宿主进程内代码，DUO 不提供任意插件沙箱；恢复也只覆盖支持的已结算检查点。\n\n   从 Quickstart 开始，可以先做不调用模型的免费安装检查，再运行接入授权模型的文档问答 starter。这个 starter 使用 basic 模式，没有独立 Slow 或 final，正常最多三次内层模型请求，关闭重试。它的真实模型与陌生 Caller 验收仍待运行；首页中的历史实验不能代表这个 starter 已经验证成功。\n\n阅读时，我还有这些具体不确定处：\n\n- “你的 Agent”“Calling Agent”和内层执行模型分别承担哪些角色，首页没有完整交代；我无法确定是否必须另有一个 Agent 来调用 DUO。\n- “Delta”具体是什么形式、如何检查和应用，首页没有说明。\n- 支持哪些模型配置，以及模型接入 provider 与执行 provider 的区别，需要查看其他文档。\n- 首页说明了双环机制，但我不清楚现成的哪条使用路径可以运行完整双环；明确介绍的真实任务 starter 只有 basic 模式。\n- “正常最多三次请求”和“授权预算”之间如何约束异常情况，以及调用方总成本如何统计，首页不足以确认。"
+  },
+  "implementerInterventions": 0
+}

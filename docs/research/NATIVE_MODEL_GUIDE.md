@@ -1,3 +1,5 @@
+> Historical model integration and acceptance record. For current product setup, use the [shipped Quickstart](../../dsh-plugin/QUICKSTART.md#real-task-starter). The starter requires no research scripts or old ledger.
+
 # Native minimum model optimization
 
 This is the historical source-level model/research entry, not the default

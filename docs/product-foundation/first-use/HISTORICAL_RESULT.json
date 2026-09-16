@@ -1,0 +1,85 @@
+{
+  "kind": "HISTORICAL_REDACTED_RESULT",
+  "versionContext": "0.4.0 configuration research build; not the current grounded-QA starter",
+  "runReference": "config-search-corrected-20260914",
+  "protocol": "config-search-corrected-20260914-v1",
+  "status": "COMPLETE",
+  "candidate": {
+    "arm": "B2",
+    "candidateId": "dl-0001",
+    "parent": "baseline",
+    "generation": 1,
+    "promotion": "accepted",
+    "reasons": [
+      "fast_high",
+      "slow_measured"
+    ]
+  },
+  "change": {
+    "field": "maxBodyChars",
+    "before": 100000,
+    "after": 150000
+  },
+  "fast": {
+    "quality": 1,
+    "sample_size": 6
+  },
+  "slow": {
+    "quality": 1,
+    "sample_size": 12
+  },
+  "diagnosticFinal": [
+    {
+      "name": "F0-B0-baseline",
+      "arm": "B0",
+      "candidateId": "baseline",
+      "reasons": [
+        "original_reference"
+      ],
+      "status": "completed",
+      "scoreStatus": "VALID",
+      "scorePassed": 8,
+      "scoreTotal": 12
+    },
+    {
+      "name": "F1-B1-dl-0002",
+      "arm": "B1",
+      "candidateId": "dl-0002",
+      "reasons": [
+        "best_development"
+      ],
+      "status": "completed",
+      "scoreStatus": "VALID",
+      "scorePassed": 12,
+      "scoreTotal": 12
+    },
+    {
+      "name": "F2-B2-dl-0001",
+      "arm": "B2",
+      "candidateId": "dl-0001",
+      "reasons": [
+        "fast_high",
+        "slow_measured"
+      ],
+      "status": "completed",
+      "scoreStatus": "VALID",
+      "scorePassed": 12,
+      "scoreTotal": 12
+    }
+  ],
+  "packageModelRequests": 44,
+  "packageCostCny": "0.18554908",
+  "costScope": "Whole corrected B0/B1/B2 search and diagnostic-final package, not this candidate alone; usage times frozen tariff, not invoice; Caller and local compute not included",
+  "dataState": "CONSUMED_FOR_DIAGNOSIS",
+  "sourceHashes": {
+    "COMPARISON_RESULT.json": "6436a4cae6202ba3c0c70db55013684bf8fedf3dc2b5cf417e1c2611ef3b652e",
+    "FINAL_SELECTION.json": "1e1eb5e8c34397e9f3d99402383062c51359d4c907b3d9272271a57482fc4811",
+    "CODE_FREEZE.json": "4ed548af8398d48c747cf57958b1d351db716666b150327074e84c2ca994e836"
+  },
+  "limitations": [
+    "Single execution per object; public source corpus; no stable causal effect established",
+    "Single-loop selected diagnostic candidate also scored 12/12",
+    "Opt-in research execution binding; not out-of-box support for arbitrary configuration Targets",
+    "No candidate deployed; historical winner and conclusion unchanged"
+  ]
+}

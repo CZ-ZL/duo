@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.3 — unreleased source preview
+
+- Package bilingual Quickstarts covering installation through saved reports.
+- Add one grounded-QA starter using existing model providers and a local factual-answer/citation evaluator. Live acceptance remains pending authorization.
+- Refuse unsupported model setup, missing paid authority or missing credentials before dispatch with an actionable diagnostic. Free examples still forward no credentials.
+- Put an extracted, explicitly historical result on the homepage; preserve all research conclusions.
+- Separate Agent lifecycle instructions from provider/reference detail and repair the stale current-model guide path.
+
+
 ## 0.6.2 — Target/provider compatibility
 
 - Declare built-in model generators/executor as persona-specific and the config

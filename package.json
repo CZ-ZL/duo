@@ -1,11 +1,11 @@
 {
   "name": "duo-development",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "private": true,
   "description": "Development checks for the DUO product package; never published",
   "scripts": {
-    "format": "prettier --write dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js scripts/product/sync_product_docs.mjs",
-    "format:check": "prettier --check dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js scripts/product/sync_product_docs.mjs",
+    "format": "prettier --write dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js dsh-plugin/examples/model/*.js scripts/product/sync_product_docs.mjs",
+    "format:check": "prettier --check dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js dsh-plugin/examples/model/*.js scripts/product/sync_product_docs.mjs",
     "typecheck": "node scripts/product/check_public_types.mjs"
   },
   "devDependencies": {

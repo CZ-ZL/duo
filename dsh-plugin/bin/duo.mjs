@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Public example setup and transport only. Every operation executes through
-// the installed DSH CLI and DUO ToolRuntime. No research archive or credentials.
+// the installed DSH CLI and DUO ToolRuntime. No research archive or implicit credential access.
 import {
   readFileSync,
   writeFileSync,
@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url'
 import { parseArgs } from 'node:util'
 import { spawnSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
+import { starterSettings, prepareStarter, starterError } from '../examples/model/prepare.js'
 const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)))
 const write = (p, x) => writeFileSync(p, JSON.stringify(x, null, 2) + '\n', { flag: 'wx' })
 const { positionals, values } = parseArgs({
@@ -22,6 +23,9 @@ const { positionals, values } = parseArgs({
     root: { type: 'string' },
     'dsh-package': { type: 'string' },
     example: { type: 'string', default: 'optimize' },
+    'model-config': { type: 'string' },
+    'max-cost-cny': { type: 'string' },
+    'allow-paid': { type: 'boolean' },
     tool: { type: 'string' },
     args: { type: 'string', default: '{}' },
     'cancel-after-ms': { type: 'string' },
@@ -31,7 +35,7 @@ const { positionals, values } = parseArgs({
 const command = positionals[0]
 if (values.help || !command) {
   console.log(
-    'duo init --root NEW_DIRECTORY --dsh-package EXISTING_DSH_PACKAGE --example evaluate|optimize|dual|byo|replace|warm|setup|custom\nduo call --root DIRECTORY --tool schemas|dualloop_TOOL --args JSON [--cancel-after-ms N]\nThe example is local text hygiene, CNY 0. No Agent-model execution or method benefit is implied.',
+    'duo init --root NEW_DIRECTORY --dsh-package EXISTING_DSH_PACKAGE --example evaluate|optimize|dual|byo|replace|warm|setup|custom|grounded-qa\nGrounded QA: --model-config PATH [--allow-paid --max-cost-cny AMOUNT]\nduo call --root DIRECTORY --tool schemas|dualloop_TOOL --args JSON [--cancel-after-ms N] [--allow-paid]\nLocal examples use no model. Grounded QA uses an explicitly authorized model route; see packaged QUICKSTART.md. Preparation alone never spends money.',
   )
   process.exit(0)
 }
@@ -46,11 +50,23 @@ try {
     if (!existsSync(join(dsh, 'lib/bin.js')))
       throw new Error('DSH lib/bin.js not found; this command never installs dependencies')
     if (
-      !['evaluate', 'optimize', 'dual', 'byo', 'replace', 'warm', 'setup', 'custom'].includes(
-        example,
-      )
+      ![
+        'evaluate',
+        'optimize',
+        'dual',
+        'byo',
+        'replace',
+        'warm',
+        'setup',
+        'custom',
+        'grounded-qa',
+      ].includes(example)
     )
       throw new Error('Unsupported example; read --help')
+    const live = example === 'grounded-qa'
+    const settings = live ? starterSettings(values) : null
+    if (!live && (values['model-config'] || values['allow-paid'] || values['max-cost-cny']))
+      throw new Error('Model and paid flags apply only to grounded-qa; local examples stay at CNY0')
     mkdirSync(root) // Refuse existing directories instead of overwriting user work.
     const profile = join(root, 'dsh-home/profiles/duo-product')
     const manifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8'))
@@ -81,7 +97,7 @@ try {
       weights: { quality: 1 },
     })
     const evaluation = example === 'evaluate'
-    write(join(root, 'experiment.json'), {
+    const spec = {
       version: 1,
       id: 'local-' + example,
       operation: evaluation ? 'evaluate' : 'optimize',
@@ -107,7 +123,7 @@ try {
         maxSlowEvals: 10,
         maxWallTimeMs: 3600000,
       },
-    })
+    }
     const patches = [
       { id: 'duo-contract', config: { experiment: join(root, 'experiment.json') } },
       { id: 'duo-journal', config: { root: join(root, 'journal') } },
@@ -131,7 +147,7 @@ try {
         insert: [
           { id: 'local-system-prompt', name: '@deepseek-ai/dsh-system-prompt' },
           { id: 'local-tools', name: '@deepseek-ai/dsh-tools' },
-          ...(example === 'setup'
+          ...(example === 'setup' || live
             ? []
             : [
                 {
@@ -161,6 +177,8 @@ try {
         ],
       },
     ]
+    const starter = live ? prepareStarter({ packageRoot, root, settings, spec, patches }) : null
+    write(join(root, 'experiment.json'), spec)
     // JSON is valid YAML; the profile remains editable using ordinary host tools.
     write(join(profile, 'cordis.patch.yml'), patches)
     write(join(root, 'workspace.json'), {
@@ -169,7 +187,9 @@ try {
       profile: 'duo-product',
       example,
       packageVersion: manifest.version,
+      ...(starter ? { starter } : {}),
       limit:
+        starter?.limit ??
         'Local example only; DSH and the package were already installed. Private profiles and model credentials are not imported.',
     })
     console.log(
@@ -185,6 +205,31 @@ try {
   } else if (command === 'call') {
     const state = JSON.parse(readFileSync(join(root, 'workspace.json'), 'utf8'))
     if (!values.tool) throw new Error('--tool is required')
+    if (
+      state.starter?.kind === 'grounded-qa' &&
+      ['dualloop_plan', 'dualloop_run'].includes(values.tool)
+    ) {
+      const spec = JSON.parse(readFileSync(join(root, 'experiment.json'), 'utf8'))
+      if (!spec.permissions?.paid || !spec.permissions?.network || !(spec.budget?.maxCostCny > 0))
+        throw starterError(
+          'DUO_STARTER_AUTHORIZATION_REQUIRED',
+          'The starter contract does not authorize paid network work',
+          'Keep using describe/design for preparation. After owner authorization, edit experiment.json permissions.paid/network and budget.maxCostCny to the approved limits, then inspect a new plan. Do not invent a positive allowance.',
+        )
+    }
+    const modelRun = state.starter?.kind === 'grounded-qa' && values.tool === 'dualloop_run'
+    if (modelRun && !values['allow-paid'])
+      throw starterError(
+        'DUO_STARTER_AUTHORIZATION_REQUIRED',
+        'This call has no explicit paid-run consent',
+        'Inspect the plan and obtain owner authorization, then add --allow-paid to this run call. A digest is not permission.',
+      )
+    if (modelRun && !process.env.DEEPSEEK_API_KEY)
+      throw starterError(
+        'DUO_STARTER_CREDENTIAL_REQUIRED',
+        'The selected host credential is absent',
+        'Supply your authorized DEEPSEEK_API_KEY through the calling environment. Never place the key in the model JSON, profile, command arguments or report.',
+      )
     const id = randomUUID(),
       calls = join(root, 'calls')
     mkdirSync(calls, { recursive: true })
@@ -204,11 +249,18 @@ try {
       PATH: process.env.PATH ?? '/usr/bin:/bin',
       DSH_HOME: join(root, 'dsh-home'),
       DSH_TELEMETRY_DISABLED: '1',
+      ...(modelRun ? { DEEPSEEK_API_KEY: process.env.DEEPSEEK_API_KEY } : {}),
     }
     const result = spawnSync(
       process.execPath,
       [join(state.dsh, 'lib/bin.js'), '--profile', state.profile, '--patch', patchPath],
-      { cwd: root, env, encoding: 'utf8', timeout: 65000, maxBuffer: 8 * 1024 * 1024 },
+      {
+        cwd: root,
+        env,
+        encoding: 'utf8',
+        timeout: state.starter ? 360000 : 65000,
+        maxBuffer: 8 * 1024 * 1024,
+      },
     )
     writeFileSync(join(calls, id + '-stdout.log'), result.stdout ?? '', { flag: 'wx' })
     writeFileSync(join(calls, id + '-stderr.log'), result.stderr ?? '', { flag: 'wx' })
@@ -226,6 +278,13 @@ try {
   console.error(
     JSON.stringify({
       error: error.message,
+      code: error.code ?? 'DUO_CLI_FAILED',
+      cause: error.message,
+      nextAction:
+        error.nextAction ?? 'Inspect the retained workspace and public guide; no automatic replay.',
+      recoverability: error.recoverability ?? 'INSPECT_RETAINED_EVIDENCE',
+      costState: error.costState ?? 'UNKNOWN_UNTIL_LEDGER_INSPECTION',
+      sideEffectState: error.sideEffectState ?? 'UNKNOWN_UNTIL_EXECUTION_INSPECTION',
       retryable: false,
       action: 'Inspect the retained workspace and public guide; no automatic replay.',
     }),

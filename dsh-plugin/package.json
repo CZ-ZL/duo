@@ -1,6 +1,6 @@
 {
   "name": "@dual-loop/dsh-plugin",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "DSH plugin for agent evaluation and budgeted optimization of prompts and supported component configs, with custom evaluators, candidate comparisons and traceable reports",
   "license": "MIT",
   "type": "module",
@@ -73,7 +73,15 @@
     "native/evidence-strategy.js",
     "EVIDENCE_STRATEGY.md",
     "native/evidence-source.js",
-    "README.zh-CN.md"
+    "README.zh-CN.md",
+    "examples/model/prepare.js",
+    "examples/model/evaluator.js",
+    "examples/model/target.txt",
+    "examples/model/runbook.md",
+    "examples/model/tasks.json",
+    "examples/model/model.example.json",
+    "QUICKSTART.md",
+    "QUICKSTART.zh-CN.md"
   ],
   "dsh": {
     "bundle": {
@@ -154,7 +162,8 @@
     "./examples/tool-app": "./examples/product/tool-app.js",
     "./warm-start": "./native/warm-start.js",
     "./examples/custom-target": "./examples/product/custom-target.js",
-    "./evidence-strategy": "./native/evidence-strategy.js"
+    "./evidence-strategy": "./native/evidence-strategy.js",
+    "./examples/grounded-qa-evaluator": "./examples/model/evaluator.js"
   },
   "bin": {
     "duo": "./bin/duo.mjs"

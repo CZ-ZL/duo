@@ -1,5 +1,55 @@
 # DUO Product Foundation & Productization
 
+## Active: product expression and first use — 2026-09-16
+
+Goal: a new reader understands the work, prerequisites and output; an unfamiliar
+Caller completes a real task through shipped public instructions. Scope is
+homepage, one task starter, document routing and necessary thin example wiring.
+No core redesign, registry, scheduler, method benchmark, Graph/Bayesian or adoption.
+The historical closures below stay unchanged. Current released package is 0.6.2;
+this follow-up starts at `582bbbe9651c5ec501b0ef41259ed17af14f3176`.
+
+Tracking uses this queue and local `runs/first-use-convergence-20260916/` evidence.
+The session Goal was created for this separate objective. Status: ACTIVE.
+Engineering verification, independent use and optimization benefit are distinct.
+
+| Task / dependency | Observable result | State and next step |
+|---|---|---|
+| U0 audit and authorization | Entry/obstacle/evidence table; release and ledger checked | Audit found a missing packaged live composition and stale Provider model-guide path; old research allowance released, no paid transfer |
+| U1 current starter, U0 | Shipped editable document-QA Target/data/function evaluator, existing model providers and isolated host setup; no private wiring | ENGINEERING VERIFIED: grounded-qa uses existing model providers and a content evaluator; seven targeted checks PASS; live path awaits G4/G5 |
+| U2 complete first-use guide, U1 | Two labeled paths finish with a report; package reader has every required file | ENGINEERING VERIFIED: bilingual packaged Quickstart, source redirect, lean Agent Guide and current model entry |
+| U3 result and homepage, U1–2 | Bilingual positioning, scenario, genuine result, two start paths, support limits, later theory/research | PASS: real historical config result extracted with source hashes; current starter remains explicitly pending; two independent homepage readers passed |
+| U4 independent/product checks, U1–3 | G1–G8 evidence, retained failed attempts and intervention records | IN PROGRESS: G1/G2/G3/G6 PASS; G7 local links and package checks pass; G4/G5 BLOCKED pending grant |
+| U5 reviewed delivery, U4 | Exact code/package checks, authorized GitHub push, rendered page and CI verified | IN PROGRESS: full local product gate PASS; final source preview delivery/CI next. No tagged Release while live acceptance is pending |
+
+Gate states are only PASS / FAIL / BLOCKED / NOT_RUN. Queue task progress is not
+a gate pass. Evidence is kept in the local run directory and a sanitized receipt
+on delivery. No gate is satisfied by author self-review alone where independent
+use is required.
+
+| Gate | State | Required evidence / current blocker |
+|---|---|---|
+| G1 facts | PASS | Claims map in FIRST_USE.md; current code/catalog and source-extracted result |
+| G2 comprehension | PASS | Two fresh homepage-only readers, 5/5 each; raw answers and hashes in first-use/G2* |
+| G3 free path | PASS | Installed tarball + exact guide commands; Target SHA unchanged; report re-read byte-equal; zero model calls |
+| G4 live starter | BLOCKED | New Goal paid grant absent; at least one real generated/executed candidate required |
+| G5 unfamiliar Caller | BLOCKED | Public starter plus current grant; same live run may satisfy G4 |
+| G6 errors | PASS | Installed missing Evaluator, unsupported model and unfunded plan refusals with required action |
+| G7 docs/package/demo | NOT_RUN | 145 current links/anchors, 7 identical bilingual shell blocks and initial tarball PASS; final remote/source-install walk-through pending |
+| G8 regression/delivery | NOT_RUN | Local release gate: 357 native, 451 Python product, 73 public, 31 Slow, 5 baseline-repair, 21 host profiles PASS; exact-commit CI pending |
+
+Budget proposal: up to 6 inner model requests / CNY1 for one normal three-request
+starter and, only if needed after retained failure inspection, one fresh Caller
+retest. No automatic retry or old allowance transfer. Caller host cost is
+outside DUO accounting. Stop on limits, unknown charges, missing permissions or
+no further verification value. Local work continues while approval is pending.
+Close only when all G1–G8 pass; otherwise deliver engineering work with exact
+pending gates and the next executable task.
+
+---
+
+## Historical product deliveries
+
 Current delivery: [ecosystem distribution and Agent discovery](DISTRIBUTION.md) shipped as v0.6.1 developer preview; CI35050843877 and public installation PASS. Catalog PR5216 is submitted, pending external review. No method research or npm publication.
 
 Previous delivery: [final public-source audit](FINAL_PUBLIC_AUDIT.md) COMPLETE;

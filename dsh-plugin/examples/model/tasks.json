@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "parcel-runbook-development-v1",
+  "purpose": "development",
+  "source": "runbook.md",
+  "tasks": [
+    {"id": "deploy", "question": "Which exact command deploys a reviewed build to staging?", "answer": "parcelctl deploy --env staging"},
+    {"id": "readiness", "question": "Which exact endpoint should be used to check readiness after deployment?", "answer": "/readyz"},
+    {"id": "rollback", "question": "Which exact command restores the previous release when readiness fails?", "answer": "parcelctl rollback --previous"},
+    {"id": "sla", "question": "What production availability SLA does this runbook promise?", "answer": "NOT_IN_RUNBOOK"}
+  ]
+}

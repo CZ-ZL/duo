@@ -1,0 +1,14 @@
+{
+  "provider": "deepseek-official",
+  "model": "deepseek-flash",
+  "pricing": {
+    "id": "deepseek-flash-cny-20260916",
+    "currency": "CNY",
+    "inputCnyPerMillion": 2,
+    "cacheReadCnyPerMillion": 0.04,
+    "outputCnyPerMillion": 8,
+    "schedule": "deepseek-weekday-utc-v1",
+    "source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+    "verifiedDate": "2026-09-16"
+  }
+}

@@ -50,3 +50,23 @@ is retained as policyProposal when another candidate occupies that slot. Read
 the effective decision and report selection, not just a provider's proposal.
 A higher-scoring candidate missing required coverage does not suppress a valid
 runner-up. This is product selection consistency, not evidence of method benefit.
+
+## Baseline constraints and repair
+
+A baseline may have valid measurements but fail quality constraints. Inspect
+plan.baselinePolicy: DUO can start repair from this original without requiring a
+hand-repaired replacement. The default comparator favors a constraint-satisfying
+candidate over a violating incumbent, even if its weighted score is lower;
+otherwise weighted score and epsilon apply as before. Missing/failed/insufficient
+evidence still stops search. Execution safety belongs to the host/Executor
+permission boundary, not to a quality metric named "safe".
+
+Read baselineAssessment for original violations, searchAllowed and the recorded
+comparison. selectionOutcome describes search only: feasible_candidate,
+baseline_retained or no_feasible_candidate. If no candidate meets the unchanged
+constraints, DUO selects no solution and leaves the original untouched. There is
+no multi-step promotion through still-infeasible parents. Inspect final evidence
+and conclusion separately: feasible on development evidence is not independent
+validation or authorization to deploy. Changed comparator versions require a new
+plan; historical results remain sealed and may enter warm start only under the
+existing compatibility rules.

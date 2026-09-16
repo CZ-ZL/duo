@@ -89,8 +89,10 @@ optional `/docs-evaluators` measures actual answers from frozen document tasks.
 The optional `/json-output` registers `response_format` on the host DeepSeek
 request-extension service for DUO sessions. It retains HTTP acceptance metadata
 and does not replace strict evaluation or provide a new model adapter.
-See NATIVE_MODEL_GUIDE.md (source checkout: `../NATIVE_MODEL_GUIDE.md`) for configuration, artifact
-semantics, frozen pricing and the separate offline/live acceptance boundaries.
+Start with the [packaged real task walkthrough](./QUICKSTART.md#real-task-starter)
+for complete model configuration, a matching task/evaluator, authorization,
+execution and result retrieval. The [historical native model guide](https://github.com/CZ-ZL/duo/blob/main/docs/research/NATIVE_MODEL_GUIDE.md)
+preserves earlier experiments; it is not required for first use.
 
 The optional `/semantic-evaluators` provider registers the same `duoEvaluators`
 service with IDs `native-docs-semantic-{fast,slow,final}`, **version `2`**. It uses

@@ -1,0 +1,29 @@
+{
+  "state": "PASS",
+  "packageVersion": "0.6.3",
+  "initialArchiveSha256": "aba313870be3e5c4931e71c7b008f7dfda809e526299144736e93b2e5300afcd",
+  "finalArchiveSha256": "50d5f40b0098a10021be111ae3f36d86f4cf4048ad80cfe62b55524060e8990f",
+  "localFullGate": {
+    "nativeTests": 357,
+    "pythonProductTests": 451,
+    "researchTestsDeselected": 86,
+    "publicExampleChecks": 73,
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "hostProfiles": 21
+  },
+  "subsequentChanges": "Package documents, CLI comment only; runtime executable code unchanged after full local gate. Final archive member/link/source checks passed. Exact-code GitHub CI pending.",
+  "modelRequests": 0,
+  "innerCostCny": 0,
+  "callerHostCost": "NOT_METERED_BY_DUO",
+  "inputs": {
+    "dsh-plugin/bin/duo.mjs": "cde338aa872e1ef233b8a4aa78b2fe2211a8b10351327498a4f2212749b8fef6",
+    "dsh-plugin/examples/model/tasks.json": "ab131c9009af3cd666ec11501edc370ef807b419bafea3f67c48e0e9de6f06d0",
+    "dsh-plugin/examples/model/model.example.json": "d8c31f7184bbd6f8a812702d8bfaa40f01d61ee289205465ff64977e5aacce2c",
+    "dsh-plugin/examples/model/target.txt": "aecbcad2f3f1c82d817ac7812f943339a567079d519e5c69061f163ddc66dfdb",
+    "dsh-plugin/examples/model/runbook.md": "408df4c5684ef8f2c8c7642e86aa2c0b167c4b0110b144591a338608e343fef3",
+    "dsh-plugin/examples/model/prepare.js": "bfa37a3f8abea7d48cb3d216966b067a10618b467a63a4c36c5fedfce1cfb0d2",
+    "dsh-plugin/examples/model/evaluator.js": "dd50555dbc85c1cc30c897e0c03ca2a9eb1e2faaff67903f5f392ea17443820e",
+    "dsh-plugin/package.json": "a4eddecaf05f8d550a8ac32d5cc37a562b7eb7dcbff6b34e21f648a60533b501"
+  }
+}

@@ -1,8 +1,8 @@
-# DUO 0.6.2 — current product support
+# DUO 0.6.3 — current product support
 
 DUO is a DSH-native component for bounded evaluation and optimization. The default bundle exposes preparation and waits for work providers; it does not wire a research fixture or authorize model spending.
 
-This page is generated from native/capabilities.js and package.json. Run scripts/product/sync_product_docs.mjs after an intentional support change. Public discovery uses the same catalog. This build is a local release candidate until a matching delivery receipt exists. In the source repository, docs/releases/README.md indexes current verification and docs/development/REPOSITORY_LAYOUT.md explains the layout. docs/releases/0.5.0/ACCEPTANCE.json and docs/slow-evidence-strategy/QUEUE.md retain prior sealed acceptance; historical experiments do not define current support.
+This page is generated from native/capabilities.js and package.json. Run scripts/product/sync_product_docs.mjs after an intentional support change. Public discovery uses the same catalog. This build is a local release candidate until a matching delivery receipt exists. [Release records](https://github.com/CZ-ZL/duo/blob/main/docs/releases/README.md) index verification; the [source layout](https://github.com/CZ-ZL/duo/blob/main/docs/development/REPOSITORY_LAYOUT.md) locates historical evidence. Historical experiments do not define current support.
 
 | Target | Support | Mutable space | Warm start | Execution |
 |---|---|---|---|---|
@@ -16,7 +16,7 @@ Custom targets use the existing TargetService and their own identity, validation
 
 Replaceable components: Target (duoTarget); Generator (duoGenerator); Executor (duoExecutor); Evaluator (duoEvaluators); Evidence comparison and aggregation (duoComparator); Evidence acquisition and promotion (duoGate); Feedback and history order (duoFeedback). Cordis owns registration, dependency injection and disposal. No new DUO registry/runtime is required.
 
-Default public flow: describe → design (evaluate / optimize-basic / optimize-dual / optimize-auto preset) → save an inspected contract → plan → authorized run → status/report. Advanced use adds screened warm history or replaces a provider in the profile. See AGENT_GUIDE.md and examples/product/README.md in the package.
+Default public flow: describe → design (evaluate / optimize-basic / optimize-dual / optimize-auto preset) → save an inspected contract → plan → authorized run → status/report. Advanced use adds screened warm history or replaces a provider in the profile. Start with [Quickstart](./QUICKSTART.md) for complete installed-package local and model paths; [Agent Guide](./AGENT_GUIDE.md) describes the lifecycle.
 
 Slow modes: high_fidelity, expanded_evidence, unavailable. Read EVIDENCE_STRATEGY.md for negotiated information increment and actual acquisition receipts. No price/model-based fidelity inference or silent downgrade.
 

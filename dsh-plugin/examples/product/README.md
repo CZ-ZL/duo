@@ -159,11 +159,6 @@ replaced by Cordis patches. Re-plan after any provider change. The supplied
 byo-evaluator.js demonstrates wrapping an existing function. See the public
 PROVIDERS.md for Target, Generator, Executor, comparison, gate and history hooks.
 
-For real model work, use the published /model-generator or /structured-generator,
-/model-executor and a matching evaluator with an authorized DSH model route,
-caller-owned data and explicit current pricing/limits. The isolated example CLI
-does not inherit credentials: compose such providers in your authorized host and
-call the same DUO tools there. Installing a package or reading an example never
-authorizes a paid run. The config Target needs a config-compatible executor.
+For a real model task use the [packaged Quickstart](https://github.com/CZ-ZL/duo/blob/main/dsh-plugin/QUICKSTART.md#real-task-starter) (also shipped as `QUICKSTART.md` at the package root). Its `grounded-qa` template composes the existing model Generator/Executor and a local content evaluator. Only its explicitly authorized run call inherits the named model credential. These local examples still inherit none.
 
 Read EVIDENCE_STRATEGY.md for auto negotiation, forcing dual, source metadata and component replacement. Default optimize does not repeat the same evaluator as Slow. Basic results report single_fidelity/unavailable; no full dual validation is claimed.
