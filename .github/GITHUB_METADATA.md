@@ -1,24 +1,26 @@
-# Repository presentation — 0.6.1 candidate
+# Repository presentation — 0.6.1 developer preview
 
 Name: duo. Destination: CZ-ZL/duo, PUBLIC, main. Owner-authorized public
 exposure and anonymous access were verified on 2026-09-16 (Asia/Shanghai).
-Description: DSH plugin for agent evaluation and budgeted optimization of prompts and supported component configs, with custom evaluators, candidate comparisons and traceable reports.
+Description: DSH plugin for agent evaluation and budgeted optimization of prompts and supported component configs, with custom evaluators, candidate comparisons and traceable reports / Agent 评估、预算内优化、自定义评估器、候选比较与历史复用。
 Topics: agent-tools, cordis, deepseek, evaluation, optimization, dsh-plugin, deepseek-harness, dsh, agent-evaluation, agent-optimization, prompt-optimization.
 Homepage: https://github.com/CZ-ZL/duo#use-from-your-agent. Languages: README.md (English), README.zh-CN.md (Chinese).
 Documentation: docs/README.md. Current architecture: docs/ARCHITECTURE.md.
 Capabilities: dsh-plugin/CURRENT_STATUS.md. Verification index: docs/releases/README.md.
-Current follow-up: docs/product-foundation/FINAL_PUBLIC_AUDIT.md.
+Current delivery: docs/product-foundation/DISTRIBUTION.md; catalog PR5216 awaiting review.
 Homepage verified code: 5ec271077c8007f75164e96364545dddb07de3b1.
 Homepage CI: https://github.com/CZ-ZL/duo/actions/runs/35008412237.
 Organization verified code: e674101ea2f344cb43283d028320854103de644e.
 Organization CI: https://github.com/CZ-ZL/duo/actions/runs/35005165474.
-Current receipt: docs/releases/0.6.1/PUBLIC_EVIDENCE.json.
-Verified code: 3670a659ca8d4d1452b08e803f3810858b4ed4db.
-Final CI: https://github.com/CZ-ZL/duo/actions/runs/35009839832.
+Current receipt: docs/releases/0.6.1/DISTRIBUTION_EVIDENCE.json.
+Distribution code: 31a88508f5d8748ef166f816400b32e4a58500d2; CI35050843877 PASS.
+Earlier public-exposure audit receipt: docs/releases/0.6.1/PUBLIC_EVIDENCE.json.
+Earlier public-audit code: 3670a659ca8d4d1452b08e803f3810858b4ed4db.
+Earlier public-audit CI: https://github.com/CZ-ZL/duo/actions/runs/35009839832.
 Earlier F01 verified code: 80f06eea5161791585f05cdc6639cd328bb57bf7.
 Earlier F01 CI: https://github.com/CZ-ZL/duo/actions/runs/35001366148.
 Sources and licenses: docs/THIRD_PARTY_NOTICES.md.
-Last tagged release: v0.6.0; a source upload alone is not a new release.
+Current tagged prerelease: v0.6.1, with verified public installation assets.
 Research evidence remains separate; no general quality/cost advantage is claimed.
 No npm registry publication. The final audit records the separate public grant.
 

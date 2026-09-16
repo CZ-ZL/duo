@@ -1,0 +1,197 @@
+{
+  "status": "DELIVERED_CATALOG_REVIEW_PENDING",
+  "codeCommit": "31a88508f5d8748ef166f816400b32e4a58500d2",
+  "ciUrl": "https://github.com/CZ-ZL/duo/actions/runs/35050843877",
+  "ciConclusion": "success",
+  "releaseUrl": "https://github.com/CZ-ZL/duo/releases/tag/v0.6.1",
+  "releaseKind": "DEVELOPER_PREVIEW_PRERELEASE",
+  "package": {
+    "name": "dual-loop-dsh-plugin-0.6.1.tgz",
+    "sha256": "46d8841ad00e0c109550e57287cf01a4830e841a2f1895931370232bba6063c2",
+    "members": 69
+  },
+  "verification": {
+    "nativePassed": 340,
+    "pythonProductPassed": 451,
+    "researchDeselected": 86,
+    "freshDependencyInstall": "PASS",
+    "publicChecks": 73,
+    "publicSteps": 97,
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "hostProfiles": 21,
+    "npmDevelopmentAdvisories": 0,
+    "npmHostAdvisories": 0,
+    "boundedCredentialSignatureHits": []
+  },
+  "publicDownload": {
+    "timeUtc": "2026-09-16T03:18:36.647647+00:00",
+    "assets": [
+      {
+        "asset": "dual-loop-dsh-plugin-0.6.1.tgz",
+        "url": "https://github.com/CZ-ZL/duo/releases/download/v0.6.1/dual-loop-dsh-plugin-0.6.1.tgz",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "sourceMatches": true,
+        "sha256": "46d8841ad00e0c109550e57287cf01a4830e841a2f1895931370232bba6063c2",
+        "bytes": 140261
+      },
+      {
+        "asset": "SHA256SUMS",
+        "url": "https://github.com/CZ-ZL/duo/releases/download/v0.6.1/SHA256SUMS",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "sourceMatches": true,
+        "sha256": "7f27540448cb4ac20498c1808eafd6c7f424b4a9e412b9f0449e70f98ee84c5b",
+        "bytes": 97
+      },
+      {
+        "asset": "VERIFICATION.json",
+        "url": "https://github.com/CZ-ZL/duo/releases/download/v0.6.1/VERIFICATION.json",
+        "httpStatus": 200,
+        "authentication": "NONE",
+        "sourceMatches": true,
+        "sha256": "bbf28198aca4439ab25d6d5279afea538281f4ca7c05258289d6c58ff8012db8",
+        "bytes": 1374
+      }
+    ]
+  },
+  "installedDiscovery": {
+    "status": "PASS",
+    "scope": "Actual DSH-installed public tarball: model-visible schema descriptions and read-only describe tool",
+    "tools": {
+      "dualloop_describe": "Start here to evaluate an Agent target, compare candidate changes or optimize a supported prompt/config within a budget. Discover DUO capabilities, evaluators and missing setup. Read-only; no model calls, spending or deployment.",
+      "dualloop_design": "Prepare an evaluation or optimization when the target, success criteria or evaluator may be incomplete. Inspect a partial CNY contract and report missing inputs; no saving, provider binding, model calls or execution."
+    },
+    "authorityGranted": false,
+    "newModelRequests": 0,
+    "newModelCostCny": 0,
+    "freshLlmCaller": "NOT_RUN",
+    "dependencyMode": "EXISTING_HOST_PEERS_OFFLINE",
+    "installedPlanRunReport": {
+      "planRunReport": "PASS",
+      "status": "completed",
+      "operations": 6,
+      "costCny": 0
+    }
+  },
+  "localRegressionTests": 24,
+  "metadata": {
+    "description": "DSH plugin for agent evaluation and budgeted optimization of prompts and supported component configs, with custom evaluators, candidate comparisons and traceable reports / Agent 评估、预算内优化、自定义评估器、候选比较与历史复用。",
+    "topics": [
+      "agent-tools",
+      "cordis",
+      "deepseek",
+      "evaluation",
+      "optimization",
+      "dsh-plugin",
+      "deepseek-harness",
+      "dsh",
+      "agent-evaluation",
+      "agent-optimization",
+      "prompt-optimization"
+    ],
+    "homepage": "https://github.com/CZ-ZL/duo#use-from-your-agent"
+  },
+  "searchResults": [
+    {
+      "query": "topic:dsh-plugin agent evaluation",
+      "totalCount": 19,
+      "returned": 19,
+      "duoRankInReturned": 18,
+      "qualifiedByOwnerOrName": false,
+      "method": "live GitHub query, stars descending; not fresh LLM selection"
+    },
+    {
+      "query": "topic:dsh-plugin optimization",
+      "totalCount": 55,
+      "returned": 55,
+      "duoRankInReturned": 41,
+      "qualifiedByOwnerOrName": false,
+      "method": "live GitHub query, stars descending; not fresh LLM selection"
+    },
+    {
+      "query": "repo:CZ-ZL/duo topic:dsh-plugin",
+      "totalCount": 1,
+      "returned": 1,
+      "duoRankInReturned": 1,
+      "qualifiedByOwnerOrName": true,
+      "method": "live GitHub query, stars descending; not fresh LLM selection"
+    },
+    {
+      "query": "topic:dsh-plugin \"custom evaluators\"",
+      "totalCount": 1,
+      "returned": 1,
+      "duoRankInReturned": 1,
+      "qualifiedByOwnerOrName": false,
+      "method": "live GitHub query; not LLM recommendation"
+    },
+    {
+      "query": "topic:dsh-plugin 评估",
+      "totalCount": 17,
+      "returned": 17,
+      "duoRankInReturned": 12,
+      "qualifiedByOwnerOrName": false,
+      "method": "live GitHub query; not LLM recommendation"
+    }
+  ],
+  "finderWindowReproduction": [
+    {
+      "query": "agent evaluation",
+      "method": "Reproduce reviewed finder query/window/order through gh API; authenticated transport, no LLM execution",
+      "perPage": 16,
+      "limit": 8,
+      "totalCount": 19,
+      "returned": [
+        "Tencent/WeKnora",
+        "Q00/ouroboros",
+        "EverMind-AI/SkillCorpus",
+        "edonadei/caliper",
+        "lizhiyao/oh-my-knowledge",
+        "BiBoyang/dsh-eval-harness",
+        "xylt369/dsh-browser",
+        "Leeaoyin/dr-agent-skills"
+      ],
+      "duoRank": null
+    },
+    {
+      "query": "custom evaluators",
+      "method": "Reproduce reviewed finder query/window/order through gh API; authenticated transport, no LLM execution",
+      "perPage": 16,
+      "limit": 8,
+      "totalCount": 1,
+      "returned": [
+        "CZ-ZL/duo"
+      ],
+      "duoRank": 1
+    }
+  ],
+  "catalog": {
+    "pullRequest": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/5216",
+    "status": "SUBMITTED_PENDING_UPSTREAM_REVIEW",
+    "entry": "data/plugins/CZ-ZL__duo--dsh-plugin.yml",
+    "changedFiles": 1,
+    "changedLines": 7,
+    "observedState": "OPEN",
+    "checksAtClosure": [
+      {
+        "name": "check",
+        "status": "IN_PROGRESS",
+        "conclusion": "",
+        "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/actions/runs/35051422467/job/104652446314"
+      }
+    ]
+  },
+  "limits": [
+    "Topic indexing is verified; top-result ranking and autonomous Agent choice are not guaranteed",
+    "Reviewed finder emits GitHub-root install commands; use the DUO Release tarball for this subpackage",
+    "New task-first descriptions are exposed through actual installed DSH ToolRuntime; no fresh LLM Caller-selection trial",
+    "Local public-download install reused host peers; fresh dependency-store installation was verified by exact-code CI",
+    "Community catalog acceptance/synchronization is external and pending",
+    "Linux developer preview; general optimization advantage remains unproven"
+  ],
+  "newModelRequests": 0,
+  "newModelCostCny": 0,
+  "npmPublished": false,
+  "coreAlgorithmsChanged": false
+}

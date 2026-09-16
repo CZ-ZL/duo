@@ -1,6 +1,6 @@
 # DUO Product Foundation & Productization
 
-Current follow-up: [ecosystem distribution and Agent discovery](DISTRIBUTION.md), owner-authorized; no method research or npm publication.
+Current delivery: [ecosystem distribution and Agent discovery](DISTRIBUTION.md) shipped as v0.6.1 developer preview; CI35050843877 and public installation PASS. Catalog PR5216 is submitted, pending external review. No method research or npm publication.
 
 Previous delivery: [final public-source audit](FINAL_PUBLIC_AUDIT.md) COMPLETE;
 CI35009839832 passed and owner-authorized public visibility is verified. The

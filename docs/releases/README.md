@@ -1,11 +1,15 @@
 # Releases and verification
 
-Current package line: **0.6.1 candidate**. Last tagged release: **v0.6.0**.
+Current installable release: **[v0.6.1 developer preview](https://github.com/CZ-ZL/duo/releases/tag/v0.6.1)** (prerelease). The previous non-prerelease tag is v0.6.0.
+
+[Distribution notes](0.6.1/DISTRIBUTION.md) and [receipt](0.6.1/DISTRIBUTION_EVIDENCE.json) cover the current build: `31a88508f5d8748ef166f816400b32e4a58500d2`, [CI35050843877](https://github.com/CZ-ZL/duo/actions/runs/35050843877) PASS. The 69-member tarball SHA256 is `46d8841ad00e0c109550e57287cf01a4830e841a2f1895931370232bba6063c2`. Download it and SHA256SUMS from that fixed Release.
+
+The remaining entries preserve earlier verification stages.
 The repository is **public**. The [final audit](../product-foundation/FINAL_PUBLIC_AUDIT.md)
 and [publication receipt](0.6.1/PUBLIC_EVIDENCE.json) record the authorized exposure.
 There is no npm publication.
 
-Current verified source: `3670a659ca8d4d1452b08e803f3810858b4ed4db`.
+Public-exposure audit verified source: `3670a659ca8d4d1452b08e803f3810858b4ed4db`.
 [CI35009839832](https://github.com/CZ-ZL/duo/actions/runs/35009839832) passed the
 complete product gate with the final documentation and pinned Actions.
 The 69-member package SHA256 is
@@ -28,7 +32,8 @@ Package documentation changes receive a new artifact hash.
 
 | Version / stage | Notes and evidence |
 |---|---|
-| 0.6.1 public source — current | [Audit](../product-foundation/FINAL_PUBLIC_AUDIT.md), [receipt](0.6.1/PUBLIC_EVIDENCE.json), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35009839832) |
+| 0.6.1 ecosystem distribution — current | [Release](https://github.com/CZ-ZL/duo/releases/tag/v0.6.1), [notes](0.6.1/DISTRIBUTION.md), [receipt](0.6.1/DISTRIBUTION_EVIDENCE.json) |
+| 0.6.1 public-source audit | [Audit](../product-foundation/FINAL_PUBLIC_AUDIT.md), [receipt](0.6.1/PUBLIC_EVIDENCE.json), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35009839832) |
 | 0.6.1 homepage organization | [Receipt](0.6.1/HOMEPAGE_EVIDENCE.json), [CI](https://github.com/CZ-ZL/duo/actions/runs/35008412237) |
 | 0.6.1 directory organization | [Receipt](0.6.1/ORGANIZATION_EVIDENCE.json), [migration/compatibility](../development/REPOSITORY_LAYOUT.md), [CI artifact](https://github.com/CZ-ZL/duo/actions/runs/35005165474) |
 | 0.6.1 identity repair before directory migration | [Notes](0.6.1/RELEASE_NOTES.md), [sealed F01 receipt](0.6.1/F01_EVIDENCE.json), [passing CI](https://github.com/CZ-ZL/duo/actions/runs/35001366148) |
