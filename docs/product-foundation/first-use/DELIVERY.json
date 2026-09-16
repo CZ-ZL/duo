@@ -1,5 +1,5 @@
 {
-  "status": "ENGINEERING_DELIVERED_LIVE_ACCEPTANCE_BLOCKED",
+  "status": "ENGINEERING_DELIVERED_LIVE_ACCEPTANCE_BLOCKED_BY_REGISTRY",
   "goalClosed": false,
   "sourceVersion": "0.6.3",
   "taggedReleaseCreated": false,
@@ -40,10 +40,10 @@
     "G5": "BLOCKED",
     "G6": "PASS",
     "G7": "PASS",
-    "G8": "PASS"
+    "G8": "NOT_RUN"
   },
-  "g4g5Blocker": "No applicable new paid authorization for this Goal; pending maximum six inner model requests / CNY1; no old allowance reuse",
-  "subsequentCommitScope": "Only acceptance evidence/queue updates outside package; all shipped bytes equal tested commit",
+  "g4g5Blocker": "New 6-request / CNY1 authority exists; first independent Caller could not install because registry TLS reset. No model requests. See LIVE_ATTEMPT_1.json.",
+  "subsequentCommitScope": "Bilingual installation guide adds workspace npm cache; current CI pending. Runtime unchanged.",
   "currentInnerModelRequests": 0,
   "currentInnerCostCny": 0,
   "callerHostCost": "NOT_METERED_BY_DUO",
@@ -56,5 +56,6 @@
   "about": {
     "homepageUrl": "https://github.com/CZ-ZL/duo#start-here",
     "verified": true
-  }
+  },
+  "liveAttempt": "LIVE_ATTEMPT_1.json"
 }

@@ -30,6 +30,7 @@ private profile or an API key. The remaining paths are created under this direct
 export DUO_DSH_PACKAGE=/absolute/path/to/node_modules/@deepseek-ai/dsh
 export DSH_HOME="$PWD/duo-install-home"
 export DSH_TELEMETRY_DISABLED=1
+export npm_config_cache="$PWD/npm-cache"
 git clone --depth 1 https://github.com/CZ-ZL/duo.git duo-source
 git -C duo-source rev-parse HEAD > DUO_SOURCE_COMMIT
 npm pack ./duo-source/dsh-plugin --offline --ignore-scripts --pack-destination "$PWD"
@@ -44,7 +45,8 @@ node "$DUO_PACKAGE/bin/duo.mjs" --help
 ```
 
 Stop if a command fails. Dependency installation can contact the package registry;
-it makes no model requests. The explicit pnpm store stays in this working directory.
+it makes no model requests. The npm cache and pnpm store stay in this working
+directory, avoiding writes to a global cache.
 On ERR_PNPM_META_FETCH_FAIL, retain the output and restore registry connectivity
 before retrying; do not disable TLS verification. The archive is the plugin; the GitHub repository root
 is not an installable DSH bundle. These commands create a separate profile and

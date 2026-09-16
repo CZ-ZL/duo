@@ -1,0 +1,63 @@
+{
+  "attempt": 1,
+  "gates": {
+    "G4": "BLOCKED",
+    "G5": "BLOCKED"
+  },
+  "reason": "Registry TLS connection reset before isolated installation completed",
+  "sourceCommit": "367856793b30c1bb0a47e74fb115268f7b995564",
+  "packageVersion": "0.6.3",
+  "archiveSha256": "0910ead5c7dcf44d6b11783ed24ae8db04bff15e1d21a352b75c853a2028057a",
+  "start": "2026-09-16T08:35:47Z",
+  "end": "2026-09-16T08:39:45.892704Z",
+  "firstEffectiveRun": null,
+  "candidateEvaluated": false,
+  "implementerInterventions": 0,
+  "productImplementationRead": false,
+  "modelRequests": 0,
+  "costCny": 0,
+  "unknownFees": false,
+  "ownerGrant": {
+    "maxRequests": 6,
+    "maxCostCny": 1,
+    "remainingRequests": 6,
+    "remainingCostCny": 1,
+    "oldFundsTransferred": false
+  },
+  "callerHostCost": "NOT_METERED_BY_DUO",
+  "localCompute": "NOT_PRICED",
+  "originalTargetSha256": "aecbcad2f3f1c82d817ac7812f943339a567079d519e5c69061f163ddc66dfdb",
+  "originalTargetUnchanged": true,
+  "targetScope": "Shipped sample; working Target not initialized",
+  "documentsRead": [
+    "Public Quickstart",
+    "Public Agent Guide",
+    "Official npm cache configuration reference",
+    "Official DeepSeek CNY tariff",
+    "Required DSH skill and pinned SAFETY notice",
+    "Owner model JSON",
+    "Shipped sample Target/runbook/tasks"
+  ],
+  "failures": [
+    {
+      "stage": "npm pack",
+      "error": "EROFS on global npm cache",
+      "recovery": "Caller independently used documented local npm cache; no implementer assistance",
+      "productRepair": "Both Quickstarts now declare npm_config_cache under the workspace; fresh-cache offline pack and archive check passed"
+    },
+    {
+      "stage": "DSH plugin add",
+      "error": "ERR_PNPM_META_FETCH_FAIL for registry.npmjs.org",
+      "diagnosis": "Caller curl SSL_ERROR_SYSCALL and Node ECONNRESET; parent independently reproduced ECONNRESET for both required packages",
+      "recovery": "STOPPED; no TLS bypass, alternate registry or hidden borrowed dependencies"
+    }
+  ],
+  "sourceArtifacts": {
+    "CALLER_RECORD.md": "d28b7889744f00880175b42ababb9993367e8609976733c137061bad46c8ba06",
+    "accounting.json": "c48da151e570236da9e8f0da3b12f82ef3e1b09ddc8dbb27c9add95d90c6465d",
+    "install.log": "a5aa82aa9c69585048339da30e188c8b9c88f5da8eccd6694c72093ba1bb6e09",
+    "install-recovery.log": "627919a26c5966f4b2c2a8b20c1b87a1600b4c6c08376fb98fe468ec8f65e920",
+    "registry-diagnostic.txt": "ae579f82a50821dba9cd2560e7e0100edcc63c4e4f3e057f59be9c02acda3374"
+  },
+  "nextAction": "Restore registry connectivity, then a fresh Caller uses the repaired public guide within the still-unspent grant. Do not infer a pass from installation-only or earlier local tests."
+}

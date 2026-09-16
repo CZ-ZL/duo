@@ -1,6 +1,6 @@
 # Product expression and first use
 
-Status: **ACTIVE — engineering delivered; live acceptance blocked**.
+Status: **ACTIVE — engineering delivered; live acceptance blocked by registry TLS**.
 This is a bounded product-use Goal. Historical experiment Goals remain closed.
 The current source package is 0.6.3; release delivery is tracked separately below.
 
@@ -32,11 +32,11 @@ qualify the sample measurement plumbing, not an optimization gain.
 | G1 factual claims | PASS | Claims table below, actual historical-source extraction, current capability catalog and changed-code review |
 | G2 homepage understanding | PASS | Two fresh sessions, English and Chinese; only the respective homepage supplied; five answers each match the product. Raw answers and input hashes retained under first-use/ |
 | G3 free installed path | PASS | Fresh registry install of actual 0.6.3 tarball; exact Quickstart commands completed describe/plan/run/report and re-read; original SHA unchanged, repeated report byte-equal, no model environment inherited |
-| G4 real starter | BLOCKED | No applicable paid grant for this Goal; zero live starter requests. Offline checks cannot satisfy this gate |
-| G5 unfamiliar live Caller | BLOCKED | Shares the prospective G4 run; fresh Caller has not been launched for paid work |
+| G4 real starter | BLOCKED | Owner approved 6 requests / CNY1. Caller 1 stopped before model execution: registry TLS reset. Actual requests/cost 0/CNY0; candidate evaluation not reached |
+| G5 unfamiliar live Caller | BLOCKED | Fresh public-guide-only Caller retained all actions and independently recovered npm-cache EROFS; install then blocked by registry. No implementer intervention, but no live-use pass |
 | G6 preparation/errors | PASS | Installed package: absent evaluator reports duoEvaluators ABSENT, executionReady false, attach_authorized_evaluator; unsupported model refuses before workspace creation; unfunded plan refuses with next action and no dispatched work |
 | G7 docs/package/demo | PASS | 145 links/anchors, 7 identical bilingual shell blocks, archive and rendered GitHub checks PASS. After the store repair and an HTTP200 registry recheck, a fresh public-source clone at 99c6458 followed exact Quickstart commands through report/re-read, original unchanged. Failed attempts retained in G7_ATTEMPTS.json |
-| G8 regression/delivery | PASS | Full local gate PASS: 357 native, 451 Python product, 73 public-example checks, 31 Slow checks, 5 repair cases, 21 host profiles. Commit 99c6458 and CI35072852975 PASS; public source-install archive matches CI SHA. Later evidence-only commit changes no shipped bytes |
+| G8 regression/delivery | NOT_RUN | Cache-guide repair CI pending; prior full local gate PASS: 357 native, 451 Python product, 73 public-example checks, 31 Slow checks, 5 repair cases, 21 host profiles. Commit 99c6458 and CI35072852975 PASS; public source-install archive matches CI SHA. Current repair changes packaged guides only; runtime unchanged |
 
 Local evidence root: `runs/first-use-convergence-20260916/` outside the public
 source checkout. Public projections omit credentials, private paths, raw user
@@ -76,7 +76,18 @@ not stand in for current starter acceptance.
   noted that exact contracts, provider lists, artifact paths and checkpoint
   details require the linked guides, as intended.
 - Public-source install round 1 failed with pnpm ERR_SQLITE_ERROR at its default store. Supplying the documented isolated writable store passed that point, then dependency downloads failed with ERR_PNPM_META_FETCH_FAIL. A direct Node fetch reported ECONNRESET before TLS establishment; the unchanged reference install verifier also failed. No TLS bypass or hidden cached-install success was used. Prior fresh-install PASS remains a separate earlier run. Once the read-only probe returned HTTP200, a new public-source install at 99c6458 completed the entire guide and repeated report read at zero inner model cost.
-- No G5 session has run; do not claim zero interventions as live Caller success.
+- The first G5 session has now run and stopped before model work. It read only public
+  product material, required DSH safety guidance and owner resources. npm pack
+  encountered EROFS on the global cache; the Caller independently recovered via
+  the public npm cache option. Both Quickstarts now put that cache in the
+  workspace. Fresh-cache offline packaging and package checks pass. DSH plugin
+  installation then failed ERR_PNPM_META_FETCH_FAIL; curl SSL_ERROR_SYSCALL
+  and Node ECONNRESET reproduced the registry TLS failure. The parent separately
+  reproduced it for both required packages. No TLS bypass or private wiring.
+  See [LIVE_ATTEMPT_1.json](./first-use/LIVE_ATTEMPT_1.json) for source hashes,
+  timing, input scope, zero-consumption settlement and remaining authorization.
+  Zero implementer interventions does not count as successful use when no
+  candidate was executed.
 
 ## Scope of the cleanup
 
@@ -94,17 +105,18 @@ The old corrected Root Cause allocation is settled with zero executable requests
 unused allowance was released. The later local Caller grant allowed zero paid work.
 Neither authorizes this Goal.
 
-Pending request: at most **6 inner model requests / CNY1**. Normal G4/G5 is one
+Owner approved at most **6 inner model requests / CNY1** on 2026-09-16. Normal G4/G5 is one
 three-request run (baseline, generation, candidate execution). Remaining requests
 are only for a fresh session after retained failure inspection and a public-material
 fix. No automatic retries, no borrowed funds, no automatic candidate adoption.
 Stop on unknown cost, limit exhaustion, absent authority or no further validation
 value. Calling Agent host cost is outside DUO accounting.
 
-After approval: record the new grant, give a fresh Caller only installed public
-guides plus owner configuration/authority, let it run the starter, and retain
-its actions, document reads, elapsed time, failures and any assistance. Use that
-same run for G4/G5. Update the homepage example only from observed results.
+The new grant is recorded separately from the earlier proposal and closed ledgers.
+The first independent Caller receives 3 requests / CNY0.50, public Quickstart and
+owner configuration/authority. Retain its actions, document reads, elapsed time,
+failures and any assistance. Use that same run for G4/G5. Update the homepage
+example only from observed results.
 Total Goal stays open until all mandatory gates pass.
 
 ## Engineering delivery
@@ -117,11 +129,14 @@ locally installed archive matches the CI artifact:
 `0910ead5c7dcf44d6b11783ed24ae8db04bff15e1d21a352b75c853a2028057a`.
 
 [Delivery receipt](./first-use/DELIVERY.json) binds the version, gates and cost
-scope. This evidence update is outside the shipped package and changes no tested
-bytes. GitHub rendered English/Chinese articles and the updated About entry were
-checked. Version 0.6.3 remains an untagged source preview; v0.6.2 remains the latest
+scope. The current follow-up changes the two shipped installation guides only;
+runtime bytes remain identical. Its own package/CI evidence must be checked before
+delivery. GitHub rendered English/Chinese articles and the updated About entry
+were checked in the prior delivery. Version 0.6.3 remains an untagged source preview; v0.6.2 remains the latest
 Release. No npm publication or visibility change. Inner model requests/cost for
 this Goal: **0 / CNY0**; Caller host and local compute are not priced here.
 
-Only G4/G5 remain blocked. Their shared real run needs a new owner grant; the
-Goal is not closed and no method improvement is claimed.
+G4/G5 have spending authority but are blocked by registry connectivity. The
+6-request / CNY1 grant is entirely unspent. Restore connectivity, then use a new
+Caller with the repaired public guide; no new spending grant is required within
+that cumulative cap. The Goal stays open. No model result or improvement is claimed.

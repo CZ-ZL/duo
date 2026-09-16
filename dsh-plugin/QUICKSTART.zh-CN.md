@@ -25,6 +25,7 @@ profile 或密钥。其余路径在当前目录下创建。
 export DUO_DSH_PACKAGE=/absolute/path/to/node_modules/@deepseek-ai/dsh
 export DSH_HOME="$PWD/duo-install-home"
 export DSH_TELEMETRY_DISABLED=1
+export npm_config_cache="$PWD/npm-cache"
 git clone --depth 1 https://github.com/CZ-ZL/duo.git duo-source
 git -C duo-source rev-parse HEAD > DUO_SOURCE_COMMIT
 npm pack ./duo-source/dsh-plugin --offline --ignore-scripts --pack-destination "$PWD"
@@ -38,7 +39,7 @@ export DUO_PACKAGE="$DSH_HOME/profiles/starter/node_modules/@dual-loop/dsh-plugi
 node "$DUO_PACKAGE/bin/duo.mjs" --help
 ```
 
-任一步失败就停止。安装依赖可能访问包 registry，但不调用模型。显式 pnpm store 保留在当前工作目录。
+任一步失败就停止。安装依赖可能访问包 registry，但不调用模型。npm 缓存与 pnpm store 都保留在当前工作目录，避免写全局缓存。
 遇到 ERR_PNPM_META_FETCH_FAIL 时保留输出，恢复 registry 连接后再重试，不关闭 TLS 校验。
 安装对象是插件 tarball，不是 GitHub 仓库根目录。这些步骤不读取或改写日常
 profile。保留安装包与校验文件，便于以后回退。
