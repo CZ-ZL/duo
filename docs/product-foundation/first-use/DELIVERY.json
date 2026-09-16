@@ -1,16 +1,16 @@
 {
-  "status": "PRODUCT_PATH_VERIFIED_FINAL_DELIVERY_PENDING",
-  "goalClosed": false,
+  "status": "COMPLETE",
+  "goalClosed": true,
   "sourceVersion": "0.6.3",
   "taggedReleaseCreated": false,
   "latestPreviousRelease": "v0.6.2",
-  "testedCommit": "a367da74e407c231be81ed528f3d02fba82b588a",
+  "testedCommit": "3f351e7154cc32daca3b2a76cc2ae2f8d3016694",
   "runtimeImplementationCommit": "a367da74e407c231be81ed528f3d02fba82b588a",
   "ci": {
     "status": "completed",
     "conclusion": "success",
-    "headSha": "a367da74e407c231be81ed528f3d02fba82b588a",
-    "url": "https://github.com/CZ-ZL/duo/actions/runs/35078970516"
+    "headSha": "3f351e7154cc32daca3b2a76cc2ae2f8d3016694",
+    "url": "https://github.com/CZ-ZL/duo/actions/runs/35080803037"
   },
   "archiveSha256": "a5244d716bed67bd69648840bd1732c5860f72ca687c1b1f512a91e2e4556a68",
   "publicGuideRun": {
@@ -40,9 +40,9 @@
     "G5": "PASS",
     "G6": "PASS",
     "G7": "PASS",
-    "G8": "NOT_RUN"
+    "G8": "PASS"
   },
-  "subsequentCommitScope": "Final homepage/Quickstart status and evidence update only; runtime and sample evaluator equal live-tested a367da7",
+  "subsequentCommitScope": "Evidence-only closure in FIRST_USE.md, QUEUE.md and DELIVERY.json; no package member, executable code, workflow or tested input changed",
   "currentInnerModelRequests": 6,
   "currentInnerCostCny": 0.01585472,
   "callerHostCost": "NOT_METERED_BY_DUO",
@@ -51,7 +51,61 @@
   "automaticCandidateAdoption": false,
   "npmPublished": false,
   "visibilityChanged": false,
-  "renderingVerification": "Previous public pages verified; current final documentation rendering pending",
+  "renderingVerification": {
+    "commit": "3f351e7154cc32daca3b2a76cc2ae2f8d3016694",
+    "status": "PASS",
+    "method": "Actual public GitHub HTML article and rendered-link inspection; no screenshot",
+    "pages": [
+      {
+        "path": "README.md",
+        "url": "https://github.com/CZ-ZL/duo",
+        "httpStatus": 200,
+        "checks": {
+          "articleRendered": true,
+          "currentResultLink": true,
+          "currentCost": true,
+          "currentScore": true
+        },
+        "status": "PASS"
+      },
+      {
+        "path": "README.zh-CN.md",
+        "url": "https://github.com/CZ-ZL/duo/blob/main/README.zh-CN.md",
+        "httpStatus": 200,
+        "checks": {
+          "articleRendered": true,
+          "currentResultLink": true,
+          "currentCost": true,
+          "currentScore": true
+        },
+        "status": "PASS"
+      },
+      {
+        "path": "dsh-plugin/QUICKSTART.md",
+        "url": "https://github.com/CZ-ZL/duo/blob/main/dsh-plugin/QUICKSTART.md",
+        "httpStatus": 200,
+        "checks": {
+          "articleRendered": true,
+          "currentResultLink": true,
+          "evaluatorVersion": true,
+          "stalePendingClaim": true
+        },
+        "status": "PASS"
+      },
+      {
+        "path": "dsh-plugin/QUICKSTART.zh-CN.md",
+        "url": "https://github.com/CZ-ZL/duo/blob/main/dsh-plugin/QUICKSTART.zh-CN.md",
+        "httpStatus": 200,
+        "checks": {
+          "articleRendered": true,
+          "currentResultLink": true,
+          "evaluatorVersion": true,
+          "stalePendingClaim": true
+        },
+        "status": "PASS"
+      }
+    ]
+  },
   "about": {
     "homepageUrl": "https://github.com/CZ-ZL/duo#start-here",
     "verified": true
@@ -85,8 +139,8 @@
   "currentStarter": "STARTER_RESULT.json",
   "currentHomepageReaders": "G2_CURRENT.json",
   "offlinePublicGuideRun": "OFFLINE_INSTALL.json",
-  "finalDelivery": "PENDING_FINAL_DOC_COMMIT_CI",
-  "archiveScope": "Final documentation archive; exact final-commit CI verification pending",
+  "finalDelivery": "VERIFIED",
+  "archiveScope": "Final source package; local archive equals exact-commit GitHub CI installed package",
   "liveArchiveSha256": "53b03964c4215dbff1a4d130d58a615b939f5462b2e1d784587b0b85b4e05641",
   "finalReview": {
     "status": "PASS",
@@ -101,5 +155,36 @@
     ],
     "liveRuntimeAndEvaluatorUnchanged": true,
     "errors": []
+  },
+  "verification": {
+    "status": "PASS",
+    "sourceCommit": "3f351e7154cc32daca3b2a76cc2ae2f8d3016694",
+    "ciUrl": "https://github.com/CZ-ZL/duo/actions/runs/35080803037",
+    "nativeTests": 358,
+    "pythonProductTests": 451,
+    "researchTestsDeselected": 86,
+    "publicChecks": 73,
+    "publicSteps": 97,
+    "publicProfiles": 14,
+    "slowEvidenceChecks": 31,
+    "baselineRepairCases": 5,
+    "hostProfiles": 21,
+    "hostProfileSourceHashesMatch": true,
+    "cleanInstallDependencyMode": "FRESH_REGISTRY_DEPENDENCIES",
+    "packageMembers": 77,
+    "archiveSha256": "a5244d716bed67bd69648840bd1732c5860f72ca687c1b1f512a91e2e4556a68",
+    "dependencyAdvisories": {
+      "developmentExitCode": 0,
+      "hostExitCode": 0
+    },
+    "modelRequests": 0,
+    "costCny": 0
+  },
+  "sourceEvidenceCrosscheck": {
+    "status": "PASS",
+    "starterSourceArtifactHashes": 4,
+    "modelReceiptFeesRecomputed": 3,
+    "homepageReaderInputsEqualCommittedPages": true,
+    "sourceCommit": "3f351e7154cc32daca3b2a76cc2ae2f8d3016694"
   }
 }

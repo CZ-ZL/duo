@@ -1,6 +1,6 @@
 # DUO Product Foundation & Productization
 
-## Active: product expression and first use — 2026-09-16
+## Complete: product expression and first use — 2026-09-16
 
 Goal: a new reader understands purpose, requirements and outputs; an unfamiliar
 Caller completes a real task using public materials and owner resources.
@@ -17,7 +17,7 @@ Persistent evidence: this queue, FIRST_USE.md and local
 | U2 guide, U1 | Complete free and real paths with public installation/recovery/config/results | PASS: packaged bilingual Quickstart; existing-host install path exposed and run; exact patch path fixed |
 | U3 homepage, U1–2 | Actual current result, clear support/budget boundaries, two start paths | PASS: actual v2 4/4 tie / CNY0.00735072; two new homepage-only readers passed |
 | U4 product checks, U1–3 | G1–G7 evidence; all failures retained | PASS: four Caller attempts retained; v1 and v2 measurements separated |
-| U5 delivery, U4 | Reviewed final package/commit, GitHub rendering and CI | IN_PROGRESS: a367da7 runtime CI PASS; final documentation/package delivery pending |
+| U5 delivery, U4 | Reviewed final package/commit, GitHub rendering and CI | PASS: final source 3f351e7 /CI35080803037; installed archive equals local; GitHub rendering verified |
 
 | Gate | State | Evidence |
 |---|---|---|
@@ -28,16 +28,17 @@ Persistent evidence: this queue, FIRST_USE.md and local
 | G5 unfamiliar Caller | PASS | Fresh Caller4, public guide plus owner resources, no source reading/intervention; ~183 seconds |
 | G6 preparation/errors | PASS | Missing evaluator, unsupported model, absent authority; v2 starter regression rerun |
 | G7 documents/package/demo | PASS | Current files/anchors/eight bilingual command blocks; actual free and real runs; extracted result |
-| G8 delivery | NOT_RUN | Final docs commit CI pending; a367da7 runtime/evaluator full CI PASS |
+| G8 delivery | PASS | Final CI35080803037, exact installed package hash, fresh dependencies, all product checks, both advisory checks and public rendering |
 
 Budget settled: 6/6 authorized requests, CNY0.01585472/1. No retries or unknown
 fees. CNY0.98414528 unused money grants no more requests. No old funds transferred.
 Caller host inference/local compute unpriced. Original Targets unchanged; no
 candidate adoption. Research remains paused and method advantage unproven.
 
-Next executable task: final package/link/diff/privacy review, push documentation,
-verify exact GitHub CI and rendered pages, then record all Gates PASS and close
-this Goal. No new paid call or subsequent research is authorized by closure.
+All required tasks and Gates are complete. Exact code/package and current evidence
+are recorded in first-use/DELIVERY.json. The closure changes evidence only; no
+shipped bytes differ from CI-tested 3f351e7. No remaining task in this Goal; a new
+paid call or subsequent research requires its own scope and authority.
 
 ---
 

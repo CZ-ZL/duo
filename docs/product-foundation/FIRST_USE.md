@@ -1,6 +1,6 @@
 # Product expression and first use
 
-Status: **ACTIVE — G1–G7 passed; final documentation/package delivery pending**.
+Status: **COMPLETE — G1–G8 PASS**.
 This bounded product-use Goal does not reopen historical research Goals.
 The package is 0.6.3, an untagged source preview; the latest tagged Release remains
 v0.6.2. No npm publication, visibility change or candidate adoption.
@@ -61,7 +61,7 @@ Reading and understanding this report is a product-use result, not method proof.
 | G5 unfamiliar Caller | PASS | Fresh Caller4, public guide and owner resources only, ~183s first effective completion, no implementation reads or implementer intervention. Raw command/document/error records retained |
 | G6 preparation/errors | PASS | Missing Evaluator, unsupported model and absent authorization refuse accurately; all four starter CLI controls rerun with v2. No fabricated budget or fixture substitution |
 | G7 docs/package/demo | PASS | Current relative links/anchors and eight bilingual shell blocks checked; package files/exports verified; actual public offline/free and real paths exercised; results extracted from artifacts |
-| G8 regression/delivery | NOT_RUN | Runtime/evaluator commit a367da7 passed CI35078970516; final documentation/package commit CI pending. No untested behavior is included in the documentation change |
+| G8 regression/delivery | PASS | Final source commit 3f351e7 passed CI35080803037: 358 native /451 Python product checks, fresh-registry installation, 73 public /31 Slow checks, 5 repair cases and 21 host profiles. Package hash equals local final archive; bilingual GitHub rendering and both dependency advisory checks passed |
 
 ## Claims to evidence
 
@@ -134,6 +134,10 @@ benefit are separate evidence categories.
 
 See [DELIVERY.json](./first-use/DELIVERY.json) for the exact tested commit, archive
 hash and CI. Core and live evaluator bytes remain those exercised at a367da7;
-final edits are homepage, guide status and evidence. Close this Goal only after
-that final delivery check passes. No further model call or research Goal starts
-automatically.
+final edits at 3f351e7 are homepage, guide status and evidence.
+[Final CI35080803037](https://github.com/CZ-ZL/duo/actions/runs/35080803037) passed;
+its installed archive equals the locally reviewed final package. Both GitHub
+homepages and Quickstarts render the actual result and link correctly. The
+subsequent closure commit changes only this report, queue and DELIVERY.json;
+no shipped byte or tested input changes. This Goal is complete. No further model
+call or research Goal starts automatically.
