@@ -12,13 +12,17 @@ Changing an Agent means more than editing a prompt: you need to run tests, compa
 
 Choose a prompt or supported component setting, define how to judge it, and set a budget. DUO measures the original, generates alternative versions and tests them. You get the proposed changes, evaluation results and cost records to decide what to keep. If the evidence does not justify a replacement, DUO can recommend keeping the original. Applying a change remains your decision.
 
-## What you get
+## Why choose DUO?
 
-| What you need to know | What DUO returns |
+DUO is built for teams already using DSH who want an Agent to run improvement experiments through public tools, with an inspectable plan and a record of every decision.
+
+| Feature | What it gives you |
 |---|---|
-| What changed? | Candidate versions and a record of what each attempt changed. |
-| How did each version perform? | Results from the evaluations that actually ran, failures and the reason for selection or rejection. |
-| What did the experiment cost, and what can I reuse? | Usage and cost records, an experiment journal and compatible history for later runs. |
+| **An Agent-operated DSH workflow** | Discover capabilities, prepare inputs, inspect a plan, run and retrieve a report through public tools. Reuse DSH's model, tool and permission services. |
+| **Search and additional validation have separate jobs** | Fast screens changes with available tests. Slow follows the frozen plan to acquire more evidence, such as additional tasks or boundary checks, for admitted candidates; permitted feedback informs later search. Basic optimization can run without extra evidence and reports that limitation. |
+| **Your tests and replaceable components** | Bring an executable evaluator; replace the Target adapter, Generator or selection policy through supported interfaces. This lets you change what is tested and how candidates are chosen without editing DUO Core. |
+| **A budget and a record for each attempt** | Inspect candidate changes, results, failures, selection reasons and inner-operation cost receipts. Unknown costs stop paid work. The Calling Agent's own costs need a separate host budget. |
+| **History you can reuse with clear boundaries** | Warm start screens compatible development history. Final evidence stays out of search; recovery preserves the original allowance at supported settled checkpoints. |
 
 You can start with evaluation only. If the goal or tests are unclear, the calling Agent can use DUO's preparation tools to identify what is missing before a run. Supported changes depend on the connected adapter; [current support](./dsh-plugin/CURRENT_STATUS.md) lists prompt support, the limited configuration target and custom-adapter requirements.
 
@@ -31,6 +35,19 @@ For example, ask your Agent:
 Install the [versioned plugin package](./dsh-plugin/README.md) into your DSH profile, then start with `dualloop_describe`. Your Agent uses the public tools to check suitability, prepare the tests and providers, inspect the plan, run within your authorization and retrieve the report. Model access and executable evaluators must be connected; the [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) explains the setup.
 
 Use the release tarball linked above: the installable bundle lives in `dsh-plugin/`, while the repository root contains development tools. Community catalog submission status is tracked [here](./docs/product-foundation/DISTRIBUTION.md).
+
+## How does DUO fit alongside other tools?
+
+These tools overlap. The table compares documented workflows and intended use, not benchmark performance; official sources were checked on September 16, 2026.
+
+| Tool | Documented focus | When to consider it |
+|---|---|---|
+| [Promptfoo](https://www.promptfoo.dev/docs/intro/) | Evaluation and red teaming, configurable assertions, comparison views and CI integration. | You mainly need to test and compare LLM application behavior. |
+| [DSPy](https://dspy.ai/diving-deeper/choosing-an-optimizer/) | Build LM programs and optimize their instructions, examples or, with a suitable optimizer, model weights against a metric. | You develop in DSPy and want to optimize a program within that framework. |
+| [GEPA / optimize_anything](https://gepa-ai.github.io/gepa/api/optimize_anything/optimize_anything/) | Search over scorable text artifacts with evaluator feedback, configurable engines and budgets. It also provides an [Agent skill](https://gepa-ai.github.io/gepa/guides/agent-skill/). | You want an optimizer for prompts, code or other text-represented candidates. |
+| **DUO** | A DSH-native experiment lifecycle combining candidate search, optional additional evidence, replaceable policies and budget receipts. | You already use DSH and want an Agent to prepare, run and explain bounded experiments on supported components. |
+
+DUO's emphasis is that combination inside DSH. Agent access, extensibility and budget controls are shared capabilities, not exclusive claims. Current support is a developer preview: prompts are supported, the built-in config adapter is limited, and other targets need adapters. A general quality or cost advantage has not been established.
 
 ## Try a local example
 
