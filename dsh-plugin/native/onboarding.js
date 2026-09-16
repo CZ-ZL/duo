@@ -694,14 +694,17 @@ export function apply(ctx) {
             'Inspect the configured contract with dualloop_design; discovery did not dispatch work.',
         }
       }
+      const targetCompatibility = inspectWorkTargets(ctx, currentSpec)
       return {
         ...describeProduct(),
-        executionReady: ['duoGenerator', 'duoExecutor', 'duoEvaluators'].every(
-          (k) => runtimeAvailability.services[k] === 'PRESENT',
-        ),
+        executionReady:
+          targetCompatibility.status !== 'INCOMPATIBLE' &&
+          ['duoGenerator', 'duoExecutor', 'duoEvaluators'].every(
+            (k) => runtimeAvailability.services[k] === 'PRESENT',
+          ),
         runtimeAvailability,
         configuredTarget: describeConfiguredTarget(ctx),
-        targetCompatibility: inspectWorkTargets(ctx, currentSpec),
+        targetCompatibility,
         evaluators,
         evidenceStrategy,
       }
@@ -809,6 +812,7 @@ export function apply(ctx) {
         result.preparation.status =
           result.status === 'invalid' ? 'invalid_draft' : 'provider_incompatible'
         result.preparation.recommendedOperation = 'prepare_inputs'
+        result.preparation.providerCompatibility = 'INCOMPATIBLE'
         result.preparation.actions.unshift({
           kind: 'repair_work_provider_binding',
           executesWork: false,

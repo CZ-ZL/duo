@@ -74,6 +74,24 @@ test('public preparation exposes and rejects incompatible work targets without c
   ])
   assert.ok(!JSON.stringify(discovered).includes('DO_NOT_EXPOSE'))
   const c = draft()
+  const directory = mkdtempSync(join(tmpdir(), 'duo-work-scope-'))
+  const experiment = join(directory, 'experiment.json')
+  writeFileSync(experiment, JSON.stringify(c))
+  class Evaluators extends EvaluatorsService {
+    describe() {
+      return []
+    }
+    async evaluate() {
+      assert.fail('discovery must not evaluate')
+    }
+  }
+  for (const [Provider, config] of [[JsonContract, { experiment }], [Evaluators]]) {
+    const fiber = await h.ctx.plugin(Provider, config)
+    t.after(() => fiber.dispose())
+  }
+  const bound = value(await h.call('dualloop_describe'))
+  assert.equal(bound.targetCompatibility.status, 'INCOMPATIBLE')
+  assert.equal(bound.executionReady, false)
   const designed = value(
     await h.call('dualloop_design', { draft: c, experimentPath: '/project/e.json' }),
   )
