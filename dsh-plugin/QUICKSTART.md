@@ -122,7 +122,12 @@ candidate, and measures its answers. The evaluator checks actual command and
 endpoint answers, citations, and whether an unsupported SLA question is left
 unanswered. It does not execute deployment commands.
 
-The supplied setup is complete:
+The evaluator `starter-runbook-fast` v2 checks exact facts and citations, ignoring
+surrounding whitespace and one complete inline-code wrapper. It does not extract
+answers from prose or accept a different command/endpoint. Per-task `answerExact`
+also records whether the original answer text matched literally.
+
+The supplied setup is complete (generated paths are relative to `DUO_WORK`):
 
 | Input | Shipped file / generated working copy |
 |---|---|
@@ -131,7 +136,7 @@ The supplied setup is complete:
 | Four questions and expected answers | [tasks.json](./examples/model/tasks.json) → `tasks.json` and executable `dataset.json` |
 | Local content-and-citation evaluator | [evaluator.js](./examples/model/evaluator.js) |
 | Model/pricing template | [model.example.json](./examples/model/model.example.json) |
-| Provider composition and experiment | Generated `cordis.patch.yml` and `experiment.json` |
+| Provider composition and experiment | Generated `dsh-home/profiles/duo-product/cordis.patch.yml` and `experiment.json` |
 
 This starter supports the existing `deepseek-official / deepseek-flash` route.
 Use [Provider contracts](./PROVIDERS.md) for other compositions; installing another

@@ -15,6 +15,37 @@ const tasks = data.tasks.map((t) => ({
 }))
 const good = Object.fromEntries(tasks.map((t) => [t.id, t.expected]))
 
+test('inline code formatting does not turn the correct command into a wrong fact', () => {
+  const formatted = Object.fromEntries(
+    tasks.map((t) => [t.id, { ...t.expected, answer: '`' + t.expected.answer + '`' }]),
+  )
+  const result = Evaluator.evaluateAnswers(tasks, formatted)
+  assert.equal(result.correct, 4)
+  assert.ok(result.rows.every((r) => r.answerExact === false && r.answerCorrect))
+  for (const answer of [
+    '`/healthz`',
+    'Use `/readyz`',
+    '```/readyz```',
+    '`/readyz',
+    '`/readyz extra`',
+  ]) {
+    assert.equal(
+      Evaluator.evaluateAnswers(tasks, {
+        ...formatted,
+        readiness: { answer, citations: ['runbook.md'] },
+      }).correct,
+      3,
+    )
+  }
+  assert.equal(
+    Evaluator.evaluateAnswers(tasks, {
+      ...formatted,
+      deploy: { answer: '`parcelctl deploy --env production`', citations: ['runbook.md'] },
+    }).correct,
+    3,
+  )
+})
+
 test('runbook evaluator distinguishes correct facts, wrong facts and wrong citations', () => {
   assert.equal(Evaluator.evaluateAnswers(tasks, good).correct, 4)
   const wrong = Object.fromEntries(
@@ -74,6 +105,7 @@ test('function adapter checks native dataset/candidate identity and advertises a
     fiber = await ctx.plugin(Evaluator, config)
   t.after(() => fiber.dispose())
   const descriptor = ctx.duoEvaluators.describe()[0]
+  assert.equal(descriptor.version, '2')
   assert.deepEqual(descriptor.evidenceSource?.targetKinds, ['dsh-persona'])
   const request = {
     candidate: { id: 'c1', version: 'v1' },

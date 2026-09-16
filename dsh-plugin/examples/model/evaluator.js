@@ -5,6 +5,13 @@ import FunctionEvaluators from '@dual-loop/dsh-plugin/function-evaluators'
 import { modelSettings } from '@dual-loop/dsh-plugin/model-accounting'
 export const name = 'duo-grounded-qa-starter-evaluator'
 
+// v2 ignores one complete inline-code wrapper; it does not extract an answer
+// from prose, code fences or a partial match. Raw model output remains retained.
+const factText = (answer) => {
+  const value = answer.trim()
+  return /^`([^`\r\n]+)`$/.exec(value)?.[1] ?? value
+}
+
 export function evaluateAnswers(tasks, answers) {
   const valid =
     answers &&
@@ -26,7 +33,8 @@ export function evaluateAnswers(tasks, answers) {
     return {
       taskId: t.id,
       valid: Boolean(shape),
-      answerCorrect: Boolean(shape && a.answer.trim() === t.expected.answer),
+      answerExact: Boolean(shape && a.answer.trim() === t.expected.answer),
+      answerCorrect: Boolean(shape && factText(a.answer) === t.expected.answer),
       citationCorrect: Boolean(
         shape &&
           JSON.stringify([...new Set(a.citations)].sort()) ===
@@ -53,7 +61,7 @@ export async function apply(ctx, config) {
     descriptors: [
       {
         id: 'starter-runbook-fast',
-        version: '1',
+        version: '2',
         tier: 'fast',
         dataId: dataset.fast.id,
         metrics: ['task_accuracy', 'sample_size'],
@@ -66,11 +74,12 @@ export async function apply(ctx, config) {
           'Checks requested commands, endpoint, unsupported-answer abstention and source citation on four public development tasks; no independent final.',
         metricDefinitions: {
           task_accuracy:
-            'Fraction of four tasks with the exact requested fact or abstention and the required source citation',
+            'Fraction of four tasks with the exact requested fact or abstention and required citation; ignores surrounding whitespace and one complete inline-code wrapper. answerExact separately records literal matching.',
           sample_size: 'Number of supplied development questions',
         },
         evidenceSource: {
-          measurement: 'Exact requested fact or abstention and source citation',
+          measurement:
+            'Exact requested fact or abstention and source citation, ignoring one complete inline-code wrapper; literal match also recorded',
           targetKinds: ['dsh-persona'],
           family: 'runbook-exact-answer-and-citation',
           coverage: tasks.map((t) => t.id),

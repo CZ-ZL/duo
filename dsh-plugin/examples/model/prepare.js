@@ -115,7 +115,7 @@ export function prepareStarter({ packageRoot, root, settings, spec, patches }) {
   spec.id = 'grounded-qa-starter'
   spec.fast = {
     evaluatorId: 'starter-runbook-fast',
-    version: '1',
+    version: '2',
     dataId: tasks.id,
     metric: 'task_accuracy',
     direction: 'maximize',

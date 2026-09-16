@@ -1,0 +1,264 @@
+{
+  "attempt": 3,
+  "status": "LIVE_COMPLETED_MEASUREMENT_FORMATTING_DEFECT_RETAINED",
+  "sourceCommit": "9b358fc94669b6d3848212cef0ef45432152aff3",
+  "version": "0.6.3",
+  "evaluatorVersion": "1",
+  "runId": "f86de91954e04e8377d13cb660a0c06a2be77a13ea89cbb403a2c0bf8b23f76d",
+  "runtimeG4": "PASS",
+  "independentUseG5": "PASS",
+  "currentPackageRetest": "REQUIRED_AFTER_EVALUATOR_V2_FIX",
+  "timeToFirstCompletionSeconds": 207,
+  "implementerInterventions": 0,
+  "implementationSourceRead": false,
+  "optimizationMode": "single_fidelity",
+  "slowMode": "unavailable",
+  "selectedId": "baseline",
+  "conclusion": "insufficient_evidence",
+  "originalUnchanged": true,
+  "requestCount": 3,
+  "costCny": 0.008504,
+  "callerHostCost": "NOT_METERED_BY_DUO",
+  "localCompute": "NOT_PRICED",
+  "candidateResults": [
+    {
+      "id": "baseline",
+      "version": "aecbcad2f3f1c82d817ac7812f943339a567079d519e5c69061f163ddc66dfdb",
+      "parentId": null,
+      "generation": 0,
+      "delta": null,
+      "hypothesis": null,
+      "fast": {
+        "candidateId": "baseline",
+        "costCny": 0,
+        "costEvidence": null,
+        "currency": "CNY",
+        "dataId": "parcel-runbook-development-v1",
+        "evaluatorId": "starter-runbook-fast",
+        "evidence": [
+          {
+            "correct": 1,
+            "dataDigest": "9c69a954ff60acbee0e659ec21220afa5bca080df12e9f7939d227c1358fc5a4",
+            "kind": "runbook-task-checks",
+            "rows": [
+              {
+                "answerCorrect": false,
+                "citationCorrect": true,
+                "taskId": "deploy",
+                "valid": true
+              },
+              {
+                "answerCorrect": false,
+                "citationCorrect": true,
+                "taskId": "readiness",
+                "valid": true
+              },
+              {
+                "answerCorrect": false,
+                "citationCorrect": true,
+                "taskId": "rollback",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "citationCorrect": true,
+                "taskId": "sla",
+                "valid": true
+              }
+            ],
+            "total": 4
+          }
+        ],
+        "metrics": {
+          "sample_size": 4,
+          "task_accuracy": 0.25
+        },
+        "ok": true,
+        "tier": "fast",
+        "version": "1",
+        "state": "EVALUATED"
+      },
+      "slow": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "final": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "status": "champion"
+    },
+    {
+      "id": "dl-0001",
+      "version": "e5ea3cd04529b717b5df9bd7d4f08c4c8ec603ddcb5f020017f42b9387cfb44e",
+      "parentId": "baseline",
+      "generation": 1,
+      "delta": {
+        "kind": "cordis-overlay",
+        "persona": "You are {{model}}, working in {{cwd}}. Answer questions using only the supplied documentation. For each answer, locate the smallest sentence or line that directly supports it, then cite that source and line range. If two facts come from different sentences, keep each fact next to its own citation instead of one shared citation at the end. Reproduce commands, endpoints, and values verbatim from the documentation, including flags and punctuation. When the documentation does not answer a question, say so. Keep answers concise.\n",
+        "target": "system-prompt"
+      },
+      "hypothesis": "Binding each citation to the exact sentence that supports the answer will reduce citation drift on multi-fact questions, because unsupported surrounding lines will no longer be merged into the cited span.",
+      "fast": {
+        "candidateId": "dl-0001",
+        "costCny": 0,
+        "costEvidence": null,
+        "currency": "CNY",
+        "dataId": "parcel-runbook-development-v1",
+        "evaluatorId": "starter-runbook-fast",
+        "evidence": [
+          {
+            "correct": 1,
+            "dataDigest": "9c69a954ff60acbee0e659ec21220afa5bca080df12e9f7939d227c1358fc5a4",
+            "kind": "runbook-task-checks",
+            "rows": [
+              {
+                "answerCorrect": false,
+                "citationCorrect": true,
+                "taskId": "deploy",
+                "valid": true
+              },
+              {
+                "answerCorrect": false,
+                "citationCorrect": true,
+                "taskId": "readiness",
+                "valid": true
+              },
+              {
+                "answerCorrect": false,
+                "citationCorrect": true,
+                "taskId": "rollback",
+                "valid": true
+              },
+              {
+                "answerCorrect": true,
+                "citationCorrect": true,
+                "taskId": "sla",
+                "valid": true
+              }
+            ],
+            "total": 4
+          }
+        ],
+        "metrics": {
+          "sample_size": 4,
+          "task_accuracy": 0.25
+        },
+        "ok": true,
+        "tier": "fast",
+        "version": "1",
+        "state": "EVALUATED"
+      },
+      "slow": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "final": {
+        "state": "NOT_CONFIGURED",
+        "reason": "The inspected contract has no objective for this tier.",
+        "metrics": null
+      },
+      "status": "rejected"
+    }
+  ],
+  "modelReceipts": [
+    {
+      "operation": "execute",
+      "candidateId": "baseline",
+      "sessionId": "duo-d79cea0d-15d0-4ff2-afeb-f69604f7a7a9",
+      "costCny": 0.002484,
+      "attempts": 1,
+      "usage": {
+        "inputTokens": 890,
+        "outputTokens": 88,
+        "totalTokens": 978,
+        "cacheReadTokens": 0
+      }
+    },
+    {
+      "operation": "generate",
+      "candidateId": null,
+      "sessionId": "duo-a1cd2cb0-9d48-4efa-84b2-45e9369b5fb1",
+      "costCny": 0.003416,
+      "attempts": 1,
+      "usage": {
+        "inputTokens": 964,
+        "outputTokens": 186,
+        "totalTokens": 1150,
+        "cacheReadTokens": 0
+      }
+    },
+    {
+      "operation": "execute",
+      "candidateId": "dl-0001",
+      "sessionId": "duo-dcf07e27-18a8-4d63-adbc-5699a52d3235",
+      "costCny": 0.002604,
+      "attempts": 1,
+      "usage": {
+        "inputTokens": 950,
+        "outputTokens": 88,
+        "totalTokens": 1038,
+        "cacheReadTokens": 0
+      }
+    }
+  ],
+  "observedAnswers": {
+    "dl-0001": {
+      "deploy": {
+        "answer": "`parcelctl deploy --env staging`",
+        "citations": [
+          "runbook.md"
+        ]
+      },
+      "readiness": {
+        "answer": "`/readyz`",
+        "citations": [
+          "runbook.md"
+        ]
+      },
+      "rollback": {
+        "answer": "`parcelctl rollback --previous`",
+        "citations": [
+          "runbook.md"
+        ]
+      },
+      "sla": {
+        "answer": "NOT_IN_RUNBOOK",
+        "citations": []
+      }
+    },
+    "baseline": {
+      "deploy": {
+        "answer": "`parcelctl deploy --env staging`",
+        "citations": [
+          "runbook.md"
+        ]
+      },
+      "readiness": {
+        "answer": "`/readyz`",
+        "citations": [
+          "runbook.md"
+        ]
+      },
+      "rollback": {
+        "answer": "`parcelctl rollback --previous`",
+        "citations": [
+          "runbook.md"
+        ]
+      },
+      "sla": {
+        "answer": "NOT_IN_RUNBOOK",
+        "citations": []
+      }
+    }
+  },
+  "diagnosis": "All three documented facts were correct but wrapped in Markdown inline-code markers. Version1 exact matching scored these false. Original 1/4 scores are preserved; version2 has separate normalization and must not be pooled with v1. No search or method benefit claimed.",
+  "sourceArtifacts": {
+    "CALLER_RECORD.md": "c699df08ebee7c2474c4659b14f4928a4a56ba6e17cc11619d6a2865ada6c32c",
+    "CALLER_RESULT.json": "de63f80a0bbb9cfc0fc5e666f8dd671989c9dea3c48416930e0e9cc48f29a5b9",
+    "duo-qa-run/report.json": "5123363e2117970990b2c2c696bbf8225be14e7feac59414e01304ac9c8c13bd"
+  }
+}

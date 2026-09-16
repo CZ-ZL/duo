@@ -106,6 +106,10 @@ cat "$DUO_WORK/report-summary.json"
 Delta，执行候选并测量输出。评估器检查实际命令、端点、引用，以及文档未提供
 SLA 时是否明确不回答。它不会执行部署命令。
 
+评估器 `starter-runbook-fast` v2 精确检查事实与引用，忽略首尾空白和一层完整的
+行内代码反引号，不从解释性文字中提取答案，也不接受不同的命令或端点。
+逐题 `answerExact` 另行记录原始答案文字是否精确匹配。下表生成路径相对于 `DUO_WORK`。
+
 | 输入 | 随包模板 / 生成的工作文件 |
 |---|---|
 | 可编辑提示词 | [target.txt](./examples/model/target.txt) → `target.txt` |
@@ -113,7 +117,7 @@ SLA 时是否明确不回答。它不会执行部署命令。
 | 四道题与预期答案 | [tasks.json](./examples/model/tasks.json) → `tasks.json` 与执行快照 `dataset.json` |
 | 内容与引用评估器 | [evaluator.js](./examples/model/evaluator.js) |
 | 模型及费率配置 | [model.example.json](./examples/model/model.example.json) |
-| Provider 组合和实验配置 | 自动生成的 `cordis.patch.yml` 与 `experiment.json` |
+| Provider 组合和实验配置 | 自动生成的 `dsh-home/profiles/duo-product/cordis.patch.yml` 与 `experiment.json` |
 
 此 starter 支持现有 `deepseek-official / deepseek-flash` 路由。
 其他组合见 [Provider 契约](./PROVIDERS.md)。这些模型 provider 针对
