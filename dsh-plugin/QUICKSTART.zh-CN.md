@@ -32,13 +32,14 @@ sha256sum dual-loop-dsh-plugin-0.6.3.tgz > SHA256SUMS
 sha256sum -c SHA256SUMS
 mkdir -p "$DSH_HOME/profiles/starter"
 node --input-type=module -e 'import{writeFileSync}from"node:fs";writeFileSync(process.env.DSH_HOME+"/profiles/starter/package.json",JSON.stringify({name:"duo-starter-profile",version:"1.0.0",private:true,type:"module",dsh:{profile:{bundles:[],patchReload:"startup"}}}),{flag:"wx"})'
-node "$DUO_DSH_PACKAGE/lib/bin.js" plugin --profile starter add "$PWD/dual-loop-dsh-plugin-0.6.3.tgz" --ignore-scripts
+node "$DUO_DSH_PACKAGE/lib/bin.js" plugin --profile starter add "$PWD/dual-loop-dsh-plugin-0.6.3.tgz" --ignore-scripts --store-dir "$PWD/pnpm-store" --fetch-retries=0 --fetch-timeout=15000
 node "$DUO_DSH_PACKAGE/lib/bin.js" --profile starter --dump-config
 export DUO_PACKAGE="$DSH_HOME/profiles/starter/node_modules/@dual-loop/dsh-plugin"
 node "$DUO_PACKAGE/bin/duo.mjs" --help
 ```
 
-任一步失败就停止。安装依赖可能访问包 registry，但不调用模型。
+任一步失败就停止。安装依赖可能访问包 registry，但不调用模型。显式 pnpm store 保留在当前工作目录。
+遇到 ERR_PNPM_META_FETCH_FAIL 时保留输出，恢复 registry 连接后再重试，不关闭 TLS 校验。
 安装对象是插件 tarball，不是 GitHub 仓库根目录。这些步骤不读取或改写日常
 profile。保留安装包与校验文件，便于以后回退。
 

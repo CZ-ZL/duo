@@ -1,0 +1,81 @@
+{
+  "gate": "G7",
+  "status": "BLOCKED",
+  "attempts": [
+    {
+      "id": "g7-public-install",
+      "status": "FAIL",
+      "stage": "pnpm default store",
+      "code": "ERR_SQLITE_ERROR",
+      "message": "unable to open database file",
+      "nextAction": "Use explicitly scoped writable pnpm store in the public command"
+    },
+    {
+      "id": "g7-public-install/store-fix",
+      "status": "FAIL",
+      "stage": "dependency registry transport after passing store creation",
+      "code": "ERR_PNPM_META_FETCH_FAIL",
+      "message": "fetch failed",
+      "nextAction": "Restore registry transport; no TLS bypass"
+    },
+    {
+      "id": "g7-install-control",
+      "status": "FAIL",
+      "stage": "Known-good verifier fetching dependencies",
+      "code": "ERR_PNPM_META_FETCH_FAIL",
+      "message": "fetch failed"
+    }
+  ],
+  "readOnlyProbe": {
+    "name": "TypeError",
+    "message": "fetch failed",
+    "cause": {
+      "code": "ECONNRESET",
+      "message": "Client network socket disconnected before secure TLS connection was established"
+    }
+  },
+  "localLinks": {
+    "status": "PASS",
+    "localLinksAndAnchors": 145,
+    "errors": [],
+    "bilingualCommandBlocks": 7,
+    "externalReleaseAndRendering": "PENDING_AFTER_PUSH",
+    "scope": "Current public entrypoints, local relative files/anchors, identical bilingual shell commands; source-only historical material is linked online"
+  },
+  "renderedGithub": [
+    {
+      "language": "en",
+      "url": "https://github.com/CZ-ZL/duo",
+      "htmlSha256": "9c42d431af188d5d01f3f152a56978d2419bd2688afc89e5c0cb944f8e6e1e71",
+      "matches": {
+        "What a recorded result looks like": true,
+        "Real task starter": true,
+        "0.18554908": true,
+        "start-here": true
+      },
+      "hasRenderedArticle": true,
+      "status": "PASS"
+    },
+    {
+      "language": "zh",
+      "url": "https://github.com/CZ-ZL/duo/blob/main/README.zh-CN.md",
+      "htmlSha256": "32e253496c2eda43d57417810357bdce664b34c9e0fa04e8ce01f34aab17a2bc",
+      "matches": {
+        "一份实际结果": true,
+        "真实任务 starter": true,
+        "0.18554908": true,
+        "从这里开始": true
+      },
+      "hasRenderedArticle": true,
+      "status": "PASS"
+    }
+  ],
+  "modelRequests": 0,
+  "innerCostCny": 0,
+  "feesUnknown": false,
+  "retainedEvidenceHashes": {
+    "g7-public-install/receipt.json": "5b0a41e7408b6148b89286b64845179bf6f486ffa3c5282dccc60c7fff3a3b55",
+    "g7-public-install/store-fix.json": "9e98a63a1eea08ae17964b814029d2024f4045bfd85ecc673f2a0e277fa94d68",
+    "g7-install-control/report.json": "3c5b1f2f77f09301eab0261d735b1cd9d6faeea616d66d37a1c5a1684074cc69"
+  }
+}

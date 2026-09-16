@@ -37,14 +37,16 @@ sha256sum dual-loop-dsh-plugin-0.6.3.tgz > SHA256SUMS
 sha256sum -c SHA256SUMS
 mkdir -p "$DSH_HOME/profiles/starter"
 node --input-type=module -e 'import{writeFileSync}from"node:fs";writeFileSync(process.env.DSH_HOME+"/profiles/starter/package.json",JSON.stringify({name:"duo-starter-profile",version:"1.0.0",private:true,type:"module",dsh:{profile:{bundles:[],patchReload:"startup"}}}),{flag:"wx"})'
-node "$DUO_DSH_PACKAGE/lib/bin.js" plugin --profile starter add "$PWD/dual-loop-dsh-plugin-0.6.3.tgz" --ignore-scripts
+node "$DUO_DSH_PACKAGE/lib/bin.js" plugin --profile starter add "$PWD/dual-loop-dsh-plugin-0.6.3.tgz" --ignore-scripts --store-dir "$PWD/pnpm-store" --fetch-retries=0 --fetch-timeout=15000
 node "$DUO_DSH_PACKAGE/lib/bin.js" --profile starter --dump-config
 export DUO_PACKAGE="$DSH_HOME/profiles/starter/node_modules/@dual-loop/dsh-plugin"
 node "$DUO_PACKAGE/bin/duo.mjs" --help
 ```
 
 Stop if a command fails. Dependency installation can contact the package registry;
-it makes no model requests. The archive is the plugin; the GitHub repository root
+it makes no model requests. The explicit pnpm store stays in this working directory.
+On ERR_PNPM_META_FETCH_FAIL, retain the output and restore registry connectivity
+before retrying; do not disable TLS verification. The archive is the plugin; the GitHub repository root
 is not an installable DSH bundle. These commands create a separate profile and
 do not read or modify your usual profile. Keep the archive and checksum for recovery.
 

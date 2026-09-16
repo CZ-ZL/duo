@@ -35,7 +35,7 @@ qualify the sample measurement plumbing, not an optimization gain.
 | G4 real starter | BLOCKED | No applicable paid grant for this Goal; zero live starter requests. Offline checks cannot satisfy this gate |
 | G5 unfamiliar live Caller | BLOCKED | Shares the prospective G4 run; fresh Caller has not been launched for paid work |
 | G6 preparation/errors | PASS | Installed package: absent evaluator reports duoEvaluators ABSENT, executionReady false, attach_authorized_evaluator; unsupported model refuses before workspace creation; unfunded plan refuses with next action and no dispatched work |
-| G7 docs/package/demo | NOT_RUN | 145 current relative links/anchors and 7 identical bilingual command blocks PASS; archive member/links PASS. Final source-install and GitHub check pending |
+| G7 docs/package/demo | BLOCKED | 145 relative links/anchors, 7 identical bilingual shell blocks, archive checks and rendered GitHub pages PASS. Fresh public-source install failed at default pnpm store; guide now supplies an isolated store. The next step hit registry TLS ECONNRESET, reproduced by the known-good install verifier and a read-only probe; full retest pending registry access. |
 | G8 regression/delivery | NOT_RUN | Full local gate PASS: 357 native, 451 Python product, 73 public-example checks, 31 Slow checks, 5 repair cases, 21 host profiles. Exact commit/CI/render pending |
 
 Local evidence root: `runs/first-use-convergence-20260916/` outside the public
@@ -75,6 +75,7 @@ not stand in for current starter acceptance.
   historical example, local installation check and pending real starter. They
   noted that exact contracts, provider lists, artifact paths and checkpoint
   details require the linked guides, as intended.
+- Public-source install round 1 failed with pnpm ERR_SQLITE_ERROR at its default store. Supplying the documented isolated writable store passed that point, then dependency downloads failed with ERR_PNPM_META_FETCH_FAIL. A direct Node fetch reported ECONNRESET before TLS establishment; the unchanged reference install verifier also failed. No TLS bypass or hidden cached-install success was used. Prior fresh-install PASS remains a separate earlier run.
 - No G5 session has run; do not claim zero interventions as live Caller success.
 
 ## Scope of the cleanup

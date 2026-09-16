@@ -35,7 +35,7 @@ use is required.
 | G4 live starter | BLOCKED | New Goal paid grant absent; at least one real generated/executed candidate required |
 | G5 unfamiliar Caller | BLOCKED | Public starter plus current grant; same live run may satisfy G4 |
 | G6 errors | PASS | Installed missing Evaluator, unsupported model and unfunded plan refusals with required action |
-| G7 docs/package/demo | NOT_RUN | 145 current links/anchors, 7 identical bilingual shell blocks and initial tarball PASS; final remote/source-install walk-through pending |
+| G7 docs/package/demo | BLOCKED | 145 current links/anchors, bilingual commands, archive and GitHub render PASS. Fresh public install hit default pnpm store then registry TLS ECONNRESET; store instruction fixed, network retest pending |
 | G8 regression/delivery | NOT_RUN | Local release gate: 357 native, 451 Python product, 73 public, 31 Slow, 5 baseline-repair, 21 host profiles PASS; exact-commit CI pending |
 
 Budget proposal: up to 6 inner model requests / CNY1 for one normal three-request
