@@ -1,22 +1,36 @@
 # DUO
 
-A DeepSeek Harness (DSH) plugin for Agent evaluation and budgeted optimization.
+**Let your Agent try changes. Compare test results and costs before you decide.**
 
 **English** · [简体中文](./README.zh-CN.md)
 
-[Quickstart](./docs/QUICKSTART.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [Documentation](./docs/README.md) · [Origins](./docs/THIRD_PARTY_NOTICES.md)
+[Install](./dsh-plugin/README.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [Documentation](./docs/README.md) · [Origins](./docs/THIRD_PARTY_NOTICES.md)
 
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
-Supply a safely editable **Target**, an **Evaluator** and an authorized budget. DUO evaluates the original, generates candidates, records evidence, and explains why a version was selected or retained. If the objective is unclear, start with preparation to identify what is missing.
+Changing an Agent means more than editing a prompt: you need to run tests, compare versions and keep track of what each attempt cost. **DUO puts that work into one repeatable workflow inside DeepSeek Harness (DSH).**
 
-Evaluate only, optimize with one evidence source, or use two loops when additional evidence is available. **No improvement; retain the original** is a valid outcome. Candidates are never deployed automatically.
+Choose a prompt or supported component setting, define how to judge it, and set a budget. DUO measures the original, generates alternative versions and tests them. You get the proposed changes, evaluation results and cost records to decide what to keep. If the evidence does not justify a replacement, DUO can recommend keeping the original. Applying a change remains your decision.
+
+## What you get
+
+| What you need to know | What DUO returns |
+|---|---|
+| What changed? | Candidate versions and a record of what each attempt changed. |
+| How did each version perform? | Results from the evaluations that actually ran, failures and the reason for selection or rejection. |
+| What did the experiment cost, and what can I reuse? | Usage and cost records, an experiment journal and compatible history for later runs. |
+
+You can start with evaluation only. If the goal or tests are unclear, the calling Agent can use DUO's preparation tools to identify what is missing before a run. Supported changes depend on the connected adapter; [current support](./dsh-plugin/CURRENT_STATUS.md) lists prompt support, the limited configuration target and custom-adapter requirements.
 
 ## Use from your Agent
 
-Ask: **“Evaluate this Agent against my tests; then compare bounded changes without replacing the original.”** DUO supports custom evaluators, candidate comparisons and compatible history reuse. Missing targets or success criteria start a preparation conversation, not an automatic run.
+For example, ask your Agent:
 
-Install the [versioned plugin tarball](./dsh-plugin/README.md) into your DSH profile. The Agent starts with `dualloop_describe`, then prepares, plans and runs within your authorization. The repository root is a development package; install the **`dsh-plugin` bundle**, not `github:CZ-ZL/duo`. Community catalog submission status is tracked [here](./docs/product-foundation/DISTRIBUTION.md).
+> “Check where this Agent fails my existing tests. Then try changes within a ¥2 budget and show me the results and costs. Leave the original unchanged.”
+
+Install the [versioned plugin package](./dsh-plugin/README.md) into your DSH profile, then start with `dualloop_describe`. Your Agent uses the public tools to check suitability, prepare the tests and providers, inspect the plan, run within your authorization and retrieve the report. Model access and executable evaluators must be connected; the [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) explains the setup.
+
+Use the release tarball linked above: the installable bundle lives in `dsh-plugin/`, while the repository root contains development tools. Community catalog submission status is tracked [here](./docs/product-foundation/DISTRIBUTION.md).
 
 ## Try a local example
 

@@ -1,22 +1,36 @@
 # DUO
 
-用于 Agent 评估与预算内优化的 DeepSeek Harness（DSH）插件。
+**让 Agent 尝试改进，把每次改动、测试结果和花费交给你。**
 
 [English](./README.md) · **简体中文**
 
-[快速开始](./docs/QUICKSTART.md) · [Agent 指南](./dsh-plugin/AGENT_GUIDE.md) · [文档](./docs/README.md) · [来源](./docs/THIRD_PARTY_NOTICES.md)
+[安装使用](./dsh-plugin/README.zh-CN.md) · [Agent 指南](./dsh-plugin/AGENT_GUIDE.md) · [文档](./docs/README.md) · [来源](./docs/THIRD_PARTY_NOTICES.md)
 
 [![产品验证](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
-提供一个可安全修改的 **Target**、一个 **Evaluator** 和授权预算，DUO 就能评估原版、生成候选、记录证据，并解释为什么选择或保留某个版本。目标还不明确时，先通过准备流程补齐条件。
+调整一个 Agent，往往还要反复跑测试、比较版本、核对花费。**DUO 是 DeepSeek Harness（DSH）的插件，把这些步骤连成一套有记录、可重复的流程。**
 
-可以只评估，也可以优化；有新增证据时使用双环。**没有改善、保留原版是合法结果**，候选不会自动部署。
+你指定要调整的提示词或受支持的组件配置、判断好坏的规则，以及预算。DUO 先测原版，再生成并测试不同改法，最后交付候选版本、评估结果和费用记录，供你决定是否采用。证据不足以支持替换时，可以保留原版；真正应用改动由你决定。
+
+## 你会拿到什么
+
+| 你关心的问题 | DUO 交付的内容 |
+|---|---|
+| 到底改了什么？ | 候选版本，以及每次修改的具体内容。 |
+| 每个版本表现怎样？ | 实际执行过的评估结果、失败记录，以及选择或淘汰的理由。 |
+| 花了多少，下次能接着做吗？ | 使用量与费用记录、实验日志，以及后续可复用的兼容历史。 |
+
+你也可以先只评估。目标或测试还不清楚时，调用 DUO 的 Agent 会通过准备工具帮你明确缺少什么，再安排执行。可修改范围由接入的适配器决定；[当前支持范围](./dsh-plugin/CURRENT_STATUS.md)列出了提示词、范围受限的配置目标，以及自定义适配器的要求。
 
 ## 让你的 Agent 使用
 
-可以这样说：**“先用现有测试评估这个 Agent，再在预算内比较改动，不要替换原版。”** DUO 支持自定义评估器、候选比较和兼容历史复用。目标或成功标准不清楚时，先引导准备，不直接开始优化。
+例如，你可以提出这样的需求：
 
-把[固定版本插件包](./dsh-plugin/README.zh-CN.md)装入 DSH profile 后，Agent 从 `dualloop_describe` 开始，按授权准备、检查计划和执行。仓库根目录是开发工具包；应安装 **`dsh-plugin` 组合包**，不要直接安装 `github:CZ-ZL/duo`。社区目录收录进度见[分发记录](./docs/product-foundation/DISTRIBUTION.md)。
+> “先看看这个 Agent 在哪些现有测试上失败。再在 ¥2 预算内尝试改进，给我看结果和花费，先不要改动原版。”
+
+把[固定版本插件包](./dsh-plugin/README.zh-CN.md)装入 DSH profile 后，Agent 从 `dualloop_describe` 开始，通过公开工具检查适用性、补齐测试和执行组件、确认计划，在授权范围内运行并读取报告。模型和可执行评估器需要接入，具体步骤见 [Agent 指南](./dsh-plugin/AGENT_GUIDE.md)。
+
+请使用上方安装说明中的 Release 包：可安装插件位于 `dsh-plugin/`，仓库根目录用于开发。社区目录收录进度见[分发记录](./docs/product-foundation/DISTRIBUTION.md)。
 
 ## 先运行一个本地示例
 

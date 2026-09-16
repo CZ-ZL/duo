@@ -2,7 +2,7 @@
 
 Name: duo. Destination: CZ-ZL/duo, PUBLIC, main. Owner-authorized public
 exposure and anonymous access were verified on 2026-09-16 (Asia/Shanghai).
-Description: DSH plugin for agent evaluation and budgeted optimization of prompts and supported component configs, with custom evaluators, candidate comparisons and traceable reports / Agent 评估、预算内优化、自定义评估器、候选比较与历史复用。
+Description: Try changes to your Agent, run your tests, and compare results and costs before you decide. DSH evaluation and optimization plugin with custom evaluators. / 让 Agent 在预算内尝试改进，用测试比较结果和花费，再决定是否采用。
 Topics: agent-tools, cordis, deepseek, evaluation, optimization, dsh-plugin, deepseek-harness, dsh, agent-evaluation, agent-optimization, prompt-optimization.
 Homepage: https://github.com/CZ-ZL/duo#use-from-your-agent. Languages: README.md (English), README.zh-CN.md (Chinese).
 Documentation: docs/README.md. Current architecture: docs/ARCHITECTURE.md.
