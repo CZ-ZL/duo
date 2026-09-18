@@ -76,14 +76,16 @@ export function resolveNativeContract(c, contractPath) {
       'DUO_CONTRACT_INVALID',
       'Explicit finite cost, operation, evaluation and time caps are required',
     )
-  // Optional cross-run paid safety cap; the per-run cap alone is renewed by any
-  // one-byte contract change. Currency must match the budget's own fields.
+  // Optional cross-run cost safety cap; the per-run cap alone is renewed by any
+  // one-byte contract change. Explicit zero declares a strictly zero-cost
+  // experiment family, consistent with a zero per-run cap. Currency must match
+  // the budget's own fields.
   const suffix = m.cap.slice('maxCost'.length),
     cumulative = 'maxCumulativeCost' + suffix
-  if (b[cumulative] !== undefined && (!finite(b[cumulative]) || b[cumulative] <= 0))
+  if (b[cumulative] !== undefined && (!finite(b[cumulative]) || b[cumulative] < 0))
     fail(
       'DUO_CONTRACT_INVALID',
-      'The optional cumulative cross-run cost cap must be an explicit positive finite amount',
+      'The optional cumulative cross-run cost cap must be an explicit non-negative finite amount',
     )
   if (b['maxCumulativeCost' + (m.currency === 'CNY' ? 'Usd' : 'Cny')] !== undefined)
     fail('DUO_CURRENCY_MISMATCH', 'The cumulative cross-run cost cap must use the budget currency')

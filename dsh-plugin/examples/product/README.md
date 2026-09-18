@@ -97,9 +97,10 @@ one fixed transformation; it does not demonstrate broad history-driven search.
 
 **Zero-cost local configuration:** use `permissions.paid:false` and
 `budget:{currency:"CNY",maxCostCny:0,maxSessions:2,maxFastEvals:1,maxSlowEvals:0,maxWallTimeMs:60000}`
-for a bounded evaluate-only run. Omit `maxCumulativeCostCny`: the optional
-cross-run cap currently accepts positive amounts only, so explicit zero is
-invalid. Keep every new local run at zero; do not enter a positive amount to
+for a bounded evaluate-only run. The optional cross-run cap accepts explicit
+zero: `maxCumulativeCostCny:0` declares a strictly zero-cost experiment family,
+consistent with the zero per-run cap. Omitting it leaves the family uncapped
+across runs. Keep every new local run at zero; do not enter a positive amount to
 work around validation. Paid providers must not be used under this configuration.
 Cross-run/Calling Agent request limits still belong to the current authorization;
 the native ledger does not include Caller inference. Omission does not renew money.

@@ -556,6 +556,22 @@ test('native budget inspection exposes read-only cross-run cumulative known cost
     excludedCurrencies: [],
   })
 })
+test('an explicit zero cumulative cap admits zero-cost work and blocks any positive known spend', async (t) => {
+  const { ctx } = await setup(t),
+    paid = ctx.duoBudget.open('paid-run', limits)
+  paid.reserve('job', { phase: 'generation', maxCostUsd: 0.4 })
+  paid.settle('job', 0.1, 'paid-receipt')
+  const free = { ...limits, maxCostUsd: 0, maxCumulativeCostUsd: 0 }
+  assert.throws(() => ctx.duoBudget.checkAdmission('free-run', free), {
+    code: 'DUO_CUMULATIVE_BUDGET_EXCEEDED',
+  })
+  // A fresh family with zero known cost admits strictly zero-cost work.
+  const { ctx: cleanCtx } = await setup(t, mkdtempSync(join(tmpdir(), 'duo-native-store-')))
+  const clean = cleanCtx.duoBudget.open('free-run', free)
+  clean.reserve('measure', { phase: 'evaluation', tier: 'fast', maxCostUsd: 0 })
+  clean.settle('measure', 0, 'free-receipt')
+  assert.doesNotThrow(() => cleanCtx.duoBudget.checkAdmission('free-run-2', free))
+})
 
 test('concurrent native run admission preserves one cumulative allowance across processes', async (t) => {
   const { root, ledger } = await setup(t),

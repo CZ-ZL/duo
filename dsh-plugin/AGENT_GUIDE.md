@@ -77,7 +77,8 @@ history replacement and warm start. Complete contracts are in
 Reuse existing owner authorization; examples grant none. Native budget covers DUO
 inner operations. Calling Agent inference and local computing resources are
 separate. For local CNY0 work keep paid permission false and maxCostCny zero;
-omit the optional positive-only cumulative cap.
+`maxCumulativeCostCny: 0` may declare a strictly zero-cost family, or omit the
+optional cross-run cap.
 
 Errors include cause, recoverability, nextAction, costState and sideEffectState.
 Unknown cost requires retained-evidence inspection, not inferred zero or retry.

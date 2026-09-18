@@ -31,6 +31,7 @@ cd ..
 run_check package env DUO_DSH_PACKAGE="$DSH_PKG" python3 scripts/product/check_release_package.py "$OUT/npm-pack.log" "$OUT"
 ARCHIVE="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))[0]["filename"])' "$OUT/npm-pack.log")"
 run_check install python3 scripts/product/verify_product_install.py --archive "$OUT/$ARCHIVE" --dsh-package "$DSH_PKG" --output "$OUT/install" --registry "${DUO_PACKAGE_REGISTRY:-https://registry.npmjs.org}"
+run_check preparation-paths env DUO_DSH_PACKAGE="$DSH_PKG" node --loader ./scripts/product/dsh_native_loader.mjs scripts/product/verify_preparation_paths.mjs --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --output "$OUT/preparation-paths"
 run_check public-examples python3 scripts/product/verify_product_examples.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/public-examples"
 run_check slow-evidence python3 scripts/product/verify_slow_evidence.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/slow-evidence"
 run_check baseline-repair python3 scripts/product/verify_baseline_repair.py --package "$OUT/install/dsh-home/profiles/install-check/node_modules/@dual-loop/dsh-plugin" --dsh-package "$DSH_PKG" --output "$OUT/baseline-repair"

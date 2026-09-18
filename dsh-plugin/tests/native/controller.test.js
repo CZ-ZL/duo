@@ -1783,10 +1783,9 @@ test('status marks an owner-dead interrupted run with an explicit next step', as
   assert.equal(status.interrupted.nextStep, 'start_a_new_run')
   assert.equal(typeof status.interrupted.guidance, 'string')
 })
-test('cumulative cross-run cap validates as a positive same-currency amount before any journal creation', async (t) => {
+test('cumulative cross-run cap validates as a non-negative same-currency amount before any journal creation', async (t) => {
   const { ctx, experiment, contract, runs } = await setup(t)
   for (const [budget, code] of [
-    [{ ...contract.budget, maxCumulativeCostUsd: 0 }, 'DUO_CONTRACT_INVALID'],
     [{ ...contract.budget, maxCumulativeCostUsd: -1 }, 'DUO_CONTRACT_INVALID'],
     [{ ...contract.budget, maxCumulativeCostUsd: NaN }, 'DUO_CONTRACT_INVALID'],
     [{ ...contract.budget, maxCumulativeCostUsd: '1' }, 'DUO_CONTRACT_INVALID'],
