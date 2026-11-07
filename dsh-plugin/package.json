@@ -60,6 +60,8 @@
     "native/capabilities.js",
     "native/target-protocol.js",
     "native/diagnostics.js",
+    "native/run-doctor.js",
+    "native/doctor.js",
     "bin/duo.mjs",
     "examples/product/local-providers.js",
     "examples/product/byo-evaluator.js",
@@ -81,7 +83,16 @@
     "examples/model/tasks.json",
     "examples/model/model.example.json",
     "QUICKSTART.md",
-    "QUICKSTART.zh-CN.md"
+    "QUICKSTART.zh-CN.md",
+    "native/quick-judgment.js",
+    "native/support-judge.js",
+    "examples/model/shadow-evaluator.js",
+    "native/decision-contract.js",
+    "native/decisions.js",
+    "native/decision-tools.js",
+    "native/model-decisions.js",
+    "examples/decisions/local-provider.js",
+    "examples/decisions/prepare.mjs"
   ],
   "dsh": {
     "bundle": {
@@ -163,7 +174,16 @@
     "./warm-start": "./native/warm-start.js",
     "./examples/custom-target": "./examples/product/custom-target.js",
     "./evidence-strategy": "./native/evidence-strategy.js",
-    "./examples/grounded-qa-evaluator": "./examples/model/evaluator.js"
+    "./examples/grounded-qa-evaluator": "./examples/model/evaluator.js",
+    "./doctor": "./native/doctor.js",
+    "./quick-judgment": "./native/quick-judgment.js",
+    "./support-judge": "./native/support-judge.js",
+    "./examples/grounded-qa-shadow-evaluator": "./examples/model/shadow-evaluator.js",
+    "./decisions": "./native/decisions.js",
+    "./decision-tools": "./native/decision-tools.js",
+    "./model-decisions": "./native/model-decisions.js",
+    "./decision-contract": "./native/decision-contract.js",
+    "./examples/local-decisions": "./examples/decisions/local-provider.js"
   },
   "bin": {
     "duo": "./bin/duo.mjs"

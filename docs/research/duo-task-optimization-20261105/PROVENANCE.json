@@ -1,0 +1,159 @@
+{
+  "schema": "duo.public-research-provenance.v1",
+  "researchCutoff": "2026-11-05",
+  "publicationDate": "2026-11-08",
+  "sourceAvailability": "retained_local_not_in_this_repository",
+  "hashesProvideDownloadAccess": false,
+  "completeIndependentReproductionPackage": false,
+  "sources": [
+    {
+      "id": "ablation-report",
+      "originalFilename": "FINAL_RESEARCH_REPORT.txt",
+      "sha256": "98138d26139fca523b5aaf14d1e78ae13db5c20ee47dbf880329087e31be5d6c",
+      "bytes": 9848,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "ablation-effects",
+      "originalFilename": "FINAL_EFFECT_RECONSTRUCTION.json",
+      "sha256": "83a4f03e9018a3e32c07b13e562833427c388c4d35feb6326f2dbf2f84a6c2cc",
+      "bytes": 84050,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "ablation-errata",
+      "originalFilename": "REPORT_ERRATA.json",
+      "sha256": "2e29d23530c4cc0601a7df2fd1b699a8799a26121043425ac44dafe0ea167819",
+      "bytes": 8469,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "pool-report",
+      "originalFilename": "REPORT.md",
+      "sha256": "863a884863aa6fa264e6635ba1465cdef83e21f3eaaffa950b090d65d45ee720",
+      "bytes": 9314,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "pool-results",
+      "originalFilename": "ATTRIBUTION_RESULT.json",
+      "sha256": "8155871fdf30f8b47bc006c2d2f6f85043355cdbf5df94657f5e7ca363267974",
+      "bytes": 187145,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "pool-conclusions",
+      "originalFilename": "CONCLUSIONS.json",
+      "sha256": "ec60f5eac430a1d74b9fcaf3fec62de6a5e9dcfc5d3d7c2cf38f9d7098c1db19",
+      "bytes": 861,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "pool-resources",
+      "originalFilename": "FINAL_RESOURCE_ACCOUNTING.json",
+      "sha256": "5db8910e7af143db1315985642e2f4f83636de0565391b09c022e4ab5dad16c7",
+      "bytes": 1134,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "pool-reversal",
+      "originalFilename": "RESULT.json",
+      "sha256": "e2a352401cdd7d607ce64e576ea21bfbe3e1f87feb77333471ea894550b8a6ec",
+      "bytes": 11488,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "alignment-report",
+      "originalFilename": "FINAL_RESEARCH_REPORT.md",
+      "sha256": "6a4170b5fa22ecef010f04cea845ae834812791827bd61b1757e6ed039bbb429",
+      "bytes": 4637,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "alignment-result",
+      "originalFilename": "FINAL_RESULT.json",
+      "sha256": "c5de5a60d58d01930cd6edab8ceea6401d26e2da907af5f1d47898d22d9f2c3a",
+      "bytes": 1396,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "alignment-analysis",
+      "originalFilename": "ANALYSIS.json",
+      "sha256": "de27f9e710233ad59ad11a07ada98bdbfb24850dd93a1d2f503de38c19636d2a",
+      "bytes": 23431523,
+      "availability": "retained_local_not_in_this_repository"
+    }
+  ],
+  "publicObjects": [
+    {
+      "path": "RESULTS.json",
+      "transformation": "Explicit field whitelist; all 54 ablation and 126 alignment comparison rows retained, with 12 pool summaries and six direct pool pairs. No raw timings, private paths or provider bodies.",
+      "sourceIds": [
+        "ablation-report",
+        "ablation-effects",
+        "ablation-errata",
+        "pool-report",
+        "pool-results",
+        "pool-conclusions",
+        "pool-resources",
+        "pool-reversal",
+        "alignment-report",
+        "alignment-result",
+        "alignment-analysis"
+      ]
+    },
+    {
+      "path": "WORKING_PAPER.zh-CN.md",
+      "transformation": "Task-level synthesis and generated tables from selected results; old automatic labels interpreted with their corrections.",
+      "sourceIds": [
+        "ablation-report",
+        "ablation-effects",
+        "ablation-errata",
+        "pool-report",
+        "pool-results",
+        "pool-conclusions",
+        "pool-resources",
+        "pool-reversal",
+        "alignment-report",
+        "alignment-result",
+        "alignment-analysis"
+      ]
+    },
+    {
+      "path": "README.md",
+      "transformation": "Summary and data availability.",
+      "sourceIds": [
+        "ablation-report",
+        "pool-report",
+        "alignment-report"
+      ]
+    },
+    {
+      "path": "METHODS_AND_LIMITATIONS.md",
+      "transformation": "Method and uncertainty boundaries summarized from retained reports; model-mode claim deliberately bounded to actual request evidence.",
+      "sourceIds": [
+        "ablation-report",
+        "ablation-errata",
+        "pool-report",
+        "alignment-report"
+      ]
+    },
+    {
+      "path": "RESEARCH_PLAYBOOK.zh-CN.md",
+      "transformation": "Editorial checklist derived from reported limitations; not a claim of implemented automatic enforcement.",
+      "sourceIds": [
+        "ablation-report",
+        "pool-report",
+        "alignment-report"
+      ]
+    }
+  ],
+  "notIncluded": [
+    "raw task data and generated programs",
+    "request/response bodies and journals",
+    "provider account state",
+    "runtime and worker records",
+    "full raw timing streams"
+  ],
+  "publicationVerification": "Selected fields and denominators checked against retained structured sources; no new experiment or full raw-data reconstruction."
+}

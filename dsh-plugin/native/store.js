@@ -765,6 +765,9 @@ export class ReservedBudget extends BudgetService {
           limits: configured.limits,
           operations,
           active: !!run && !j.result(),
+          abandonedUnknown:
+            j.result()?.status === 'ABORTED_UNKNOWN_PROVIDER_OPERATION' &&
+            ledger.blocked(operations) === 'DUO_COST_UNKNOWN',
           blocked: ledger.blocked(operations),
         })
       } finally {
@@ -781,7 +784,28 @@ export class ReservedBudget extends BudgetService {
     )
     if (!Number.isSafeInteger(knownCostUnits))
       fail('DUO_BUDGET_INVALID', 'Cumulative amount exceeds the exact supported range')
-    return { knownCostUnits, runs: rows.length, excludedCurrencies }
+    const unknownExposureUnits = rows.reduce(
+      (sum, r) =>
+        sum +
+        r.operations.reduce(
+          (n, op) =>
+            n +
+            (op.status === 'unknown' ||
+            (op.status === 'reserved' && !sameOwner(op.owner, owner(op.owner.pid)))
+              ? op.reserved
+              : 0),
+          0,
+        ),
+      0,
+    )
+    if (!Number.isSafeInteger(knownCostUnits + unknownExposureUnits))
+      fail('DUO_BUDGET_INVALID', 'Cumulative exposure exceeds the exact supported range')
+    return {
+      knownCostUnits,
+      ...(unknownExposureUnits ? { unknownExposureUnits } : {}),
+      runs: rows.length,
+      excludedCurrencies,
+    }
   }
   admissionBusy() {
     fail(
@@ -806,10 +830,10 @@ export class ReservedBudget extends BudgetService {
       capKey = 'maxCumulativeCost' + m.cap.slice('maxCost'.length)
     const { rows } = this.retainedBudgets(m.currency, { admission: true })
     // An uncapped new contract cannot consume an allowance promised to an
-    // unfinished capped run. Terminal runs contribute actual settled cost only.
+    // unfinished capped run or an explicitly abandoned unknown operation.
     const caps = [
       limits[capKey],
-      ...rows.filter((r) => r.active).map((r) => r.limits[capKey]),
+      ...rows.filter((r) => r.active || r.abandonedUnknown).map((r) => r.limits[capKey]),
     ].filter((x) => x !== undefined)
     if (!caps.length) return
     const cap = Math.min(...caps),
@@ -818,7 +842,7 @@ export class ReservedBudget extends BudgetService {
       known = 0,
       retainedAllowance = 0
     for (const row of rows) {
-      if (row.blocked)
+      if (row.blocked && !(row.abandonedUnknown && !row.operations.some((op) => op.overrun)))
         fail(row.blocked, 'Unresolved costs in the shared Journal prevent cumulative admission')
       const cost = row.operations.reduce((sum, o) => sum + (o.status === 'settled' ? o.cost : 0), 0)
       known += cost
@@ -879,10 +903,17 @@ export class ReservedBudget extends BudgetService {
   cumulativeSnapshot(limits) {
     const m = moneyFields(limits),
       cap = 'maxCumulativeCost' + m.cap.slice('maxCost'.length),
-      { knownCostUnits, excludedCurrencies } = this.cumulativeKnownCost(m.currency)
+      { knownCostUnits, unknownExposureUnits, excludedCurrencies } = this.cumulativeKnownCost(
+        m.currency,
+      )
     return {
       currency: m.currency,
       [m.known]: money(knownCostUnits),
+      ...(unknownExposureUnits
+        ? {
+            ['unknownExposure' + m.cap.slice('maxCost'.length)]: money(unknownExposureUnits),
+          }
+        : {}),
       [cap]: limits[cap] ?? null,
       excludedCurrencies,
     }
@@ -918,5 +949,83 @@ export class ReservedBudget extends BudgetService {
       outcome = { outcome: 'rejected', receiptHash: hash, code: error.code, reason: error.message }
     }
     return { ...outcome, budget: b.snapshot() }
+  }
+  abandon(runId, planDigest) {
+    const reader = this.ctx.duoJournal.open(runId)
+    if (!reader?.get('budget') || !reader.get('run'))
+      fail('DUO_ABANDON_INVALID', 'Inspect an existing claimed run before abandonment')
+    const j = this.ctx.duoJournal.open(runId, { create: true })
+    const result = j.transaction(() => {
+      const run = j.get('run'),
+        previous = j.result()
+      if (!planDigest || run.planDigest !== planDigest)
+        fail('DUO_PLAN_CHANGED', 'Abandonment requires the retained run plan digest')
+      if (previous?.status === 'ABORTED_UNKNOWN_PROVIDER_OPERATION') return previous
+      const live = sameOwner(run.owner, owner(run.owner?.pid))
+      const ownTerminal =
+        sameOwner(run.owner, owner()) && ['failed', 'cancelled'].includes(previous?.status)
+      if (j.leases.size || (live && !ownTerminal))
+        fail(
+          'DUO_OWNER_ACTIVE',
+          'Provider work may still be active; inspect its original execution',
+        )
+      if (previous && !['failed', 'cancelled'].includes(previous.status))
+        fail('DUO_ABANDON_INVALID', 'Completed or paused results cannot be abandoned')
+      const b = new Ledger(j, j.get('budget').limits, { inspect: true })
+      const operations = b.operations()
+      if (operations.some((op) => op.overrun))
+        fail('DUO_RESERVATION_OVERRUN', 'Abandonment cannot clear a retained overrun')
+      const missing = operations.filter((op) => op.status !== 'settled')
+      if (!missing.length)
+        fail('DUO_ABANDON_INVALID', 'No unresolved provider operation to abandon')
+      // A lost reserved operation becomes explicitly unknown. Preserve its
+      // receipts, null cost and full reservation; never manufacture settlement.
+      for (const op of missing) if (op.status === 'reserved') b.save({ ...op, status: 'unknown' })
+      // Terminal metadata prevents replay; it does not settle or cancel provider billing.
+      const value = {
+        apiVersion: 2,
+        runtime: 'dsh-native',
+        runId,
+        planDigest,
+        status: 'ABORTED_UNKNOWN_PROVIDER_OPERATION',
+        stopReason: 'IN_FLIGHT_RESPONSE_LOST',
+        generationsRun: previous?.generationsRun ?? 0,
+        championId: null,
+        final: [],
+        conclusion: 'insufficient_evidence',
+        improvementProven: false,
+        resumeAllowed: false,
+        unknownOperations: missing.map((op) => ({
+          id: op.id,
+          phase: op.phase,
+          reservedUnits: op.reserved,
+          cost: null,
+        })),
+        limitations: [
+          'Old run is terminal. Full unknown reservations remain; fresh work needs its own authorized plan.',
+        ],
+        budget: b.snapshot(),
+      }
+      if (previous) j.set('result-before-abandon', previous)
+      j.set('result', value)
+      j.set('run', { ...run, status: value.status, abandonedAt: Date.now() })
+      j.db.prepare('INSERT INTO events(payload) VALUES (?)').run(
+        canonical({
+          kind: 'aborted_unknown_provider_operation',
+          at: Date.now(),
+          operations: value.unknownOperations,
+        }),
+      )
+      return value
+    })
+    const budget = this.inspect(runId),
+      m = moneyFields(j.get('budget').limits)
+    const unknown = new Ledger(j, j.get('budget').limits, { inspect: true })
+      .operations()
+      .reduce((n, op) => n + (op.status !== 'settled' ? op.reserved : 0), 0)
+    return {
+      result,
+      budget: { ...budget, ['unknownExposure' + m.cap.slice('maxCost'.length)]: money(unknown) },
+    }
   }
 }

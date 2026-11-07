@@ -1,5 +1,11 @@
 # DUO
 
+[2026-11-08 source update and verification](docs/releases/source-update-20261108/README.md) covers the diagnostics, decisions and accounting additions.
+
+## Research update — November 2026
+
+[Completed-stage DUO research](docs/research/duo-task-optimization-20261105/README.md) now includes the 48-search component study, 12-trajectory fixed-pool analysis and 72-search alignment study. The current adoption decision is to retain Simple; the aligned study remains scientifically UNRESOLVED. Reports, curated data, corrections and availability limits are published together.
+
 **English** · [简体中文](./README.zh-CN.md)
 
 [Quickstart](./dsh-plugin/QUICKSTART.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [Documentation](./docs/README.md)

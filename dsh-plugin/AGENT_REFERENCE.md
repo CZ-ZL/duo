@@ -18,7 +18,16 @@ The Target adapter validates snapshots and projects its own Delta. Generation re
 
 Read status/report/budget using the known runId. An unchanged terminal run returns retained artifacts without repeated work. Pause requires resumeFrom:checkpoint.digest. Supported boundaries are settled baseline/generation; original deadline includes pause time. Changed inputs, pending/unknown work or receipt drift prevent continuation.
 
-Public errors preserve DSH isError/code and add cause, component, nextAction, recoverability, costState and sideEffectState. Retryable input correction is not paid retry authorization. Unknown cost blocks further paid work. Reconcile only an observed staged receipt; estimates cannot clear unknown exposure.
+Public errors preserve DSH isError/code and add cause, component, nextAction, recoverability, costState and sideEffectState. Retryable input correction is not paid retry authorization. Unknown cost blocks the affected run. Reconcile only an observed staged receipt; estimates cannot clear unknown exposure.
+
+For a failed run whose provider calls have drained, or a verified dead-owner run,
+`dualloop_budget_abandon({runId, planDigest})` explicitly ends the old trajectory.
+Use its retained plan digest from `dualloop_status`; this operation does not
+require replanning the old experiment. Active owners/calls and overruns are refused.
+The old result is preserved, unresolved operations retain their full reservation
+and null cost, and the old trajectory cannot resume or redispatch. A fresh authorized
+plan may fit alongside that exposure under the shared cumulative cap; abandonment
+grants no additional allowance. Supported staged receipts may still reconcile later.
 
 ## Supported replacement
 

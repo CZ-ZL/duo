@@ -526,6 +526,18 @@ export default class NativeController extends ControllerService {
         reason,
         comparison,
       })
+      let doctor = null
+      try {
+        doctor = this.ctx.duoDoctor?.consult?.(j.events(), spec) ?? null
+      } catch {
+        doctor = null // the guard must never break the run it guards
+      }
+      if (doctor) j.append({ kind: 'doctor', ...doctor })
+      if (doctor?.severity === 'stop')
+        fail(
+          'DUO_DOCTOR_STOP',
+          doctor.checks.find((c) => c.severity === 'stop')?.verdict ?? 'Run doctor stop',
+        )
       if (!evaluationOnly && !searchAllowed)
         fail(
           'DUO_BASELINE_INVALID',
@@ -583,6 +595,22 @@ export default class NativeController extends ControllerService {
       ) {
         const previousVersion = champion.version
         check()
+        // Generation-top doctor consult: runs before any further spend, on a
+        // path no promotion outcome can skip. The guard must never break the
+        // run it guards.
+        let doctor = null
+        try {
+          doctor = this.ctx.duoDoctor?.consult?.(j.events(), spec) ?? null
+        } catch {
+          doctor = null
+        }
+        if (doctor) j.append({ kind: 'doctor', ...doctor })
+        if (doctor?.severity === 'stop') {
+          stopReason = 'doctor_stop'
+          const stoppedEarly = boundary('generation', generation, true)
+          if (stoppedEarly) return stoppedEarly
+          break
+        }
         const feedback = {
             ...this.ctx.duoFeedback.summarize([...latest.values()], spec.quotas, {
               fastMetrics: Object.keys(spec[stages[0]?.tier]?.weights ?? { quality: 1 }),
@@ -978,11 +1006,18 @@ export default class NativeController extends ControllerService {
         champion.id === plan.baseline.id &&
         Object.values(baselineAssessment()).some((a) => a.verdict === 'constraint_violation')
       let conclusion =
-        spec.mode === 'optimize' && champion.id === plan.baseline.id && !noFeasibleCandidate
+        stopReason !== 'doctor_stop' &&
+        spec.mode === 'optimize' &&
+        champion.id === plan.baseline.id &&
+        !noFeasibleCandidate
           ? 'retain_baseline'
           : 'insufficient_evidence'
       let independentFinal = null
-      if (spec.final && spec.mode !== 'explore' && stopReason !== 'evidence_policy_stop') {
+      if (
+        spec.final &&
+        spec.mode !== 'explore' &&
+        !['evidence_policy_stop', 'doctor_stop'].includes(stopReason)
+      ) {
         for (const c of champion.id === plan.baseline.id
           ? [plan.baseline]
           : [plan.baseline, champion])
@@ -1020,6 +1055,7 @@ export default class NativeController extends ControllerService {
           }
         if (spec.mode === 'optimize' && !noFeasibleCandidate) conclusion = qualifiedConclusion
       }
+      const doctorReport = [...j.events()].reverse().find((e) => e.kind === 'doctor')
       result = {
         apiVersion: 2,
         runtime: 'dsh-native',
@@ -1052,6 +1088,9 @@ export default class NativeController extends ControllerService {
           : 'mixed_declared',
         budget: budget.snapshot(),
         reusedArtifacts: false,
+        ...(doctorReport
+          ? { doctor: { severity: doctorReport.severity, checks: doctorReport.checks } }
+          : {}),
       }
       if (evaluationOnly) {
         const evaluations = [...stages.map((s) => championEvidence[s.tier]), ...final].filter(
@@ -1073,6 +1112,7 @@ export default class NativeController extends ControllerService {
         })
       }
     } catch (error) {
+      const doctorReport = [...j.events()].reverse().find((e) => e.kind === 'doctor')
       result = {
         apiVersion: 2,
         runtime: 'dsh-native',
@@ -1089,6 +1129,9 @@ export default class NativeController extends ControllerService {
         error: errorInfo(error),
         budget: budget.snapshot(),
         reusedArtifacts: false,
+        ...(doctorReport
+          ? { doctor: { severity: doctorReport.severity, checks: doctorReport.checks } }
+          : {}),
       }
     }
     const semantics = evidenceOutcome(plan.evidenceStrategy, j.events())

@@ -4,7 +4,7 @@ import { digest } from './store.js'
 import { targetCapability } from './capabilities.js'
 
 export const fetchPlugin = '@deepseek-ai/dsh-web-fetch-http'
-export const fetchBounds = Object.freeze({ minimum: 50000, maximum: 200000 })
+export const fetchBounds = Object.freeze({ minimum: 5000, maximum: 200000 })
 export function validateFetchConfig(config) {
   const keys = ['maxBodyChars', 'maxRedirects', 'maxResponseBytes', 'timeoutMs', 'userAgent']
   if (
@@ -20,7 +20,7 @@ export function validateFetchConfig(config) {
   )
     fail(
       'DUO_DELTA_INVALID',
-      'Only maxBodyChars in [50000,200000] may change; all other fetch defaults remain fixed',
+      'Only maxBodyChars in [5000,200000] may change; all other fetch defaults remain fixed',
     )
   return structuredClone(config)
 }

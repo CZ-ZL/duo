@@ -1,5 +1,9 @@
 # Experimental results and limits
 
+## Completed-stage update — 2026-11-05
+
+The [task optimization research package](duo-task-optimization-20261105/README.md) adds the October component study, fixed-pool attribution and November alignment closeout. These studies retain separate protocols, denominators and accounting. Their conclusions and corrections do not replace the historical sections below.
+
 **DUO has not demonstrated a quality or API-cost advantage over a reasonable
 single-loop baseline in the completed formal comparison.** This repository is
 an experimental DSH persona-optimization component. Engineering acceptance,
@@ -183,7 +187,7 @@ fixture, including its historical `final` label, is exposed test data.
 
 The public preparation/execution scripts and [benchmark guide](CODE_BENCHMARK_GUIDE.md)
 support new explicitly authorized runs with new data and budget. The offline
-[product gate](TESTING.md) verifies plugin behavior; it does not rerun these paid
+[product gate](../development/TESTING.md) verifies plugin behavior; it does not rerun these paid
 experiments or prove their method conclusions. Do not reuse consumed final data
 as an unseen final, deploy diagnostic candidates, or pool different protocols.
 

@@ -160,6 +160,8 @@ function diagnose(report, plan, result, events, tiers, rowTiers) {
         ? 'inspect_and_reconcile_supported_receipts'
         : 'inspect_result_and_current_authorization'
   if (blocked === 'DUO_COST_UNKNOWN') nextAction = 'inspect_and_reconcile_supported_receipts'
+  if (result?.status === 'ABORTED_UNKNOWN_PROVIDER_OPERATION' && blocked === 'DUO_COST_UNKNOWN')
+    nextAction = 'inspect_new_plan_with_retained_unknown_exposure'
   if (blocked === 'DUO_RESERVATION_OVERRUN') nextAction = 'inspect_overrun_no_new_work'
   const resumable = report.checkpoint?.resumable === true && cost !== null && !blocked
   if (resumable) nextAction = 'inspect_current_plan_then_resume_exact_checkpoint'

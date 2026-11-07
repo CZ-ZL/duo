@@ -1,5 +1,11 @@
 # DUO
 
+[2026-11-08 源码更新与验证](docs/releases/source-update-20261108/README.md)记录诊断、决策和费用状态处理的更新。
+
+## 阶段研究更新（2026 年 11 月）
+
+[DUO 阶段结案资料](docs/research/duo-task-optimization-20261105/README.md)已整理组件消融、固定候选池归因和机制对齐研究的论文、逐项结果与来源索引。结论是保留 Simple、不采用当前 full 或对齐方案；对齐研究的严格科学状态仍为 UNRESOLVED。公开资料同时保留失败、更正和复现边界。
+
 [English](./README.md) · **简体中文**
 
 [快速开始](./dsh-plugin/QUICKSTART.zh-CN.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [文档目录](./docs/README.md)

@@ -32,9 +32,14 @@ models, money or side effects.
   persona, root or versioned provider descriptors invalidate the digest. This
   binds intent to a reviewed plan; it is not a payment sandbox.
 - **Crashes fail closed.** A process crash without a staged receipt leaves
-  unknown cost, not inferred zero, and blocks further work until an
-  independently supported bound receipt reconciles it. A copied or moved
-  ledger is refused. Unknown usage is never treated as free.
+  unknown cost, not inferred zero, and prevents continuation of the affected
+  run. Reconciliation requires an independently supported bound receipt.
+  An eligible quiescent failed run or dead-owner run may instead be explicitly
+  abandoned using its exact runId and planDigest. Abandonment retains all
+  unknown reservations; separately authorized new runs must fit their own and
+  shared cumulative limits including that exposure. It does not resume or
+  replay the old run. A copied or moved ledger is refused. Unknown usage is
+  never treated as free.
 - **Historical and generated text is untrusted data.** Warm-start history,
   model output and candidate personas are data, never instructions to change
   goals, evaluation, permissions or budget.

@@ -49,13 +49,13 @@ export function evaluateAnswers(tasks, answers) {
   }
 }
 
-export async function apply(ctx, config) {
+export function createStarterEvaluatorConfig(config) {
   const { dataset, datasetDigest: dataDigest } = modelSettings(config)
   const implementationDigest = createHash('sha256')
     .update(readFileSync(new URL(import.meta.url)))
     .digest('hex')
   const tasks = dataset.fast.tasks
-  await ctx.plugin(FunctionEvaluators, {
+  return {
     implementationDigest,
     dataDigest,
     descriptors: [
@@ -148,5 +148,9 @@ export async function apply(ctx, config) {
           : {}),
       }
     },
-  })
+  }
+}
+
+export async function apply(ctx, config) {
+  await ctx.plugin(FunctionEvaluators, createStarterEvaluatorConfig(config))
 }

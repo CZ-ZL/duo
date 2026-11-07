@@ -45,7 +45,7 @@ test('real fetch adapter preserves the input file and rejects permission, parent
   assert.equal(applied.persona, parent.persona)
   assert.notEqual(applied.version, parent.version)
   assert.equal(readFileSync(target, 'utf8'), before)
-  for (const value of [49999, 200001, NaN, '150000', true])
+  for (const value of [4999, 200001, NaN, '150000', true])
     assert.throws(() =>
       adapter.apply(
         { ...candidate, delta: { ...candidate.delta, config: { ...config, maxBodyChars: value } } },

@@ -7,7 +7,7 @@ This page is generated from native/capabilities.js and package.json. Run scripts
 | Target | Support | Mutable space | Warm start | Execution |
 |---|---|---|---|---|
 | dsh-persona | SUPPORTED | Complete isolated persona text; required placeholders preserved. | Adapter validation and safe Delta projection | matching_executor_required |
-| dsh-plugin-config | PARTIAL | Only integer maxBodyChars in [50000,200000] for @deepseek-ai/dsh-web-fetch-http. | Adapter validation and safe Delta projection | matching_executor_required |
+| dsh-plugin-config | PARTIAL | Only integer maxBodyChars in [5000,200000] for @deepseek-ai/dsh-web-fetch-http. | Adapter validation and safe Delta projection | matching_executor_required |
 
 - **dsh-persona:** No original file writes or automatic deployment.
 - **dsh-plugin-config:** Not arbitrary plugin configuration. Live fetch execution is an opt-in source research example; not a default runtime provider.

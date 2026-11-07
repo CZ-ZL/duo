@@ -314,7 +314,7 @@ export interface Plan {
 export interface RunResult {
   apiVersion: 2
   runId: string
-  status: 'completed' | 'failed' | 'cancelled' | 'paused'
+  status: 'completed' | 'failed' | 'cancelled' | 'paused' | 'ABORTED_UNKNOWN_PROVIDER_OPERATION'
   conclusion: 'recommend_candidate' | 'retain_baseline' | 'insufficient_evidence'
   improvementProven: boolean
   budget: Record<string, unknown>
@@ -408,6 +408,8 @@ export interface CumulativeBudget {
   currency: 'CNY' | 'USD'
   knownCostCny?: number
   knownCostUsd?: number
+  unknownExposureCny?: number
+  unknownExposureUsd?: number
   maxCumulativeCostCny?: number | null
   maxCumulativeCostUsd?: number | null
   excludedCurrencies: ('CNY' | 'USD')[]
@@ -430,8 +432,16 @@ export abstract class BudgetService extends Service {
   abstract reconcile(runId: string, receiptHash: string): ReconcileOutcome
   abstract cumulativeKnownCost(currency: 'CNY' | 'USD'): {
     knownCostUnits: number
+    unknownExposureUnits?: number
     runs: number
     excludedCurrencies: ('CNY' | 'USD')[]
+  }
+  abandon?(
+    runId: string,
+    planDigest: string,
+  ): {
+    result: Record<string, unknown>
+    budget: Record<string, unknown>
   }
   checkAdmission?(runId: string, limits: Record<string, unknown>): void
   admitRun?<T>(runId: string, limits: Record<string, unknown>, admit: () => T): T

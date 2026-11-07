@@ -1,8 +1,12 @@
 # Research archive
 
+## Latest completed-stage research
+
+[DUO task optimization closeout through 2026-11-05](duo-task-optimization-20261105/README.md): three separately scoped studies, a working paper, curated per-comparison results and provenance. Retain Simple; current full and aligned DUO are not adopted.
+
 Start with [EXPERIMENTS.md](EXPERIMENTS.md) for the retained method outcomes and
-their limitations. It and the JSON evidence summaries retain their original
-bytes; they are not current release status. Relative paths in sealed records
+their limitations. Historical sections and JSON evidence summaries are retained;
+they are not current release status. Relative paths in sealed records
 refer to the original commit, with relocations recorded in the
 [migration map](../development/REPOSITORY_MIGRATION.json).
 

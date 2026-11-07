@@ -33,7 +33,7 @@ const targets = [
     module: '@dual-loop/dsh-plugin/config-target',
     delta: 'plugin-config-replace-v1',
     support: 'PARTIAL',
-    mutable: 'Only integer maxBodyChars in [50000,200000] for @deepseek-ai/dsh-web-fetch-http.',
+    mutable: 'Only integer maxBodyChars in [5000,200000] for @deepseek-ai/dsh-web-fetch-http.',
     lifecycle: {
       discovery: true,
       validation: true,

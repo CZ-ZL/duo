@@ -27,6 +27,18 @@ For an existing authorized profile, use these public tools directly:
 `dualloop_discover` is the retained execution-composition view requiring a valid
 plan; start onboarding with `dualloop_describe`.
 
+## Optional lightweight decisions
+
+For a small routing or suitability check outside an optimization experiment, the
+optional [typed decision plugin](./PROVIDERS.md#lightweight-typed-decisions)
+accepts one state and several caller-defined questions. Its tools are
+`dualloop_decision_describe → dualloop_decide → dualloop_decision_status`.
+No Target or optimization plan is needed. Choice, ordinal score and boolean
+answers can guide caller code; unknown is explicit, and answers grant no action
+permission. The model backend uses one bounded batch request; its judgment
+accuracy, speed and savings have not been qualified. This plugin is opt-in,
+not loaded by the default optimization bundle.
+
 ## Prepare the missing pieces
 
 A draft needs an id, `target:{kind,path}` and an objective:
@@ -83,5 +95,10 @@ optional cross-run cap.
 Errors include cause, recoverability, nextAction, costState and sideEffectState.
 Unknown cost requires retained-evidence inspection, not inferred zero or retry.
 Reconciliation accepts observed staged receipts; it cannot create usage evidence.
+If the old run has failed and its calls have drained, or its owner is verified
+dead, use `dualloop_budget_abandon({runId,planDigest})` with the retained identity
+to end it explicitly. All unknown reservations remain charged against cumulative
+admission; a fresh authorized plan can use the remaining allowance. Active calls
+and overruns cannot be cleared through abandonment. See the API reference.
 The host enforces actual access; providers are trusted in-process code. Adoption
 needs separate owner authority. [SECURITY.md](./SECURITY.md) defines this boundary.

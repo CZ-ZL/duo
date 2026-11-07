@@ -216,6 +216,27 @@ export function apply(ctx) {
     async (args) => ({ runId: args.runId, budget: ctx.duoBudget.inspect(args.runId) }),
   )
   register(
+    'dualloop_budget_abandon',
+    'Explicitly terminalize a quiescent failed or dead-owner run with unresolved costs. Keeps every unknown reservation and receipt; never retries the old run or grants new spending authority.',
+    {
+      runId: { type: 'string', required: true, description: 'Retained native run identifier' },
+      planDigest: {
+        type: 'string',
+        required: true,
+        description: 'Exact retained run plan digest from dualloop_status',
+      },
+    },
+    async (args) => {
+      if (typeof ctx.duoBudget.abandon !== 'function')
+        throw Object.assign(
+          new Error('Configured budget provider does not support explicit abandonment'),
+          { code: 'DUO_ABANDON_UNSUPPORTED' },
+        )
+      return { runId: args.runId, ...ctx.duoBudget.abandon(args.runId, args.planDigest) }
+    },
+    false,
+  )
+  register(
     'dualloop_budget_reconcile',
     'Apply one already-staged native receipt by its hash from the dualloop_budget_status receipts view. Returns an explicit outcome (applied, already-settled, unknown-receipt, rejected with reason) and the resulting budget. Does not repeat a model call or infer zero cost.',
     {

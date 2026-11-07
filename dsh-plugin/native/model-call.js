@@ -16,15 +16,15 @@ export const datasetTiers = (dataset) =>
       dataset[k] && typeof dataset[k] === 'object' && ('id' in dataset[k] || 'tasks' in dataset[k]),
   )
 
-export function modelSettings(config) {
+// Shared request/pricing validation also serves decisions with caller-supplied
+// state. Dataset loading remains the responsibility of experiment adapters.
+export function modelCallSettings(config) {
   const c = { maxInputBytes: 4096, ...structuredClone(config) },
     m = moneyFields(c)
   if (m.currency !== moneyFields(c.pricing).currency)
     fail('DUO_CURRENCY_MISMATCH', 'Model reservation and tariff currencies differ')
   if (
-    !['provider', 'model', 'artifactRoot', 'datasetPath'].every(
-      (k) => typeof c[k] === 'string' && c[k],
-    ) ||
+    !['provider', 'model', 'artifactRoot'].every((k) => typeof c[k] === 'string' && c[k]) ||
     !['maxTokens', 'timeoutMs', 'maxInputBytes'].every(
       (k) => Number.isSafeInteger(c[k]) && c[k] > 0,
     ) ||
@@ -34,7 +34,7 @@ export function modelSettings(config) {
   )
     fail(
       'DUO_MODEL_CONFIG_INVALID',
-      'Explicit model, dataset, artifact directory, positive reservation and request limits are required',
+      'Explicit model, artifact directory, positive reservation and request limits are required',
     )
   if (
     priceUsage(
@@ -57,6 +57,13 @@ export function modelSettings(config) {
       'Reservation must cover the bounded input, framing allowance and maximum output at frozen prices',
     )
   c.artifactRoot = resolve(c.artifactRoot)
+  return freeze(c)
+}
+
+export function modelSettings(config) {
+  const c = { ...modelCallSettings(config) }
+  if (typeof c.datasetPath !== 'string' || !c.datasetPath)
+    fail('DUO_MODEL_CONFIG_INVALID', 'Experiment model adapters require an explicit dataset path')
   c.datasetPath = resolve(c.datasetPath)
   const dataset = readDataset(c.datasetPath)
   return freeze({ config: c, dataset, datasetDigest: digest(dataset) })

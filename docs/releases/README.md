@@ -1,5 +1,7 @@
 # Releases and verification
 
+[2026-11-08 source update](source-update-20261108/README.md) records the published development changes and research closeout; it is not a formal package release.
+
 Current installable release: **[v0.6.2 developer preview](https://github.com/CZ-ZL/duo/releases/tag/v0.6.2)** (prerelease). The previous non-prerelease tag is v0.6.0.
 
 [Release notes](0.6.2/RELEASE_NOTES.md) and [receipt](0.6.2/DELIVERY_EVIDENCE.json)

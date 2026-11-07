@@ -21,6 +21,9 @@
       root: /absolute/path/to/native-runs
   - id: duo-budget
     name: '@dual-loop/dsh-plugin/budget'
+  - id: duo-doctor
+    name: '@dual-loop/dsh-plugin/doctor'
+    disabled: true
   - id: duo-controller
     name: '@dual-loop/dsh-plugin/controller'
     disabled: true

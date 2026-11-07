@@ -1,0 +1,271 @@
+{
+  "schema": "duo.source-publication-verification.v1",
+  "publicationDate": "2026-11-08",
+  "baseRemoteCommit": "ba8aeeadbef2843f74af23c0fa68fe168b5a9549",
+  "packageVersion": "0.6.3",
+  "kind": "source-update-not-formal-release",
+  "checks": [
+    {
+      "name": "native-final",
+      "status": "PASS",
+      "exitCode": 0,
+      "seconds": 32.755460023880005,
+      "logSha256": "96781508452f27e63800bdbda1dd09d159fc779ce6c9b4580756b992f67e4d8c"
+    },
+    {
+      "name": "public-types",
+      "status": "PASS",
+      "exitCode": 0,
+      "seconds": 4.7406556606292725,
+      "logSha256": "6771fd5213ee84f296d3a37b91833deb83805c29150ca705b19720849f0c3b40"
+    },
+    {
+      "name": "format-final",
+      "status": "PASS",
+      "exitCode": 0,
+      "seconds": 3.8374924659729004,
+      "logSha256": "d50c5bbbb2fc7199da52ac179394c28d50cedd210c10bec3c86ccdce8be430c7"
+    },
+    {
+      "name": "docs-final",
+      "status": "PASS",
+      "exitCode": 0,
+      "seconds": 0.0433964729309082,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "python-product",
+      "status": "PASS",
+      "exitCode": 0,
+      "seconds": 303.90034675598145,
+      "logSha256": "1c5130498005fe60f6887f06716a439076e08a77bea435bd4f786e1894302a8c"
+    }
+  ],
+  "nativeTests": {
+    "passed": 412,
+    "failed": 0,
+    "skipped": 0
+  },
+  "pythonProductSummary": "451 passed, 86 deselected in 306.11s (0:05:06)",
+  "doctorRegressions": {
+    "beforeFixFailures": 4,
+    "afterFixPassed": 17,
+    "afterFixFailures": 0
+  },
+  "package": {
+    "members": 88,
+    "sha256": "6a4d1dbc45a2d5829e51721e1b08f9211c37052216ce0ba8f8237a1802bff260",
+    "hostPeers": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "range": "^4.0.1",
+        "version": "4.0.2",
+        "compatible": true
+      },
+      {
+        "name": "@deepseek-ai/dsh-tools",
+        "range": "^0.1.2-rc.1",
+        "version": "0.1.2-rc.1",
+        "compatible": true
+      },
+      {
+        "name": "@deepseek-ai/dsh-llm",
+        "range": "^0.1.2-rc.1",
+        "version": "0.1.2-rc.1",
+        "compatible": true
+      },
+      {
+        "name": "@deepseek-ai/dsh-system-prompt",
+        "range": "^0.1.2-rc.1",
+        "version": "0.1.2-rc.1",
+        "compatible": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "range": "^3.18.0",
+        "version": "3.18.2",
+        "compatible": true
+      },
+      {
+        "name": "@deepseek-ai/dsh-deepseek-llm-api-extensions",
+        "range": "^0.1.2-rc.1",
+        "version": "0.1.2-rc.1",
+        "compatible": true
+      }
+    ],
+    "installedForThisPublication": false
+  },
+  "independentReview": {
+    "codeFindingsFixed": 3,
+    "remainingMaterialCodeFindingsInCorrectionScope": 0,
+    "researchFieldsChecked": 2484,
+    "researchSourceHashesChecked": 11,
+    "reviewerReranTests": false,
+    "rawTimingReconstructed": false
+  },
+  "testedSourceFiles": [
+    {
+      "path": "dsh-plugin/AGENT_GUIDE.md",
+      "sha256": "219faa5304f7cc62e22499ede54978739db8738a71b128e32774f9091609a211"
+    },
+    {
+      "path": "dsh-plugin/AGENT_REFERENCE.md",
+      "sha256": "7499257366c05553a472cf21f50746ebd03d49fb5374190124fa84eeb9936a88"
+    },
+    {
+      "path": "dsh-plugin/CURRENT_STATUS.md",
+      "sha256": "9d9bff69ae137ca7e189468d2aba13055d997da5de638dfdf457d64af98c6d9c"
+    },
+    {
+      "path": "dsh-plugin/PROVIDERS.md",
+      "sha256": "7c1cf2c0feb5eb46e047d7de53ebb2bb81a1caead36a4beb98f1724a843639f7"
+    },
+    {
+      "path": "dsh-plugin/SECURITY.md",
+      "sha256": "93c64ab903142cf0d5574c942e5e0b87c6cec3bf389b6d44922aa04a25f9d83c"
+    },
+    {
+      "path": "dsh-plugin/cordis.patch.yml",
+      "sha256": "1498d8120b10a8c9b142a241a40a8b95b0d2168a8af117718b32e3f9cc044a8f"
+    },
+    {
+      "path": "dsh-plugin/examples/model/evaluator.js",
+      "sha256": "3b661b96ed8000807f6a0281ad0064240883e4fc214b2164f2034e28b29f274c"
+    },
+    {
+      "path": "dsh-plugin/native/capabilities.js",
+      "sha256": "47118d5cbffbc51e226ec941506cd4427e624d1152d397dd063c0f616faafd52"
+    },
+    {
+      "path": "dsh-plugin/native/config-target.js",
+      "sha256": "2f2c36db43a9c9b68247212fb82ee63934d57c280226da7eafe803b1cff32a7a"
+    },
+    {
+      "path": "dsh-plugin/native/controller.js",
+      "sha256": "e6c59462d2597f197a84df2a8f393603202b3147ebb59dfa626bec819366322a"
+    },
+    {
+      "path": "dsh-plugin/native/definitions.d.ts",
+      "sha256": "1e0f829e72daf35f066206fa06d663a1744d46f910369061e51ebecb54a278a3"
+    },
+    {
+      "path": "dsh-plugin/native/model-call.js",
+      "sha256": "08f5332dcc844d1c6429559e736bef86760ac2d0b25e515ec46c5bf31480a773"
+    },
+    {
+      "path": "dsh-plugin/native/observer.js",
+      "sha256": "70dc88558bcfe2977b3b58f35f10fd47b7cf91781a9df98f29d60e493d3caf32"
+    },
+    {
+      "path": "dsh-plugin/native/store.js",
+      "sha256": "2347c45c5bb97068d8140d65821e3f1bce0aa11ec2821b7e3eca636c41b077f8"
+    },
+    {
+      "path": "dsh-plugin/native/tools.js",
+      "sha256": "779229e63d58fece738ee17e486b64525f7477941fb2e2048f888ced6e4c83d5"
+    },
+    {
+      "path": "dsh-plugin/package.json",
+      "sha256": "7b7cfc6f65b1cd5afba14cc253fba8fc7c9761941b59f84d70e9b5214bc8ec80"
+    },
+    {
+      "path": "dsh-plugin/tests/native/config-target.test.js",
+      "sha256": "2f26b75da186e66ef068071b6097b8f154f9e99dea574a534414e74f4672ad09"
+    },
+    {
+      "path": "package.json",
+      "sha256": "aaea042e4f07ae021a47030c6a87ec0cfe1b0499dbf37f864dd7f458c70c87c6"
+    },
+    {
+      "path": "dsh-plugin/examples/decisions/local-provider.js",
+      "sha256": "96a12b3fc743c8b7f4189ca5568efdfb80f613bfa8106f3a4a7a13af21dce5c3"
+    },
+    {
+      "path": "dsh-plugin/examples/decisions/prepare.mjs",
+      "sha256": "2f712f2df7cc5e1f360077c3c19a1c4acbf3cbb0a1faefce901fa4ddf5b01406"
+    },
+    {
+      "path": "dsh-plugin/examples/model/shadow-evaluator.js",
+      "sha256": "475c3f19f44a6d33588abde7d37e3bc47d98bc961b547c70fb599e3bc83cfc70"
+    },
+    {
+      "path": "dsh-plugin/native/decision-contract.js",
+      "sha256": "2e1e2176af3f175be2acf3d38e7e05164f5c69528661b32fd695418463c195b6"
+    },
+    {
+      "path": "dsh-plugin/native/decision-tools.js",
+      "sha256": "ff565617947d7682bf8815380fa6e4b00aedae29c270c6430c8abfd902438487"
+    },
+    {
+      "path": "dsh-plugin/native/decisions.js",
+      "sha256": "d9c6fd5bbccdac642913dfddd63be1e9b7dbc4a5d2d922077354e458ba5d0078"
+    },
+    {
+      "path": "dsh-plugin/native/doctor.js",
+      "sha256": "68f054161fd1226cf1133637efb6bfbcfb032350c2271b11d4bbe788357cb311"
+    },
+    {
+      "path": "dsh-plugin/native/model-decisions.js",
+      "sha256": "acb62119d0d726ffa099c5c46cb85415b2bae41b0849245b7563af42698e9d2e"
+    },
+    {
+      "path": "dsh-plugin/native/quick-judgment.js",
+      "sha256": "033cd6ea0e148b18adf27c4abc0621ecbfae5a308412715f8abcf6eed7a6f3c3"
+    },
+    {
+      "path": "dsh-plugin/native/run-doctor.js",
+      "sha256": "5b5ea114ca834991e189987be41549c13aafefeceefde60c18878ddad50f3e79"
+    },
+    {
+      "path": "dsh-plugin/native/support-judge.js",
+      "sha256": "fbd874e3758955fc12acbf1d1ba15acada30aa25b95e4025407deeeb56ada5f7"
+    },
+    {
+      "path": "dsh-plugin/tests/native/abandon.test.js",
+      "sha256": "a411cd32cbdaa7309e6d8202c11e749aec19ad4b29e6a9bec769c2c9c457897a"
+    },
+    {
+      "path": "dsh-plugin/tests/native/decision-service.test.js",
+      "sha256": "8bfae277e57ab5ceeccace962f0dea24649c55df9b0315d6a784e4778822b08e"
+    },
+    {
+      "path": "dsh-plugin/tests/native/decisions.test.js",
+      "sha256": "4e1ff70c1e8ef22d7b61aaee5912c5f1841f51b5aa497d72adc071ebfed0d91b"
+    },
+    {
+      "path": "dsh-plugin/tests/native/doctor.test.js",
+      "sha256": "a6285a45507ca187517a234e47b123ccb86d830ebe89f8474c14e83d27e80af1"
+    },
+    {
+      "path": "dsh-plugin/tests/native/model-decisions.test.js",
+      "sha256": "3f546fa56f2edf2b1894911083764b5e22571192c8e3e3fd04f7a6d921fb137b"
+    },
+    {
+      "path": "dsh-plugin/tests/native/quick-judgment.test.js",
+      "sha256": "2e4f2e33f625301b8ffc44a0fd37eed1a9b13734243d99720b337b1e7ee66f55"
+    },
+    {
+      "path": "dsh-plugin/tests/native/run-doctor.test.js",
+      "sha256": "4e114b2ef3503edbe35e5dd1ac85cd78968410f5bbea8ea5788747218e65f9f1"
+    },
+    {
+      "path": "dsh-plugin/tests/native/support-judge.test.js",
+      "sha256": "fdcc294a70ab9350d849150251b5763128914bd7abfed49d43d84dfd74ac93b8"
+    }
+  ],
+  "newModelRequests": 0,
+  "newScientificMeasurements": 0,
+  "dependenciesInstalled": false,
+  "npmPublished": false,
+  "formalReleasePublished": false,
+  "limits": [
+    "Offline functional tests and synthetic controls do not establish optimization benefit.",
+    "Historical research replay is excluded from the Python product scope.",
+    "No fresh-machine installation was performed locally; GitHub Actions is a separate check.",
+    "Targeted publication content checks are not a comprehensive security or licensing audit."
+  ],
+  "ci": {
+    "statusAtRecordCreation": "NOT_YET_PUSHED",
+    "scope": "See GitHub Actions on the resulting commit; not claimed as passed by this local record."
+  }
+}
