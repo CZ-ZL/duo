@@ -11,3 +11,11 @@ Formatting, exported TypeScript contracts, generated product documentation and a
 The [research closeout](../../research/duo-task-optimization-20261105/README.md) publishes the component study, fixed-pool attribution and mechanism-alignment results with their separate denominators, failures, corrections and source availability. The adoption decision remains to retain Simple. Offline engineering verification does not establish optimization benefit; the aligned study's strict scientific status remains UNRESOLVED.
 
 Original experiment inputs, runtime state and raw timing archives are not part of this source update. Historical experiment launch scripts that depend on the local archive remain local. The public research material is a curated results publication, not a complete standalone reproduction package.
+
+## CI follow-up
+
+The [first published commit's CI run](https://github.com/CZ-ZL/duo/actions/runs/42397371441) passed formatting, public types, packaging, fresh-profile installation, public examples, Slow evidence, baseline repair, sandbox isolation and dependency advisories. It then failed two Doctor stop tests and a test that expected the locally cached Schemastery version `3.18.2`; the CI host resolved Cordis `4.1.0` and Schemastery `3.19.0`.
+
+The Doctor failure was an undeclared optional-service lookup, not a changed stopping rule. Calling the controller through a consuming plugin reproduced both failures even with the earlier Cordis `4.0.2`. The controller now uses `ctx.get('duoDoctor')` at both consultation boundaries. The regression tests use that plugin calling path and retain the stop, journal, disabled/absent service and no-final-call assertions. The evaluator control test checks the reported dependency name and version against the package actually loaded, while retaining its valid/invalid output controls.
+
+The revised targeted suite passed all 20 tests locally, the complete native suite passed all 412 tests, and formatting passed. The original `VERIFICATION.json` remains the pre-publication snapshot; its source hashes and package digest describe the initial commit. See GitHub Actions on the follow-up commit for validation with freshly resolved host dependencies. No dependency versions or CI checks were changed to suppress these failures.

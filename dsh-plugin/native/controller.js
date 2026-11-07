@@ -528,7 +528,7 @@ export default class NativeController extends ControllerService {
       })
       let doctor = null
       try {
-        doctor = this.ctx.duoDoctor?.consult?.(j.events(), spec) ?? null
+        doctor = this.ctx.get('duoDoctor')?.consult?.(j.events(), spec) ?? null
       } catch {
         doctor = null // the guard must never break the run it guards
       }
@@ -600,7 +600,7 @@ export default class NativeController extends ControllerService {
         // run it guards.
         let doctor = null
         try {
-          doctor = this.ctx.duoDoctor?.consult?.(j.events(), spec) ?? null
+          doctor = this.ctx.get('duoDoctor')?.consult?.(j.events(), spec) ?? null
         } catch {
           doctor = null
         }

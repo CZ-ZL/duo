@@ -1,6 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { Context } from '@deepseek-ai/cordis'
+import schemaPackage from '@deepseek-ai/schemastery/package.json' with { type: 'json' }
 import * as Example from '../../../examples/native/evaluator-controls.js'
 test('existing external schema validator measures actual format plus separate citation constraint', async () => {
   const good = await Example.measure({
@@ -10,7 +11,8 @@ test('existing external schema validator measures actual format plus separate ci
   assert.equal(good.metrics.sources_allowed, true)
   assert.equal(good.costCny, 0)
   assert.equal(good.evidence[0].kind, 'external_schema_validation')
-  assert.equal(good.evidence[0].dependencyVersion, '3.18.2')
+  assert.equal(good.evidence[0].dependency, schemaPackage.name)
+  assert.equal(good.evidence[0].dependencyVersion, schemaPackage.version)
   const bad = await Example.measure({
     artifact: { text: '{"answer":42,"citations":"local:test"}' },
   })

@@ -50,11 +50,26 @@ const doctorEvents = (ctx, runId) =>
     .events()
     .filter((e) => e.kind === 'doctor')
 
+// Exercise the controller through a consuming plugin, with the same injection
+// checks as a host tool rather than the root context's unrestricted lookup.
+async function controllerConsumer(t, ctx) {
+  let controller
+  const fiber = await ctx.plugin({
+    inject: ['duoController'],
+    apply(consumer) {
+      controller = consumer.duoController
+    },
+  })
+  t.after(() => fiber.dispose())
+  return controller
+}
+
 test('doctor halts the run at the baseline when the instrument is lying', async (t) => {
   const { ctx } = await setup(t, {}, { evaluators: DriftEvaluators })
   await ctx.plugin(RunDoctor, {})
-  const p = ctx.duoController.plan()
-  const result = await ctx.duoController.run({ planDigest: p.planDigest })
+  const controller = await controllerConsumer(t, ctx)
+  const p = controller.plan()
+  const result = await controller.run({ planDigest: p.planDigest })
   assert.equal(result.stopReason, 'DUO_DOCTOR_STOP')
   assert.equal(result.doctor?.severity, 'stop', 'failed result must carry the doctor verdict')
   const events = doctorEvents(ctx, p.runId)
@@ -79,8 +94,9 @@ test('doctor stops search once drift dominates measured candidates', async (t) =
     return evaluate(args)
   }
   await ctx.plugin(RunDoctor, { driftStop: 0.25 })
-  const p = ctx.duoController.plan()
-  const result = await ctx.duoController.run({ planDigest: p.planDigest })
+  const controller = await controllerConsumer(t, ctx)
+  const p = controller.plan()
+  const result = await controller.run({ planDigest: p.planDigest })
   assert.ok(
     ['doctor_stop', 'DUO_DOCTOR_STOP'].includes(result.stopReason),
     'search must end by doctor verdict, got ' + result.stopReason,
@@ -100,16 +116,18 @@ test('doctor stops search once drift dominates measured candidates', async (t) =
 test('a disabled doctor never interferes', async (t) => {
   const { ctx } = await setup(t, {}, { evaluators: DriftEvaluators })
   await ctx.plugin(RunDoctor, { enabled: false })
-  const p = ctx.duoController.plan()
-  const result = await ctx.duoController.run({ planDigest: p.planDigest })
+  const controller = await controllerConsumer(t, ctx)
+  const p = controller.plan()
+  const result = await controller.run({ planDigest: p.planDigest })
   assert.notEqual(result.stopReason, 'doctor_stop')
   assert.equal(doctorEvents(ctx, p.runId).length, 0)
 })
 
 test('runs without a doctor service are unchanged', async (t) => {
   const { ctx } = await setup(t, {}, { evaluators: DriftEvaluators })
-  const p = ctx.duoController.plan()
-  const result = await ctx.duoController.run({ planDigest: p.planDigest })
+  const controller = await controllerConsumer(t, ctx)
+  const p = controller.plan()
+  const result = await controller.run({ planDigest: p.planDigest })
   assert.notEqual(result.stopReason, 'doctor_stop')
   assert.equal(doctorEvents(ctx, p.runId).length, 0)
 })
