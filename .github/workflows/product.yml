@@ -31,8 +31,8 @@ jobs:
           python -m pip install PyYAML==6.0.2 pytest==9.0.3
           npm install --global --ignore-scripts --no-audit --no-fund pnpm@11.24.0
           # DSH rc.1's dynamic-tool inspection expects Cordis 4.0's impl.fiber.
-          # Cordis 4.1 changed that internal record; retain strict Caller checks
-          # and verify against the declared compatible host composition.
+          # Cordis 4.1 changed that record and the loader event contract. Keep
+          # its framework family together; retain all strict Caller checks.
           mkdir -p "$RUNNER_TEMP/duo-dsh"
           cp .github/verification-host/package.json "$RUNNER_TEMP/duo-dsh/package.json"
           npm install --prefix "$RUNNER_TEMP/duo-dsh" --ignore-scripts --no-audit --no-fund
