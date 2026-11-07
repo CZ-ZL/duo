@@ -6,6 +6,8 @@ The three studies use the same task identifiers but have different frozen protoc
 
 Simple already includes iterative history, a Journal, deduplication, correctness/performance evaluation and a second development partition. The adoption question is incremental value over this baseline. The endpoint is the runtime of sealed generated C++ code on new inputs, not the elapsed duration of the agent search. Ratios below one favor the numerator program. Shared configured ceilings do not imply equal realized compute, calls or UTC time.
 
+Its loop generates from the incumbent with bounded historical feedback, deduplicates source versions, evaluates candidates sequentially on Fast and Slow, and replaces the incumbent only on a correct, strictly better Slow verdict. It does not use the DUO Fast Top-K gate or bounded-tie admission. Search-time development feedback is separate from sealed-program final evaluation. See the [source-checked Simple specification](SIMPLE_BASELINE.zh-CN.md) for the study-specific versions, alignment treatment and configured resource ceilings.
+
 ## Independent units and uncertainty
 
 The component study has 48 independent searches (8 arms × 3 tasks × 2 repeats). Its 54 contrasts share those searches. The fixed-pool study reuses 12 trajectories; it adds zero independent searches. The alignment study plans 72 searches (4 arms × 3 tasks × 6 repeats), with 65 deliveries and 7 failures. Its 126 comparisons likewise share sources. Timing blocks, workload families, evaluation pairs and repeated output checks are not new search replicates.

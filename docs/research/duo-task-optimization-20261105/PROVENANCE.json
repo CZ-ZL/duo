@@ -82,6 +82,76 @@
       "sha256": "de27f9e710233ad59ad11a07ada98bdbfb24850dd93a1d2f503de38c19636d2a",
       "bytes": 23431523,
       "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-ablation-controller",
+      "originalFilename": "simple-controller.mjs",
+      "sha256": "3d6efe65ef7dfc64ac51ff5118671ca12e6dbc4ce911cc6e57508d98c10628ac",
+      "bytes": 5798,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-ablation-bindings",
+      "originalFilename": "protocol_SOURCE_BINDINGS.json",
+      "sha256": "464b419d14c21a4d17a6c8c2e185da729734be9331fbfa6c5a0eb31c1e701034",
+      "bytes": 28818,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-alignment-version",
+      "originalFilename": "CANDIDATE_VERSION.json",
+      "sha256": "825f8494fd37bb8ea22121e2e8dbb37716ec72685c07beccdcda6567c3e3a609",
+      "bytes": 5364,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-alignment-host",
+      "originalFilename": "runtime-host.mjs",
+      "sha256": "6fbe808e80fd2740c270067b29335a6bb09043e6950f8f6fa1650fdfba25376e",
+      "bytes": 30449,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-alignment-study",
+      "originalFilename": "alignment-study.mjs",
+      "sha256": "6894a6d72613067841e504e4adbada359ee2bd91e94c5b6773c7739c80c25df6",
+      "bytes": 1330,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-simple-controller",
+      "originalFilename": "simple-controller.mjs",
+      "sha256": "2fb881afbcb1a32d4b72827598cf07f0376e561930b43633baabbc3eb775d59b",
+      "bytes": 6131,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-alignment-profile",
+      "originalFilename": "alignment-profile.mjs",
+      "sha256": "4009105e97031f256104a19111166ec08d568f175a65f7ae5e7e0cde51108bb4",
+      "bytes": 1118,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-history-feedback",
+      "originalFilename": "history-feedback.mjs",
+      "sha256": "ef73ee6e7f42cf101df9cf48575a1996fcf41db4e973495475db378254647e58",
+      "bytes": 7114,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-history-projection",
+      "originalFilename": "history-projection.mjs",
+      "sha256": "611a36df79573be6fee9110da7b7c9d3655d95df445cb1155fc9d0a874198caa",
+      "bytes": 2764,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-alignment-feedback",
+      "originalFilename": "alignment-feedback.mjs",
+      "sha256": "8f9a6eeb7f1f9132b8fef9059816b1bec7852e462ab716cec2dc6927e24bc9dc",
+      "bytes": 1257,
+      "availability": "retained_local_not_in_this_repository"
     }
   ],
   "publicObjects": [
@@ -116,7 +186,17 @@
         "pool-reversal",
         "alignment-report",
         "alignment-result",
-        "alignment-analysis"
+        "alignment-analysis",
+        "simple-ablation-controller",
+        "simple-ablation-bindings",
+        "simple-alignment-version",
+        "simple-alignment-host",
+        "simple-alignment-study",
+        "simple-simple-controller",
+        "simple-alignment-profile",
+        "simple-history-feedback",
+        "simple-history-projection",
+        "simple-alignment-feedback"
       ]
     },
     {
@@ -125,7 +205,17 @@
       "sourceIds": [
         "ablation-report",
         "pool-report",
-        "alignment-report"
+        "alignment-report",
+        "simple-ablation-controller",
+        "simple-ablation-bindings",
+        "simple-alignment-version",
+        "simple-alignment-host",
+        "simple-alignment-study",
+        "simple-simple-controller",
+        "simple-alignment-profile",
+        "simple-history-feedback",
+        "simple-history-projection",
+        "simple-alignment-feedback"
       ]
     },
     {
@@ -135,7 +225,17 @@
         "ablation-report",
         "ablation-errata",
         "pool-report",
-        "alignment-report"
+        "alignment-report",
+        "simple-ablation-controller",
+        "simple-ablation-bindings",
+        "simple-alignment-version",
+        "simple-alignment-host",
+        "simple-alignment-study",
+        "simple-simple-controller",
+        "simple-alignment-profile",
+        "simple-history-feedback",
+        "simple-history-projection",
+        "simple-alignment-feedback"
       ]
     },
     {
@@ -145,6 +245,23 @@
         "ablation-report",
         "pool-report",
         "alignment-report"
+      ]
+    },
+    {
+      "path": "SIMPLE_BASELINE.zh-CN.md",
+      "transformation": "Description checked against frozen controllers, runtime/version bindings, history projection and alignment allocation. No new execution or performance claim.",
+      "sourceIds": [
+        "ablation-report",
+        "simple-ablation-controller",
+        "simple-ablation-bindings",
+        "simple-alignment-version",
+        "simple-alignment-host",
+        "simple-alignment-study",
+        "simple-simple-controller",
+        "simple-alignment-profile",
+        "simple-history-feedback",
+        "simple-history-projection",
+        "simple-alignment-feedback"
       ]
     }
   ],

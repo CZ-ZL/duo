@@ -12,6 +12,7 @@
 
 阅读入口：
 
+- [Simple 基线详解](SIMPLE_BASELINE.zh-CN.md)：逐代流程、历史与评测能力、与 DUO 的区别，以及 `S-current` / `S-aligned` 的版本和预算。
 - [中文研究工作论文](WORKING_PAPER.zh-CN.md)：问题、主要效应、消融与归因、工程取舍。
 - [结构化结果](RESULTS.json)：54 项消融、12 个候选池及 126 项对齐比较的精选字段。
 - [方法与限制](METHODS_AND_LIMITATIONS.md)：分母、模型记录、失败、成本与可复现范围。
