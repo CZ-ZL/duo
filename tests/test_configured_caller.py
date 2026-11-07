@@ -47,7 +47,12 @@ def test_public_caller_attaches_fact_measurement_and_retains_delivery(tmp_path,l
         assert described['discovery']['runtimeBound'] is True
         assert described['discovery']['codingCatalogRequired'] is False
         assert 'coding-contract catalog' in described['discovery']['meaning']
-        assert r['checks']['callerAttachedCustomEvaluator']
+        assert r['checks']['callerAttachedCustomEvaluator'], {
+            'checks': r['checks'],
+            'attachmentCalls': [c for c in calls if c['name'] == 'cordis_run'],
+            'plannedEvaluators': [c['result'].get('value', {}).get('providers', {}).get('evaluators')
+                                  for c in calls if c['name'] == 'dualloop_plan'],
+        }
         assert r['checks']['oneCompletedEvaluation']
         assert r['checks']['innerAccounting'] and r['checks']['totalAccounting']
         assert r['requestCounts']['inner']==1

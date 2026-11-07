@@ -22,7 +22,11 @@ def test_terminal_warm_run_preserves_consumption_accounting_and_strict_acceptanc
         cmd.append('--fixture-invalid-warm-proposal')
     process = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=100)
     result = json.loads((output / 'result.json').read_text())
-    assert process.returncode == (1 if invalid else 0), process.stdout + process.stderr
+    assert process.returncode == (1 if invalid else 0), process.stdout + process.stderr + json.dumps({
+        'checks': result.get('checks'),
+        'attachmentCalls': [c for c in json.loads((output / 'tool-calls.json').read_text())
+                            if c['name'] == 'cordis_run'],
+    })
     assert result['modelRequests'] == result['costCny'] == 0
     calls = json.loads((output / 'tool-calls.json').read_text())
     before = next(c['result']['value'] for c in calls if c['name'] == 'dualloop_describe')
