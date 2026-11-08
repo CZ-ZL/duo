@@ -31,7 +31,7 @@
   "publicObjects": [
     {
       "path": "SIMPLE_BASELINE.zh-CN.md",
-      "transformation": "Shared method description and source-checked task-level loop, separated from study-specific versions, budgets and conclusions.",
+      "transformation": "Shared method description and Mermaid structure diagram checked against task-level controllers and history feedback; study-specific budgets and conclusions remain separately scoped.",
       "sourceIds": [
         "simple-ablation-controller",
         "simple-simple-controller",

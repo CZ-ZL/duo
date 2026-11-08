@@ -19,9 +19,8 @@ See [TESTING.md](../docs/development/TESTING.md) for prerequisites and evidence 
 Individual Python verifiers expose `--help`; the release gate supplies their
 archive, package, host and isolated output paths in dependency order.
 
-`research/` contains `run_*`, `prepare_code_*`, comparison, calibration and historical Caller drivers.
-These
-are retained research or prior acceptance utilities. They are not an alternative
+[research/](research/README.md) contains `run_*`, `prepare_code_*`, comparison, calibration and historical Caller drivers.
+These are retained research or prior acceptance utilities. They are not an alternative
 product API, are not shipped in the package, and are not all offline. Do not run
 them as a catch-all test command: real-model experiments require their own
 authorization and frozen contract. `code_evaluation.py` and its worker support

@@ -2,12 +2,13 @@
 
 0.6.3 is the current developer-preview source line. Consult the release index for the actual tag and artifact status.
 The [release index](../releases/README.md) records current verification and
-visibility. Current support is recorded in [current capabilities](../../dsh-plugin/CURRENT_STATUS.md). The
-[pre-publication acceptance contract](../product-foundation/PRE_PUBLICATION_ACCEPTANCE.md)
-and [final public-source audit](../product-foundation/FINAL_PUBLIC_AUDIT.md) govern this candidate's
-release decision; docs/slow-evidence-strategy/ACCEPTANCE.json is the sealed 0.6.0 receipt.
-docs/releases/0.5.0/ACCEPTANCE.json retains the sealed 0.5.0 Product Foundation receipt.
-The destination is CZ-ZL/duo. No npm registry publication is authorized.
+visibility. Current support is recorded in [current capabilities](../../dsh-plugin/CURRENT_STATUS.md).
+The [earlier acceptance contracts and audits](../product-foundation/README.md)
+are historical references for their recorded candidates. Current work needs the
+owner's actual scope and verification of the files being delivered; old gates
+and unused budgets do not authorize a new release.
+The destination is CZ-ZL/duo. A source push, tagged Release, npm publication and
+visibility change are distinct actions with their own authorization scope.
 The earlier 0.3/0.4 preparation and experiments remain historical evidence, not
 acceptance for new code. A release does not establish method superiority.
 
@@ -44,7 +45,7 @@ certification. Keep its unresolved dependency, CI and exposure checks visible.
 
 ## Compatibility
 
-Tested host target: DSH 0.1.2-rc.1, Cordis 4.0.2, Node 24.14.1 and pnpm 11.24.0 on Linux.
+Tested host target: DSH 0.1.2-rc.1, the [declared Cordis 4.0.2 framework family](../../.github/verification-host/package.json), Node 24.14.1 and pnpm 11.24.0 on Linux.
 DSH remains a developer preview; recheck compatibility before host upgrades.
 Target identity/projection is adapter-owned in 0.5.0. Old plans bind the previous
 policy/provider versions and must be inspected and re-planned; do not resume a

@@ -1,7 +1,7 @@
 # Documentation map
 
-Start with the product, then read the implementation or historical evidence as
-needed. A closed historical Goal does not establish the status of a newer build.
+Choose an entry by what you want to do. Product usage, shared research methods,
+experiment results and historical acceptance records have separate scopes.
 
 | Need | Start here |
 |---|---|
@@ -12,35 +12,19 @@ needed. A closed historical Goal does not establish the status of a newer build.
 | Understand the two loops and code boundaries | [Current architecture](./ARCHITECTURE.md) |
 | Supply or replace a component | [Provider contracts](../dsh-plugin/PROVIDERS.md) · [runnable examples](../dsh-plugin/examples/product/README.md) |
 | Develop and verify a change | [Contributing](../CONTRIBUTING.md) · [tests](./development/TESTING.md) · [script map](../scripts/README.md) |
-| Review this release | [Release index and current verification](releases/README.md) · [release acceptance criteria](product-foundation/PRE_PUBLICATION_ACCEPTANCE.md) |
+| Understand the Simple comparator | [Shared method and flow diagram](research/SIMPLE_BASELINE.zh-CN.md) · [source bindings](research/SIMPLE_BASELINE_PROVENANCE.json) |
+| Review source and tagged releases | [Release index](releases/README.md) · [release procedure](development/RELEASING.md) |
 | Understand origins and licenses | [Third-party notices and inspiration](THIRD_PARTY_NOTICES.md) |
-| Read research results | [Experiment record](./research/EXPERIMENTS.md) |
+| Read research results | [Research index](research/README.md) · [task optimization studies](research/duo-task-optimization-20261105/README.md) · [earlier experiments](research/EXPERIMENTS.md) |
+| Locate source-checkout examples | [Example map](../examples/README.md) |
+| Interpret old status pages or receipts | [Historical record map](history/README.md) · [product acceptance](product-foundation/README.md) · [Slow-semantics acceptance](slow-evidence-strategy/README.md) |
 
-## Repository layout
+## Source of truth
 
-```text
-dsh-plugin/                 Installable DSH product and public contracts
-  bin/duo.mjs               Public setup and tool transport
-  native/                   Production runtime modules
-  tests/                    Native tests, helpers and exposed fixtures
-  examples/product/         Shipped, deterministic product examples
-  examples/model/           Grounded-QA starter and content evaluator
-scripts/
-  release_gate.sh           Stable entry for the complete product gate
-  product/                  Package, types, docs and DSH verification
-  research/                 Retained experiment/diagnostic scripts and fixtures
-tests/                      Python compatibility and integration tests
-dualloop/                   Retained Python protocol / explicit legacy path
-docs/
-  ARCHITECTURE.md            Current implementation map
-  development/              Testing, releasing and repository migration
-  releases/                 Versioned notes and immutable acceptance receipts
-  research/                 Experiment outcomes and historical usage guides
-  product-foundation/        Product audit, maintenance queue and acceptance
-  slow-evidence-strategy/    Sealed Slow-semantics Goal and evidence
-  history/                  Historical documentation snapshots
-research/                  Exposed historical inputs (benchmarks/, experiments/)
-```
+The [repository layout](development/REPOSITORY_LAYOUT.md) is the directory map.
+The [script map](../scripts/README.md) distinguishes product verification from
+retained research drivers. Current entry pages link to canonical documents;
+historical status files describe their recorded commits.
 
 `dsh-plugin/package.json` owns shipped files and exports. Runtime consumers do not
 need the repository's Python tests, research scripts or historical fixtures.
@@ -49,10 +33,6 @@ need the repository's Python tests, research scripts or historical fixtures.
 canonical location in `dsh-plugin/`; repository navigation links to those same
 shipped guides. The [changelog](releases/CHANGELOG.md) lives with release records.
 
-Historical documents and receipts have moved out of the root. The
-[first migration map](development/REPOSITORY_MIGRATION.json) and
-[homepage migration map](development/HOMEPAGE_MIGRATION.json) record their original
-paths and hashes. Frozen receipts still describe their original commits and
-layouts; they have not been rewritten as current results. Read
-[the layout guide](development/REPOSITORY_LAYOUT.md) for compatibility details.
-Private profiles, ledgers and raw run directories remain excluded.
+The [historical record map](history/README.md) explains earlier paths, preserved
+bytes and missing private inputs. Private profiles, ledgers and raw run
+directories remain outside this repository.

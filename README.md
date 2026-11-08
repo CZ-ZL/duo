@@ -1,14 +1,8 @@
 # DUO
 
-[2026-11-08 source update and verification](docs/releases/source-update-20261108/README.md) covers the diagnostics, decisions and accounting additions.
-
-## Research update — November 2026
-
-[Completed-stage DUO research](docs/research/duo-task-optimization-20261105/README.md) now includes the 48-search component study, 12-trajectory fixed-pool analysis and 72-search alignment study. The current adoption decision is to retain Simple; the aligned study remains scientifically UNRESOLVED. Reports, curated data, corrections and availability limits are published together.
-
 **English** · [简体中文](./README.zh-CN.md)
 
-[Quickstart](./dsh-plugin/QUICKSTART.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [Documentation](./docs/README.md)
+[Quickstart](./dsh-plugin/QUICKSTART.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [Documentation](./docs/README.md) · [Simple baseline](./docs/research/SIMPLE_BASELINE.zh-CN.md)
 
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
@@ -131,10 +125,16 @@ Warm start lets a later experiment reuse compatible development history. Final-t
 
 Providers are trusted in-process code. Recovery covers supported settled checkpoints. Review [capability boundaries](./dsh-plugin/CURRENT_STATUS.md) and [security guidance](./dsh-plugin/SECURITY.md) before use.
 
+## Source and research status
+
+The [0.6.3 source update](docs/releases/source-update-20261108/README.md) records diagnostics, decision services and accounting changes. Tagged downloads and verification records are listed in the [release index](docs/releases/README.md).
+
+The [completed-stage task research](docs/research/duo-task-optimization-20261105/README.md) covers component ablations, fixed-pool attribution and mechanism alignment. It retains Simple and does not adopt the evaluated full or aligned DUO; the aligned study remains scientifically UNRESOLVED. The [shared Simple method and flow diagram](docs/research/SIMPLE_BASELINE.zh-CN.md) are documented independently of those study results.
+
 ## Development, evidence and origins
 
 - Development: [contributing](./CONTRIBUTING.md), [tests](./docs/development/TESTING.md), [repository layout](./docs/development/REPOSITORY_LAYOUT.md).
 - Versions and acceptance: [release index](./docs/releases/README.md), [changelog](./docs/releases/CHANGELOG.md).
-- Research: [shared Simple baseline](./docs/research/SIMPLE_BASELINE.zh-CN.md), [experiment results](./docs/research/EXPERIMENTS.md). Method research is paused while we focus on installation, use and extension. Passing the product tests shows that the workflow runs as intended.
+- Research: [shared Simple baseline](./docs/research/SIMPLE_BASELINE.zh-CN.md), [experiment results](./docs/research/EXPERIMENTS.md). Product verification and research conclusions have separate evidence and scope.
 
 The two-loop approach was inspired by Wang et al.'s [*Self-Evolving Recommendation System*](https://arxiv.org/abs/2602.10226). DUO is an independent adaptation to Agent components and does not inherit the paper's experimental results. It runs on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) and [Cordis](https://github.com/cordiverse/cordis). Code is [MIT licensed](./LICENSE); see [origins and third-party notices](./docs/THIRD_PARTY_NOTICES.md) for attribution.

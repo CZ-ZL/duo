@@ -1,8 +1,8 @@
-# Research archive
+# Research methods and results
 
 ## Shared baselines
 
-[Simple: shared iterative optimization baseline](SIMPLE_BASELINE.zh-CN.md) explains the method, retained feedback and evaluation capabilities, and implementation provenance. Simple is reused across experiments. Each study separately binds its version, task, evaluation protocol and resource limits.
+[Simple: shared iterative optimization baseline](SIMPLE_BASELINE.zh-CN.md) explains the method with a structure diagram, retained feedback and evaluation capabilities, and implementation provenance. Simple is reused across experiments. Each study separately binds its version, task, evaluation protocol and resource limits.
 
 ## Latest completed-stage research
 
@@ -20,3 +20,18 @@ entry points. Their runnable script references now point to
 These scripts may require private historical inputs or explicitly authorized
 model calls. Moving them grants no spending permission and does not resume any
 experiment. Use [the product guide](../../dsh-plugin/AGENT_GUIDE.md) for current usage.
+
+## Guides and source utilities
+
+| Area | Guide |
+| --- | --- |
+| Native model experiments | [Model guide](NATIVE_MODEL_GUIDE.md) |
+| Configured Caller paths | [Calling guide](NATIVE_CALLING_GUIDE.md) |
+| Retained acceptance workflows | [Acceptance guide](NATIVE_ACCEPTANCE_GUIDE.md) |
+| Code benchmarking | [Benchmark guide](CODE_BENCHMARK_GUIDE.md) |
+| Driver inventory and staging | [Research scripts](../../scripts/research/README.md) |
+| Exposed input snapshots | [Research inputs](../../research/README.md) |
+
+Shared methods live at this level. Dated study directories own their frozen
+configurations, selected results and source bindings. Historical guides may
+require local evidence that is not distributed; use their stated prerequisites.

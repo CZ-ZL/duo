@@ -3,6 +3,16 @@
 Use Linux, Node 24+, Python 3.10+, PyYAML and pytest, and an existing DSH
 `0.1.2-rc.1` installation. The native plugin does not require Python at runtime.
 
+## Verified host composition
+
+The [CI host manifest](../../.github/verification-host/package.json) declares the
+matching Cordis 4.0.2 framework family used with DSH 0.1.2-rc.1. The workflow
+archives its resolved lockfile. Other dependencies still resolve during installation.
+DSH rc.1's dynamic Caller tool is not qualified with Cordis 4.1.0; the
+[source-update diagnosis](../releases/source-update-20261108/README.md#ci-follow-up)
+records the service-record and loader-contract incompatibilities. Use the declared
+composition when reproducing CI and record actual versions for other hosts.
+
 The code-evaluation checks additionally require Linux user/mount/PID/network
 namespaces with UID mapping, `/usr/bin/python3`, chroot and libseccomp. The gate
 first runs an isolated reference program and reports bounded startup stderr on

@@ -1,14 +1,8 @@
 # DUO
 
-[2026-11-08 源码更新与验证](docs/releases/source-update-20261108/README.md)记录诊断、决策和费用状态处理的更新。
-
-## 阶段研究更新（2026 年 11 月）
-
-[DUO 阶段结案资料](docs/research/duo-task-optimization-20261105/README.md)已整理组件消融、固定候选池归因和机制对齐研究的论文、逐项结果与来源索引。结论是保留 Simple、不采用当前 full 或对齐方案；对齐研究的严格科学状态仍为 UNRESOLVED。公开资料同时保留失败、更正和复现边界。
-
 [English](./README.md) · **简体中文**
 
-[快速开始](./dsh-plugin/QUICKSTART.zh-CN.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [文档目录](./docs/README.md)
+[快速开始](./dsh-plugin/QUICKSTART.zh-CN.md) · [Agent Guide](./dsh-plugin/AGENT_GUIDE.md) · [文档地图](./docs/README.md) · [Simple 基线](./docs/research/SIMPLE_BASELINE.zh-CN.md)
 
 [![Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml/badge.svg)](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
 
@@ -118,10 +112,16 @@ Fast 生成改法、跑测试，再用开发集上的结果指导下一次尝试
 
 Provider 是受信任的进程内代码；恢复仅覆盖支持的已结算检查点。使用前查阅[能力边界](./dsh-plugin/CURRENT_STATUS.md)与[安全说明](./dsh-plugin/SECURITY.md)。
 
+## 源码与研究状态
+
+[0.6.3 源码更新](docs/releases/source-update-20261108/README.md)记录诊断、决策服务和费用状态处理的变化。已发布版本、下载和验证记录见[发布索引](docs/releases/README.md)。
+
+[阶段研究结案](docs/research/duo-task-optimization-20261105/README.md)覆盖组件消融、固定候选池归因和机制对齐。结论是保留 Simple、不采用所评估的 full 或对齐 DUO；对齐研究的严格科学状态仍为 UNRESOLVED。[Simple 公共方法与结构图](docs/research/SIMPLE_BASELINE.zh-CN.md)独立于这些实验结果维护。
+
 ## 开发、证据与来源
 
 - 开发：[贡献说明](./CONTRIBUTING.md)、[测试](./docs/development/TESTING.md)、[目录说明](./docs/development/REPOSITORY_LAYOUT.md)。
 - 版本与验收：[发布索引](./docs/releases/README.md)、[变更记录](./docs/releases/CHANGELOG.md)。
-- 研究：[跨实验复用的 Simple 基线](./docs/research/SIMPLE_BASELINE.zh-CN.md)、[实验结果](./docs/research/EXPERIMENTS.md)。方法研究已暂停，目前先把安装、使用和扩展这几件事做好。产品测试通过，只说明这套流程能按预期运行。
+- 研究：[跨实验复用的 Simple 基线](./docs/research/SIMPLE_BASELINE.zh-CN.md)、[实验结果](./docs/research/EXPERIMENTS.md)。产品验证与研究结论分别保留证据和适用范围。
 
 双环思路受 Wang 等人的 [*Self-Evolving Recommendation System*](https://arxiv.org/abs/2602.10226) 启发。DUO 是独立的 Agent 组件适配，不继承论文的实验结论。运行基础为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 和 [Cordis](https://github.com/cordiverse/cordis)。代码采用 [MIT 许可](./LICENSE)，详细归属见[来源与第三方说明](./docs/THIRD_PARTY_NOTICES.md)。

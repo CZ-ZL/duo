@@ -18,3 +18,8 @@ Files were relocated without editing their bytes. Old relative paths belong to
 their recorded commits; the [migration map](../docs/development/HOMEPAGE_MIGRATION.json)
 records current locations. Private run archives and ledgers are not distributed.
 No experiment was rerun for this repository cleanup.
+
+The attributed DSH documentation snapshot is partial. Links into omitted upstream
+source or images describe the original upstream tree; the snapshot bytes and
+provenance are preserved. See the [historical record map](../docs/history/README.md)
+for the distinction between missing snapshot context and current guide links.

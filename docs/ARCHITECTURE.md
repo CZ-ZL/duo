@@ -1,6 +1,6 @@
 # Current DUO architecture
 
-This page maps the native 0.6.1 implementation. [DESIGN.md](./history/DESIGN.md) preserves
+This page maps the native 0.6.3 source preview. [DESIGN.md](./history/DESIGN.md) preserves
 the original design and its earlier Python bridge plan; the default product now
 runs in JavaScript inside DSH.
 
@@ -41,9 +41,12 @@ budget; it does not create an evaluator or run an unconstrained evidence search.
 An optional intermediate `review` stage is still part of this acquisition path,
 not a third optimization loop. Final assessment stays outside search feedback.
 
-The Fast history return and the Slow decision return were collapsed into one
-arrow in the earlier README. That was a lifecycle summary, not an adequate
-explanation of the dual-loop mechanism.
+For the research comparator, see the [Simple structure and flow](research/SIMPLE_BASELINE.zh-CN.md).
+Its inspected task-level implementation evaluates candidates sequentially and
+replaces the incumbent only on a strictly better Slow verdict. It already has
+history and two development partitions. The research controller and the product's
+`optimize-basic` mode are separately defined; their names do not establish that
+they use the same implementation or protocol.
 
 ## Which mode actually ran?
 
@@ -77,6 +80,8 @@ Paths below are under [`dsh-plugin/native/`](../dsh-plugin/native/).
 | Lifecycle, cancellation and recovery | `controller.js`, `evaluation-controller.js`, `store.js` | Shared orchestration and settled checkpoint boundaries |
 | Durable evidence and accounting | `journal.js`, `budget.js`, `money.js` | Journal/Budget services; never inferred-zero unknown fees |
 | Public status and reports | `observer.js`, `observer-tools.js`, `diagnostics.js` | Tool outputs; cause, recovery action, evidence and limitations |
+| Optional run diagnostics | `doctor.js`, `run-doctor.js`, `support-judge.js` | Inspected diagnostic configuration and stop boundaries; shadow records do not change selection |
+| Bounded decision services | `decisions.js`, `decision-contract.js`, `decision-tools.js`, `model-decisions.js` | Separate decision contracts and resource accounting; no implicit search or adoption authority |
 
 Service definitions and public types live in `definitions.js` / `definitions.d.ts`;
 [PROVIDERS.md](../dsh-plugin/PROVIDERS.md) is the extension contract. Cordis owns
