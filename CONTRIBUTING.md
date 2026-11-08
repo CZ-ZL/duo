@@ -19,8 +19,7 @@ relevant checks. Report your DSH, Cordis, Node and Python versions. Never includ
 credentials, user personas, private evaluator data, journals or raw model traces
 in an issue or patch.
 
-Use this repository's Issues for reproducible bugs and feature requests once it
-is published. Describe expected versus observed behavior and include a minimal
+Use this repository's Issues for reproducible bugs and feature requests. Describe expected versus observed behavior and include a minimal
 redacted reproduction. No response-time commitment is offered. For suspected
 vulnerabilities, follow [the security policy](./dsh-plugin/SECURITY.md).
 

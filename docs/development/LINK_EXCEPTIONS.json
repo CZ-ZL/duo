@@ -1,0 +1,1314 @@
+{
+  "schema": "duo.frozen-link-exceptions.v1",
+  "reason": "Exact historical references to retained/private inputs or earlier trees, recorded before this cleanup. Edit maintained documentation; never add a directory-wide exception.",
+  "exceptions": [
+    {
+      "source": "docs/history/DESIGN.md",
+      "target": "CURRENT_STATUS.md",
+      "kind": "missing_file",
+      "sha256": "4a16900116bdb66692e399e041bf963a17d507c7d75b5d15c41a92bcf68b90ec"
+    },
+    {
+      "source": "docs/history/DESIGN.md",
+      "target": "README.md#architecture-and-extension-boundaries",
+      "kind": "missing_anchor",
+      "sha256": "4a16900116bdb66692e399e041bf963a17d507c7d75b5d15c41a92bcf68b90ec"
+    },
+    {
+      "source": "docs/history/DESIGN.md",
+      "target": "dsh-plugin/README.md",
+      "kind": "missing_file",
+      "sha256": "4a16900116bdb66692e399e041bf963a17d507c7d75b5d15c41a92bcf68b90ec"
+    },
+    {
+      "source": "docs/history/DESIGN.md",
+      "target": "dsh-plugin/PROVIDERS.md",
+      "kind": "missing_file",
+      "sha256": "4a16900116bdb66692e399e041bf963a17d507c7d75b5d15c41a92bcf68b90ec"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-review-v3-preparation-20260912/REPORT.zh.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-review-v3-preparation-20260912/settlement.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-method-goal-20260912/TASK_STATUS.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-review-v2-calibration-20260912/REPORT.zh.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-review-v2-calibration-20260912/settlement.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-review-protocol-20260912/REPORT.zh.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-slow-review-20260912/real-calibration/REPORT.zh.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-slow-review-20260912/real-calibration/settlement.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-slow-review-20260912/REPORT.zh.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "examples/native/code-review.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/code-method-alignment-20260912/COVERAGE.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-integrated-v4-20260911/DESIGN_COVERAGE.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-integrated-v4-20260911/TASK_STATUS.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/GOAL.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/goal-completed.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/QUEUE.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/TASK_STATUS.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/TASKBOOK.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/HANDOFF.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d4-combined-final-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/goal-completion-audit.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d1-2-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d0-2-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d0-3-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d2-1-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d2-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d3-1-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d3-2-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d3-3-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-maturation-v2-20260909/d3-4-acceptance.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/dsh-native-e2e-20260908/DUO_Agent_Native_Execution_Prompt.recovered.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-design-completion-20260909/final-native.txt",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-design-completion-20260909/final-python.txt",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-design-completion-20260909/native-host-final/report.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-design-completion-20260909/type-declaration-syntax.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-design-completion-20260909/preservation-and-diff-review.json",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-design-completion-20260909/REPORT.zh.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "target": "runs/native-design-completion-20260909/HANDOFF.md",
+      "kind": "missing_file",
+      "sha256": "055e5b2157e5d73a76b2bb526a8ee103dfaaed3e049f3401e06c52d06c503e31"
+    },
+    {
+      "source": "docs/history/0.4.0/PROVIDERS.md",
+      "target": "native/offline-fixture.js",
+      "kind": "missing_file",
+      "sha256": "b93a9b176ea234378d72908a7e54501e09bc6277fc2e625ffcbf3cd1566ca50a"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "LICENSE",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "TESTING.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "dsh-plugin/README.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "NATIVE_ACCEPTANCE_GUIDE.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "NATIVE_CALLING_GUIDE.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "examples/native/experiment.json",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "examples/native/fetch-config-evaluation.js",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "examples/native/FETCH_CONFIG.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "EXPERIMENTS.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "experiment-evidence.json",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "dsh-plugin/PROVIDERS.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "examples/native/byo-profile.patch.yml",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "NATIVE_MODEL_GUIDE.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "dsh-plugin/SECURITY.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "DESIGN.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "RELEASING.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "CONTRIBUTING.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "CODE_BENCHMARK_GUIDE.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "CHANGELOG.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "THIRD_PARTY_NOTICES.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/README.md",
+      "target": "DELIVERY_REPORT.zh.md",
+      "kind": "missing_file",
+      "sha256": "546dd58e75d892ff4aa1119906e077bd7ea215d3d80f85138a648879b3037930"
+    },
+    {
+      "source": "docs/history/0.4.0/STATUS.md",
+      "target": "EXPERIMENTS.md",
+      "kind": "missing_file",
+      "sha256": "822f139452e65e0792aaa4b71a011518c289f65d7230c403e1c2bc7ca7820e4e"
+    },
+    {
+      "source": "docs/history/0.4.0/STATUS.md",
+      "target": "experiment-evidence.json",
+      "kind": "missing_file",
+      "sha256": "822f139452e65e0792aaa4b71a011518c289f65d7230c403e1c2bc7ca7820e4e"
+    },
+    {
+      "source": "docs/history/0.4.0/STATUS.md",
+      "target": "HISTORICAL_EVIDENCE.json",
+      "kind": "missing_file",
+      "sha256": "822f139452e65e0792aaa4b71a011518c289f65d7230c403e1c2bc7ca7820e4e"
+    },
+    {
+      "source": "docs/history/pre-organization/DELIVERY_REPORT.zh.md",
+      "target": "EXPERIMENTS.md",
+      "kind": "missing_file",
+      "sha256": "faef02d1dc664becd91bb444b704fbab8253bb345baa4a10d3e53d7c17c090fc"
+    },
+    {
+      "source": "docs/history/pre-organization/DELIVERY_REPORT.zh.md",
+      "target": "experiment-evidence.json",
+      "kind": "missing_file",
+      "sha256": "faef02d1dc664becd91bb444b704fbab8253bb345baa4a10d3e53d7c17c090fc"
+    },
+    {
+      "source": "docs/history/pre-organization/DESIGN_COVERAGE.md",
+      "target": "docs/ARCHITECTURE.md",
+      "kind": "missing_file",
+      "sha256": "a8586851a6569d1329a39710977e6ed074ebe6aefd0ec4df921afd7c60dbfc23"
+    },
+    {
+      "source": "docs/history/pre-organization/DESIGN_COVERAGE.md",
+      "target": "CURRENT_STATUS.md",
+      "kind": "missing_file",
+      "sha256": "a8586851a6569d1329a39710977e6ed074ebe6aefd0ec4df921afd7c60dbfc23"
+    },
+    {
+      "source": "docs/history/pre-organization/DESIGN_COVERAGE.md",
+      "target": "docs/product-foundation/QUEUE.md",
+      "kind": "missing_file",
+      "sha256": "a8586851a6569d1329a39710977e6ed074ebe6aefd0ec4df921afd7c60dbfc23"
+    },
+    {
+      "source": "docs/history/pre-organization/DESIGN_COVERAGE.md",
+      "target": "docs/product-foundation/AUDIT.md",
+      "kind": "missing_file",
+      "sha256": "a8586851a6569d1329a39710977e6ed074ebe6aefd0ec4df921afd7c60dbfc23"
+    },
+    {
+      "source": "docs/history/pre-organization/DESIGN_COVERAGE.md",
+      "target": "docs/history/0.4.0/DESIGN_COVERAGE.md",
+      "kind": "missing_file",
+      "sha256": "a8586851a6569d1329a39710977e6ed074ebe6aefd0ec4df921afd7c60dbfc23"
+    },
+    {
+      "source": "docs/history/pre-organization/STATUS.md",
+      "target": "CURRENT_STATUS.md",
+      "kind": "missing_file",
+      "sha256": "a905baf94ceda4e66623a8ae2272d45ee6056739cc062345507c7ecd4c7660cf"
+    },
+    {
+      "source": "docs/history/pre-organization/STATUS.md",
+      "target": "RELEASE_NOTES_v0.6.1.md",
+      "kind": "missing_file",
+      "sha256": "a905baf94ceda4e66623a8ae2272d45ee6056739cc062345507c7ecd4c7660cf"
+    },
+    {
+      "source": "docs/history/pre-organization/STATUS.md",
+      "target": "PRE_PUBLICATION_EVIDENCE.json",
+      "kind": "missing_file",
+      "sha256": "a905baf94ceda4e66623a8ae2272d45ee6056739cc062345507c7ecd4c7660cf"
+    },
+    {
+      "source": "docs/history/pre-organization/STATUS.md",
+      "target": "PRODUCT_ACCEPTANCE.json",
+      "kind": "missing_file",
+      "sha256": "a905baf94ceda4e66623a8ae2272d45ee6056739cc062345507c7ecd4c7660cf"
+    },
+    {
+      "source": "docs/history/pre-organization/STATUS.md",
+      "target": "docs/README.md",
+      "kind": "missing_file",
+      "sha256": "a905baf94ceda4e66623a8ae2272d45ee6056739cc062345507c7ecd4c7660cf"
+    },
+    {
+      "source": "docs/history/pre-organization/STATUS.md",
+      "target": "docs/history/0.4.0/STATUS.md",
+      "kind": "missing_file",
+      "sha256": "a905baf94ceda4e66623a8ae2272d45ee6056739cc062345507c7ecd4c7660cf"
+    },
+    {
+      "source": "docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md",
+      "target": "../../PRE_PUBLICATION_EVIDENCE.json",
+      "kind": "missing_file",
+      "sha256": "d952f5e8b2dcf6e2065377a95b1b1f7c8ca34da3eb258b241a2c70da974d3f9d"
+    },
+    {
+      "source": "docs/releases/0.6.0/RELEASE_NOTES.md",
+      "target": "docs/slow-evidence-strategy/QUEUE.md",
+      "kind": "missing_file",
+      "sha256": "d235142c5162e6d8b37c1db5b45eea500ce475f011c3414c63fe1fd98fcb0ab5"
+    },
+    {
+      "source": "docs/releases/0.6.0/RELEASE_NOTES.md",
+      "target": "docs/slow-evidence-strategy/ACCEPTANCE.json",
+      "kind": "missing_file",
+      "sha256": "d235142c5162e6d8b37c1db5b45eea500ce475f011c3414c63fe1fd98fcb0ab5"
+    },
+    {
+      "source": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "target": "docs/product-foundation/PRE_PUBLICATION_ACCEPTANCE.md",
+      "kind": "missing_file",
+      "sha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112"
+    },
+    {
+      "source": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "target": "docs/product-foundation/F01_REPAIR.md",
+      "kind": "missing_file",
+      "sha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112"
+    },
+    {
+      "source": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "target": "docs/product-foundation/PRE_PUBLICATION_AUDIT.zh.md",
+      "kind": "missing_file",
+      "sha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112"
+    },
+    {
+      "source": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "target": "RELEASE_QUICKSTART.md",
+      "kind": "missing_file",
+      "sha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112"
+    },
+    {
+      "source": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "target": "docs/ARCHITECTURE.md",
+      "kind": "missing_file",
+      "sha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112"
+    },
+    {
+      "source": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "target": "docs/README.md",
+      "kind": "missing_file",
+      "sha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112"
+    },
+    {
+      "source": "docs/releases/0.6.1/RELEASE_NOTES.md",
+      "target": "scripts/README.md",
+      "kind": "missing_file",
+      "sha256": "f97247d4c85bdc5af1c2fd42ce4b69e4e155213e5bcf979ec5fcc3ace4705112"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "architecture.zh.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "cordis-primer.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "cordis-tutorial/index.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../packages/bundle/base/README.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../packages/bundle/web-app/README.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../packages/bundle/headless/README.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../packages/bundle/sdk-app/README.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../packages/bundle/acp-app/README.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../packages/bundle/sdk-minimal/README.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../packages/boot/app-boot/README.md#profiles",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "config-catalog.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../scripts/verify-application-entrypoints.ts",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/session.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/tools.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/scope.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/llm-streaming.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/webhook.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "event-producer-consumer.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "agent-lifecycle.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "../.agents/notes/implemented/architecture/2026-08-19-session-projection-mandatory-seam.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "capability-seams.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/subagent.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/agent-team.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "cookbook/extension-cookbook.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "cookbook/adding-a-package.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "cookbook/adding-a-tool.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "cookbook/adding-an-llm-adapter.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "cookbook/adding-a-settings-card.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/architecture.md",
+      "target": "subsystems/conversation.md",
+      "kind": "missing_file",
+      "sha256": "b0f2858b43d5f15088262a830f4aa156b6f8930c26259cb219c36226e2d6811c"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "approval.zh.md",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../../packages/interaction/user-approval",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../../packages/acp/acp",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../../packages/core/tools",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../../packages/shell/tool-bash",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../../packages/interaction/user-approval/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../cordis-primer.md#dispatch-modes",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../cordis-api/inherited.md",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "session.md",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "scope.md",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/approval.md",
+      "target": "../../packages/interaction/user-approval/src/types.ts",
+      "kind": "missing_file",
+      "sha256": "cf8566a8b0bcbaed3eced6c38adf5ad4bc15aa1119c9919931858b031f407f9e"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "core.zh.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/core/README.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "README.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/core/agent-loop",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "session.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "llm-streaming.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "tools.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/llm/README.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "scope.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/examples/agent-spine-demo/README.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/core/agent/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/core/agent/src/types.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../.agents/notes/implemented/architecture/2026-07-30-followup-enqueue-and-owned-runs.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../.agents/notes/implemented/architecture/2026-07-15-agent-initiator-scope.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "persistence.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "llm-streaming.md#content-blocks-and-messages",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "llm-streaming.md#the-model-request-and-result",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/util/brand",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/util/brand/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../cordis-primer.md#dispatch-modes",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../cordis-api/inherited.md",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/core/agent-default-model/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/core/agent-loop/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/preset/agent-presets/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/core/agent/src/runtime-types.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/core.md",
+      "target": "../../packages/preset/agent-presets/src/types.ts",
+      "kind": "missing_file",
+      "sha256": "0dd06d6003eaa46249a54ba05d14a2748472f7797b4d9e4034cec9d158eec9f3"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "credentials.zh.md",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../../packages/credentials/credentials",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../../packages/credentials/credentials-local",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../../packages/credentials/credentials/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../cordis-primer.md#dispatch-modes",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../cordis-api/inherited.md",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../../packages/credentials/authorization/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../../packages/api/settings-controller/src/credentials.ts",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/credentials.md",
+      "target": "../../packages/credentials/credentials/src/types.ts",
+      "kind": "missing_file",
+      "sha256": "6d1f17adf34f89b55fecbfd037d6b626eb3f8b65255c8ff8ed8063b100ef2226"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "jobs.zh.md",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../../.agents/notes/implemented/architecture/2026-06-20-generic-long-running-tool-runtime.md",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../../packages/jobs/jobs/src/types.ts",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../../packages/jobs/jobs/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../../packages/jobs/jobs-local/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../../packages/jobs/jobs/README.md",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../../packages/jobs/jobs-local/README.md",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../../packages/jobs/tool-jobs/README.md",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../cordis-primer.md#dispatch-modes",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/jobs.md",
+      "target": "../cordis-api/inherited.md",
+      "kind": "missing_file",
+      "sha256": "125758da73d7c409645bcada010fdd7d9b517a830a09331f2807db0cffe5e66f"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "sandbox.zh.md",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/sandbox/sandbox",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/sandbox/sandbox-local",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/shell/bash-sandbox",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/shell/pwsh-sandbox",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/sandbox/sandbox/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/sandbox/sandbox-local/README.md",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/shell/bash-sandbox/README.md",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../cordis-primer.md#dispatch-modes",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../cordis-api/inherited.md",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "session.md",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/sandbox.md",
+      "target": "../../packages/sandbox/sandbox-policy/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "f682eae7cc2b64c4eb2b35dcb7c3a7759f84c1c1da99fed900fd57ff5c346c95"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "skills.zh.md",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/skill",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/skill-filesystem",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/skill-badge",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/tool-skill",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/skill/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/skill-filesystem/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/skill-badge/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/skill/tool-skill/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "tools.md",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/core/scope",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../config-catalog.md",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../cordis-primer.md#dispatch-modes",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../cordis-api/inherited.md",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/skills.md",
+      "target": "../../packages/api/session-controller/src/skill-catalog.ts",
+      "kind": "missing_file",
+      "sha256": "21adc5ed825209ecb1777745269acfb0e46452d6f1208b15dc62427435242aba"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "target": "system-prompt.zh.md",
+      "kind": "missing_file",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "target": "../../packages/core/system-prompt",
+      "kind": "missing_file",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "target": "../../packages/core/system-prompt/README.md",
+      "kind": "missing_file",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "target": "../../packages/core/system-prompt/src/index.ts",
+      "kind": "missing_file",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "target": "../cordis-primer.md#dispatch-modes",
+      "kind": "missing_file",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "target": "../cordis-api/inherited.md",
+      "kind": "missing_file",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/subsystems/system-prompt.md",
+      "target": "scope.md",
+      "kind": "missing_file",
+      "sha256": "e13221b3505e706ff99a6401c4d19f33e7b9aadb876f667d8e36fe46d7793195"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "providers.zh.md",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "../../../README.md#run",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "providers-models-page.png",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "providers-custom-form.png",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "../../config-catalog.md#deepseek-aidsh-llm-pi-ai",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "../../config-catalog.md",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "../../../packages/llm/llm-pi-ai/README.md",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    },
+    {
+      "source": "research/benchmarks/docs_qa/dsh-snapshot/docs/user/guide/providers.md",
+      "target": "../../../packages/llm/llm-deepseek/README.md",
+      "kind": "missing_file",
+      "sha256": "48cd236c33090e7c503a19dec51a4b577f1648f6985a76fedb6bc79eb2e93eed"
+    }
+  ]
+}

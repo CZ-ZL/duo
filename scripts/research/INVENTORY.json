@@ -1,0 +1,456 @@
+{
+  "schema": "duo.script-inventory.v1",
+  "scope": "Retained research tooling; currentUsers records explicit offline verification consumers, not execution permission or a full dynamic call graph. Runtime package does not import this directory.",
+  "files": [
+    {
+      "path": "scripts/research/audit_native_efficiency.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_native_efficiency.py"
+      ]
+    },
+    {
+      "path": "scripts/research/calibrate_docs_qa.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/caller_diagnostics.mjs",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/check_code_benchmark.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_contract_tests.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_disk_usage_contract.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_evaluation.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "scripts/release_gate.sh",
+        "tests/test_code_benchmark.py",
+        "tests/test_code_format_pilot.py",
+        "tests/test_code_model_entry.py"
+      ]
+    },
+    {
+      "path": "scripts/research/code_file_hash_contract.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_json_io_contract.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_owner_contracts.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_remaining_contract_tests.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_salt_api_contract.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/code_worker.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "scripts/research/code_evaluation.py",
+        "tests/test_code_format_pilot.py"
+      ]
+    },
+    {
+      "path": "scripts/research/diagnose_native_evaluator.mjs",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_caller_format_fixture.js",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_caller_format_probe.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_caller_host.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_calling_fixture.js",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_calling_host.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_code_control_host.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_code_evaluator.js",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_format_pilot.py"
+      ]
+    },
+    {
+      "path": "scripts/research/dsh_code_model_fixture.js",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_configured_caller_fixture.js",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_host_driver.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_maturation_delivery.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_maturation_fixture.js",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_maturation_host.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_model_executor_host.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_model_fixture.js",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_model_profile.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_model_run_host.js",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_model_entry.py"
+      ]
+    },
+    {
+      "path": "scripts/research/dsh_semantic_diagnostic_host.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/dsh_semantic_evaluator_host.js",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-disk-delimiter-tests-v1.py.txt",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_delimiter_contract.py"
+      ]
+    },
+    {
+      "path": "scripts/research/fixtures/code-disk-usage-tests-v1.py.txt",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-file-hash-tests-v1.py.txt",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-json-io-tests-v1.py.txt",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-library-v1.json",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-owner-327-tests.py.txt",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-owner-595-tests.py.txt",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_owner_contracts.py"
+      ]
+    },
+    {
+      "path": "scripts/research/fixtures/code-owner-759-tests.py.txt",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_owner_contracts.py"
+      ]
+    },
+    {
+      "path": "scripts/research/fixtures/code-owner-779-tests.py.txt",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_owner_contracts.py"
+      ]
+    },
+    {
+      "path": "scripts/research/fixtures/code-owner-861-tests.py.txt",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-owner-931-tests.py.txt",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-owner-contracts.json",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-properties-v1/358.py",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-properties-v1/412.py",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/fixtures/code-salt-api-tests-v1.py.txt",
+      "role": "retained_fixture",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/maturation_batch.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/maturation_diagnostics.mjs",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/plan_budget.py",
+      "role": "retained_support",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_code_benchmark.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_code_comparison.mjs",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_comparison.py",
+        "tests/test_code_property_study.py"
+      ]
+    },
+    {
+      "path": "scripts/research/prepare_code_final.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_code_format_pilot.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_code_properties.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_code_property_study.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_code_review_controls.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_code_single_loop.mjs",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_fact_comparison.mjs",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_native_comparison.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/prepare_native_docs_mini.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/run_ablation.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/run_caller_format_probe.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_caller_format_probe.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_code_comparison.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_comparison.py",
+        "tests/test_code_property_study.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_code_model.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_model_entry.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_code_review.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_review.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_dsh_model.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_format_pilot.py",
+        "tests/test_code_model_entry.py",
+        "tests/test_fact_comparison.py",
+        "tests/test_native_model_entry.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_duo_caller.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_configured_caller.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_fact_comparison.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_fact_comparison.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_maturation_calling.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_maturation_failed_warm.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_maturation_delivery.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_maturation_delivery.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_native_calling.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_native_completion_entries.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_native_comparison.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_native_completion_entries.py"
+      ]
+    },
+    {
+      "path": "scripts/research/run_native_semantic_diagnostic.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/verify_agent_native.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_verification_report.py"
+      ]
+    },
+    {
+      "path": "scripts/research/verify_code_benchmark.py",
+      "role": "shared_verification",
+      "currentUsers": [
+        "tests/test_code_properties.py"
+      ]
+    },
+    {
+      "path": "scripts/research/verify_dsh_host.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    },
+    {
+      "path": "scripts/research/verify_dsh_model_executor.py",
+      "role": "retained_driver",
+      "currentUsers": []
+    }
+  ]
+}

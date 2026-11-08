@@ -1,32 +1,25 @@
-# @dual-loop/dsh-plugin 0.6.3
+# @dual-loop/dsh-plugin · 0.6.3
 
-English · [简体中文](./README.zh-CN.md)
+English · [简体中文](README.zh-CN.md)
 
-DUO lets a DSH Agent evaluate an original prompt or supported component, try
-candidate changes against supplied tests, and return the changes, decisions and costs.
+DUO lets a DSH Agent compare originals and candidates, returning changes,
+measurements, decisions and costs. The original stays in place; adoption is the user's decision.
 
-**[Start here: install → free check or real task → saved report](./QUICKSTART.md)**
+**[Start: install → free run → saved report](QUICKSTART.md)**
 
-The Quickstart includes every command, the supplied task/evaluator and the
-owner-provided model configuration. An independent Caller has completed the real
-starter through this public guide; the original and candidate tied, so the original
-was retained. The local path checks product operation without model calls.
+Supports Linux / Node 24+; verified with DSH 0.1.2-rc.1 / Cordis 4.0.2.
+Use the [v0.6.3 archive](https://github.com/CZ-ZL/duo/releases/tag/v0.6.3).
+The repository root is not the plugin; this package is not published to npm.
+[Installation and compatibility](guides/INSTALL.md) covers isolated hosts and
+existing profiles. DSH remains an upstream preview; providers execute in-process.
 
-Developer preview: Linux / Node24+, tested DSH0.1.2-rc.1 / Cordis4.0.2.
-Version 0.6.3 is an unreleased source preview; the Quickstart packages its public
-source into an installable tarball. Previous released builds have versioned GitHub
-assets. Do not install the repository root or assume an npm release. Installation may fetch dependencies; it does not configure a model
-account or authorize experiments.
+- [Real task starter](guides/MODEL_STARTER.md): a model experiment with its task, evaluator and budget checks.
+- [Agent Guide](AGENT_GUIDE.md), [API reference](AGENT_REFERENCE.md): public calls and recovery.
+- [Provider contracts](PROVIDERS.md): component replacement and extension.
+- [Current support](CURRENT_STATUS.md), [evidence strategy](EVIDENCE_STRATEGY.md), [security](SECURITY.md).
 
-- [Agent Guide](./AGENT_GUIDE.md): when and how to call the public tools.
-- [Current support](./CURRENT_STATUS.md): Target and mode boundaries.
-- [API reference](./AGENT_REFERENCE.md), [Provider contracts](./PROVIDERS.md):
-  advanced configuration, replacement and recovery.
-- [Evidence strategy](./EVIDENCE_STRATEGY.md): basic, dual and actual evidence acquired.
-- [Security](./SECURITY.md): trusted providers, host permissions and adoption.
-
-The default bundle offers preparation until compatible work providers are attached.
-The shipped starter supplies its own composition. Built-in model providers support
-persona/prompt; other Targets require matching providers. No candidate is
-automatically adopted. DUO inner costs exclude Calling Agent inference and local
-resources. Python/YAML compatibility remains behind /legacy; native use needs no Python.
+The default bundle provides preparation until work providers are attached;
+`duo init` creates complete examples. Built-in model providers support persona/prompt;
+other Targets need matching providers. DUO inner costs exclude Caller inference
+and local resources. Python/YAML compatibility is under `/legacy`; native use
+needs no Python. Model spending and candidate adoption require their own authority.

@@ -21,6 +21,8 @@ run_check() {
   fi
 }
 run_check format npm run format:check
+run_check documentation npm run docs:check
+run_check host-metadata node dsh-plugin/bin/duo.mjs check-host --dsh-package "$DSH_PKG"
 run_check public-types env DUO_DSH_PACKAGE="$DSH_PKG" npm run typecheck
 # Fail early on actual installation before expensive behavioral suites. The
 # same checks still all run; no failure is skipped or silently downgraded.

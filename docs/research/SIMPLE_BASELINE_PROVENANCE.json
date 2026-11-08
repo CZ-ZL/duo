@@ -37,6 +37,15 @@
         "simple-simple-controller",
         "simple-history-feedback"
       ]
+    },
+    {
+      "path": "SIMPLE_BASELINE.md",
+      "transformation": "English method overview and compact diagram derived from the checked Chinese method; same scope and evidence limits.",
+      "sourceIds": [
+        "simple-ablation-controller",
+        "simple-simple-controller",
+        "simple-history-feedback"
+      ]
     }
   ],
   "studyConfigurations": [

@@ -14,6 +14,18 @@ declarations accompany `/definitions` and `/function-evaluators`; public consume
 types are compiled in the product gate. Arbitrary third-party provider
 qualification is not implied.
 
+## Find a contract
+
+| Task | Contract |
+| --- | --- |
+| Change the optimization target | [Target adapters](#target-adapters) |
+| Generate or execute candidates | [Work providers](#work-providers) · [structured generation](#structural-generation-and-full-history) |
+| Supply measurements | [Function evaluators](#function-backed-evaluation) · [semantic evaluator](#semantic-evaluator) |
+| Change selection or storage | [Policy and storage](#policy-and-storage-providers) · [Slow evidence](#slow-evidence-strategy) |
+| Prepare and inspect a run | [Setup](#native-setup-and-objective-designer) · [Observer](#native-observer) |
+| Ask typed questions without optimization | [Decision guide](guides/DECISIONS.md) |
+| Add diagnostic shadow judgment | [Support judgment guide](guides/SUPPORT_JUDGMENT.md) |
+
 ## Work providers
 
 `describe()` is synchronous and read-only. It returns JSON data containing
@@ -94,276 +106,6 @@ for complete model configuration, a matching task/evaluator, authorization,
 execution and result retrieval. The [historical native model guide](https://github.com/CZ-ZL/duo/blob/main/docs/research/NATIVE_MODEL_GUIDE.md)
 preserves earlier experiments; it is not required for first use.
 
-## Lightweight typed decisions
-
-This optional plugin answers several small questions about one supplied state.
-It can run independently of DUO optimization: no Target, dataset, candidate,
-Generator or Controller is required. For example, a caller can ask which support
-queue owns a message, how urgent it is, and whether human help was requested.
-The caller then uses the returned values in its own explicit branch rules.
-The plugin does not execute those actions or change DUO promotion policy.
-
-### Public tools and input
-
-Load `/decisions` (a function-backed provider) or `/model-decisions` (the existing
-native DSH model backend), together with `/decision-tools`. Both providers own
-`duoDecisions`; replace one with the other using ordinary Cordis lifecycle.
-The tools are absent when their provider is absent.
-
-- `dualloop_decision_describe({})`: provider/version, question types, immutable
-  owner allowance, missing permissions, ledger status and qualification.
-- `dualloop_decide({requestId,state,questions})`: one batch, with typed answers,
-  unknowns, execution status, CNY cost and measured backend latency.
-- `dualloop_decision_status({requestId?})`: read retained result and allowance;
-  no model work. The result includes raw diagnostic output and receipt paths.
-
-Input example (a configuration example, not a model result):
-
-```json
-{
-  "requestId": "ticket-001",
-  "state": {"message": "An urgent duplicate charge; please connect me to a person today."},
-  "questions": {
-    "route": {
-      "type": "choice",
-      "instructions": "Which support queue owns this ticket?",
-      "criteria": {"billing": "Charges and invoices", "general": "Other issues"}
-    },
-    "urgency": {
-      "type": "score",
-      "instructions": "How urgent is this request?",
-      "criteria": ["Routine inquiry", "Needs attention today"]
-    },
-    "needs_human": {
-      "type": "boolean",
-      "instructions": "Does the message explicitly request a person?"
-    }
-  }
-}
-```
-
-`state` is text, an object or an array. A batch has 1–16 questions and at most
-65,536 JSON bytes; the model configuration can impose a tighter bound.
-`choice` returns an exact key from 2–32 described options. `score` returns a
-zero-based integer index into 2–10 ordered, explicitly described levels.
-`boolean` returns true or false. Any question can instead return null for unknown.
-The service wraps each answer as `{type,status,value}`. It rejects missing IDs,
-extra answers, invented options and out-of-range scores; it never coerces prose
-or a model's confidence into a usable decision. `status:completed` means the
-batch completed, not that its judgments are correct; check `allAnswered` and
-each answer's status before applying a caller rule.
-
-### Local installed-package walkthrough
-
-Prerequisites: Node 24+, a supported installed DSH and the current DUO package
-with the decision exports. Obtain the package using the [Quickstart](./QUICKSTART.md).
-These exports are in the local 0.6.3 candidate; older releases may not contain them.
-`DUO_PACKAGE` is the absolute path to the installed `@dual-loop/dsh-plugin`
-directory, `DSH_PACKAGE` to the installed `@deepseek-ai/dsh` directory.
-`DECISION_WORK` must be a new absolute directory owned by the caller.
-
-```bash
-node "$DUO_PACKAGE/examples/decisions/prepare.mjs" --root "$DECISION_WORK"
-DSH_HOME="$DECISION_WORK/dsh-home" DSH_TELEMETRY_DISABLED=1 node "$DSH_PACKAGE/lib/bin.js" --profile decisions --patch "$DECISION_WORK/describe.patch.json"
-DSH_HOME="$DECISION_WORK/dsh-home" DSH_TELEMETRY_DISABLED=1 node "$DSH_PACKAGE/lib/bin.js" --profile decisions --patch "$DECISION_WORK/decide.patch.json"
-DSH_HOME="$DECISION_WORK/dsh-home" DSH_TELEMETRY_DISABLED=1 node "$DSH_PACKAGE/lib/bin.js" --profile decisions --patch "$DECISION_WORK/status.patch.json"
-cat "$DECISION_WORK/decide-response.json"
-```
-
-The preparer stages the installed package files in an isolated profile so DSH
-can resolve host peers. It installs no dependencies, imports no private profile,
-and dispatches no work. The profile loads just the decision services and the
-existing public tool bridge. The [local provider](./examples/decisions/local-provider.js)
-uses deterministic keyword checks for the three example question IDs, with CNY0
-and no model/network permission. It checks wiring, not general judgment ability.
-Changing questions requires a matching provider, such as the model backend.
-Responses are written once; repeat reads with `cat`. To invoke the status tool
-again, choose a new response filename in its patch. Replaying an identical
-`dualloop_decide` request ID returns the retained result with `reused:true`;
-its cost is the historical request fee, not a second charge.
-
-### Native model backend and replacement
-
-In an existing model-enabled DSH profile, load `/model-decisions` with
-`config: {model, authorization}` and `/decision-tools`. Reuse the host's
-`agents`, `llm`, `systemPrompt`, `tools`, sessions, session projections and
-agent-loop services plus its configured model adapter. The packaged
-[model walkthrough](./QUICKSTART.md#real-task-starter) documents the supported
-host model setup; a decision-only profile does not need its Target, dataset,
-Generator, Executor or Evaluator. There is no new API SDK or registry.
-
-The `model` object has these required fields:
-
-| Field | Source / meaning |
-|---|---|
-| `provider`, `model` | An actual route in the host's configured LLM adapter |
-| `artifactRoot` | Caller-owned directory for private request/usage receipts |
-| `evidenceKind` | `model` for real inference; `fixture` only for scripted tests |
-| `currency`, `reservationCny` | `CNY` and a positive per-request upper envelope |
-| `maxTokens`, `maxInputBytes`, `timeoutMs` | Positive integer output/input/time limits |
-| `pricing` | Frozen owner-reviewed tariff with `id`, `currency:CNY`, `inputCnyPerMillion`, `cacheReadCnyPerMillion`, `outputCnyPerMillion` |
-
-No `datasetPath` is required. `reservationCny` must cover the configured input
-byte/token envelope and output cap at the frozen tariff; invalid settings fail
-before inference. Use current rates applicable to the selected provider;
-no example price is a new spending authorization. The route must expose usage
-compatible with the existing DSH accounting contract (uncached input, cache-read,
-output and total tokens). Unknown usage is not treated as free.
-
-The owner-controlled `authorization` object is
-`{id,currency:'CNY',maxCostCny,maxCalls,paid,network}`. Use an explicitly authorized
-stable allowance ID, total CNY cap and call limit. Model routes need the applicable
-paid/network permissions. Load `/journal` with a caller-owned `root` and `/budget`
-if those services are absent. Reuse the same journal root and allowance ID across
-restarts; changing either is not permission to reset spending. `dualloop_decide`
-arguments cannot grant or enlarge this allowance.
-
-The model plugin performs one short native request for all questions, with no
-action tools and no automatic retries. Configure adapter-level retries off as
-well. It retains usage, raw output, source/configuration hashes and latency even
-when the answer is invalid. This is batched generative inference, **not** a claim
-of independently parallel question heads or Jev model equivalence. Choice,
-ordinal score and boolean are runtime types; they are not calibrated probabilities.
-Qualification stays `NOT_CALIBRATED` until a separate labeled evaluation measures
-correctness, unknown/error rates, latency and cost. Synthetic test fees are not
-real API spending; caller inference and local computing are outside this ledger.
-
-To bring a different backend, load the default `/decisions` export using
-`ctx.plugin(FunctionDecisions, {descriptor, authorization, judge})`. The descriptor
-has `id`, `version`, `configDigest`, `currency:CNY`, `reservationCny`, explicit
-`permissions:{paid,network,externalSideEffects:false}` and an honest evidence kind.
-`judge({state,questions,signal,identity})` returns
-`{answers,currency:'CNY',costCny,costEvidence?,error?}`; `answers` maps question IDs
-to raw allowed values or null. The callback is trusted code and must honor its
-own request/side-effect bounds. The native model implementation bounds one
-request; custom backends may do more, and `maxCalls` counts batches, not hidden
-nested requests. Loading arbitrary third-party callbacks is not a sandbox.
-Calling `createModelDecisionJudge(...).judge(...)` directly bypasses service
-reservations; normal Agent use goes through the provider and public tools.
-
-A thrown callback or unknown cost blocks further admission until actual evidence
-is reconciled. Known overruns preserve the full observed fee and block later work.
-Cancellation retains late usage and suppresses actionable answers. No blind retry
-is allowed for a pending or interrupted request. Completed identical requests
-can be read again; request IDs cannot be reused for different input. Configuration
-changes do not reset the ledger. A process interrupted before storing a result
-requires receipt inspection; there is no automatic decision-work resume.
-Raw state/output may contain sensitive caller data; keep the journal and receipt
-directory private. This layer grants no deployment, tool-use or candidate-adoption
-authority and does not turn one judgment into independent Slow evidence.
-
-## Optional support judgment in shadow mode
-
-`/quick-judgment` exports `createSupportShadow({primary, judge, project,
-projectionId})`. It composes one existing **Fast** `FunctionEvaluatorConfig`
-with an optional source-support judgment. Load the returned configuration using
-the existing `/function-evaluators` provider. This is an experimental diagnostic
-composition, disabled on the default path; it is not a qualified fast model,
-independent Slow evidence, or an automatic rejection rule.
-
-The three labels mean: the supplied source supports the entire claim
-(`supported`), explicitly contradicts it (`contradicted`), or establishes neither
-(`insufficient_evidence`). Invalid output and provider failure are separate
-execution statuses, never an `insufficient_evidence` answer. The implementation
-does not depend on Jev or reproduce its model; only the narrow typed-judgment
-idea is shared. No accuracy, latency or savings claim has been established.
-
-The primary evaluator keeps its original metric values, evidence family and
-coverage. Shadow rows are appended to `evidence` as `quick_support_shadow` with
-`affectsSelection:false` and `qualification:NOT_QUALIFIED`. The default comparator
-and feedback policy ignore those rows. Extra work still consumes time and budget
-and can cause a safety stop; this is not a guarantee of identical run trajectories.
-Custom callbacks and policies remain trusted code.
-
-**Bring a judge:** supply `judge.descriptor` with `id`, `version`, `configDigest`,
-`currency:'CNY'`, `reservationCny`, and explicit `paid`, `network`, and
-`externalSideEffects` permission booleans. Its `judge({cases, signal, identity})`
-returns `{status:'measured', judgments:[{id, verdict}], currency:'CNY', costCny,
-costEvidence?, receiptPath?}`. A missing fee is unknown, not zero. For each call,
-`project({candidate, artifact, tier})` must synchronously select 1–16 cases with
-exactly `{id, source, claim}`, unique nonempty IDs, nonempty strings and a total
-JSON size at most 65,536 bytes. Give the projection a versioned `projectionId`.
-The judge receives these cases, not the entire candidate or artifact. Do not put
-answer keys, final data or unrelated private inputs into the projection.
-Optional descriptor booleans `requiresModel`, `deterministic` and `realTools`
-describe the judge's actual behavior; omitted values remain unknown in the
-combined source metadata.
-
-**Existing DSH model backend:** `/support-judge` exports
-`createModelSupportJudge(ctx, config)`, using the existing model-accounting
-configuration (provider, model, datasetPath, artifactRoot, CNY tariff/reservation,
-token/input-byte/time limits and evidenceKind). It uses one bounded native DSH
-request for the batch, with no tools or automatic retries. `datasetPath` is required
-by that existing configuration contract; the judgment prompt contains only the
-projected cases. The backend has not been calibrated on real semantic judgments.
-Calling these functions directly bypasses controller reservation; load them
-through `FunctionEvaluators` for the normal planned and authorized run path.
-
-**Optional public sample:** after preparing the [real task starter](./QUICKSTART.md#real-task-starter)
-in a fresh working directory, advanced callers can opt into the shipped
-[`shadow-evaluator.js`](./examples/model/shadow-evaluator.js) composition:
-
-1. In the generated `dsh-home/profiles/duo-product/cordis.patch.yml`, replace the
-   `starter-evaluator` row's name with
-   `@dual-loop/dsh-plugin/examples/grounded-qa-shadow-evaluator`. Keep its existing
-   model config; the sample uses the same model route for its optional judge.
-2. In `experiment.json`, change `fast.evaluatorId` to
-   `starter-runbook-fast-support-shadow` and `fast.version` to
-   `2+support-shadow.1`. Keep the original metric, data ID and scoring rules.
-3. Obtain authority covering the additional work **before running**. For this
-   one-generation, one-candidate sample, the upper bound becomes **five inner
-   model requests**: two executions, one generation and two shadow judgments
-   (one batch per valid execution). The unmodified starter's three-request
-   authority is insufficient. A conservative envelope is five times the declared
-   per-model-call `reservationCny`; use the actually authorized total in
-   `budget.maxCostCny`, with `permissions.paid` and `permissions.network` authorized.
-   Keep `maxSessions:5` (native operations), `maxFastEvals:2`, no Slow/final and one
-   candidate. Operation counts and nested model-request counts are distinct.
-4. Repeat the guide's `describe → plan → run → report` commands and inspect a new
-   plan. The descriptor now binds the primary and judge configuration. Never run
-   the old plan or treat its stored three-request starter summary as current.
-
-The wrapper ID is `<primary.id>-support-shadow`; its version is
-`<primary.version>+support-shadow.1`. Inspect the full report's candidate Fast
-evidence and the retained Journal/cost receipts for labels, input/source hashes,
-judge version, execution latency and accounting. Primary and shadow fees settle
-together; a missing fee stops as unknown and is never retried automatically.
-Known invalid judgment output leaves the primary score intact. Existing
-`FunctionEvaluators` may expose a callback refusal as `DUO_EVIDENCE_INVALID`;
-`costEvidence.stopReason` retains the specific shadow safety-stop reason.
-Do not merge this changed evaluator identity with old runs or treat shadow rows
-as warm-start search feedback. The source-only sample never sends its expected
-answers or final split to the judge, and never overwrites the original Target.
-
-## Semantic evaluator
-
-The optional `/semantic-evaluators` provider registers the same `duoEvaluators`
-service with IDs `native-docs-semantic-{fast,slow,final}`, **version `2`**. It uses
-the existing bounded DSH Agent lifecycle for one semantic measurement request
-per evaluation. Its configuration includes the existing model settings plus
-`policyPath` (a frozen v2 policy JSON) and `judgmentRoot`. Use explicit CNY rates
-and reservations; judging is a separate paid operation from candidate execution.
-
-It measures `quality`, `grounded`, `sample_size`, `supported_ratio`,
-`complete_ratio`, and `contradiction_rate`. `quality` combines semantic support
-and completeness, absence of contradiction, and deterministic answer/citation
-checks. The provider never decides promotion. Missing judge usage retains unknown
-cost; malformed judge output retains known usage and returns `ok=false`.
-Descriptors bind the policy and dataset digests. Changing scoring policy requires
-a new contract/version and a separately frozen acceptance record.
-
-Each judgment retains task-level measurements/reasons, the source artifact digest,
-source and judge receipt paths, and the policy digest. Reasons are model-produced
-claims to audit, not established causal explanations. They are reachable through
-the evaluation evidence paths; the existing conservative Feedback provider still
-passes aggregate statistics, not these per-task details, to the generator.
-
-The v2 calibration (research archive: `../runs/native-evaluator-v2-20260909/REPORT.zh.md`) matched
-19/20 frozen controls, failing its 20/20 gate. The export is implemented and host
-tested, but is **not qualified for the next optimization acceptance**. An
-`ok=true` measurement means the evaluation executed with a valid result shape;
-it does not establish correctness of every model judgment or higher Slow fidelity.
-
 ## Candidate and evidence shapes
 
 A generator must return exactly the requested counts for each quota, or an empty
@@ -414,60 +156,44 @@ still incomparable. Custom comparators retain ownership of comparison semantics
 and must not label unusable evidence as a valid constraint violation. Quality
 metrics cannot grant execution permissions or replace Executor/host safety checks.
 
-## Policy and storage providers
+<a id="product-foundation-target-boundary-050"></a>
 
-`TargetService`, `ComparatorService`, `GateService`, `FeedbackService`,
-`JournalService`, and `BudgetService` implement `describe()` returning at least
-`{id, version, deterministic: true}`. Include relevant configuration fingerprints.
+## Target adapters
 
-| Definition | Synchronous API |
-|---|---|
-| `TargetService` | `snapshot(path)`, `apply(candidate, parent)`, `identity(snapshot)`; warm history additionally needs `validateSnapshot(snapshot)` and `projectDelta(delta)` |
-| `ComparatorService` | `compare(results, {weights,epsilon,minSamples,constraints}, incumbentId)` → `{ranking,verdicts,scores}` |
-| `GateService` | `select(comparison, candidateIds, {topK,remaining,incumbentId,epsilon})` → selected candidate IDs; older providers may ignore the added context |
-| `FeedbackService` | `summarize(latestCandidateRecords, quotas, options)` → family statistics and next quotas |
-| `JournalService` | `root`, `open(runId,{create})` → journal or null; read-only by default |
-| `BudgetService` | `open(runId,limits)`, `inspect(runId)`, `reconcile(runId,receiptHash)` |
+The runtime accepts a syntactically valid target kind, then checks the active
+adapter's `describe().targetKinds`. Built-in catalog and partial support are in
+CURRENT_STATUS.md and `/capabilities`; discovery also shows custom descriptors.
+Core does not inspect persona/config fields. A Target snapshot has `id`,
+`version`, optional `path`, and adapter-owned content. `identity(snapshot)` must
+be a stable content identity; the compatibility fallback is snapshot.version.
+The baseline is identified by `plan.baseline.id` throughout execution and reports;
+the name `baseline` is not required. The supplied custom adapter uses `original`.
+Candidate ids/parent versions, Delta, execution and measurements retain their
+existing meanings.
 
-A replacement journal must implement the concrete durable handle contract used
-in `native/store.js` and `native/controller.js`: ownership, transactions, metadata,
-events, immutable completion, and leases that keep it alive for pending receipts.
-The built-in budget currently uses the SQLite handle (`db`) directly; replacing
-storage technology therefore requires replacing the budget provider as well.
-Storage independence beyond that paired seam is not claimed.
-# Native acceptance additions
+The optional `Snapshot.persona` and `Snapshot.config` TypeScript fields remain
+for existing consumers; custom snapshots need neither. The bounded fetch adapter
+keeps an immutable persona in its input and identity as execution context;
+its Delta changes only the declared fetch config field. This is adapter-specific,
+not a requirement on every Target or permission to change the Agent's prompt.
 
-`/model-accounting` exposes the existing `priceUsage` and `pricingForInterval`
-helpers for a separately budgeted Calling Agent trial. It does not launch a model
-or grant authorization. `/budget` remains the owner of reservations and receipts.
+For warm start implement pure `validateSnapshot(snapshot)` and
+`projectDelta(delta)` plus `apply(candidate,parent)`. History validates the full
+lineage using those methods; projection must return only documented Delta data,
+never raw outputs, final evidence or arbitrary metadata. Target methods must not
+execute models or side effects. Older adapters still run using their versions
+but do not gain history support automatically. `/target-protocol` publishes the
+identity/history checks; `/warm-start` publishes bounded projection helpers.
+Generators using projected history must supply their Target-specific projector
+to `projectWarmContext(context, projectDelta)`.
 
-For `fast_only` contracts with a final objective, the controller reports final
-evidence in `independentFinal`. The mode, null champion and unvalidated search
-conclusion remain explicit. Final evidence never enters subsequent generation
-feedback. A terminal artifact from older code is read as retained evidence and
-is not automatically extended with newly supported final work.
-
-## Native setup and Objective Designer
-
-`/onboarding` injects only the existing `tools` service. `dualloop_describe` exposes
-the native CNY authoring schema and implemented provider contracts;
-`dualloop_design({draft,experimentPath})` lists missing inputs and reuses the same
-`resolveNativeContract` function as the file-backed contract service. It does not
-write a draft, resolve a baseline file, bind an execution plan or grant authorization.
-`draft_valid` may set `readyForPlan:true`: the draft can proceed to planning,
-not directly to execution. `bindingChecks:NOT_RUN` and `authorityGranted:false`
-remain explicit; incompatible visible evaluator declarations reset readiness.
-Use the independent setup profile before enabling the full execution bundle.
-
-Both preparation tools inspect `describe()` on the active `duoEvaluators` visible
-in their Cordis context. The `evaluators` field reports descriptor semantics,
-dependencies, input/output scope, permissions and CNY reservations. Missing metadata
-is listed in `unknownFields`; no unloaded package or plugin marketplace is scanned.
-`dualloop_design` uses the same identity, metric coverage/direction, dependency,
-currency and permission checks as runtime binding. A declared dependency must be
-available; an absent dependency declaration remains explicitly unknown for legacy
-providers. `COMPATIBLE_BY_DECLARATION` does not mean executable or qualified.
-`provider_incompatible` includes repair actions; discovery does not invoke evaluation.
+To replace measurement, attach `/function-evaluators` with an existing function,
+versioned descriptors and data/implementation digests. The complete shipped
+`examples/product/byo-evaluator.js` does this. Replace ComparatorService for
+evidence aggregation or GateService for promotion; reuse FeedbackService's
+optional `orderHistory` for history selection. No new registry is needed.
+Changing a provider requires a newly inspected plan. Public text examples are
+local formatting measurements, not qualification for arbitrary Agent tasks.
 
 ## Function-backed evaluation
 
@@ -530,6 +256,35 @@ that must refuse at plan time without creating a run. `evaluation_complete` does
 not certify control success: inspect the frozen constraints in `measurementChecks`.
 Freeze a task evaluator only after the declared checks pass and the owner accepts
 its scope. A passing four-case control set never automatically certifies a benchmark.
+
+## Semantic evaluator
+
+The optional `/semantic-evaluators` provider registers the same `duoEvaluators`
+service with IDs `native-docs-semantic-{fast,slow,final}`, **version `2`**. It uses
+the existing bounded DSH Agent lifecycle for one semantic measurement request
+per evaluation. Its configuration includes the existing model settings plus
+`policyPath` (a frozen v2 policy JSON) and `judgmentRoot`. Use explicit CNY rates
+and reservations; judging is a separate paid operation from candidate execution.
+
+It measures `quality`, `grounded`, `sample_size`, `supported_ratio`,
+`complete_ratio`, and `contradiction_rate`. `quality` combines semantic support
+and completeness, absence of contradiction, and deterministic answer/citation
+checks. The provider never decides promotion. Missing judge usage retains unknown
+cost; malformed judge output retains known usage and returns `ok=false`.
+Descriptors bind the policy and dataset digests. Changing scoring policy requires
+a new contract/version and a separately frozen acceptance record.
+
+Each judgment retains task-level measurements/reasons, the source artifact digest,
+source and judge receipt paths, and the policy digest. Reasons are model-produced
+claims to audit, not established causal explanations. They are reachable through
+the evaluation evidence paths; the existing conservative Feedback provider still
+passes aggregate statistics, not these per-task details, to the generator.
+
+The v2 calibration (research archive: `../runs/native-evaluator-v2-20260909/REPORT.zh.md`) matched
+19/20 frozen controls, failing its 20/20 gate. The export is implemented and host
+tested, but is **not qualified for the next optimization acceptance**. An
+`ok=true` measurement means the evaluation executed with a valid result shape;
+it does not establish correctness of every model judgment or higher Slow fidelity.
 
 ## Structural generation and full history
 
@@ -664,22 +419,49 @@ receives every Fast example, not only two examples. Oversized inputs are refused
 by existing model input limits; history is not silently truncated. Freeze a
 realistic input/response reservation in the plan, and do not expand it automatically.
 
-## Frozen contamination exclusions
+## Policy and storage providers
 
-`/exclusion-comparator` implements the existing comparison service. Configure:
+`TargetService`, `ComparatorService`, `GateService`, `FeedbackService`,
+`JournalService`, and `BudgetService` implement `describe()` returning at least
+`{id, version, deterministic: true}`. Include relevant configuration fingerprints.
 
-```js
-{exclusions:[{candidateId:'dl-0001',evaluatorId:'my-fast',version:'1',
-  dataId:'dev-v1',tier:'fast',reason:'Owner-confirmed contaminated input'}]}
-```
+| Definition | Synchronous API |
+|---|---|
+| `TargetService` | `snapshot(path)`, `apply(candidate, parent)`, `identity(snapshot)`; warm history additionally needs `validateSnapshot(snapshot)` and `projectDelta(delta)` |
+| `ComparatorService` | `compare(results, {weights,epsilon,minSamples,constraints}, incumbentId)` → `{ranking,verdicts,scores}` |
+| `GateService` | `select(comparison, candidateIds, {topK,remaining,incumbentId,epsilon})` → selected candidate IDs; older providers may ignore the added context |
+| `FeedbackService` | `summarize(latestCandidateRecords, quotas, options)` → family statistics and next quotas |
+| `JournalService` | `root`, `open(runId,{create})` → journal or null; read-only by default |
+| `BudgetService` | `open(runId,limits)`, `inspect(runId)`, `reconcile(runId,receiptHash)` |
 
-Every identity and the reason are required. Exclusion sets are frozen and hashed
-into the provider descriptor, so changed configuration requires a new plan. An
-excluded incumbent cannot justify promotion of another candidate. Raw metrics
-remain untouched; the comparison labels the evidence incomparable and retains
-the exclusion reason. Apply the same list to `/history-feedback` when composing
-these providers. This is not permission for the optimizer to edit criteria or
-retroactively rewrite an existing run.
+A replacement journal must implement the concrete durable handle contract used
+in `native/store.js` and `native/controller.js`: ownership, transactions, metadata,
+events, immutable completion, and leases that keep it alive for pending receipts.
+The built-in budget currently uses the SQLite handle (`db`) directly; replacing
+storage technology therefore requires replacing the budget provider as well.
+Storage independence beyond that paired seam is not claimed.
+
+## Native setup and Objective Designer
+
+`/onboarding` injects only the existing `tools` service. `dualloop_describe` exposes
+the native CNY authoring schema and implemented provider contracts;
+`dualloop_design({draft,experimentPath})` lists missing inputs and reuses the same
+`resolveNativeContract` function as the file-backed contract service. It does not
+write a draft, resolve a baseline file, bind an execution plan or grant authorization.
+`draft_valid` may set `readyForPlan:true`: the draft can proceed to planning,
+not directly to execution. `bindingChecks:NOT_RUN` and `authorityGranted:false`
+remain explicit; incompatible visible evaluator declarations reset readiness.
+Use the independent setup profile before enabling the full execution bundle.
+
+Both preparation tools inspect `describe()` on the active `duoEvaluators` visible
+in their Cordis context. The `evaluators` field reports descriptor semantics,
+dependencies, input/output scope, permissions and CNY reservations. Missing metadata
+is listed in `unknownFields`; no unloaded package or plugin marketplace is scanned.
+`dualloop_design` uses the same identity, metric coverage/direction, dependency,
+currency and permission checks as runtime binding. A declared dependency must be
+available; an absent dependency declaration remains explicitly unknown for legacy
+providers. `COMPATIBLE_BY_DECLARATION` does not mean executable or qualified.
+`provider_incompatible` includes repair actions; discovery does not invoke evaluation.
 
 ## Native Observer
 
@@ -704,43 +486,60 @@ is null in this plan, and discovery does not declare an active generator.
 The result exposes `evaluations` and `measurementChecks`. A completed measurement
 can violate quality constraints; retaining the original does not mean it passed.
 It is not a separate evaluation engine, and it cannot run an optimize contract.
-# Product foundation Target boundary (0.5.0)
 
-The runtime accepts a syntactically valid target kind, then checks the active
-adapter's `describe().targetKinds`. Built-in catalog and partial support are in
-CURRENT_STATUS.md and `/capabilities`; discovery also shows custom descriptors.
-Core does not inspect persona/config fields. A Target snapshot has `id`,
-`version`, optional `path`, and adapter-owned content. `identity(snapshot)` must
-be a stable content identity; the compatibility fallback is snapshot.version.
-The baseline is identified by `plan.baseline.id` throughout execution and reports;
-the name `baseline` is not required. The supplied custom adapter uses `original`.
-Candidate ids/parent versions, Delta, execution and measurements retain their
-existing meanings.
+<a id="native-acceptance-additions"></a>
 
-The optional `Snapshot.persona` and `Snapshot.config` TypeScript fields remain
-for existing consumers; custom snapshots need neither. The bounded fetch adapter
-keeps an immutable persona in its input and identity as execution context;
-its Delta changes only the declared fetch config field. This is adapter-specific,
-not a requirement on every Target or permission to change the Agent's prompt.
+## Accounting and final evidence
 
-For warm start implement pure `validateSnapshot(snapshot)` and
-`projectDelta(delta)` plus `apply(candidate,parent)`. History validates the full
-lineage using those methods; projection must return only documented Delta data,
-never raw outputs, final evidence or arbitrary metadata. Target methods must not
-execute models or side effects. Older adapters still run using their versions
-but do not gain history support automatically. `/target-protocol` publishes the
-identity/history checks; `/warm-start` publishes bounded projection helpers.
-Generators using projected history must supply their Target-specific projector
-to `projectWarmContext(context, projectDelta)`.
+`/model-accounting` exposes the existing `priceUsage` and `pricingForInterval`
+helpers for a separately budgeted Calling Agent trial. It does not launch a model
+or grant authorization. `/budget` remains the owner of reservations and receipts.
 
-To replace measurement, attach `/function-evaluators` with an existing function,
-versioned descriptors and data/implementation digests. The complete shipped
-`examples/product/byo-evaluator.js` does this. Replace ComparatorService for
-evidence aggregation or GateService for promotion; reuse FeedbackService's
-optional `orderHistory` for history selection. No new registry is needed.
-Changing a provider requires a newly inspected plan. Public text examples are
-local formatting measurements, not qualification for arbitrary Agent tasks.
+For `fast_only` contracts with a final objective, the controller reports final
+evidence in `independentFinal`. The mode, null champion and unvalidated search
+conclusion remain explicit. Final evidence never enters subsequent generation
+feedback. A terminal artifact from older code is read as retained evidence and
+is not automatically extended with newly supported final work.
 
-## Slow evidence strategy (0.6 development)
+## Frozen contamination exclusions
+
+`/exclusion-comparator` implements the existing comparison service. Configure:
+
+```js
+{exclusions:[{candidateId:'dl-0001',evaluatorId:'my-fast',version:'1',
+  dataId:'dev-v1',tier:'fast',reason:'Owner-confirmed contaminated input'}]}
+```
+
+Every identity and the reason are required. Exclusion sets are frozen and hashed
+into the provider descriptor, so changed configuration requires a new plan. An
+excluded incumbent cannot justify promotion of another candidate. Raw metrics
+remain untouched; the comparison labels the evidence incomparable and retains
+the exclusion reason. Apply the same list to `/history-feedback` when composing
+these providers. This is not permission for the optimizer to edit criteria or
+retroactively rewrite an existing run.
+
+<a id="slow-evidence-strategy-06-development"></a>
+
+## Slow evidence strategy
 
 [EVIDENCE_STRATEGY.md](./EVIDENCE_STRATEGY.md) defines evidenceSource metadata, evidenceCoverage receipts, Comparator.aggregate and Gate.decide optional hooks, default policy semantics and preset negotiation. Existing compare/select-only providers remain supported through scoped default adapters. Metadata is a trusted declaration, not proof or new authority.
+
+## Lightweight typed decisions
+
+Use the [typed decision guide](guides/DECISIONS.md) for inputs, public tools, local examples and model-provider contracts. This optional service runs independently of optimization.
+
+## Optional support judgment in shadow mode
+
+Use the [support judgment guide](guides/SUPPORT_JUDGMENT.md) for opt-in shadow diagnostics, model backends and accounting. Shadow judgments do not select candidates.
+
+<a id="public-tools-and-input"></a>
+
+Public tools and input: [typed decision guide](guides/DECISIONS.md#public-tools-and-input).
+
+<a id="local-installed-package-walkthrough"></a>
+
+Local installed-package walkthrough: [typed decision guide](guides/DECISIONS.md#local-installed-package-walkthrough).
+
+<a id="native-model-backend-and-replacement"></a>
+
+Native model backend and replacement: [typed decision guide](guides/DECISIONS.md#native-model-backend-and-replacement).

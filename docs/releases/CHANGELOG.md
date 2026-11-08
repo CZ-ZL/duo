@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.6.3 — unreleased source preview
+## 0.6.3 — public release
+
+- Provide a fixed download, checksum, host manifest and verification receipt.
+- Add read-only host compatibility diagnostics and concise bilingual entry guides.
+- Separate operation accounting, measurement checks, selection and final evaluation from Controller orchestration without changing public interfaces.
+- Check documentation links/anchors, bilingual commands, script ownership and Mermaid syntax in the release gate.
+- Document Simple as a shared method with English and Chinese overview diagrams, preserving study-specific evidence.
 
 - Package bilingual Quickstarts covering installation through saved reports.
 - Add one grounded-QA starter using existing model providers and a local factual-answer/citation evaluator. An independent Caller completed a real run: original and candidate 4/4, original retained; no optimization gain claimed.

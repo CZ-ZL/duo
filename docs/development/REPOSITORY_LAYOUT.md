@@ -49,7 +49,7 @@ become additional root STATUS or CURRENT entry points.
   points to those copies.
 - `docs/research/SIMPLE_BASELINE.zh-CN.md` defines the shared baseline. Study pages
   record their own versions, budgets, results and provenance.
-- `docs/releases/README.md` separates source previews from tagged downloads.
+- `docs/releases/README.md` identifies current and historical tagged downloads.
   Historical PASS or CLOSED records do not qualify later source changes.
 
 ## Retained files that look redundant
@@ -73,3 +73,19 @@ The [historical record map](../history/README.md) explains how to read frozen
 relative references and attributed upstream snapshots. Runtime exports, tests,
 input data and sealed records are retained; no experiment was rerun or historical
 result rewritten by this navigation cleanup.
+
+## Native execution responsibilities
+
+`dsh-plugin/native/controller.js` owns plan/admission, recovery, checkpoints and
+search orchestration. Private execution helpers separate the responsibilities:
+
+| Module | Responsibility |
+|---|---|
+| `run-operations.js` | Reserve, invoke, settle and retain in-flight leases |
+| `run-evaluation.js` | Validate measurement identity and baseline usability |
+| `run-selection.js` | Acquire development stages, gate and choose an incumbent |
+| `run-final.js` | Evaluate final data after search and assemble the result |
+
+These are implementation modules, not new package exports. Provider contracts
+and the Journal/budget protocol stay unchanged; a changed implementation still
+requires a new plan and cannot resume an old checkpoint.

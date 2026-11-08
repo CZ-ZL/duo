@@ -1,34 +1,34 @@
 # Releases and verification
 
-## Source preview
+## Current release: v0.6.3
 
-The source line is **0.6.3**. The [2026-11-08 source update](source-update-20261108/README.md)
-records the diagnostics, bounded decision services, accounting changes and research
-publication. A source update does not create a tagged Release or publish an npm package.
+[v0.6.3](https://github.com/CZ-ZL/duo/releases/tag/v0.6.3) is the supported public
+release. Download its plugin archive, SHA256SUMS, host-package.json and
+VERIFICATION.json from that page. The receipt binds the source commit,
+exact-commit CI, archive checksum and acceptance scope.
 
+Start with [Quickstart](../../dsh-plugin/QUICKSTART.md); use
+[installation and compatibility](../../dsh-plugin/guides/INSTALL.md) for the
+verified Linux / Node / DSH composition. The DSH dependency remains an upstream
+preview. This release is not an npm publication or a security certification.
+
+[Release notes](0.6.3/RELEASE_NOTES.md) explain the changes and the
+[repository QC checklist](0.6.3/QC.md) records acceptance criteria.
 [Product verification](https://github.com/CZ-ZL/duo/actions/workflows/product.yml)
-records each pushed commit. The shared-baseline documentation commit `4cb93f8`
-passed [CI 42437137855](https://github.com/CZ-ZL/duo/actions/runs/42437137855);
-earlier source verification passed 412 native and 451 Python product checks.
-Use the run matching the commit you inspect. The [test guide](../development/TESTING.md)
-and [declared host composition](../../.github/verification-host/package.json)
-explain scope and the Cordis 4.1 dynamic Caller limitation.
+runs for each commit; use the run matching the artifact's receipt.
 
-The [0.6.3 first-use acceptance](../product-foundation/FIRST_USE.md) is complete
-with G1–G8 PASS. It includes the public free path and independent live starter
-usage. Its [run result](../product-foundation/first-use/STARTER_RESULT.json) remains
-historical evidence for that tested task and package; it does not establish
-optimization benefit or automatically qualify subsequent changes.
+The [earlier source update](source-update-20261108/README.md) and
+[first-use acceptance](../product-foundation/FIRST_USE.md) retain their original
+scope. The earlier live starter tied 4/4 and retained the original. It validates
+that model journey, not improvement or a fresh live test of every later change.
 
-## Tagged downloads
+## Earlier tagged downloads
 
-As checked on 2026-11-08, the latest tagged download is
-**[v0.6.2 developer preview](https://github.com/CZ-ZL/duo/releases/tag/v0.6.2)**
-(prerelease); the preceding non-prerelease tag is
-[v0.6.0](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0).
-The v0.6.2 [notes](0.6.2/RELEASE_NOTES.md) and
-[delivery receipt](0.6.2/DELIVERY_EVIDENCE.json) identify its tested source and
-artifact hash. Download the archive and SHA256SUMS from the matching tagged Release.
+[v0.6.2](https://github.com/CZ-ZL/duo/releases/tag/v0.6.2) and
+[v0.6.1](https://github.com/CZ-ZL/duo/releases/tag/v0.6.1) remain prereleases;
+[v0.6.0](https://github.com/CZ-ZL/duo/releases/tag/v0.6.0) is an earlier release.
+Use each tag's own archive, checksum and evidence. Historical artifacts are not
+rewritten to contain current source.
 
 ## Earlier notes and evidence
 

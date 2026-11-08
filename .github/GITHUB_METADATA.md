@@ -1,3 +1,18 @@
+# Repository presentation — current public release
+
+Destination: CZ-ZL/duo, public, main. Current delivery: v0.6.3, with fixed plugin
+archive, checksum, host manifest and verification receipt on the tagged Release.
+README.md and README.zh-CN.md are the English/Chinese entry pages.
+Documentation: docs/README.md. Architecture: docs/ARCHITECTURE.md.
+Release and evidence index: docs/releases/README.md.
+Shared Simple baseline: docs/research/SIMPLE_BASELINE.md.
+
+Product verification and research conclusions remain separately scoped. No npm
+publication or general optimization benefit is claimed. Historical records below
+refer to earlier versions and visibility states; they are not current instructions.
+
+---
+
 # Repository presentation — 0.6.1 developer preview
 
 Name: duo. Destination: CZ-ZL/duo, PUBLIC, main. Owner-authorized public

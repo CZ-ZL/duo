@@ -1,6 +1,6 @@
 # Current DUO architecture
 
-This page maps the native 0.6.3 source preview. [DESIGN.md](./history/DESIGN.md) preserves
+This page maps the native 0.6.3 public release. [DESIGN.md](./history/DESIGN.md) preserves
 the original design and its earlier Python bridge plan; the default product now
 runs in JavaScript inside DSH.
 
@@ -104,3 +104,25 @@ idea to replaceable Agent components and makes additional evidence optional and
 explicit. It does not reproduce the paper's production system or inherit its
 results. See [attribution](THIRD_PARTY_NOTICES.md) and the separately preserved
 [DUO experiment outcomes](./research/EXPERIMENTS.md).
+
+## Execution module map
+
+The public Controller owns admission, lifetime and settled checkpoints. Its
+private helpers isolate the stages that have different correctness obligations:
+
+```mermaid
+flowchart LR
+    C[Controller: plan and lifecycle] --> O[Operations: reserve and settle]
+    C --> E[Evaluation: measurement identity]
+    C --> S[Selection: development evidence]
+    C --> F[Final: independent assessment]
+    E --> O
+    S --> E
+    F --> E
+```
+
+`run-operations.js` keeps unknown reservations and call leases until work drains.
+`run-evaluation.js` validates identities before measurements enter the Journal.
+`run-selection.js` acquires admitted development stages and selects one incumbent.
+`run-final.js` runs after search and never supplies generator feedback.
+See the [module table](development/REPOSITORY_LAYOUT.md#native-execution-responsibilities).

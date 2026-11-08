@@ -2,6 +2,7 @@
 import hashlib
 import json
 import os
+import posixpath
 from pathlib import Path, PurePosixPath
 import re
 import sys
@@ -43,7 +44,7 @@ for name, data in packed.items():
         target = unquote(target.split('#', 1)[0])
         if not target or '://' in target or target.startswith(('mailto:', '#')):
             continue
-        path = str(PurePosixPath(name).parent / target)
+        path = posixpath.normpath(str(PurePosixPath(name).parent / target))
         assert path in packed, f'{name}: unshipped Markdown link {target}'
 for export in manifest['exports'].values():
     for target in export.values() if isinstance(export, dict) else [export]:

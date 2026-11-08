@@ -12,7 +12,7 @@ experiment results and historical acceptance records have separate scopes.
 | Understand the two loops and code boundaries | [Current architecture](./ARCHITECTURE.md) |
 | Supply or replace a component | [Provider contracts](../dsh-plugin/PROVIDERS.md) · [runnable examples](../dsh-plugin/examples/product/README.md) |
 | Develop and verify a change | [Contributing](../CONTRIBUTING.md) · [tests](./development/TESTING.md) · [script map](../scripts/README.md) |
-| Understand the Simple comparator | [Shared method and flow diagram](research/SIMPLE_BASELINE.zh-CN.md) · [source bindings](research/SIMPLE_BASELINE_PROVENANCE.json) |
+| Understand the Simple comparator | [English method and diagram](research/SIMPLE_BASELINE.md) · [中文](research/SIMPLE_BASELINE.zh-CN.md) · [source bindings](research/SIMPLE_BASELINE_PROVENANCE.json) |
 | Review source and tagged releases | [Release index](releases/README.md) · [release procedure](development/RELEASING.md) |
 | Understand origins and licenses | [Third-party notices and inspiration](THIRD_PARTY_NOTICES.md) |
 | Read research results | [Research index](research/README.md) · [task optimization studies](research/duo-task-optimization-20261105/README.md) · [earlier experiments](research/EXPERIMENTS.md) |

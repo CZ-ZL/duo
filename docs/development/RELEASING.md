@@ -1,6 +1,6 @@
 # Product release procedure
 
-0.6.3 is the current developer-preview source line. Consult the release index for the actual tag and artifact status.
+0.6.3 is the current public release. Consult the release index and tagged verification receipt for source and artifact identity.
 The [release index](../releases/README.md) records current verification and
 visibility. Current support is recorded in [current capabilities](../../dsh-plugin/CURRENT_STATUS.md).
 The [earlier acceptance contracts and audits](../product-foundation/README.md)
@@ -25,15 +25,18 @@ acceptance for new code. A release does not establish method superiority.
 4. Complete independent Agent acceptance using only the installed public package
    and guides. Preserve steps, corrections, failed attempts and evidence limits.
    Earlier acceptance may be reused for unchanged journeys after checking the
-   relevant inputs; record that it is an earlier run. Changed preparation/control
-   paths currently have scripted installed-DSH evidence only. Do not present them
-   as a fresh independent Agent acceptance. Scripted tests do not replace this acceptance.
+   relevant inputs; record that it is an earlier run. Changed preparation/control paths need new installed-guide acceptance. Record
+   scripted checks and independent Agent use separately; neither implies a new
+   paid-model result.
 5. Check git diff and version consistency; update current acceptance and lean
    change records. Commit and push through the owner's authorized repository
    flow, then wait for the exact commit's GitHub Actions result. Keep failed CI
    runs and fix within scope. No force push or npm publish.
-6. Record the commit, workflow URL and tarball hash. Distinguish tested code from
-   subsequent documentation-only evidence updates.
+6. Download the successful exact-commit CI archive. Verify its members and source
+   bytes, then publish that same archive with SHA256SUMS, host-package.json and
+   VERIFICATION.json under the new tag. Verify anonymous downloads and tag/source
+   identity. The receipt records CI, scope and reused evidence; do not build an
+   untested archive after the checks. Distinguish subsequent documentation edits.
 7. Before changing repository visibility, review reachable history, release
    assets and workflow artifacts against the frozen acceptance contract and
    obtain explicit authorization for public exposure. Private delivery authority

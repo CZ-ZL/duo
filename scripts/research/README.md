@@ -22,3 +22,15 @@ repository; historical tests requiring them are separately marked in
 
 No paid research is included in the ordinary product gate. A research run needs
 its own task, data, source binding, budget and current authorization.
+
+## Ownership inventory
+
+[INVENTORY.json](INVENTORY.json) lists every retained file with its role and
+explicit current verification users. `shared_verification` includes code
+isolation and the Caller/model drivers imported by offline tests. Remaining
+entries are retained drivers, support modules or fixtures. This inventory is
+checked by `npm run docs:check`; adding/removing a file or deleting a named
+consumer requires updating the map. It is not a complete dynamic call graph.
+
+The installed runtime has no dependency on this directory. Existing paths stay
+stable because test consumers and historical source bindings still refer to them.

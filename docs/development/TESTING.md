@@ -105,3 +105,21 @@ publication. TypeScript checks cover the exported declarations and supported
 strategy contracts, not a migration of all runtime JavaScript to TypeScript.
 It does not establish Windows/macOS support, independent Calling Agent judgment, or quality
 and cost advantages of the optimization method. Those require their own evidence.
+
+## Documentation checks
+
+`npm run docs:check` checks local Markdown file targets and heading anchors,
+identical shell blocks in the English/Chinese starter guides, the research
+script inventory and the shipped/CI host manifest. Mermaid diagrams are parsed
+with the pinned development parser and a negative syntax control. These tools
+and their DOM dependency are not shipped in the runtime package.
+
+[LINK_EXCEPTIONS.json](LINK_EXCEPTIONS.json) records exact historical references
+to retained inputs or earlier trees. Each exception binds source SHA-256,
+target and error kind; changed or resolved exceptions fail. New documentation
+cannot borrow a historical directory exemption. Remote links are not fetched
+by this offline check; release assets are checked during publication.
+
+The Markdown checker handles fenced examples, inline and reference targets,
+ATX headings and explicit anchor IDs used in this repository. It is not a
+complete GitHub renderer. Visual review checks diagram legibility separately.

@@ -1,11 +1,11 @@
+import { createOperations } from './run-operations.js'
+import { createEvaluation } from './run-evaluation.js'
+import { selectGeneration } from './run-selection.js'
+import { completeSearch } from './run-final.js'
 import {
   negotiateEvidence,
   effectiveEvidenceSpec,
-  evidenceReceipt,
   evidenceOutcome,
-  aggregateJudgments,
-  decideEvidence,
-  affordableAcquisitions,
   strategyFeedback,
   strategySummary,
 } from './evidence-strategy.js'
@@ -15,7 +15,6 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { ControllerService, fail } from './definitions.js'
 import { freeze } from './contract.js'
 import { digest, runInterruption } from './store.js'
-import { moneyFields, assertMoneyEvidence } from './money.js'
 import { inspectProviderContracts, providerContractDependencies } from './provider-contract.js'
 import { selectWarmStart, executionEnvironment } from './warm-start.js'
 import { searchStages, searchTiersOf } from './stages.js'
@@ -343,209 +342,31 @@ export default class NativeController extends ControllerService {
       latest.set(candidate.id, row)
       j.append({ kind: 'candidate', candidate: clone(candidate), ...row })
     }
-    const invoke = async (phase, tier, descriptor, fn, request) => {
-      check()
-      const stage = stages.find((s) => s.tier === tier)
-      if (spec.searchStages && stage && stageAttempts[tier] >= stage.maxEvaluations)
-        fail('DUO_STAGE_BUDGET_EXHAUSTED', 'The frozen ' + tier + ' evaluation limit is exhausted')
-      const id = 'op-' + String(++operations).padStart(6, '0')
-      const m = moneyFields(spec.budget)
-      budget.reserve(id, {
-        phase,
-        tier,
-        currency: m.currency,
-        [m.cap]: descriptor[m.reservation],
-        request: { provider: descriptor.id, version: descriptor.version, ...request },
-      })
-      if (stage) stageAttempts[tier]++
-      let settled = false
-      const releaseCall = j.lease()
-      const work = Promise.resolve()
-        .then(fn)
-        .then(
-          (value) => {
-            let currencyMatches = false
-            try {
-              assertMoneyEvidence(value, m.currency)
-              currencyMatches = moneyFields(value).currency === m.currency
-            } catch {}
-            const amount = value?.[m.cost],
-              cost =
-                currencyMatches &&
-                typeof amount === 'number' &&
-                Number.isFinite(amount) &&
-                amount >= 0
-                  ? amount
-                  : null
-            budget.settle(id, cost, id + ':completed', {
-              currency: m.currency,
-              provider: descriptor.id,
-              costEvidence: currencyMatches ? (value?.costEvidence ?? null) : null,
-              ...(currencyMatches ? {} : { refusedCurrencyEvidence: value ?? null }),
-            })
-            settled = true
-            if (!currencyMatches)
-              fail(
-                'DUO_CURRENCY_MISMATCH',
-                'Provider returned a different currency; reservation remains unknown',
-              )
-            if (cost === null)
-              fail('DUO_COST_UNKNOWN', 'Provider did not return complete cost evidence')
-            if (value?.error)
-              throw Object.assign(
-                new Error(value.error.message ?? 'Provider refused after settling its usage'),
-                value.error,
-              )
-            return value
-          },
-          (error) => {
-            budget.settle(id, null, id + ':failed', { provider: descriptor.id })
-            settled = true
-            throw error
-          },
-        )
-      const tracked = work
-        .then(
-          () => {},
-          () => {},
-        )
-        .finally(() => {
-          releaseCall()
-          this.pendingCalls.delete(tracked)
-        })
-      this.pendingCalls.add(tracked)
-      let onAbort
-      const cancelled = new Promise((_, reject) => {
-        onAbort = () => {
-          try {
-            fail('ABORTED', 'Native provider call interrupted')
-          } catch (e) {
-            reject(e)
-          }
-        }
-        if (signal.aborted) onAbort()
-        else signal.addEventListener('abort', onAbort, { once: true })
-      })
-      try {
-        return await Promise.race([work, cancelled])
-      } catch (error) {
-        if (!settled && signal.aborted)
-          budget.settle(id, null, id + ':interrupted', { provider: descriptor.id })
-        throw error
-      } finally {
-        signal.removeEventListener('abort', onAbort)
-      }
-    }
-    const evaluate = async (candidate, tier) => {
-      const applied = freeze(clone(candidate)),
-        d = providers.evaluators.find((e) => e.tier === tier),
-        objective = spec[tier]
-      const executed = await invoke(
-        'evaluation',
-        tier,
-        providers.executor,
-        () => this.ctx.duoExecutor.execute({ candidate: applied, applied, tier, signal }),
-        { candidateId: candidate.id, tier, step: 'execute' },
-      )
-      const result = await invoke(
-        'evaluation',
-        null,
-        d,
-        () =>
-          this.ctx.duoEvaluators.evaluate({
-            candidate: applied,
-            artifact: executed.artifact,
-            tier,
-            signal,
-          }),
-        { candidateId: candidate.id, tier, step: 'evaluate' },
-      )
-      if (
-        result.candidateId !== candidate.id ||
-        result.evaluatorId !== objective.evaluatorId ||
-        result.version !== objective.version ||
-        result.dataId !== objective.dataId ||
-        result.tier !== tier ||
-        typeof result.ok !== 'boolean' ||
-        !result.metrics
-      )
-        fail(
-          'DUO_EVIDENCE_INVALID',
-          'Evaluator result identity or shape differs from the frozen contract',
-        )
-      j.append({ kind: 'evidence_acquired', receipt: evidenceReceipt(d, result) })
-      // Preserve each settled measurement before the next provider can fail.
-      // This records an observation, without granting promotion or adoption.
-      if (tier !== 'final') record(candidate, { [tier]: result })
-      if (candidate.id === plan.baseline.id) baselineTiers.add(tier)
-      consecutiveEvaluationFailures = result.ok ? 0 : consecutiveEvaluationFailures + 1
-      if (
-        spec.stopping?.maxConsecutiveEvaluationFailures !== undefined &&
-        consecutiveEvaluationFailures >= spec.stopping.maxConsecutiveEvaluationFailures
-      ) {
-        // Retain the observation that reaches the cap before stopping. Provider
-        // exceptions and unknown costs still stop immediately in invoke().
-        if (tier === 'final') {
-          final.push(freeze(clone(result)))
-          j.append({ kind: 'final', results: clone(final) })
-        } else record(candidate, { status: 'error', [tier]: result })
-        fail(
-          'DUO_EVALUATION_FAILURE_LIMIT',
-          'Configured consecutive evaluation failures reached; no further work admitted',
-        )
-      }
-      return freeze(clone(result))
-    }
-    const compare = (results, tier, incumbentId) =>
-      this.ctx.duoComparator.compare(
-        results,
-        {
-          weights: spec[tier].weights,
-          epsilon: spec.epsilon,
-          minSamples: spec.minSamples,
-          constraints: spec.constraints,
-        },
-        incumbentId,
-      )
-    const assessIncumbent = (candidate, evidence, tier) => {
-      const comparison = compare([evidence], tier, null),
-        verdict = comparison.verdicts[candidate.id],
-        searchAllowed = ['better', 'constraint_violation'].includes(verdict),
-        reason =
-          verdict === 'constraint_violation'
-            ? 'VALID_MEASUREMENT_REQUIRES_QUALITY_REPAIR'
-            : searchAllowed
-              ? 'QUALITY_CONSTRAINTS_MET'
-              : 'UNUSABLE_BASELINE_EVIDENCE'
-      j.append({
-        kind: candidate.id === plan.baseline.id ? 'baseline_assessment' : 'incumbent_assessment',
-        candidateId: candidate.id,
-        tier,
-        verdict,
-        searchAllowed,
-        reason,
-        comparison,
-      })
-      let doctor = null
-      try {
-        doctor = this.ctx.get('duoDoctor')?.consult?.(j.events(), spec) ?? null
-      } catch {
-        doctor = null // the guard must never break the run it guards
-      }
-      if (doctor) j.append({ kind: 'doctor', ...doctor })
-      if (doctor?.severity === 'stop')
-        fail(
-          'DUO_DOCTOR_STOP',
-          doctor.checks.find((c) => c.severity === 'stop')?.verdict ?? 'Run doctor stop',
-        )
-      if (!evaluationOnly && !searchAllowed)
-        fail(
-          'DUO_BASELINE_INVALID',
-          'Baseline has unusable ' +
-            tier +
-            ' evidence; inspect baselineAssessment before repairing the evaluator or inputs',
-        )
-    }
+    const invoke = createOperations({
+      plan,
+      signal,
+      j,
+      budget,
+      check,
+      stages,
+      stageAttempts,
+      pendingCalls: this.pendingCalls,
+      nextOperationId: () => 'op-' + String(++operations).padStart(6, '0'),
+    })
+    const { evaluate, compare, assessIncumbent } = createEvaluation({
+      ctx: this.ctx,
+      plan,
+      signal,
+      j,
+      invoke,
+      record,
+      baselineTiers,
+      final,
+      noteEvaluation: (result) => {
+        consecutiveEvaluationFailures = result.ok ? 0 : consecutiveEvaluationFailures + 1
+        return consecutiveEvaluationFailures
+      },
+    })
     const finishGeneration = (generation, previousVersion) => {
       if (!spec.stopping) return false
       const progressed = champion.version !== previousVersion
@@ -720,397 +541,44 @@ export default class NativeController extends ControllerService {
           if (paused) return paused
           break
         }
-        let eligible = candidates
-        const measured = new Map(candidates.map((c) => [c.id, {}])),
-          observations = new Map(candidates.map((c) => [c.id, []]))
-        const decide = (
-          candidate,
-          comparison,
-          tier,
-          next,
-          selected,
-          affordability,
-          terminalSelected = false,
-          selectedCandidateId = null,
-        ) => {
-          const r = measured.get(candidate.id)[tier],
-            option = plan.evidenceStrategy.additional_options.find((o) => o.tier === tier)
-          const ownReceipt = evidenceReceipt(
-              providers.evaluators.find((d) => d.tier === tier),
-              r,
-            ),
-            incumbentReceipt = evidenceReceipt(
-              providers.evaluators.find((d) => d.tier === tier),
-              championEvidence[tier],
-            )
-          const coverageConfirmed = option?.available
-            ? option.addedCoverage.every(
-                (k) => ownReceipt.coverage.includes(k) && incumbentReceipt.coverage.includes(k),
-              )
-            : null
-          observations.get(candidate.id).push({ tier, result: r, comparison, coverageConfirmed })
-          const input = { candidateId: candidate.id, observations: observations.get(candidate.id) }
-          const aggregate =
-            typeof this.ctx.duoComparator.aggregate === 'function'
-              ? this.ctx.duoComparator.aggregate(freeze(clone(input)))
-              : aggregateJudgments(input)
-          const request = freeze(
-            clone({
-              candidateId: candidate.id,
-              aggregate,
-              next,
-              selected,
-              affordability,
-              terminalSelected,
-            }),
-          )
-          let d =
-            typeof this.ctx.duoGate.decide === 'function'
-              ? this.ctx.duoGate.decide(request)
-              : decideEvidence(request)
-          if (
-            !d ||
-            !['reject', 'hold', 'promote', 'request_more_evidence', 'stop'].includes(d.action) ||
-            typeof d.reason !== 'string' ||
-            !d.reason ||
-            !Array.isArray(d.evidence_gaps) ||
-            !d.basis ||
-            (d.action === 'request_more_evidence' &&
-              (!selected ||
-                !next?.available ||
-                affordability.remaining < 1 ||
-                d.request?.tier !== next.tier)) ||
-            (d.action === 'promote' &&
-              (next ||
-                !['better', 'not_better'].includes(comparison.verdicts[candidate.id]) ||
-                coverageConfirmed === false))
-          )
-            fail(
-              'DUO_EVIDENCE_DECISION_INVALID',
-              'Policy decision must reference current comparable evidence and an admitted planned acquisition; it cannot bypass budget or coverage',
-            )
-          // A policy permits promotion; the lifecycle has one terminal slot.
-          // Preserve the proposal when rank-based arbitration consumes that slot.
-          if (d.action === 'promote' && selectedCandidateId)
-            d = {
-              ...d,
-              action: 'hold',
-              reason: 'ANOTHER_CANDIDATE_SELECTED',
-              policyProposal: { action: d.action, reason: d.reason },
-              selectedCandidateId,
-              basis: {
-                ...d.basis,
-                inference: [
-                  ...(d.basis.inference ?? []),
-                  'A higher-ranked policy-admissible candidate occupies the terminal slot',
-                ],
-              },
-            }
-          if (d.action === 'stop') {
-            searchStopped = true
-            stopReason = 'evidence_policy_stop'
-          }
-          j.append({
-            kind: 'evidence_decision',
-            candidateId: candidate.id,
-            generation,
-            policy: providers.policies.duoGate,
-            decision: clone(d),
-          })
-          return d
-        }
-        for (const [index, stage] of stages.entries()) {
-          if (!eligible.length || searchStopped) break
-          const { tier } = stage,
-            results = []
-          if (!championEvidence[tier]) {
-            championEvidence[tier] = await evaluate(champion, tier)
-            assessIncumbent(champion, championEvidence[tier], tier)
-          }
-          for (const c of eligible) {
-            const r = await evaluate(c, tier)
-            results.push(r)
-            measured.get(c.id)[tier] = r
-            record(c, { status: r.ok ? tier + '_evaluated' : 'error', [tier]: r })
-          }
-          const comparison = compare([championEvidence[tier], ...results], tier, champion.id)
-          j.append({ kind: 'comparison', tier, generation, comparison })
-          for (const c of [champion, ...eligible])
-            record(c, {
-              [tier + 'Score']: comparison.scores[c.id] ?? null,
-              [tier + 'Verdict']: comparison.verdicts[c.id],
-              [tier + 'Rank']: comparison.ranking.indexOf(c.id),
-            })
-          const next = stages[index + 1]
-          if (!next) {
-            let id = comparison.ranking.find(
-              (id) => id !== champion.id && comparison.verdicts[id] === 'better',
-            )
-            if (strategic) {
-              id = null
-              const byId = new Map(eligible.map((c) => [c.id, c]))
-              const ordered = [
-                ...comparison.ranking.filter((key) => byId.has(key)),
-                ...eligible
-                  .map((c) => c.id)
-                  .filter((key) => !comparison.ranking.includes(key))
-                  .sort(),
-              ]
-              for (const candidateId of ordered) {
-                if (searchStopped) break
-                const c = byId.get(candidateId)
-                const decision = decide(
-                  c,
-                  comparison,
-                  tier,
-                  null,
-                  false,
-                  null,
-                  !id && comparison.verdicts[c.id] === 'better',
-                  id,
-                )
-                record(c, {
-                  status:
-                    decision.action === 'promote'
-                      ? 'champion'
-                      : decision.action === 'reject'
-                        ? 'rejected'
-                        : 'held',
-                  slowDecision:
-                    decision.action === 'promote'
-                      ? 'accepted'
-                      : decision.action === 'reject'
-                        ? 'rejected'
-                        : 'held',
-                })
-                if (decision.action === 'promote' && !id) id = c.id
-              }
-            }
-            if (stages.length > 1 && !strategic)
-              for (const c of eligible)
-                record(c, {
-                  status:
-                    c.id === id
-                      ? 'champion'
-                      : comparison.verdicts[c.id] === 'not_better'
-                        ? 'rejected'
-                        : 'held',
-                  slowDecision:
-                    c.id === id
-                      ? 'accepted'
-                      : comparison.verdicts[c.id] === 'not_better'
-                        ? 'rejected'
-                        : comparison.verdicts[c.id] === 'better'
-                          ? 'held'
-                          : 'incomparable',
-                })
-            if (id) {
-              champion = eligible.find((c) => c.id === id)
-              championEvidence = measured.get(id)
-            }
-            break
-          }
-          const snapshot = budget.snapshot(),
-            legacyRemaining = Math.max(
-              0,
-              Math.min(
-                next.maxEvaluations - stageAttempts[next.tier],
-                spec.budget.maxSlowEvals - snapshot.slowAttempts - (spec.final ? 2 : 0),
-              ),
-            )
-          const affordability = strategic
-            ? affordableAcquisitions({
-                snapshot,
-                limits: spec.budget,
-                executor: providers.executor,
-                evaluator: providers.evaluators.find((d) => d.tier === next.tier),
-                stageRemaining: next.maxEvaluations - stageAttempts[next.tier],
-                evaluationRemaining:
-                  spec.budget.maxSlowEvals - snapshot.slowAttempts - (spec.final ? 2 : 0),
-                baselineNeeded: !championEvidence[next.tier],
-                finalReserved: spec.final ? 2 : 0,
-              })
-            : null
-          const remaining = strategic ? affordability.remaining : legacyRemaining
-          const gateLimits = {
-            topK: stage.topK,
-            remaining,
-            incumbentId: champion.id,
-            epsilon: spec.epsilon,
-          }
-          let promoted = this.ctx.duoGate.select(
-            comparison,
-            eligible.map((c) => c.id),
-            gateLimits,
-          )
-          if (
-            !Array.isArray(promoted) ||
-            new Set(promoted).size !== promoted.length ||
-            promoted.length > Math.min(stage.topK, remaining) ||
-            promoted.some(
-              (id) =>
-                !eligible.some((c) => c.id === id) ||
-                !['better', 'not_better'].includes(comparison.verdicts[id]),
-            )
-          )
-            fail(
-              'DUO_GATE_INVALID',
-              'Gate must select unique valid candidate evidence within the frozen limits',
-            )
-          if (strategic) {
-            const nextOption = plan.evidenceStrategy.additional_options.find(
-                (o) => o.tier === next.tier,
-              ),
-              admitted = []
-            for (const c of eligible) {
-              const chosen =
-                promoted.includes(c.id) ||
-                (remaining === 0 && comparison.verdicts[c.id] === 'better')
-              const decision = decide(c, comparison, tier, nextOption, chosen, affordability)
-              if (decision.action === 'request_more_evidence') admitted.push(c.id)
-              else record(c, { status: decision.action === 'reject' ? 'rejected' : 'held' })
-            }
-            promoted = admitted
-          }
-          j.append({
-            kind: 'gate',
-            generation,
-            fromTier: tier,
-            toTier: next.tier,
-            policy: providers.policies.duoGate,
-            limits: gateLimits,
-            considered: eligible.map((c) => c.id),
-            selected: promoted.map((candidateId) => ({
-              candidateId,
-              verdict: comparison.verdicts[candidateId],
-              score: comparison.scores[candidateId],
-              reason:
-                comparison.verdicts[candidateId] === 'better'
-                  ? index === 0
-                    ? 'FAST_BETTER'
-                    : 'STAGE_BETTER'
-                  : Math.abs(comparison.scores[candidateId] - comparison.scores[champion.id]) <=
-                      spec.epsilon
-                    ? 'WITHIN_EPSILON_DEEPER_TEST'
-                    : 'PROVIDER_DEEPER_TEST',
-            })),
-          })
-          eligible = promoted.map((id) => eligible.find((c) => c.id === id))
-        }
+        ;({ champion, championEvidence, searchStopped, stopReason } = await selectGeneration({
+          ctx: this.ctx,
+          plan,
+          j,
+          stages,
+          stageAttempts,
+          budget,
+          strategic,
+          generation,
+          candidates,
+          champion,
+          championEvidence,
+          searchStopped,
+          stopReason,
+          evaluate,
+          assessIncumbent,
+          compare,
+          record,
+        }))
         const stopped = searchStopped || finishGeneration(generation, previousVersion),
           paused = boundary('generation', generation + 1, stopped)
         if (paused) return paused
         if (stopped) break
       }
-      const noFeasibleCandidate =
-        champion.id === plan.baseline.id &&
-        Object.values(baselineAssessment()).some((a) => a.verdict === 'constraint_violation')
-      let conclusion =
-        stopReason !== 'doctor_stop' &&
-        spec.mode === 'optimize' &&
-        champion.id === plan.baseline.id &&
-        !noFeasibleCandidate
-          ? 'retain_baseline'
-          : 'insufficient_evidence'
-      let independentFinal = null
-      if (
-        spec.final &&
-        spec.mode !== 'explore' &&
-        !['evidence_policy_stop', 'doctor_stop'].includes(stopReason)
-      ) {
-        for (const c of champion.id === plan.baseline.id
-          ? [plan.baseline]
-          : [plan.baseline, champion])
-          final.push(await evaluate(c, 'final'))
-        j.append({ kind: 'final', results: final })
-        const cmp = compare(final, 'final', plan.baseline.id)
-        const admitted = final.every(
-          (r) =>
-            ['better', 'not_better'].includes(cmp.verdicts[r.candidateId]) ||
-            (r.candidateId === plan.baseline.id &&
-              champion.id !== plan.baseline.id &&
-              cmp.verdicts[r.candidateId] === 'constraint_violation'),
-        )
-        const finalConclusion = !admitted
-          ? 'insufficient_evidence'
-          : champion.id !== plan.baseline.id && cmp.verdicts[champion.id] === 'better'
-            ? 'recommend_candidate'
-            : 'retain_baseline'
-        const reusedHistory = plan.warmStart?.mode === 'warm_start',
-          qualifiedConclusion =
-            reusedHistory && finalConclusion === 'recommend_candidate'
-              ? 'insufficient_evidence'
-              : finalConclusion
-        if (!evaluationOnly)
-          independentFinal = {
-            conclusion: qualifiedConclusion,
-            comparison: cmp,
-            ...(reusedHistory
-              ? {
-                  observedConclusion: finalConclusion,
-                  independence: 'NOT_ESTABLISHED',
-                  dataReview: clone(plan.warmStart.finalDataReview),
-                }
-              : {}),
-          }
-        if (spec.mode === 'optimize' && !noFeasibleCandidate) conclusion = qualifiedConclusion
-      }
-      const doctorReport = [...j.events()].reverse().find((e) => e.kind === 'doctor')
-      result = {
-        apiVersion: 2,
-        runtime: 'dsh-native',
-        runId,
-        planDigest: plan.planDigest,
-        status: 'completed',
-        mode: spec.mode,
+      result = await completeSearch({
+        plan,
+        j,
+        budget,
+        stages,
+        champion,
+        championEvidence,
         stopReason,
         generationsRun,
-        championId: spec.mode === 'optimize' && !noFeasibleCandidate ? champion.id : null,
-        proxyLeaderId: spec.mode === 'fast_only' && !noFeasibleCandidate ? champion.id : null,
-        ...(!evaluationOnly
-          ? {
-              selectionOutcome: noFeasibleCandidate
-                ? 'no_feasible_candidate'
-                : champion.id === plan.baseline.id
-                  ? 'baseline_retained'
-                  : 'feasible_candidate',
-            }
-          : {}),
-        conclusion,
-        selectedOverlay: champion.id === plan.baseline.id ? null : champion.delta,
         final,
-        independentFinal,
-        improvementProven: false,
-        evidenceKind: providers.evaluators.every(
-          (d) => d.evidenceKind === providers.evaluators[0]?.evidenceKind,
-        )
-          ? (providers.evaluators[0]?.evidenceKind ?? 'unknown')
-          : 'mixed_declared',
-        budget: budget.snapshot(),
-        reusedArtifacts: false,
-        ...(doctorReport
-          ? { doctor: { severity: doctorReport.severity, checks: doctorReport.checks } }
-          : {}),
-      }
-      if (evaluationOnly) {
-        const evaluations = [...stages.map((s) => championEvidence[s.tier]), ...final].filter(
-          Boolean,
-        )
-        Object.assign(result, {
-          operation: 'evaluate',
-          stopReason: 'evaluation_complete',
-          championId: null,
-          conclusion: evaluations.every((r) => r.ok) ? 'retain_baseline' : 'insufficient_evidence',
-          evaluations,
-          measurementChecks: Object.fromEntries(
-            evaluations.map((r) => [r.tier, compare([r], r.tier, null)]),
-          ),
-          limitations: [
-            'Evaluation-only measures the current target; no search or candidate improvement was attempted.',
-            'Retaining the target is not a claim that its constraints or quality passed; inspect measurementChecks.',
-          ],
-        })
-      }
+        evaluate,
+        compare,
+        baselineAssessment,
+      })
     } catch (error) {
       const doctorReport = [...j.events()].reverse().find((e) => e.kind === 'doctor')
       result = {

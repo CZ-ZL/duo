@@ -4,12 +4,15 @@
   "private": true,
   "description": "Development checks for the DUO product package; never published",
   "scripts": {
-    "format": "prettier --write dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js dsh-plugin/examples/model/*.js dsh-plugin/examples/decisions/*.{js,mjs} scripts/product/sync_product_docs.mjs",
-    "format:check": "prettier --check dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js dsh-plugin/examples/model/*.js dsh-plugin/examples/decisions/*.{js,mjs} scripts/product/sync_product_docs.mjs",
-    "typecheck": "node scripts/product/check_public_types.mjs"
+    "format": "prettier --write dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js dsh-plugin/examples/model/*.js dsh-plugin/examples/decisions/*.{js,mjs} scripts/product/sync_product_docs.mjs scripts/product/check_diagrams.mjs",
+    "format:check": "prettier --check dsh-plugin/native/*.{js,ts} dsh-plugin/*.js dsh-plugin/tests/*.js dsh-plugin/tests/native/*.js dsh-plugin/bin/*.mjs dsh-plugin/examples/product/*.js dsh-plugin/examples/model/*.js dsh-plugin/examples/decisions/*.{js,mjs} scripts/product/sync_product_docs.mjs scripts/product/check_diagrams.mjs",
+    "typecheck": "node scripts/product/check_public_types.mjs",
+    "docs:check": "python3 scripts/product/check_docs.py && node scripts/product/check_diagrams.mjs"
   },
   "devDependencies": {
     "@types/node": "24.3.1",
+    "jsdom": "29.1.1",
+    "mermaid": "12.3.0",
     "prettier": "3.6.2",
     "typescript": "5.9.3"
   }

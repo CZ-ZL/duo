@@ -1,6 +1,17 @@
 # DUO public reference
 
-The live dualloop_describe schema is authoritative. CURRENT_STATUS.md is generated from the same capability catalog. PROVIDERS.md describes public component interfaces.
+The live `dualloop_describe` schema is authoritative. [Current support](CURRENT_STATUS.md)
+is generated from the same capability catalog. [Provider contracts](PROVIDERS.md)
+define extension interfaces; [Agent Guide](AGENT_GUIDE.md) covers the calling lifecycle.
+
+| Task | Public tools / reference |
+|---|---|
+| Inspect and prepare | `dualloop_describe`, `dualloop_design`; [setup and objectives](PROVIDERS.md#native-setup-and-objective-designer) |
+| Execute an inspected plan | `dualloop_plan`, `dualloop_run`; [Quickstart](QUICKSTART.md) |
+| Read results | `dualloop_status`, `dualloop_report`; [Observer](PROVIDERS.md#native-observer) |
+| Manage retained work | `dualloop_cancel`, `dualloop_budget_status`, `dualloop_budget_abandon`; [failure and recovery](#failure-and-recovery) |
+| Use decision support | [typed decisions](guides/DECISIONS.md), [optional support judgment](guides/SUPPORT_JUDGMENT.md) |
+| Implement a provider | [work contracts](PROVIDERS.md#work-providers), [public types](native/definitions.d.ts) |
 
 ## Before configuration
 
@@ -41,7 +52,7 @@ Reports distinguish execution, rendered artifacts and observed Caller delivery. 
 
 ## Slow evidence strategy
 
-Read EVIDENCE_STRATEGY.md for public presets, metadata, coverage receipts, bounded acquisition, aggregation/decision hooks, result modes and legacy boundaries. No extra evidence is required for optimize-basic. Graph/Bayesian are extension locations only, not implementations.
+Read [Evidence Strategy](EVIDENCE_STRATEGY.md) for public presets, metadata, coverage receipts, bounded acquisition, aggregation/decision hooks, result modes and legacy boundaries. No extra evidence is required for optimize-basic. Graph/Bayesian are extension locations only, not implementations.
 
 
 ### Cumulative admission and terminal selection (0.6.0)

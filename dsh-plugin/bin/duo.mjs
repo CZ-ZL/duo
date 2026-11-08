@@ -15,6 +15,7 @@ import { parseArgs } from 'node:util'
 import { spawnSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { starterSettings, prepareStarter, starterError } from '../examples/model/prepare.js'
+import { inspectHost } from './check-host.mjs'
 const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)))
 const write = (p, x) => writeFileSync(p, JSON.stringify(x, null, 2) + '\n', { flag: 'wx' })
 const { positionals, values } = parseArgs({
@@ -35,11 +36,16 @@ const { positionals, values } = parseArgs({
 const command = positionals[0]
 if (values.help || !command) {
   console.log(
-    'duo init --root NEW_DIRECTORY --dsh-package EXISTING_DSH_PACKAGE --example evaluate|optimize|dual|byo|replace|warm|setup|custom|grounded-qa\nGrounded QA: --model-config PATH [--allow-paid --max-cost-cny AMOUNT]\nduo call --root DIRECTORY --tool schemas|dualloop_TOOL --args JSON [--cancel-after-ms N] [--allow-paid]\nLocal examples use no model. Grounded QA uses an explicitly authorized model route; see packaged QUICKSTART.md. Preparation alone never spends money.',
+    'duo check-host --dsh-package EXISTING_DSH_PACKAGE\nduo init --root NEW_DIRECTORY --dsh-package EXISTING_DSH_PACKAGE --example evaluate|optimize|dual|byo|replace|warm|setup|custom|grounded-qa\nGrounded QA: --model-config PATH [--allow-paid --max-cost-cny AMOUNT]\nduo call --root DIRECTORY --tool schemas|dualloop_TOOL --args JSON [--cancel-after-ms N] [--allow-paid]\nLocal examples use no model. Grounded QA uses an explicitly authorized model route; see packaged QUICKSTART.md. Preparation alone never spends money.',
   )
   process.exit(0)
 }
 try {
+  if (command === 'check-host') {
+    const result = inspectHost(values['dsh-package'])
+    console.log(JSON.stringify(result, null, 2))
+    process.exit(result.status === 'compatible' ? 0 : 2)
+  }
   if (!values.root) throw new Error('--root is required')
   const root = resolve(values.root)
   if (command === 'init') {
