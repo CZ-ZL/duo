@@ -10,7 +10,7 @@
 
 研究回答三个问题：当前 full 是否值得替代 Simple；额外组件是否产生独立或条件收益；交付不佳来自已生成候选质量，还是候选选择损失。Simple 已包含历史、Journal、去重、正确性/性能评测和第二开发分区，是迭代优化器。比较对象不是单次调用的弱基线。
 
-Simple 每代从当前最佳程序生成候选，按源码去重，依次做 Fast、Slow 开发评测；只有正确性通过且 Slow 判为严格改善，才替换当前最佳程序。它没有 DUO 的 Fast Top-K 筛选或 bounded-tie 探索准入。完整流程、已有能力及 `S-current` / `S-aligned` 的区别见 [Simple 基线详解](SIMPLE_BASELINE.zh-CN.md)。
+Simple 每代从当前最佳程序生成候选，按源码去重，依次做 Fast、Slow 开发评测；只有正确性通过且 Slow 判为严格改善，才替换当前最佳程序。它没有 DUO 的 Fast Top-K 筛选或 bounded-tie 探索准入。完整流程和已有能力见 [Simple 公共基线说明](../SIMPLE_BASELINE.zh-CN.md)；`S-current` / `S-aligned` 的区别见[本阶段配置](SIMPLE_BASELINE.zh-CN.md)。
 
 三个任务为 p03161（DP）、p02363（APSP）和 p02373（LCA）。主要终点是最终封存程序在新输入上的耗时比，不是代理搜索墙钟。比值小于 1 表示左侧程序更快。下列研究的协议、输入、重复数和费用口径分别保留，不汇总成一个总体胜率或预算。
 

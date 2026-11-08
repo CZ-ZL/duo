@@ -1,5 +1,9 @@
 # Research archive
 
+## Shared baselines
+
+[Simple: shared iterative optimization baseline](SIMPLE_BASELINE.zh-CN.md) explains the method, retained feedback and evaluation capabilities, and implementation provenance. Simple is reused across experiments. Each study separately binds its version, task, evaluation protocol and resource limits.
+
 ## Latest completed-stage research
 
 [DUO task optimization closeout through 2026-11-05](duo-task-optimization-20261105/README.md): three separately scoped studies, a working paper, curated per-comparison results and provenance. Retain Simple; current full and aligned DUO are not adopted.

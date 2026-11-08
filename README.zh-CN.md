@@ -122,6 +122,6 @@ Provider 是受信任的进程内代码；恢复仅覆盖支持的已结算检�
 
 - 开发：[贡献说明](./CONTRIBUTING.md)、[测试](./docs/development/TESTING.md)、[目录说明](./docs/development/REPOSITORY_LAYOUT.md)。
 - 版本与验收：[发布索引](./docs/releases/README.md)、[变更记录](./docs/releases/CHANGELOG.md)。
-- 研究：[实验结果](./docs/research/EXPERIMENTS.md)。方法研究已暂停，目前先把安装、使用和扩展这几件事做好。产品测试通过，只说明这套流程能按预期运行。
+- 研究：[跨实验复用的 Simple 基线](./docs/research/SIMPLE_BASELINE.zh-CN.md)、[实验结果](./docs/research/EXPERIMENTS.md)。方法研究已暂停，目前先把安装、使用和扩展这几件事做好。产品测试通过，只说明这套流程能按预期运行。
 
 双环思路受 Wang 等人的 [*Self-Evolving Recommendation System*](https://arxiv.org/abs/2602.10226) 启发。DUO 是独立的 Agent 组件适配，不继承论文的实验结论。运行基础为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 和 [Cordis](https://github.com/cordiverse/cordis)。代码采用 [MIT 许可](./LICENSE)，详细归属见[来源与第三方说明](./docs/THIRD_PARTY_NOTICES.md)。

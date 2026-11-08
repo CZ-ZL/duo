@@ -249,7 +249,7 @@
     },
     {
       "path": "SIMPLE_BASELINE.zh-CN.md",
-      "transformation": "Description checked against frozen controllers, runtime/version bindings, history projection and alignment allocation. No new execution or performance claim.",
+      "transformation": "Study-specific Simple versions, resource ceilings, alignment allocation and provenance; shared baseline definition moved to ../SIMPLE_BASELINE.zh-CN.md.",
       "sourceIds": [
         "ablation-report",
         "simple-ablation-controller",
@@ -272,5 +272,9 @@
     "runtime and worker records",
     "full raw timing streams"
   ],
-  "publicationVerification": "Selected fields and denominators checked against retained structured sources; no new experiment or full raw-data reconstruction."
+  "publicationVerification": "Selected fields and denominators checked against retained structured sources; no new experiment or full raw-data reconstruction.",
+  "sharedBaselineReference": {
+    "document": "../SIMPLE_BASELINE.zh-CN.md",
+    "provenance": "../SIMPLE_BASELINE_PROVENANCE.json"
+  }
 }

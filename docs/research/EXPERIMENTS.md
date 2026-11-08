@@ -1,5 +1,7 @@
 # Experimental results and limits
 
+For the shared method and its task-level implementation, see the [Simple baseline](SIMPLE_BASELINE.zh-CN.md). Each experiment below retains its own baseline version and protocol; earlier B1 single-loop arms are not assumed to be identical to that task-level controller.
+
 ## Completed-stage update — 2026-11-05
 
 The [task optimization research package](duo-task-optimization-20261105/README.md) adds the October component study, fixed-pool attribution and November alignment closeout. These studies retain separate protocols, denominators and accounting. Their conclusions and corrections do not replace the historical sections below.

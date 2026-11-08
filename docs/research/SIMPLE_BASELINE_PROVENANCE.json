@@ -1,0 +1,52 @@
+{
+  "schema": "duo.shared-baseline-provenance.v1",
+  "baseline": "Simple",
+  "canonicalDocument": "SIMPLE_BASELINE.zh-CN.md",
+  "scope": "Shared baseline method; implementation details checked against two retained task-level controllers and history feedback. This is not a claim that all historical single-loop arms use identical code or evaluation.",
+  "sourceAvailability": "retained_local_not_in_this_repository",
+  "hashesProvideDownloadAccess": false,
+  "sources": [
+    {
+      "id": "simple-ablation-controller",
+      "originalFilename": "simple-controller.mjs",
+      "sha256": "3d6efe65ef7dfc64ac51ff5118671ca12e6dbc4ce911cc6e57508d98c10628ac",
+      "bytes": 5798,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-simple-controller",
+      "originalFilename": "simple-controller.mjs",
+      "sha256": "2fb881afbcb1a32d4b72827598cf07f0376e561930b43633baabbc3eb775d59b",
+      "bytes": 6131,
+      "availability": "retained_local_not_in_this_repository"
+    },
+    {
+      "id": "simple-history-feedback",
+      "originalFilename": "history-feedback.mjs",
+      "sha256": "ef73ee6e7f42cf101df9cf48575a1996fcf41db4e973495475db378254647e58",
+      "bytes": 7114,
+      "availability": "retained_local_not_in_this_repository"
+    }
+  ],
+  "publicObjects": [
+    {
+      "path": "SIMPLE_BASELINE.zh-CN.md",
+      "transformation": "Shared method description and source-checked task-level loop, separated from study-specific versions, budgets and conclusions.",
+      "sourceIds": [
+        "simple-ablation-controller",
+        "simple-simple-controller",
+        "simple-history-feedback"
+      ]
+    }
+  ],
+  "studyConfigurations": [
+    {
+      "path": "duo-task-optimization-20261105/SIMPLE_BASELINE.zh-CN.md",
+      "scope": "Component and alignment study instances; includes simple, S-current and S-aligned."
+    }
+  ],
+  "historicalComparisonReference": {
+    "path": "EXPERIMENTS.md",
+    "scope": "Earlier B1 single-loop comparisons have separate adapters and protocols; no identity with the task-level controller is asserted."
+  }
+}
